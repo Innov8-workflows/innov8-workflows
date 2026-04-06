@@ -759,17 +759,19 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
   document.head.appendChild(script);
 
   function initMatter() {
+   try {
+    var isMobile = window.innerWidth < 900;
     var scene = new THREE.Scene();
     var camera = new THREE.PerspectiveCamera(75, mount.clientWidth / mount.clientHeight, 0.1, 1000);
     camera.position.z = 3;
 
-    var renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    var renderer = new THREE.WebGLRenderer({ antialias: !isMobile, alpha: true });
     renderer.setSize(mount.clientWidth, mount.clientHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(isMobile ? 1 : Math.min(window.devicePixelRatio, 2));
     mount.appendChild(renderer.domElement);
 
     // Brand orange wireframe with arcane pink fresnel glow
-    var geo = new THREE.IcosahedronGeometry(1.2, 64);
+    var geo = new THREE.IcosahedronGeometry(1.2, isMobile ? 16 : 64);
     var mat = new THREE.ShaderMaterial({
       uniforms: {
         time: { value: 0 },
@@ -867,6 +869,7 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
       pointLight.position.copy(pos);
       mat.uniforms.pointLightPos.value = pos;
     });
+   } catch(e) { console.warn('Matter hero failed:', e); }
   }
 })();
 </script>

@@ -504,8 +504,8 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
   var hCanvas = document.getElementById('heroCanvas');
   if (!hCanvas) return;
 
-  var TEXTURE_URL = 'https://i.postimg.cc/XYwvXN8D/img-4.png';
-  var DEPTH_URL = 'https://i.postimg.cc/2SHKQh2q/raw-4.webp';
+  var TEXTURE_URL = 'hero-futuristic-texture.png';
+  var DEPTH_URL = 'hero-futuristic-depth.webp';
 
   // Load Three.js from CDN
   var script = document.createElement('script');
@@ -529,6 +529,7 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
     var clock = new THREE.Clock();
 
     var loader = new THREE.TextureLoader();
+    loader.crossOrigin = 'anonymous';
     var texturesLoaded = 0;
     var rawTex, depthTex, meshMaterial;
 
@@ -538,7 +539,7 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
       createMesh();
     }
 
-    loader.load(TEXTURE_URL, function(t) { rawTex = t; onTexLoaded(); });
+    loader.load(TEXTURE_URL, function(t) { t.colorSpace = THREE.SRGBColorSpace; rawTex = t; onTexLoaded(); });
     loader.load(DEPTH_URL, function(t) { depthTex = t; onTexLoaded(); });
 
     function createMesh() {
@@ -592,18 +593,18 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
           '  float flow = 1.0 - smoothstep(0.0, 0.025, abs(depth - uProgress));',
           '',
           '  // Orange brand color mask (ea580c = rgb(234,88,12))',
-          '  vec3 scanColor = vec3(0.918, 0.345, 0.047) * dot * flow * 8.0;',
+          '  vec3 scanColor = vec3(0.918, 0.345, 0.047) * dot * flow * 12.0;',
           '',
           '  // Scan line glow',
-          '  float scanLine = 1.0 - smoothstep(0.0, 0.04, abs(vUv.y - uProgress));',
-          '  vec3 scanGlow = vec3(0.918, 0.345, 0.047) * scanLine * 0.15;',
+          '  float scanLine = 1.0 - smoothstep(0.0, 0.06, abs(vUv.y - uProgress));',
+          '  vec3 scanGlow = vec3(0.918, 0.345, 0.047) * scanLine * 0.3;',
           '',
           '  // Bloom-like glow around scan area',
-          '  float bloomArea = 1.0 - smoothstep(0.0, 0.12, abs(depth - uProgress));',
-          '  vec3 bloomGlow = vec3(0.976, 0.451, 0.086) * bloomArea * 0.08;',
+          '  float bloomArea = 1.0 - smoothstep(0.0, 0.15, abs(depth - uProgress));',
+          '  vec3 bloomGlow = vec3(0.976, 0.451, 0.086) * bloomArea * 0.15;',
           '',
           '  // Blend: screen blend scan onto image',
-          '  vec3 final = color.rgb + scanColor + scanGlow + bloomGlow;',
+          '  vec3 final = color.rgb * 1.1 + scanColor + scanGlow + bloomGlow;',
           '  final = min(final, vec3(1.0));',
           '',
           '  gl_FragColor = vec4(final, 1.0);',

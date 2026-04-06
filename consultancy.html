@@ -195,6 +195,17 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 .cf-error-msg { background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); border-radius: 8px; padding: 12px 16px; font-size: 0.85rem; color: #ef4444; }
 .cf-success-msg { background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.3); border-radius: 8px; padding: 16px 20px; font-size: 0.9rem; color: var(--node-green); font-weight: 600; }
 @media (max-width: 600px) { .cf-row { grid-template-columns: 1fr; } }
+
+/* ── ANOMALOUS MATTER HERO ── */
+.matter-hero { position: relative; z-index: 1; width: 100%; height: 100vh; min-height: 600px; overflow: hidden; background: #000; }
+#matterMount { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; }
+.matter-hero-grad { position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: linear-gradient(to top, rgba(15,15,15,1) 0%, rgba(15,15,15,0.7) 25%, transparent 55%); }
+.matter-hero-content { position: absolute; bottom: 0; left: 0; right: 0; z-index: 2; text-align: center; padding: 0 24px 80px; pointer-events: none; }
+.matter-hero-content .mono-label { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent2); opacity: 0.8; margin-bottom: 16px; }
+.matter-hero-content h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700; line-height: 1.15; color: #fff; margin-bottom: 20px; }
+.matter-hero-content p { font-size: 1rem; color: var(--muted2); max-width: 520px; margin: 0 auto; line-height: 1.7; }
+.matter-hero .hero-word { display: inline-block; opacity: 0; animation: fadeUp 0.6s ease forwards; }
 </style>
 </head>
 <body>
@@ -214,16 +225,24 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
   </ul>
 </nav>
 
+<!-- Anomalous Matter Hero -->
+<div class="matter-hero">
+  <div id="matterMount"></div>
+  <div class="matter-hero-grad"></div>
+  <div class="matter-hero-content">
+    <div class="mono-label hero-word" style="animation-delay:0.3s">Free Consultation</div>
+    <h1>
+      <span class="hero-word" style="animation-delay:0.5s">Let's talk about</span><br/>
+      <span class="hero-word" style="animation-delay:0.7s;color:var(--accent)">your business.</span>
+    </h1>
+    <p class="hero-word" style="animation-delay:1.0s">Every project starts with a free, no-obligation conversation. No pitch, no pressure — just an honest discussion about what you need.</p>
+  </div>
+</div>
+
 <div class="breadcrumb">
   <a href="index.html">Home</a>
   <span>/</span>
   <span style="color:var(--text)">Consultancy</span>
-</div>
-
-<div class="page-hero">
-  <div class="page-hero-badge"><span class="badge-dot"></span> Free Consultation</div>
-  <h1>Let's talk about<br/><span>your business.</span></h1>
-  <p>Every project starts with a free, no-obligation conversation. No pitch, no pressure — just an honest discussion about what you need and how we can help.</p>
 </div>
 
 <!-- FREE CONSULT HERO -->
@@ -698,7 +717,139 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
     entries.forEach(e => { if (e.isIntersecting) { setTimeout(()=>e.target.classList.add('visible'),60); obs.unobserve(e.target); } });
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// ── ANOMALOUS MATTER HERO (Three.js Wireframe Icosahedron) ───
+(function() {
+  var mount = document.getElementById('matterMount');
+  if (!mount) return;
+
+  var script = document.createElement('script');
+  script.src = 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js';
+  script.onload = function() {
+    if (typeof THREE === 'undefined') return;
+    function tryInit() {
+      if (mount.clientHeight > 300) initMatter();
+      else setTimeout(tryInit, 100);
+    }
+    tryInit();
+  };
+  document.head.appendChild(script);
+
+  function initMatter() {
+    var scene = new THREE.Scene();
+    var camera = new THREE.PerspectiveCamera(75, mount.clientWidth / mount.clientHeight, 0.1, 1000);
+    camera.position.z = 3;
+
+    var renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setSize(mount.clientWidth, mount.clientHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    mount.appendChild(renderer.domElement);
+
+    // Brand orange wireframe with arcane pink fresnel glow
+    var geo = new THREE.IcosahedronGeometry(1.2, 64);
+    var mat = new THREE.ShaderMaterial({
+      uniforms: {
+        time: { value: 0 },
+        pointLightPos: { value: new THREE.Vector3(0, 0, 5) },
+        color: { value: new THREE.Color('#ea580c') },
+        glowColor: { value: new THREE.Color('#ff008a') }
+      },
+      vertexShader: [
+        'uniform float time;',
+        'varying vec3 vNormal;',
+        'varying vec3 vPosition;',
+        'vec3 mod289(vec3 x){return x-floor(x*(1.0/289.0))*289.0;}',
+        'vec4 mod289(vec4 x){return x-floor(x*(1.0/289.0))*289.0;}',
+        'vec4 permute(vec4 x){return mod289(((x*34.0)+1.0)*x);}',
+        'vec4 taylorInvSqrt(vec4 r){return 1.79284291400159-0.85373472095314*r;}',
+        'float snoise(vec3 v){',
+        '  const vec2 C=vec2(1.0/6.0,1.0/3.0);const vec4 D=vec4(0.0,0.5,1.0,2.0);',
+        '  vec3 i=floor(v+dot(v,C.yyy));vec3 x0=v-i+dot(i,C.xxx);',
+        '  vec3 g=step(x0.yzx,x0.xyz);vec3 l=1.0-g;',
+        '  vec3 i1=min(g.xyz,l.zxy);vec3 i2=max(g.xyz,l.zxy);',
+        '  vec3 x1=x0-i1+C.xxx;vec3 x2=x0-i2+C.yyy;vec3 x3=x0-D.yyy;',
+        '  i=mod289(i);',
+        '  vec4 p=permute(permute(permute(i.z+vec4(0.0,i1.z,i2.z,1.0))+i.y+vec4(0.0,i1.y,i2.y,1.0))+i.x+vec4(0.0,i1.x,i2.x,1.0));',
+        '  float n_=0.142857142857;vec3 ns=n_*D.wyz-D.xzx;',
+        '  vec4 j=p-49.0*floor(p*ns.z*ns.z);',
+        '  vec4 x_=floor(j*ns.z);vec4 y_=floor(j-7.0*x_);',
+        '  vec4 x=x_*ns.x+ns.yyyy;vec4 y=y_*ns.x+ns.yyyy;',
+        '  vec4 h=1.0-abs(x)-abs(y);',
+        '  vec4 b0=vec4(x.xy,y.xy);vec4 b1=vec4(x.zw,y.zw);',
+        '  vec4 s0=floor(b0)*2.0+1.0;vec4 s1=floor(b1)*2.0+1.0;',
+        '  vec4 sh=-step(h,vec4(0.0));',
+        '  vec4 a0=b0.xzyw+s0.xzyw*sh.xxyy;vec4 a1=b1.xzyw+s1.xzyw*sh.zzww;',
+        '  vec3 p0=vec3(a0.xy,h.x);vec3 p1=vec3(a0.zw,h.y);vec3 p2=vec3(a1.xy,h.z);vec3 p3=vec3(a1.zw,h.w);',
+        '  vec4 norm=taylorInvSqrt(vec4(dot(p0,p0),dot(p1,p1),dot(p2,p2),dot(p3,p3)));',
+        '  p0*=norm.x;p1*=norm.y;p2*=norm.z;p3*=norm.w;',
+        '  vec4 m=max(0.6-vec4(dot(x0,x0),dot(x1,x1),dot(x2,x2),dot(x3,x3)),0.0);',
+        '  m=m*m;',
+        '  return 42.0*dot(m*m,vec4(dot(p0,x0),dot(p1,x1),dot(p2,x2),dot(p3,x3)));',
+        '}',
+        'void main(){',
+        '  vNormal=normal;vPosition=position;',
+        '  float displacement=snoise(position*2.0+time*0.5)*0.2;',
+        '  vec3 newPosition=position+normal*displacement;',
+        '  gl_Position=projectionMatrix*modelViewMatrix*vec4(newPosition,1.0);',
+        '}'
+      ].join('\n'),
+      fragmentShader: [
+        'uniform vec3 color;',
+        'uniform vec3 glowColor;',
+        'uniform vec3 pointLightPos;',
+        'varying vec3 vNormal;',
+        'varying vec3 vPosition;',
+        'void main(){',
+        '  vec3 normal=normalize(vNormal);',
+        '  vec3 lightDir=normalize(pointLightPos-vPosition);',
+        '  float diffuse=max(dot(normal,lightDir),0.0);',
+        '  float fresnel=1.0-dot(normal,vec3(0.0,0.0,1.0));',
+        '  fresnel=pow(fresnel,2.0);',
+        '  vec3 finalColor=color*diffuse+glowColor*fresnel*0.6;',
+        '  gl_FragColor=vec4(finalColor,1.0);',
+        '}'
+      ].join('\n'),
+      wireframe: true
+    });
+
+    var mesh = new THREE.Mesh(geo, mat);
+    scene.add(mesh);
+
+    var pointLight = new THREE.PointLight(0xea580c, 1.5, 100);
+    pointLight.position.set(0, 0, 5);
+    scene.add(pointLight);
+
+    function animate(t) {
+      mat.uniforms.time.value = t * 0.0003;
+      mesh.rotation.y += 0.0005;
+      mesh.rotation.x += 0.0002;
+      renderer.render(scene, camera);
+      requestAnimationFrame(animate);
+    }
+    animate(0);
+
+    window.addEventListener('resize', function() {
+      camera.aspect = mount.clientWidth / mount.clientHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(mount.clientWidth, mount.clientHeight);
+    });
+
+    window.addEventListener('mousemove', function(e) {
+      var x = (e.clientX / window.innerWidth) * 2 - 1;
+      var y = -(e.clientY / window.innerHeight) * 2 + 1;
+      var vec = new THREE.Vector3(x, y, 0.5).unproject(camera);
+      var dir = vec.sub(camera.position).normalize();
+      var dist = -camera.position.z / dir.z;
+      var pos = camera.position.clone().add(dir.multiplyScalar(dist));
+      pointLight.position.copy(pos);
+      mat.uniforms.pointLightPos.value = pos;
+    });
+  }
+})();
 </script>
 <script src="cookie-consent.js"></script>
+
+<!-- Logic AI Chatbot (Jotform) -->
+<script src='https://cdn.jotfor.ms/agent/embedjs/019d21ae740c7db289b331944a1348e32b39/embed.js'></script>
 </body>
 </html>

@@ -6,38 +6,29 @@
 <title>Innov8 Workflows — Websites, Automation & AI</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Bricolage+Grotesque:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
 <style>
-/* ── INTERACTIVE GALAXY CANVAS ── */
-.hero-galaxy-bg {
+/* ── NEON FLOW BACKGROUND ── */
+.hero-neon-bg {
   position: absolute;
   inset: 0;
   z-index: 0;
   overflow: hidden;
 }
-.hero-galaxy-img {
+#neonCanvas {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  opacity: 0.35;
-  filter: hue-rotate(-30deg) saturate(1.3) brightness(0.8);
-  z-index: 0;
+  display: block;
+  touch-action: none;
 }
-#galaxyCanvas {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-}
-.hero-galaxy-fade {
+.hero-neon-fade {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(to right, rgba(15,15,15,0.5), transparent 18%, transparent 82%, rgba(15,15,15,0.5)),
-    linear-gradient(to bottom, rgba(15,15,15,0.15) 0%, transparent 25%, transparent 55%, rgba(15,15,15,0.7) 100%);
+    linear-gradient(to right, rgba(15,15,15,0.4), transparent 15%, transparent 85%, rgba(15,15,15,0.4)),
+    linear-gradient(to bottom, rgba(15,15,15,0.2) 0%, transparent 20%, transparent 60%, rgba(15,15,15,0.75) 100%);
   pointer-events: none;
-  z-index: 2;
+  z-index: 1;
 }
 :root {
   --bg: #0f0f0f; --surface: #161616; --surface2: #1e1e1e; --border: #2a2a2a;
@@ -333,11 +324,10 @@ footer { border-top: 1px solid var(--border); padding: 32px 48px; display: flex;
 <!-- HERO WITH CROSSFADE SLIDER -->
 <section class="hero" id="home">
 
-  <!-- Interactive Galaxy Background -->
-  <div class="hero-galaxy-bg">
-    <img src="hero03.png" alt="" class="hero-galaxy-img" loading="eager" />
-    <canvas id="galaxyCanvas"></canvas>
-    <div class="hero-galaxy-fade"></div>
+  <!-- Neon Flow Background (Interactive Three.js Tubes) -->
+  <div class="hero-neon-bg">
+    <canvas id="neonCanvas"></canvas>
+    <div class="hero-neon-fade"></div>
   </div>
 
   <!-- Background image slider (hidden - replaced by galaxy) -->
@@ -791,133 +781,60 @@ const obs = new IntersectionObserver(entries => {
 }, { threshold: 0.12 });
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-// ── INTERACTIVE GALAXY BACKGROUND ────────────────────────────
+// ── NEON FLOW BACKGROUND (Three.js Tubes) ────────────────────
 (function() {
-  const gc = document.getElementById('galaxyCanvas');
-  if (!gc) return;
-  const gctx = gc.getContext('2d');
-  let gW, gH;
-  const mouse = { x: 0, y: 0, active: false };
-  const PARTICLE_COUNT = 220;
-  const CONNECTION_DIST = 140;
-  const particles = [];
+  var neonCanvas = document.getElementById('neonCanvas');
+  if (!neonCanvas) return;
+  var tubesApp = null;
 
-  function gResize() {
-    const hero = document.querySelector('.hero');
-    const rect = hero ? hero.getBoundingClientRect() : null;
-    gW = gc.width = rect ? Math.round(rect.width) : window.innerWidth;
-    gH = gc.height = rect ? Math.round(rect.height) : window.innerHeight;
-    gc.style.width = gW + 'px';
-    gc.style.height = gH + 'px';
-  }
+  // Brand colors: orange + arcane pink
+  var TUBE_COLORS = ['#ea580c', '#ff008a', '#f97316'];
+  var LIGHT_COLORS = ['#ff008a', '#ea580c', '#f97316', '#ff4500'];
 
-  class Particle {
-    constructor() { this.reset(); }
-    reset() {
-      this.x = Math.random() * gW;
-      this.y = Math.random() * gH;
-      this.vx = (Math.random() - 0.5) * 0.6;
-      this.vy = (Math.random() - 0.5) * 0.6;
-      this.size = Math.random() * 2.5 + 0.5;
-      this.opacity = Math.random() * 0.7 + 0.3;
-      this.pulse = Math.random() * Math.PI * 2;
-      this.pulseSpeed = 0.01 + Math.random() * 0.02;
-      const hue = 15 + Math.random() * 30;
-      const sat = 80 + Math.random() * 20;
-      const lit = 50 + Math.random() * 20;
-      this.color = 'hsl(' + hue + ',' + sat + '%,' + lit + '%)';
-      this.glowColor = 'hsla(' + hue + ',' + sat + '%,' + lit + '%,';
-    }
-    update() {
-      if (mouse.active) {
-        const dx = mouse.x - this.x, dy = mouse.y - this.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 300) { const f = (300 - dist) / 300 * 0.015; this.vx += dx * f; this.vy += dy * f; }
-      }
-      this.vx *= 0.995; this.vy *= 0.995;
-      this.x += this.vx; this.y += this.vy;
-      this.pulse += this.pulseSpeed;
-      if (this.x < -20) this.x = gW + 20; if (this.x > gW + 20) this.x = -20;
-      if (this.y < -20) this.y = gH + 20; if (this.y > gH + 20) this.y = -20;
-    }
-    draw() {
-      const pf = 0.5 + Math.sin(this.pulse) * 0.5;
-      const sz = this.size * (1 + pf * 0.4);
-      const op = this.opacity * (0.6 + pf * 0.4);
-      gctx.beginPath(); gctx.arc(this.x, this.y, sz * 4, 0, Math.PI * 2);
-      gctx.fillStyle = this.glowColor + (op * 0.15) + ')'; gctx.fill();
-      gctx.beginPath(); gctx.arc(this.x, this.y, sz, 0, Math.PI * 2);
-      gctx.fillStyle = this.glowColor + op + ')'; gctx.fill();
-    }
-  }
-
-  function initParticles() {
-    particles.length = 0;
-    for (let i = 0; i < PARTICLE_COUNT; i++) particles.push(new Particle());
-    for (let i = 0; i < 15; i++) {
-      const p = new Particle();
-      p.size = 3 + Math.random() * 2; p.opacity = 0.9;
-      const h = 20 + Math.random() * 15;
-      p.color = 'hsl(' + h + ',100%,65%)'; p.glowColor = 'hsla(' + h + ',100%,65%,';
-      particles.push(p);
-    }
-  }
-
-  function drawConnections() {
-    for (let i = 0; i < particles.length; i++) {
-      for (let j = i + 1; j < particles.length; j++) {
-        const dx = particles[i].x - particles[j].x, dy = particles[i].y - particles[j].y;
-        const d = Math.sqrt(dx * dx + dy * dy);
-        if (d < CONNECTION_DIST) {
-          gctx.beginPath(); gctx.moveTo(particles[i].x, particles[i].y); gctx.lineTo(particles[j].x, particles[j].y);
-          gctx.strokeStyle = 'rgba(234,88,12,' + ((1 - d / CONNECTION_DIST) * 0.15) + ')';
-          gctx.lineWidth = 0.5; gctx.stroke();
+  import('https://cdn.jsdelivr.net/npm/threejs-components@0.0.19/build/cursors/tubes1.min.js')
+    .then(function(module) {
+      var TubesCursor = module.default;
+      tubesApp = TubesCursor(neonCanvas, {
+        tubes: {
+          colors: TUBE_COLORS,
+          lights: {
+            intensity: 200,
+            colors: LIGHT_COLORS
+          }
         }
-      }
-    }
-  }
-
-  function drawNebula() {
-    const cx = gW * 0.55, cy = gH * 0.4;
-    const g = gctx.createRadialGradient(cx, cy, 0, cx, cy, gW * 0.45);
-    g.addColorStop(0, 'rgba(234,88,12,0.08)'); g.addColorStop(0.3, 'rgba(249,115,22,0.04)');
-    g.addColorStop(0.6, 'rgba(234,88,12,0.02)'); g.addColorStop(1, 'transparent');
-    gctx.fillStyle = g; gctx.fillRect(0, 0, gW, gH);
-    const g2 = gctx.createRadialGradient(gW * 0.3, gH * 0.6, 0, gW * 0.3, gH * 0.6, gW * 0.3);
-    g2.addColorStop(0, 'rgba(251,146,60,0.06)'); g2.addColorStop(0.5, 'rgba(234,88,12,0.02)'); g2.addColorStop(1, 'transparent');
-    gctx.fillStyle = g2; gctx.fillRect(0, 0, gW, gH);
-  }
-
-  function drawMouseGlow() {
-    if (!mouse.active) return;
-    const g = gctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 200);
-    g.addColorStop(0, 'rgba(234,88,12,0.12)'); g.addColorStop(0.4, 'rgba(249,115,22,0.05)'); g.addColorStop(1, 'transparent');
-    gctx.fillStyle = g; gctx.fillRect(mouse.x - 200, mouse.y - 200, 400, 400);
-  }
-
-  function galaxyLoop() {
-    gctx.clearRect(0, 0, gW, gH);
-    drawNebula(); drawMouseGlow(); drawConnections();
-    for (const p of particles) { p.update(); p.draw(); }
-    requestAnimationFrame(galaxyLoop);
-  }
-
-  const hero = document.querySelector('.hero');
-  if (hero) {
-    hero.addEventListener('mousemove', function(e) {
-      const r = hero.getBoundingClientRect();
-      mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; mouse.active = true;
+      });
+    })
+    .catch(function(err) {
+      console.warn('Neon Flow failed to load:', err);
     });
-    hero.addEventListener('mouseleave', function() { mouse.active = false; });
-  }
 
-  window.addEventListener('resize', function() { gResize(); initParticles(); });
-  function startGalaxy() {
-    gResize();
-    if (gW < 400 || gH < 400) { setTimeout(startGalaxy, 100); return; }
-    initParticles(); galaxyLoop();
+  // Click to randomize with brand-adjacent colors
+  var hero = document.querySelector('.hero');
+  if (hero) {
+    hero.addEventListener('click', function(e) {
+      if (!tubesApp) return;
+      // Prevent randomizing when clicking CTAs
+      if (e.target.closest('a, button')) return;
+      // Shuffle brand palette with slight randomness
+      var brandHues = [0, 15, 25, 330, 340, 350]; // orange + pink range
+      var newColors = [];
+      var newLights = [];
+      for (var i = 0; i < 3; i++) {
+        var h = brandHues[Math.floor(Math.random() * brandHues.length)] + Math.floor(Math.random() * 20 - 10);
+        var s = 80 + Math.floor(Math.random() * 20);
+        var l = 45 + Math.floor(Math.random() * 20);
+        newColors.push('hsl(' + h + ',' + s + '%,' + l + '%)');
+      }
+      for (var j = 0; j < 4; j++) {
+        var h2 = brandHues[Math.floor(Math.random() * brandHues.length)] + Math.floor(Math.random() * 15 - 7);
+        var s2 = 85 + Math.floor(Math.random() * 15);
+        var l2 = 50 + Math.floor(Math.random() * 15);
+        newLights.push('hsl(' + h2 + ',' + s2 + '%,' + l2 + '%)');
+      }
+      tubesApp.tubes.setColors(newColors);
+      tubesApp.tubes.setLightsColors(newLights);
+    });
   }
-  setTimeout(startGalaxy, 50);
 })();
 </script>
 </body>

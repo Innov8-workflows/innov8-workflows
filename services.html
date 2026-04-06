@@ -184,9 +184,20 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 .footer-logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 0.95rem; color: var(--muted2); text-decoration: none; }
 .footer-right { font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted); letter-spacing: 0.05em; }
 
+/* ── MOBILE NAV ── */
+.nav-hamburger { display: none; background: none; border: none; color: var(--text); cursor: pointer; padding: 8px; z-index: 101; }
+.nav-hamburger svg { width: 24px; height: 24px; }
+.mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 99; background: rgba(15,15,15,0.97); backdrop-filter: blur(16px); flex-direction: column; align-items: center; justify-content: center; gap: 0; }
+.mobile-menu.open { display: flex; }
+.mobile-menu a { color: var(--text); text-decoration: none; font-size: 1.3rem; font-weight: 600; padding: 16px 0; opacity: 0.85; transition: opacity 0.2s, color 0.2s; }
+.mobile-menu a:hover, .mobile-menu a.active { opacity: 1; color: var(--accent); }
+.mobile-menu .mobile-cta { margin-top: 24px; background: var(--accent); color: #fff; padding: 14px 32px; border-radius: 8px; font-weight: 700; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.04em; }
+.mobile-menu .mobile-cta:hover { background: var(--accent2); }
+
 @media (max-width: 900px) {
   nav { padding: 16px 24px; }
   .nav-links { display: none; }
+  .nav-hamburger { display: block; }
   .breadcrumb, .page-hero { padding-left: 24px; padding-right: 24px; }
   .service-block { grid-template-columns: 1fr; gap: 40px; padding: 60px 24px; }
   .service-block.reverse { direction: ltr; }
@@ -254,7 +265,18 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
     <li><a href="consultancy.html">Consultancy</a></li>
     <li><a href="consultancy.html#contact" class="nav-cta">Get Started</a></li>
   </ul>
+  <button class="nav-hamburger" onclick="document.getElementById('mobileMenu').classList.toggle('open')" aria-label="Menu">
+    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+  </button>
 </nav>
+<div id="mobileMenu" class="mobile-menu" onclick="this.classList.remove('open')">
+  <a href="about.html">About</a>
+  <a href="services.html">Services</a>
+  <a href="how-it-works.html">How It Works</a>
+  <a href="case-studies.html">Case Studies</a>
+  <a href="consultancy.html">Consultancy</a>
+  <a href="consultancy.html#contact" class="mobile-cta">Get Started</a>
+</div>
 
 <!-- DNA Video Hero -->
 <div class="dna-hero">

@@ -507,12 +507,26 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
   var TEXTURE_URL = 'hero-futuristic-texture.png';
   var DEPTH_URL = 'hero-futuristic-depth.webp';
 
-  // Load Three.js from CDN
+  // Load Three.js from CDN (r170 global build)
   var script = document.createElement('script');
-  script.src = 'https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.min.js';
+  script.src = 'https://unpkg.com/three@0.170.0/build/three.min.js';
   script.onload = function() {
-    initHero();
+    if (typeof THREE === 'undefined') {
+      console.warn('THREE not available as global');
+      return;
+    }
+    // Defer until layout is ready
+    function tryInit() {
+      var hero = document.querySelector('.futuristic-hero');
+      if (hero && hero.offsetHeight > 400) {
+        initHero();
+      } else {
+        setTimeout(tryInit, 100);
+      }
+    }
+    tryInit();
   };
+  script.onerror = function() { console.warn('Three.js CDN failed to load'); };
   document.head.appendChild(script);
 
   function initHero() {
@@ -621,9 +635,12 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 
     function resize() {
       var hero = document.querySelector('.futuristic-hero');
-      var w = hero ? hero.offsetWidth : window.innerWidth;
-      var h = hero ? hero.offsetHeight : window.innerHeight;
+      var rect = hero ? hero.getBoundingClientRect() : null;
+      var w = rect ? Math.round(rect.width) : window.innerWidth;
+      var h = rect ? Math.round(rect.height) : window.innerHeight;
       renderer.setSize(w, h);
+      hCanvas.style.width = w + 'px';
+      hCanvas.style.height = h + 'px';
       if (meshMaterial) {
         meshMaterial.uniforms.uResolution.value.set(w, h);
       }

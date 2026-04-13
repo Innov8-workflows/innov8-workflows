@@ -152,6 +152,37 @@ export const STRIPE_CONFIG = {
   ],
 };
 
+// ─── Color Schemes ───
+export const COLOR_SCHEMES = {
+  'red-green': {
+    label: 'Red + Green',
+    pos: (mag) => [Math.round(15 - mag * 15), Math.round(140 + mag * 57), Math.round(40 + mag * 54)],
+    neg: (mag) => [Math.round(180 + mag * 40), Math.round(30 + mag * 8), Math.round(30 + mag * 8)],
+    neutral: [55, 55, 70],
+  },
+  'blue-yellow': {
+    label: 'Blue + Yellow',
+    pos: (mag) => [Math.round(200 + mag * 55), Math.round(180 + mag * 55), Math.round(20 + mag * 10)],
+    neg: (mag) => [Math.round(30 + mag * 30), Math.round(80 + mag * 60), Math.round(180 + mag * 60)],
+    neutral: [60, 60, 75],
+  },
+  'purple-orange': {
+    label: 'Purple + Orange',
+    pos: (mag) => [Math.round(220 + mag * 35), Math.round(120 + mag * 60), Math.round(20 + mag * 10)],
+    neg: (mag) => [Math.round(100 + mag * 40), Math.round(40 + mag * 20), Math.round(160 + mag * 60)],
+    neutral: [65, 55, 70],
+  },
+};
+
+// ─── Currencies ───
+export const CURRENCIES = [
+  { code: 'usd', symbol: '$', label: 'USD' },
+  { code: 'gbp', symbol: '£', label: 'GBP' },
+  { code: 'eur', symbol: '€', label: 'EUR' },
+  { code: 'jpy', symbol: '¥', label: 'JPY' },
+  { code: 'aud', symbol: 'A$', label: 'AUD' },
+];
+
 // ─── Ad Badge Types ───
 export const AD_BADGE_TYPES = [
   { value: 'new-drop', label: 'New Drop',  badgeText: 'NEW' },
@@ -162,34 +193,32 @@ export const AD_BADGE_TYPES = [
 
 
 // ─── Color Scale ───
-// CryptoBubbles-style: vibrant, saturated colors that pop on dark backgrounds
+// Active color scheme — set by app.js when user changes it
+let _activeScheme = 'red-green';
+
+export function setColorScheme(scheme) {
+  _activeScheme = COLOR_SCHEMES[scheme] ? scheme : 'red-green';
+}
+
+export function getColorScheme() {
+  return _activeScheme;
+}
+
 export function changeToColor(pct, alpha = 1.0) {
   const [r, g, b] = changeToRGB(pct);
   return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 }
 
-// Returns [r, g, b] array — the base bubble color
+// Returns [r, g, b] array — uses active color scheme
 export function changeToRGB(pct) {
-  if (pct == null || isNaN(pct)) return [55, 50, 60]; // dark neutral
+  const scheme = COLOR_SCHEMES[_activeScheme] || COLOR_SCHEMES['red-green'];
+  if (pct == null || isNaN(pct)) return scheme.neutral;
 
-  const magnitude = Math.min(Math.abs(pct) / 10, 1); // cap at ±10%
+  const magnitude = Math.min(Math.abs(pct) / 10, 1);
 
-  if (pct > 0) {
-    // Vivid green: from muted (#2d6b3f) to bright (#22c55e)
-    return [
-      Math.round(30 - magnitude * 10),
-      Math.round(85 + magnitude * 112),
-      Math.round(50 + magnitude * 44),
-    ];
-  } else if (pct < 0) {
-    // Vivid red: from muted (#8b3030) to bright (#dc2626)
-    return [
-      Math.round(110 + magnitude * 110),
-      Math.round(35 + magnitude * 3),
-      Math.round(35 + magnitude * 3),
-    ];
-  }
-  return [55, 50, 60];
+  if (pct > 0) return scheme.pos(magnitude);
+  if (pct < 0) return scheme.neg(magnitude);
+  return scheme.neutral;
 }
 
 // ─── Logo URL Helper ───
@@ -219,20 +248,28 @@ export function marketCapToRadius(cap, minCap, maxCap) {
 
 
 // ─── Formatting Utilities ───
+function _currencySymbol() {
+  const code = (typeof localStorage !== 'undefined' && localStorage.getItem('innov8-bubbles-currency')) || 'usd';
+  const cur = CURRENCIES.find(c => c.code === code);
+  return cur ? cur.symbol : '$';
+}
+
 export function formatPrice(price) {
   if (price == null) return '—';
-  if (price >= 1) return '$' + price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-  if (price >= 0.01) return '$' + price.toFixed(4);
-  return '$' + price.toFixed(8);
+  const s = _currencySymbol();
+  if (price >= 1) return s + price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  if (price >= 0.01) return s + price.toFixed(4);
+  return s + price.toFixed(8);
 }
 
 export function formatLargeNumber(n) {
   if (n == null) return '—';
-  if (n >= 1e12) return '$' + (n / 1e12).toFixed(2) + 'T';
-  if (n >= 1e9) return '$' + (n / 1e9).toFixed(2) + 'B';
-  if (n >= 1e6) return '$' + (n / 1e6).toFixed(2) + 'M';
-  if (n >= 1e3) return '$' + (n / 1e3).toFixed(1) + 'K';
-  return '$' + n.toFixed(2);
+  const s = _currencySymbol();
+  if (n >= 1e12) return s + (n / 1e12).toFixed(2) + 'T';
+  if (n >= 1e9) return s + (n / 1e9).toFixed(2) + 'B';
+  if (n >= 1e6) return s + (n / 1e6).toFixed(2) + 'M';
+  if (n >= 1e3) return s + (n / 1e3).toFixed(1) + 'K';
+  return s + n.toFixed(2);
 }
 
 export function formatChange(pct) {

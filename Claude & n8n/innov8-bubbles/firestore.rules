@@ -1,0 +1,23 @@
+// Firestore Security Rules for Innov8 Bubbles
+// Paste these into Firebase Console → Firestore → Rules
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Users can only read/write their own portfolios
+    match /users/{userId}/portfolios/{portfolioId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // Ad submissions: authenticated users can create
+    // Only the submitter can read their own ads
+    // Admin (you) can read/update all via Firebase Console
+    match /ad_submissions/{adId} {
+      allow create: if request.auth != null;
+      allow read: if request.auth != null && resource.data.submittedBy == request.auth.uid;
+      // Public read for approved ads (shown in ticker)
+      allow read: if resource.data.status == 'approved';
+    }
+  }
+}

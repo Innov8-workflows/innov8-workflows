@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Innov8 Bubbles — Multi-Asset Portfolio Visualizer</title>
+
+  <!-- SEO -->
+  <meta name="description" content="Track crypto, stocks, indices, commodities & real estate in one interactive bubble chart. Create custom portfolios and monitor all your assets in real-time.">
+  <meta name="keywords" content="crypto, stocks, bubbles, portfolio, bitcoin, ethereum, market cap, trading, investment, real-time">
+  <meta name="author" content="Innov8 Workflows">
+  <link rel="canonical" href="https://bubbles.innov8workflows.com">
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Innov8 Bubbles — Multi-Asset Portfolio Visualizer">
+  <meta property="og:description" content="Track crypto, stocks, indices, commodities & real estate in one interactive bubble chart.">
+  <meta property="og:url" content="https://bubbles.innov8workflows.com">
+  <meta property="og:site_name" content="Innov8 Bubbles">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Innov8 Bubbles — Multi-Asset Portfolio Visualizer">
+  <meta name="twitter:description" content="Track crypto, stocks, indices, commodities & real estate in one interactive bubble chart.">
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#ea580c">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Innov8 Bubbles">
+  <meta name="mobile-web-app-capable" content="yes">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="apple-touch-icon" href="favicon.svg">
+
+  <!-- Security -->
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@300;400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- ─── Loading Screen ─── -->
+  <div id="loading-screen" class="loading-screen">
+    <div class="loading-brand">
+      <span class="loading-icon">&#9678;</span>
+      <span class="loading-title">Innov8 <span style="color:var(--accent)">Bubbles</span></span>
+    </div>
+    <div class="spinner"></div>
+    <p class="loading-text">Loading market data&hellip;</p>
+  </div>
+
+  <!-- ─── Header ─── -->
+  <header id="header" class="header">
+    <div class="header-left">
+      <div class="logo">
+        <span class="logo-icon">&#9678;</span>
+        <span class="logo-text">Innov8 <span class="logo-accent">Bubbles</span></span>
+      </div>
+    </div>
+
+    <div class="header-center">
+      <!-- Asset Class Pills -->
+      <div class="pill-group" id="asset-class-pills">
+        <button class="pill" data-class="all">All</button>
+        <button class="pill active" data-class="crypto">Crypto</button>
+        <button class="pill" data-class="indices">Indices</button>
+        <button class="pill" data-class="stocks">Stocks</button>
+        <button class="pill" data-class="commodities">Commodities</button>
+        <button class="pill" data-class="realestate">Real Estate</button>
+      </div>
+
+      <!-- Time Period Pills -->
+      <div class="pill-group" id="period-pills">
+        <button class="pill" data-period="1h">1H</button>
+        <button class="pill active" data-period="24h">24H</button>
+        <button class="pill" data-period="7d">7D</button>
+        <button class="pill" data-period="30d">30D</button>
+        <button class="pill" data-period="1y">1Y</button>
+      </div>
+
+      <!-- View Toggle -->
+      <div class="view-toggle" id="view-toggle">
+        <button class="view-btn active" id="view-bubbles" title="Bubble View">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><circle cx="8" cy="8" r="5"/><circle cx="18" cy="14" r="3"/><circle cx="10" cy="18" r="2.5"/></svg>
+        </button>
+        <button class="view-btn" id="view-table" title="Table View">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <!-- Search -->
+      <div class="search-box">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" id="search-input" placeholder="Search assets..." autocomplete="off">
+      </div>
+
+      <!-- Portfolio Dropdown -->
+      <div class="dropdown" id="portfolio-dropdown">
+        <button class="dropdown-btn" id="portfolio-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+          <span id="portfolio-label">All Assets</span>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="dropdown-menu" id="portfolio-menu">
+          <button class="dropdown-item active" data-portfolio="all">All Assets</button>
+          <div class="dropdown-divider"></div>
+          <div id="portfolio-list"></div>
+          <div class="dropdown-divider"></div>
+          <button class="dropdown-item dropdown-action" id="manage-portfolios-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            Manage Portfolios
+          </button>
+        </div>
+      </div>
+
+      <!-- Share Button -->
+      <button class="icon-btn" id="share-btn" title="Share">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+      </button>
+
+      <!-- Settings Gear -->
+      <button class="icon-btn" id="settings-btn" title="Settings">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+      </button>
+
+      <!-- Auth: Sign In (shown when logged out) -->
+      <button class="btn btn-signin" id="signin-btn">Sign In</button>
+
+      <!-- Auth: User Menu (shown when logged in) -->
+      <div class="dropdown user-menu hidden" id="user-menu">
+        <button class="user-avatar-btn" id="user-avatar-btn">
+          <span class="user-avatar" id="user-avatar">?</span>
+        </button>
+        <div class="dropdown-menu" id="user-dropdown-menu">
+          <div class="user-menu-header">
+            <span class="user-menu-name" id="user-menu-name"></span>
+            <span class="user-menu-email" id="user-menu-email"></span>
+          </div>
+          <div class="dropdown-divider"></div>
+          <button class="dropdown-item" id="user-manage-portfolios">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/></svg>
+            My Portfolios
+          </button>
+          <button class="dropdown-item dropdown-action" id="user-place-ad">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
+            Place an Ad
+          </button>
+          <div class="dropdown-divider"></div>
+          <button class="dropdown-item" id="user-signout">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+            Sign Out
+          </button>
+        </div>
+      </div>
+
+      <!-- Hamburger (mobile) -->
+      <button class="icon-btn hamburger" id="hamburger-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- ─── Mobile Menu Overlay ─── -->
+  <div class="mobile-menu" id="mobile-menu">
+    <div class="mobile-menu-header">
+      <span class="logo-text">Innov8 <span class="logo-accent">Bubbles</span></span>
+      <button class="icon-btn" id="mobile-menu-close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="mobile-menu-body">
+      <div class="mobile-search-box">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" id="mobile-search-input" placeholder="Search assets..." autocomplete="off">
+      </div>
+      <div class="mobile-section">
+        <label class="mobile-label">Portfolio</label>
+        <div id="mobile-portfolio-list" class="mobile-portfolio-list"></div>
+      </div>
+      <div class="mobile-section">
+        <button class="mobile-menu-item" id="mobile-settings-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+          Settings
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── Mobile Pill Bar ─── -->
+  <div class="mobile-pills" id="mobile-pills">
+    <div class="pill-scroll">
+      <div class="pill-group" id="mobile-asset-pills">
+        <button class="pill" data-class="all">All</button>
+        <button class="pill active" data-class="crypto">Crypto</button>
+        <button class="pill" data-class="indices">Indices</button>
+        <button class="pill" data-class="stocks">Stocks</button>
+        <button class="pill" data-class="commodities">Commodities</button>
+        <button class="pill" data-class="realestate">Real Estate</button>
+      </div>
+    </div>
+    <div class="pill-scroll">
+      <div class="pill-group" id="mobile-period-pills">
+        <button class="pill" data-period="1h">1H</button>
+        <button class="pill active" data-period="24h">24H</button>
+        <button class="pill" data-period="7d">7D</button>
+        <button class="pill" data-period="30d">30D</button>
+        <button class="pill" data-period="1y">1Y</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── Ad Ticker Banner ─── -->
+  <div class="ticker-banner" id="ticker-banner">
+    <div class="ticker-label">SPONSORED</div>
+    <div class="ticker-track">
+      <div class="ticker-content" id="ticker-content">
+        <!-- Ads injected by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── Canvas Container ─── -->
+  <main class="canvas-container" id="canvas-container">
+    <canvas id="bubble-canvas"></canvas>
+    <!-- Hero glow -->
+    <div class="hero-glow"></div>
+    <!-- Sample data badge -->
+    <div class="sample-badge hidden" id="sample-badge">Sample Data</div>
+    <!-- Empty state -->
+    <div class="empty-state hidden" id="empty-state">
+      <p class="empty-title">No assets found</p>
+      <p class="empty-subtitle">Try a different search or asset class</p>
+    </div>
+    <!-- API key prompt -->
+    <div class="api-prompt hidden" id="api-prompt">
+      <p class="api-prompt-title">API Key Required</p>
+      <p class="api-prompt-text">Add a free Financial Modeling Prep API key in Settings to view this asset class.</p>
+      <button class="btn btn-primary" id="api-prompt-btn">Open Settings</button>
+    </div>
+
+    <!-- ─── Table View ─── -->
+    <div class="table-view hidden" id="table-view">
+      <div class="table-wrapper">
+        <table class="asset-table" id="asset-table">
+          <thead>
+            <tr>
+              <th class="table-star"></th>
+              <th class="col-rank">#</th>
+              <th class="col-name sortable" data-sort="name">Name</th>
+              <th class="col-price sortable" data-sort="price">Price</th>
+              <th class="col-change sortable" data-sort="change1h">1H</th>
+              <th class="col-change sortable" data-sort="change24h">24H</th>
+              <th class="col-change sortable" data-sort="change7d">7D</th>
+              <th class="col-change col-hide-mobile sortable" data-sort="change30d">30D</th>
+              <th class="col-change col-hide-mobile sortable" data-sort="change1y">1Y</th>
+              <th class="col-mcap sortable" data-sort="marketCap">Market Cap</th>
+              <th class="col-volume col-hide-mobile sortable" data-sort="volume24h">Volume (24h)</th>
+            </tr>
+          </thead>
+          <tbody id="asset-table-body">
+            <!-- Rows injected by JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <!-- ─── Detail Panel (Desktop: side, Mobile: bottom sheet) ─── -->
+  <aside class="detail-panel hidden" id="detail-panel">
+    <div class="detail-header">
+      <div class="detail-title-row">
+        <img id="detail-image" class="detail-image" src="" alt="">
+        <div>
+          <h2 id="detail-name" class="detail-name"></h2>
+          <span id="detail-symbol" class="detail-symbol"></span>
+        </div>
+      </div>
+      <button class="icon-btn" id="detail-close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="detail-body">
+      <div class="detail-price-row">
+        <span class="detail-price" id="detail-price"></span>
+        <span class="detail-change" id="detail-change-main"></span>
+      </div>
+      <div class="detail-grid">
+        <div class="detail-stat">
+          <span class="detail-stat-label">Market Cap</span>
+          <span class="detail-stat-value" id="detail-mcap"></span>
+        </div>
+        <div class="detail-stat">
+          <span class="detail-stat-label">Volume (24h)</span>
+          <span class="detail-stat-value" id="detail-volume"></span>
+        </div>
+        <div class="detail-stat">
+          <span class="detail-stat-label">1H</span>
+          <span class="detail-stat-value" id="detail-1h"></span>
+        </div>
+        <div class="detail-stat">
+          <span class="detail-stat-label">24H</span>
+          <span class="detail-stat-value" id="detail-24h"></span>
+        </div>
+        <div class="detail-stat">
+          <span class="detail-stat-label">7D</span>
+          <span class="detail-stat-value" id="detail-7d"></span>
+        </div>
+        <div class="detail-stat">
+          <span class="detail-stat-label">30D</span>
+          <span class="detail-stat-value" id="detail-30d"></span>
+        </div>
+        <div class="detail-stat">
+          <span class="detail-stat-label">1Y</span>
+          <span class="detail-stat-value" id="detail-1y"></span>
+        </div>
+      </div>
+      <div class="detail-actions">
+        <div class="detail-portfolio-add" id="detail-portfolio-add">
+          <button class="btn btn-secondary" id="add-to-portfolio-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Add to Portfolio
+          </button>
+          <div class="portfolio-popover hidden" id="portfolio-popover">
+            <div id="popover-portfolio-list"></div>
+            <div class="dropdown-divider"></div>
+            <button class="dropdown-item dropdown-action" id="popover-new-portfolio">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              New Portfolio
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ─── Settings Modal ─── -->
+  <div class="modal-overlay hidden" id="settings-modal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>Settings</h3>
+        <button class="icon-btn" id="settings-close">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label" for="fmp-key-input">Financial Modeling Prep API Key</label>
+          <p class="form-help">Required for Stocks, Commodities, and Real Estate data. <a href="https://site.financialmodelingprep.com/register" target="_blank" rel="noopener">Get a free key</a></p>
+          <input type="text" id="fmp-key-input" class="form-input" placeholder="Enter your FMP API key...">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Theme</label>
+          <div class="theme-grid" id="theme-grid">
+            <button class="theme-swatch active" data-theme="midnight" title="Midnight">
+              <span class="swatch-preview" style="background:#0b1120;border-color:#475569"></span>
+              <span class="swatch-label">Midnight</span>
+            </button>
+            <button class="theme-swatch" data-theme="dark" title="Dark">
+              <span class="swatch-preview" style="background:#111111;border-color:#333"></span>
+              <span class="swatch-label">Dark</span>
+            </button>
+            <button class="theme-swatch" data-theme="slate" title="Slate">
+              <span class="swatch-preview" style="background:#1e1e2e;border-color:#555"></span>
+              <span class="swatch-label">Slate</span>
+            </button>
+            <button class="theme-swatch" data-theme="light" title="Light">
+              <span class="swatch-preview" style="background:#f5f5f5;border-color:#ddd"></span>
+              <span class="swatch-label">Light</span>
+            </button>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Auto-Refresh</label>
+          <div class="pill-group">
+            <button class="pill" data-refresh="off">Off</button>
+            <button class="pill active" data-refresh="60">60s</button>
+            <button class="pill" data-refresh="120">2m</button>
+            <button class="pill" data-refresh="300">5m</button>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" id="settings-save">Save Settings</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── Portfolio Manager Modal ─── -->
+  <div class="modal-overlay hidden" id="portfolio-modal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>Manage Portfolios</h3>
+        <button class="icon-btn" id="portfolio-modal-close">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="portfolio-manager-list" class="portfolio-manager-list"></div>
+        <div class="portfolio-new-row">
+          <input type="text" id="new-portfolio-input" class="form-input" placeholder="New portfolio name...">
+          <button class="btn btn-primary" id="create-portfolio-btn">Create</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── Auth Modal ─── -->
+  <div class="modal-overlay hidden" id="auth-modal">
+    <div class="modal modal-auth">
+      <div class="modal-header">
+        <h3 id="auth-modal-title">Sign In</h3>
+        <button class="icon-btn" id="auth-close">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Tab Switcher -->
+        <div class="auth-tabs">
+          <button class="auth-tab active" data-auth-tab="signin">Sign In</button>
+          <button class="auth-tab" data-auth-tab="signup">Sign Up</button>
+        </div>
+
+        <!-- Google Button -->
+        <button class="btn btn-google" id="google-signin-btn">
+          <svg viewBox="0 0 24 24" width="18" height="18"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+          Continue with Google
+        </button>
+
+        <div class="auth-divider"><span>or</span></div>
+
+        <!-- Sign In Form -->
+        <form class="auth-form" id="signin-form">
+          <div class="form-group">
+            <input type="email" id="signin-email" class="form-input" placeholder="Email address" required>
+          </div>
+          <div class="form-group">
+            <input type="password" id="signin-password" class="form-input" placeholder="Password" required>
+          </div>
+          <button type="submit" class="btn btn-primary auth-submit">Sign In</button>
+        </form>
+
+        <!-- Sign Up Form (hidden by default) -->
+        <form class="auth-form hidden" id="signup-form">
+          <div class="form-group">
+            <input type="text" id="signup-name" class="form-input" placeholder="Display name" required>
+          </div>
+          <div class="form-group">
+            <input type="email" id="signup-email" class="form-input" placeholder="Email address" required>
+          </div>
+          <div class="form-group">
+            <input type="password" id="signup-password" class="form-input" placeholder="Password (min 6 chars)" required minlength="6">
+          </div>
+          <div class="form-group">
+            <input type="password" id="signup-confirm" class="form-input" placeholder="Confirm password" required minlength="6">
+          </div>
+          <button type="submit" class="btn btn-primary auth-submit">Create Account</button>
+        </form>
+
+        <!-- Auth Error -->
+        <p class="auth-error hidden" id="auth-error"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── Ad Placement Modal ─── -->
+  <div class="modal-overlay hidden" id="ad-modal">
+    <div class="modal modal-ad">
+      <div class="modal-header">
+        <h3>Place a Sponsored Ad</h3>
+        <button class="icon-btn" id="ad-close">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Step Indicator -->
+        <div class="ad-steps">
+          <div class="ad-step active" data-step="1"><span>1</span> Details</div>
+          <div class="ad-step" data-step="2"><span>2</span> Duration</div>
+          <div class="ad-step" data-step="3"><span>3</span> Preview</div>
+        </div>
+
+        <!-- Step 1: Ad Details -->
+        <div class="ad-step-content" id="ad-step-1">
+          <div class="form-group">
+            <label class="form-label">Ad Type</label>
+            <select id="ad-badge-select" class="form-input">
+              <option value="new-drop">New Crypto Drop</option>
+              <option value="ipo">IPO Announcement</option>
+              <option value="presale">Presale / ICO</option>
+              <option value="promo">General Promotion</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Token / Company Name</label>
+            <input type="text" id="ad-name" class="form-input" placeholder="e.g. $LUNAR or Klarna" maxlength="20" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Description</label>
+            <input type="text" id="ad-text" class="form-input" placeholder="Short description (max 80 chars)" maxlength="80" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Link URL</label>
+            <input type="url" id="ad-url" class="form-input" placeholder="https://yourproject.com">
+          </div>
+          <button class="btn btn-primary" id="ad-next-1" style="width:100%">Next: Choose Duration</button>
+        </div>
+
+        <!-- Step 2: Duration -->
+        <div class="ad-step-content hidden" id="ad-step-2">
+          <div class="ad-duration-grid" id="ad-duration-grid">
+            <!-- Populated by JS from STRIPE_CONFIG.prices -->
+          </div>
+          <div class="ad-step-buttons">
+            <button class="btn btn-secondary" id="ad-back-2">Back</button>
+            <button class="btn btn-primary" id="ad-next-2">Next: Preview</button>
+          </div>
+        </div>
+
+        <!-- Step 3: Preview & Pay -->
+        <div class="ad-step-content hidden" id="ad-step-3">
+          <label class="form-label">Your ad will look like this:</label>
+          <div class="ad-preview-strip" id="ad-preview-strip">
+            <!-- Live preview injected by JS -->
+          </div>
+          <div class="ad-summary" id="ad-summary">
+            <!-- Duration + price summary -->
+          </div>
+          <div class="ad-step-buttons">
+            <button class="btn btn-secondary" id="ad-back-3">Back</button>
+            <button class="btn btn-primary btn-pay" id="ad-pay-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+              Pay &amp; Submit
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── Footer Stats Bar ─── -->
+  <footer class="stats-footer" id="stats-footer">
+    <div class="stats-item">
+      <span class="stats-label">Assets:</span>
+      <span class="stats-value" id="stats-count">—</span>
+    </div>
+    <div class="stats-item">
+      <span class="stats-label">Total Market Cap:</span>
+      <span class="stats-value" id="stats-mcap">—</span>
+    </div>
+    <div class="stats-item">
+      <span class="stats-label">24h Volume:</span>
+      <span class="stats-value" id="stats-volume">—</span>
+    </div>
+    <div class="stats-item">
+      <span class="stats-label">BTC Dominance:</span>
+      <span class="stats-value" id="stats-btc-dom">—</span>
+    </div>
+  </footer>
+
+  <!-- ─── Toast Container ─── -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- ─── Firebase SDK (CDN) ─── -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+  <!-- ─── Stripe SDK (CDN) ─── -->
+  <script src="https://js.stripe.com/v3/"></script>
+
+  <!-- ─── App ─── -->
+  <script type="module" src="app.js"></script>
+
+  <!-- ─── Service Worker Registration ─── -->
+  <script>
+    if ('serviceWorker' in navigator && location.protocol === 'https:') {
+      navigator.serviceWorker.register('/sw.js').catch(function() {});
+    }
+  </script>
+</body>
+</html>

@@ -132,12 +132,13 @@ export const STORAGE = {
 // ─── Firebase Config ───
 // Replace with your Firebase project config from Firebase Console → Project Settings
 export const FIREBASE_CONFIG = {
-  apiKey: 'YOUR_API_KEY',
-  authDomain: 'YOUR_PROJECT.firebaseapp.com',
-  projectId: 'YOUR_PROJECT_ID',
-  storageBucket: 'YOUR_PROJECT.appspot.com',
-  messagingSenderId: 'YOUR_SENDER_ID',
-  appId: 'YOUR_APP_ID',
+  apiKey: 'AIzaSyAF5AZPZ3caJu47BF-tQG4UVrGT2j5UqYE',
+  authDomain: 'innov8-bubbles.firebaseapp.com',
+  projectId: 'innov8-bubbles',
+  storageBucket: 'innov8-bubbles.firebasestorage.app',
+  messagingSenderId: '309940607663',
+  appId: '1:309940607663:web:e2cc46f04546213c7b125a',
+  measurementId: 'G-2ZZR76XZM0',
 };
 
 // ─── Stripe Config ───

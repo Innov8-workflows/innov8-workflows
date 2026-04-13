@@ -6,7 +6,7 @@ import { ASSET_CLASSES, STORAGE, STRIPE_CONFIG, AD_BADGE_TYPES, formatPrice, for
 import { BubbleEngine } from './bubble-engine.js';
 import { fetchAssets } from './data-service.js';
 import * as Portfolio from './portfolio.js';
-import { initFirebase, signInWithGoogle, signInWithEmail, signUpWithEmail, signOut as firebaseSignOut, onAuthChange, getCurrentUser, isSignedIn, getUserInitial, getUserDisplayName, fetchApprovedAds, syncLocalPortfoliosToCloud, loadPortfoliosFromCloud } from './auth.js';
+import { initFirebase, signInWithGoogle, signInWithEmail, signUpWithEmail, signOut as firebaseSignOut, onAuthChange, getCurrentUser, isSignedIn, getUserInitial, getUserDisplayName, fetchApprovedAds, syncLocalPortfoliosToCloud, loadPortfoliosFromCloud, uploadAdLogo } from './auth.js';
 import { initStripe, submitAndPay, checkPaymentReturn, generateAdPreviewHTML } from './ads.js';
 
 // ─── State ───
@@ -174,13 +174,15 @@ async function _initTicker() {
   }
 
   // Build items HTML — duplicate for seamless loop
-  const itemsHTML = ads.map(ad =>
-    `<a class="ticker-item" href="${ad.url || '#'}" target="_blank" rel="noopener">
+  const itemsHTML = ads.map(ad => {
+    const logoHtml = ad.logoUrl ? `<img class="ticker-ad-logo" src="${ad.logoUrl}" alt="">` : '';
+    return `<a class="ticker-item" href="${ad.url || '#'}" target="_blank" rel="noopener">
       <span class="ticker-badge ${ad.badge}">${ad.badgeText}</span>
+      ${logoHtml}
       <span class="ticker-name">${ad.name}</span>
       <span>${ad.text}</span>
-    </a>`
-  ).join('<span class="ticker-sep">|</span>');
+    </a>`;
+  }).join('<span class="ticker-sep">|</span>');
 
   // Double the content for seamless infinite scroll
   container.innerHTML = itemsHTML + '<span class="ticker-sep">|</span>' + itemsHTML;
@@ -1278,13 +1280,19 @@ function _wireAdModal() {
   // Pay button
   dom.adPayBtn.addEventListener('click', async () => {
     dom.adPayBtn.disabled = true;
-    dom.adPayBtn.textContent = 'Processing...';
+    dom.adPayBtn.textContent = 'Uploading...';
     try {
+      // Upload logo first if provided
+      let logoUrl = null;
+      if (_adState.logoFile) {
+        logoUrl = await uploadAdLogo(_adState.logoFile);
+      }
       const adData = _getAdFormData();
+      adData.logoUrl = logoUrl;
+      dom.adPayBtn.textContent = 'Redirecting to payment...';
       await submitAndPay(adData, _adState.durationIndex);
       _closeModal(dom.adModal);
       _toast('Ad submitted successfully!', 'success');
-      // Refresh ticker
       _initTicker();
     } catch (e) {
       _toast(e.message || 'Payment failed', 'error');
@@ -1298,12 +1306,36 @@ function _wireAdModal() {
 function _openAdModal() {
   _adState.step = 1;
   _adState.durationIndex = 0;
+  _adState.logoFile = null;
+  _adState.logoUrl = null;
 
   // Reset form
   dom.adBadgeSelect.value = 'new-drop';
   dom.adName.value = '';
   dom.adText.value = '';
   dom.adUrl.value = '';
+
+  // Reset logo upload
+  const logoPreview = document.getElementById('ad-logo-preview');
+  const logoInput = document.getElementById('ad-logo-input');
+  logoPreview.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="24" height="24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span>Click to upload</span>';
+  logoPreview.classList.remove('has-image');
+  logoInput.value = '';
+
+  // Wire logo upload click
+  document.getElementById('ad-logo-upload').onclick = () => logoInput.click();
+  logoInput.onchange = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    if (file.size > 200 * 1024) { _toast('Logo must be under 200KB', 'error'); return; }
+    _adState.logoFile = file;
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      logoPreview.innerHTML = `<img src="${ev.target.result}" alt="Logo preview">`;
+      logoPreview.classList.add('has-image');
+    };
+    reader.readAsDataURL(file);
+  };
 
   // Render duration cards
   dom.adDurationGrid.innerHTML = STRIPE_CONFIG.prices.map((p, i) =>

@@ -206,6 +206,28 @@ export async function fetchApprovedAds() {
   }
 }
 
+// ─── Firebase Storage: Logo Upload ───
+
+export async function uploadAdLogo(file) {
+  if (!_currentUser) throw new Error('Must be signed in');
+  if (!file) return null;
+
+  // Validate file
+  if (file.size > 200 * 1024) throw new Error('Logo must be under 200KB');
+  if (!['image/png', 'image/jpeg', 'image/svg+xml', 'image/webp'].includes(file.type)) {
+    throw new Error('Logo must be PNG, JPG, SVG or WebP');
+  }
+
+  const storage = firebase.storage();
+  const ext = file.name.split('.').pop();
+  const path = `ad-logos/${_currentUser.uid}/${Date.now()}.${ext}`;
+  const ref = storage.ref(path);
+
+  await ref.put(file);
+  const url = await ref.getDownloadURL();
+  return url;
+}
+
 // ─── Helpers ───
 
 export function getUserInitial() {

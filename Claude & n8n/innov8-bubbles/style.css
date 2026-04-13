@@ -266,6 +266,14 @@ a:hover { text-decoration: underline; }
   border: 1px solid rgba(34, 197, 94, 0.3);
 }
 
+.ticker-ad-logo {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
 .ticker-item .ticker-name {
   font-weight: 600;
   color: var(--text);
@@ -1445,6 +1453,39 @@ a:hover { text-decoration: underline; }
   color: var(--text-secondary);
   padding: var(--space-sm) 0;
   text-align: center;
+}
+
+/* Ad logo upload */
+.ad-logo-upload { cursor: pointer; }
+.ad-logo-preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  height: 64px;
+  border: 2px dashed var(--border);
+  border-radius: var(--radius-md);
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  transition: all 0.2s;
+  overflow: hidden;
+}
+.ad-logo-preview:hover {
+  border-color: var(--accent);
+  color: var(--text);
+}
+.ad-logo-preview.has-image {
+  border-style: solid;
+  border-color: var(--green);
+  padding: 4px;
+}
+.ad-logo-preview.has-image img {
+  height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
 }
 
 .btn-pay {

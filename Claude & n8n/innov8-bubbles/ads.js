@@ -50,6 +50,7 @@ export async function submitAndPay(adData, durationIndex) {
     name: adData.name,
     text: adData.text,
     url: adData.url,
+    logoUrl: adData.logoUrl || null,
     duration: duration.days,
     priceLabel: duration.price,
     expiresAt: expiresAt.toISOString(),
@@ -94,8 +95,10 @@ export async function checkPaymentReturn() {
 
 export function generateAdPreviewHTML(adData) {
   const badge = AD_BADGE_TYPES.find(b => b.value === adData.badge) || AD_BADGE_TYPES[0];
+  const logoHtml = adData.logoUrl ? `<img class="ticker-ad-logo" src="${adData.logoUrl}" alt="">` : '';
   return `<a class="ticker-item" href="${adData.url || '#'}" target="_blank" rel="noopener">
     <span class="ticker-badge ${badge.value}">${badge.badgeText}</span>
+    ${logoHtml}
     <span class="ticker-name">${adData.name || '$TOKEN'}</span>
     <span>${adData.text || 'Your ad description here'}</span>
   </a>`;

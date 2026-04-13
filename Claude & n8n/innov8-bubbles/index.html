@@ -514,6 +514,17 @@
             <label class="form-label">Link URL</label>
             <input type="url" id="ad-url" class="form-input" placeholder="https://yourproject.com">
           </div>
+          <div class="form-group">
+            <label class="form-label">Logo (optional)</label>
+            <div class="ad-logo-upload" id="ad-logo-upload">
+              <div class="ad-logo-preview" id="ad-logo-preview">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="24" height="24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                <span>Click to upload</span>
+              </div>
+              <input type="file" id="ad-logo-input" accept="image/png,image/jpeg,image/svg+xml,image/webp" hidden>
+            </div>
+            <p class="form-help">PNG, JPG or SVG. Max 200KB. Shows next to your ad in the banner.</p>
+          </div>
           <button class="btn btn-primary" id="ad-next-1" style="width:100%">Next: Choose Duration</button>
         </div>
 
@@ -576,6 +587,7 @@
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
 
   <!-- ─── Stripe SDK (CDN) ─── -->
   <script src="https://js.stripe.com/v3/"></script>

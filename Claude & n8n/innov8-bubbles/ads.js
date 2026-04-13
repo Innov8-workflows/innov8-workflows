@@ -55,21 +55,11 @@ export async function submitAndPay(adData, durationIndex) {
     expiresAt: expiresAt.toISOString(),
   });
 
-  // Redirect to Stripe Checkout for payment
-  if (_stripe && duration.priceId) {
-    try {
-      const { error } = await _stripe.redirectToCheckout({
-        lineItems: [{ price: duration.priceId, quantity: 1 }],
-        mode: 'payment',
-        successUrl: window.location.origin + window.location.pathname + `?ad_paid=${adId}`,
-        cancelUrl: window.location.origin + window.location.pathname + '?ad_cancelled=1',
-        clientReferenceId: adId,
-      });
-      if (error) throw error;
-    } catch (e) {
-      console.error('[ads] Stripe redirect failed:', e.message);
-      throw e;
-    }
+  // Redirect to Stripe Payment Link
+  if (duration.paymentLink) {
+    // Store the ad ID so we can approve it when they return
+    localStorage.setItem('innov8-bubbles-pending-ad', adId);
+    window.location.href = duration.paymentLink;
   } else {
     throw new Error('Payment system unavailable. Please try again later.');
   }
@@ -81,16 +71,21 @@ export async function submitAndPay(adData, durationIndex) {
 
 export async function checkPaymentReturn() {
   const params = new URLSearchParams(window.location.search);
-  const adId = params.get('ad_paid');
-  if (adId) {
-    try {
-      await markAdAsPaid(adId);
-    } catch (e) {
-      console.warn('[ads] Could not mark ad as paid on return:', e.message);
+  const paid = params.get('ad_paid');
+  if (paid) {
+    // Check for pending ad ID from before redirect
+    const pendingAdId = localStorage.getItem('innov8-bubbles-pending-ad');
+    if (pendingAdId) {
+      try {
+        await markAdAsPaid(pendingAdId);
+        localStorage.removeItem('innov8-bubbles-pending-ad');
+      } catch (e) {
+        console.warn('[ads] Could not mark ad as paid on return:', e.message);
+      }
     }
     // Clean up URL
     window.history.replaceState({}, '', window.location.pathname);
-    return adId;
+    return pendingAdId;
   }
   return null;
 }

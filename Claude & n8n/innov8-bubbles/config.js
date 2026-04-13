@@ -146,9 +146,9 @@ export const FIREBASE_CONFIG = {
 export const STRIPE_CONFIG = {
   publishableKey: 'pk_live_51TLhmHLwaoUSAyt5dQl2gxneget7LzKvMSJelKsPNA6PcgQNF4JPcQcaarrQmF6iVEpghgU0RDXrs2y0ISTXTybm00AC6v7CiQ',
   prices: [
-    { days: 7,  label: '7 Days',  price: '£29',  priceId: 'price_1TLhsOLwaoUSAyt5GdFgKhK4' },
-    { days: 14, label: '14 Days', price: '£49',  priceId: 'price_1TLht2LwaoUSAyt5B2e2KeRI' },
-    { days: 30, label: '30 Days', price: '£99',  priceId: 'price_1TLhtSLwaoUSAyt5ytLH6hiZ' },
+    { days: 7,  label: '7 Days',  price: '£29',  priceId: 'price_1TLhsOLwaoUSAyt5GdFgKhK4', paymentLink: 'https://buy.stripe.com/4gM5kEfwSaMo8xVdnZe3e00' },
+    { days: 14, label: '14 Days', price: '£49',  priceId: 'price_1TLht2LwaoUSAyt5B2e2KeRI', paymentLink: 'https://buy.stripe.com/eVq3cwacy1bO5lJ6ZBe3e01' },
+    { days: 30, label: '30 Days', price: '£99',  priceId: 'price_1TLhtSLwaoUSAyt5ytLH6hiZ', paymentLink: 'https://buy.stripe.com/4gMfZi98uf2Eg0ncjVe3e02' },
   ],
 };
 

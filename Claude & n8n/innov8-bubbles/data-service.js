@@ -134,7 +134,8 @@ async function _doFetch(assetClass, cacheKey) {
 // ─── Crypto (CoinGecko) ───
 
 async function _fetchCrypto() {
-  const url = `${API.COINGECKO_BASE}/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=1h,24h,7d,30d,1y`;
+  const currency = localStorage.getItem('innov8-bubbles-currency') || 'usd';
+  const url = `${API.COINGECKO_BASE}/coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=1h,24h,7d,30d,1y`;
 
   const res = await _fetchWithTimeout(url, 8000);
   if (!res.ok) throw new Error(`CoinGecko ${res.status}`);

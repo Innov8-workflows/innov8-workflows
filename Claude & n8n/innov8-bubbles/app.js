@@ -2,7 +2,7 @@
    app.js — Innov8 Bubbles: Entry point, state, event wiring
    ============================================================ */
 
-import { ASSET_CLASSES, STORAGE, STRIPE_CONFIG, AD_BADGE_TYPES, formatPrice, formatLargeNumber, formatChange, getLogoUrl } from './config.js';
+import { ASSET_CLASSES, STORAGE, STRIPE_CONFIG, AD_BADGE_TYPES, CURRENCIES, COLOR_SCHEMES, formatPrice, formatLargeNumber, formatChange, getLogoUrl, setColorScheme, getColorScheme } from './config.js';
 import { BubbleEngine } from './bubble-engine.js';
 import { fetchAssets } from './data-service.js';
 import * as Portfolio from './portfolio.js';
@@ -25,6 +25,8 @@ const state = {
   sortBy: 'marketCap',
   sortDir: 'desc',
   theme: 'midnight',    // 'midnight', 'dark', 'slate', 'light'
+  currency: 'usd',      // 'usd', 'gbp', 'eur', 'jpy', 'aud'
+  colorScheme: 'red-green', // 'red-green', 'blue-yellow', 'purple-orange'
 };
 
 // ─── DOM References ───
@@ -629,12 +631,40 @@ function _wireRefreshPills() {
       });
     });
   }
+
+  // Currency switcher
+  const currencyPills = document.getElementById('currency-pills');
+  if (currencyPills) {
+    currencyPills.querySelectorAll('.pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        currencyPills.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+        state.currency = pill.dataset.currency;
+        localStorage.setItem('innov8-bubbles-currency', pill.dataset.currency);
+        _saveSettings();
+        _fetchAndRender(); // re-fetch with new currency
+      });
+    });
+  }
+
+  // Color scheme switcher
+  const colorPills = document.getElementById('color-scheme-pills');
+  if (colorPills) {
+    colorPills.querySelectorAll('.pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        colorPills.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+        state.colorScheme = pill.dataset.colors;
+        setColorScheme(pill.dataset.colors);
+        _saveSettings();
+        _applyFilters(); // re-render bubbles with new colors
+      });
+    });
+  }
 }
 
 function _applyTheme(theme) {
-  // Remove all theme classes
   document.body.classList.remove('theme-dark', 'theme-slate', 'theme-light');
-  // Apply new theme (midnight is the default / no class)
   if (theme && theme !== 'midnight') {
     document.body.classList.add('theme-' + theme);
   }
@@ -794,14 +824,35 @@ function _loadSettings() {
     if (raw) {
       const s = JSON.parse(raw);
       state.refreshInterval = s.refreshInterval || 60;
+
       if (s.theme) {
         state.theme = s.theme;
         _applyTheme(s.theme);
-        // Update the swatch UI
         const themeGrid = document.getElementById('theme-grid');
         if (themeGrid) {
           themeGrid.querySelectorAll('.theme-swatch').forEach(sw => {
             sw.classList.toggle('active', sw.dataset.theme === s.theme);
+          });
+        }
+      }
+
+      if (s.currency) {
+        state.currency = s.currency;
+        const currencyPills = document.getElementById('currency-pills');
+        if (currencyPills) {
+          currencyPills.querySelectorAll('.pill').forEach(p => {
+            p.classList.toggle('active', p.dataset.currency === s.currency);
+          });
+        }
+      }
+
+      if (s.colorScheme) {
+        state.colorScheme = s.colorScheme;
+        setColorScheme(s.colorScheme);
+        const colorPills = document.getElementById('color-scheme-pills');
+        if (colorPills) {
+          colorPills.querySelectorAll('.pill').forEach(p => {
+            p.classList.toggle('active', p.dataset.colors === s.colorScheme);
           });
         }
       }
@@ -813,6 +864,8 @@ function _saveSettings() {
   localStorage.setItem(STORAGE.SETTINGS, JSON.stringify({
     refreshInterval: state.refreshInterval,
     theme: state.theme,
+    currency: state.currency,
+    colorScheme: state.colorScheme,
   }));
 }
 

@@ -1,5 +1,5 @@
 /* ============================================================
-   app.js — Innov8 Bubbles: Entry point, state, event wiring
+   app.js — MarketBubbles: Entry point, state, event wiring
    ============================================================ */
 
 import { ASSET_CLASSES, STORAGE, STRIPE_CONFIG, AD_BADGE_TYPES, CURRENCIES, COLOR_SCHEMES, CUSTOM_ASSET_TYPES, PENSION_PROVIDERS, SPONSORED_PRICES, formatPrice, formatLargeNumber, formatChange, changeToColor, getLogoUrl, setColorScheme, getColorScheme } from './config.js';
@@ -200,7 +200,7 @@ const TICKER_ADS = [
   { badge: 'new-drop', badgeText: 'NEW', name: '$LUNAR', text: 'AI-powered DeFi launching May 2026 — Early access live', url: '#' },
   { badge: 'ipo', badgeText: 'IPO', name: 'Klarna', text: 'Fintech giant IPO expected Q2 2026 — $15B valuation', url: '#' },
   { badge: 'presale', badgeText: 'PRESALE', name: '$NEXGEN', text: 'Next-gen L2 blockchain — Presale now open', url: '#' },
-  { badge: 'promo', badgeText: 'PROMO', name: 'Innov8', text: 'Build your custom portfolio — Track all assets in one place', url: '#' },
+  { badge: 'promo', badgeText: 'PROMO', name: 'MarketBubbles', text: 'See the market. Own your wealth — Track all assets in one place', url: '#' },
   { badge: 'new-drop', badgeText: 'NEW', name: '$AURA', text: 'Real-world asset tokenisation — Launching on Ethereum', url: '#' },
   { badge: 'ipo', badgeText: 'IPO', name: 'Stripe', text: 'Payments giant confidentially files for IPO', url: '#' },
   { badge: 'presale', badgeText: 'PRESALE', name: '$ORBIT', text: 'Cross-chain DEX aggregator — Whitelist open', url: '#' },
@@ -2386,7 +2386,7 @@ function _wireShareButton() {
 
   btn.addEventListener('click', async () => {
     const url = window.location.href;
-    const title = 'Innov8 Bubbles — ' + (state.assetClass === 'all' ? 'All Assets' : state.assetClass);
+    const title = 'MarketBubbles — ' + (state.assetClass === 'all' ? 'All Assets' : state.assetClass);
 
     if (navigator.share) {
       try {

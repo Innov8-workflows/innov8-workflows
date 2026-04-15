@@ -1,9 +1,9 @@
 // ============================================================
-// sw.js — Service Worker for Innov8 Bubbles PWA
+// sw.js — Service Worker for MarketBubbles PWA
 // Network-first for app files, cache for offline fallback
 // ============================================================
 
-const CACHE_NAME = 'innov8-bubbles-v26';
+const CACHE_NAME = 'marketbubbles-v27';
 const STATIC_ASSETS = [
   '/',
   '/index.html',

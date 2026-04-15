@@ -3,32 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Innov8 Bubbles — Multi-Asset Portfolio Visualizer</title>
+  <title>MarketBubbles — Multi-Asset Portfolio Visualizer</title>
 
   <!-- SEO -->
-  <meta name="description" content="Track crypto, stocks, indices, commodities & real estate in one interactive bubble chart. Create custom portfolios and monitor all your assets in real-time.">
+  <meta name="description" content="See the market. Own your wealth. Track crypto, stocks, property, pensions & more in interactive bubble charts. Create custom portfolios and monitor all your assets in real-time.">
   <meta name="keywords" content="crypto, stocks, bubbles, portfolio, bitcoin, ethereum, market cap, trading, investment, real-time">
-  <meta name="author" content="Innov8 Workflows">
-  <link rel="canonical" href="https://bubbles.innov8workflows.com">
+  <meta name="author" content="MarketBubbles">
+  <link rel="canonical" href="https://marketbubbles.vercel.app">
 
   <!-- Open Graph / Social -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Innov8 Bubbles — Multi-Asset Portfolio Visualizer">
-  <meta property="og:description" content="Track crypto, stocks, indices, commodities & real estate in one interactive bubble chart.">
-  <meta property="og:url" content="https://bubbles.innov8workflows.com">
-  <meta property="og:site_name" content="Innov8 Bubbles">
+  <meta property="og:title" content="MarketBubbles — Multi-Asset Portfolio Visualizer">
+  <meta property="og:description" content="See the market. Own your wealth. Track crypto, stocks, property, pensions & more in interactive bubble charts.">
+  <meta property="og:url" content="https://marketbubbles.vercel.app">
+  <meta property="og:site_name" content="MarketBubbles">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Innov8 Bubbles — Multi-Asset Portfolio Visualizer">
-  <meta name="twitter:description" content="Track crypto, stocks, indices, commodities & real estate in one interactive bubble chart.">
+  <meta name="twitter:title" content="MarketBubbles — Multi-Asset Portfolio Visualizer">
+  <meta name="twitter:description" content="See the market. Own your wealth. Track crypto, stocks, property, pensions & more in interactive bubble charts.">
 
   <!-- PWA -->
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#ea580c">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Innov8 Bubbles">
+  <meta name="apple-mobile-web-app-title" content="MarketBubbles">
   <meta name="mobile-web-app-capable" content="yes">
 
   <!-- Favicon + App Icons -->
@@ -64,7 +64,7 @@
   <div id="loading-screen" class="loading-screen">
     <div class="loading-brand">
       <span class="loading-icon">&#9678;</span>
-      <span class="loading-title">Innov8 <span style="color:var(--accent)">Bubbles</span></span>
+      <span class="loading-title">Market<span style="color:var(--accent)">Bubbles</span></span>
     </div>
     <div class="spinner"></div>
     <p class="loading-text">Loading market data&hellip;</p>
@@ -972,7 +972,7 @@
     <div class="pwa-install-inner">
       <img src="apple-touch-icon.png" alt="" class="pwa-install-icon">
       <div class="pwa-install-text">
-        <strong>Install Innov8 Bubbles</strong>
+        <strong>Install MarketBubbles</strong>
         <!-- iOS: instructions (no install API) -->
         <span class="pwa-install-ios hidden" id="pwa-install-ios">
           1. Tap <svg viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="2.5" width="16" height="16" style="vertical-align:-3px"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg> at the bottom of Safari<br>
@@ -1009,7 +1009,7 @@
   <!-- ─── Service Worker Registration + Cache Buster ─── -->
   <script>
     (function() {
-      var APP_VERSION = 26;
+      var APP_VERSION = 27;
       var stored = parseInt(localStorage.getItem('innov8-app-version') || '0');
       if (stored < APP_VERSION) {
         // Force purge all old caches and unregister stale service workers

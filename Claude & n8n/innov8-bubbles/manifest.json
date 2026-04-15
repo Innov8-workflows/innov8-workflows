@@ -1,7 +1,7 @@
 {
-  "name": "Innov8 Bubbles — Multi-Asset Portfolio Visualizer",
-  "short_name": "Innov8 Bubbles",
-  "description": "Track crypto, stocks, indices, commodities, property, pensions & savings in one interactive bubble chart. Your complete net worth tracker.",
+  "name": "MarketBubbles — Multi-Asset Portfolio Visualizer",
+  "short_name": "MarketBubbles",
+  "description": "See the market. Own your wealth. Track crypto, stocks, property, pensions & more in interactive bubble charts.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

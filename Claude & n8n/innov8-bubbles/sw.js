@@ -3,7 +3,7 @@
 // Network-first for app files, cache for offline fallback
 // ============================================================
 
-const CACHE_NAME = 'innov8-bubbles-v17';
+const CACHE_NAME = 'innov8-bubbles-v21';
 const STATIC_ASSETS = [
   '/',
   '/index.html',

@@ -86,9 +86,7 @@ export async function submitAndPaySponsored(sponsoredData, durationIndex) {
     localStorage.setItem('innov8-bubbles-pending-sponsored', id);
     window.location.href = duration.paymentLink;
   } else {
-    // Placeholder: auto-approve for testing until Stripe links are set up
-    await markSponsoredAsPaid(id);
-    return id;
+    throw new Error('Payment system not yet configured. Please contact support.');
   }
 
   return id;

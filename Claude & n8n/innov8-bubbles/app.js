@@ -613,13 +613,13 @@ function _applyFilters() {
   if (assets.length === 0) {
     if (state.assetClass === 'launches') {
       emptyTitle.textContent = '🚀 No sponsored launches yet';
-      emptySub.innerHTML = 'Promote your token, ICO or project here<br><button class="btn btn-primary btn-sm" style="margin-top:12px;background:#d4a017" onclick="document.getElementById(\'user-promote-launch\').click()">Promote a Launch — from £500</button>';
+      emptySub.innerHTML = 'Promote your token, ICO or project here<br><button class="btn btn-primary btn-sm empty-cta" data-cta="launches" style="margin-top:12px;background:#d4a017">Promote a Launch — from £500</button>';
     } else if (state.assetClass === 'finance') {
       emptyTitle.textContent = '🏦 No financial assets yet';
-      emptySub.innerHTML = 'Track your pensions, savings & ISAs<br><button class="btn btn-primary btn-sm" style="margin-top:12px" onclick="document.getElementById(\'add-custom-asset-btn\').click()">+ Add Pension or Savings</button>';
+      emptySub.innerHTML = 'Track your pensions, savings & ISAs<br><button class="btn btn-primary btn-sm empty-cta" data-cta="add-asset" style="margin-top:12px">+ Add Pension or Savings</button>';
     } else if (state.assetClass === 'assets' && state.allAssets.length === 0) {
       emptyTitle.textContent = '🏠 No personal assets yet';
-      emptySub.innerHTML = 'Add properties, vehicles, watches & more<br><button class="btn btn-primary btn-sm" style="margin-top:12px" onclick="document.getElementById(\'add-custom-asset-btn\').click()">+ Add Asset</button>';
+      emptySub.innerHTML = 'Add properties, vehicles, watches & more<br><button class="btn btn-primary btn-sm empty-cta" data-cta="add-asset" style="margin-top:12px">+ Add Asset</button>';
     } else if (state.searchQuery) {
       emptyTitle.textContent = 'No assets found';
       emptySub.textContent = 'Try a different search term';
@@ -628,6 +628,14 @@ function _applyFilters() {
       emptySub.textContent = 'Try a different asset class';
     }
     dom.emptyState.classList.remove('hidden');
+    // Wire CTA buttons via delegation (no inline onclick)
+    dom.emptyState.querySelectorAll('.empty-cta').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const cta = btn.dataset.cta;
+        if (cta === 'launches') { const el = $('#user-promote-launch'); if (el) el.click(); }
+        else if (cta === 'add-asset') { const el = $('#add-custom-asset-btn'); if (el) el.click(); }
+      });
+    });
   } else {
     dom.emptyState.classList.add('hidden');
   }
@@ -641,6 +649,11 @@ function _wireAssetPills() {
     const btn = e.target.closest('.pill');
     if (!btn || !btn.dataset.class) return;
     state.assetClass = btn.dataset.class;
+
+    // Clear search when switching tabs
+    state.searchQuery = '';
+    if (dom.searchInput) dom.searchInput.value = '';
+    if (dom.mobileSearchInput) dom.mobileSearchInput.value = '';
 
     // Update all pill groups
     _syncPills('class', btn.dataset.class);
@@ -885,6 +898,7 @@ function _showDetail(asset) {
   _renderDetailHoldings(asset);
 
   p.classList.remove('hidden');
+  document.body.classList.add('detail-open');
   requestAnimationFrame(() => p.classList.add('open'));
 
   // Render chart (async, non-blocking)
@@ -1139,6 +1153,7 @@ function _wireDetailChartPills() {
 
 function _closeDetail() {
   dom.detailPanel.classList.remove('open');
+  document.body.classList.remove('detail-open');
   setTimeout(() => dom.detailPanel.classList.add('hidden'), 300);
   dom.portfolioPopover.classList.add('hidden');
   state.selectedAsset = null;
@@ -1384,20 +1399,20 @@ function _startAutoRefresh() {
       _refreshBarStart = Date.now(); // reset bar
     }, intervalMs);
 
-    // Animate the progress bar with requestAnimationFrame
+    // Animate the progress bar — GPU-accelerated via transform
     function _tickBar() {
+      if (!state.refreshInterval) return; // stop if refresh disabled
       const elapsed = Date.now() - _refreshBarStart;
-      const pct = Math.min((elapsed / intervalMs) * 100, 100);
-      dom.refreshBarFill.style.transition = 'none';
-      dom.refreshBarFill.style.width = pct + '%';
-      if (pct >= 100) {
-        // Reset for next cycle
-        dom.refreshBarFill.style.width = '0%';
+      const pct = Math.min(elapsed / intervalMs, 1);
+      dom.refreshBarFill.style.transform = `scaleX(${pct})`;
+      if (pct >= 1) {
+        dom.refreshBarFill.style.transform = 'scaleX(0)';
         _refreshBarStart = Date.now();
       }
       _refreshBarTimer = requestAnimationFrame(_tickBar);
     }
-    dom.refreshBarFill.style.width = '0%';
+    dom.refreshBarFill.style.transformOrigin = 'left';
+    dom.refreshBarFill.style.transform = 'scaleX(0)';
     _refreshBarTimer = requestAnimationFrame(_tickBar);
   } else {
     // Refresh off — hide bar
@@ -1426,6 +1441,11 @@ function _showApiPrompt(show) {
 // ─── Toast ───
 
 function _toast(message, type = 'info') {
+  if (!dom.toastContainer) return;
+  // Limit to 5 visible toasts
+  while (dom.toastContainer.children.length >= 5) {
+    dom.toastContainer.removeChild(dom.toastContainer.firstChild);
+  }
   const el = document.createElement('div');
   el.className = `toast ${type}`;
   el.textContent = message;
@@ -1434,7 +1454,7 @@ function _toast(message, type = 'info') {
     el.style.opacity = '0';
     el.style.transform = 'translateY(10px)';
     el.style.transition = 'all 0.3s';
-    setTimeout(() => el.remove(), 300);
+    setTimeout(() => { if (el.parentNode) el.remove(); }, 300);
   }, 3000);
 }
 
@@ -1946,8 +1966,8 @@ function _renderTable() {
       </td>
       <td class="table-price">${formatPrice(a.price)}</td>
       <td class="col-holdings">${a._holdingsQty ? a._holdingsQty.toLocaleString('en-US', {maximumFractionDigits: 4}) : '—'}</td>
-      <td class="col-holdings">${a._holdingsValue ? formatPrice(a._holdingsValue) : '—'}</td>
-      <td class="col-holdings col-holdings-pl ${(a._holdingsPL || 0) >= 0 ? 'table-change-pos' : 'table-change-neg'}">${a._holdingsPL != null && a._holdingsQty ? (a._holdingsPL >= 0 ? '+' : '') + formatPrice(a._holdingsPL) : '—'}</td>
+      <td class="col-holdings">${a._holdingsValue ? formatLargeNumber(a._holdingsValue) : '—'}</td>
+      <td class="col-holdings col-holdings-pl ${(a._holdingsPL || 0) >= 0 ? 'table-change-pos' : 'table-change-neg'}">${a._holdingsPL != null && a._holdingsQty ? ((a._holdingsPL >= 0 ? '+' : '-') + formatLargeNumber(Math.abs(a._holdingsPL))) : '—'}</td>
       <td class="${activeClass('change1h')}">${fmtChange(a.change1h, 'change1h')}</td>
       <td class="${activeClass('change24h')}">${fmtChange(a.change24h, 'change24h')}</td>
       <td class="${activeClass('change7d')}">${fmtChange(a.change7d, 'change7d')}</td>

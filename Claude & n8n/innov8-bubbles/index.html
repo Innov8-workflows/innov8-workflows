@@ -383,7 +383,7 @@
           <span class="detail-stat-value" id="detail-1y"></span>
         </div>
       </div>
-      <div class="detail-actions">
+      <div class="detail-actions" id="detail-actions">
         <div class="detail-portfolio-add" id="detail-portfolio-add">
           <button class="btn btn-secondary" id="add-to-portfolio-btn">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
@@ -1005,7 +1005,7 @@
   <!-- ─── Service Worker Registration + Cache Buster ─── -->
   <script>
     (function() {
-      var APP_VERSION = 17;
+      var APP_VERSION = 21;
       var stored = parseInt(localStorage.getItem('innov8-app-version') || '0');
       if (stored < APP_VERSION) {
         // Force purge all old caches and unregister stale service workers

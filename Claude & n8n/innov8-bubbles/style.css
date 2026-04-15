@@ -762,6 +762,21 @@ a:hover { text-decoration: underline; }
   height: 40px;
   border-radius: 50%;
   background: var(--surface-2);
+  object-fit: cover;
+}
+.detail-image-fallback {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  font-weight: 800;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 .detail-name {
   font-size: 1.1rem;
@@ -1879,6 +1894,112 @@ textarea.form-input {
   color: #d4a017 !important;
   font-weight: 600;
 }
+
+/* ─── Block / Treemap View ─── */
+.block-view {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  padding: 3px;
+  z-index: 5;
+  background: var(--bg);
+}
+
+.block-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  height: 100%;
+  align-content: stretch;
+}
+
+.block-item {
+  position: relative;
+  min-width: 50px;
+  min-height: 44px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: filter 0.15s;
+  padding: 6px 4px;
+  flex-grow: 1;
+}
+.block-item:hover { filter: brightness(1.2); }
+.block-item:active { filter: brightness(0.9); }
+
+.block-logo {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.block-logo-fallback {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.block-symbol {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  text-align: center;
+}
+
+.block-name {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  color: rgba(255,255,255,0.7);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  text-align: center;
+}
+
+.block-change {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+
+/* Large blocks get bigger text */
+.block-item.block-lg .block-logo, .block-item.block-lg .block-logo-fallback { width: 32px; height: 32px; font-size: 0.8rem; }
+.block-item.block-lg .block-symbol { font-size: 1rem; }
+.block-item.block-lg .block-name { font-size: 0.65rem; }
+.block-item.block-lg .block-change { font-size: 0.8rem; }
+
+.block-item.block-md .block-logo, .block-item.block-md .block-logo-fallback { width: 26px; height: 26px; }
+.block-item.block-md .block-symbol { font-size: 0.8rem; }
+.block-item.block-md .block-change { font-size: 0.7rem; }
+
+@media (max-width: 768px) {
+  .block-item { min-width: 44px; min-height: 44px; }
+}
+
 
 /* ─── Detail Holdings Section ─── */
 .detail-holdings-section {

@@ -484,11 +484,25 @@ export class BubbleEngine {
     if (!url) return null;
     if (this._imageCache.has(url)) return this._imageCache.get(url);
 
-    this._imageCache.set(url, null);
+    this._imageCache.set(url, null); // mark as loading
     const img = new Image();
-    img.crossOrigin = 'anonymous';
+    // Only set crossOrigin for known CORS-friendly domains
+    // Without it, images load fine for display but taint the canvas (which we don't care about)
+    if (url.includes('coingecko.com') || url.includes('coin-images')) {
+      img.crossOrigin = 'anonymous';
+    }
     img.onload = () => { this._imageCache.set(url, img); };
-    img.onerror = () => { this._imageCache.set(url, null); };
+    img.onerror = () => {
+      // Retry without crossOrigin if it failed (CORS rejection)
+      if (img.crossOrigin) {
+        const retry = new Image();
+        retry.onload = () => { this._imageCache.set(url, retry); };
+        retry.onerror = () => { this._imageCache.set(url, null); };
+        retry.src = url;
+      } else {
+        this._imageCache.set(url, null);
+      }
+    };
     img.src = url;
     return null;
   }

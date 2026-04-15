@@ -62,7 +62,7 @@ function _demoSponsored() {
     change1y: 142.5,
     image: '',
     _isSponsored: true,
-    _sponsoredUrl: 'https://marketbubbles.vercel.app',
+    _sponsoredUrl: 'https://market-bubbles.com',
     _sponsoredBadge: 'new-drop',
     _sponsoredDescription: 'AI-powered DeFi launching May 2026 — Early access live',
   }];

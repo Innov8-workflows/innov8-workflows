@@ -191,6 +191,10 @@ a:hover { text-decoration: underline; }
   color: var(--accent);
   font-size: 1.4rem;
 }
+.logo-img {
+  border-radius: 4px;
+  flex-shrink: 0;
+}
 .logo-accent { color: var(--accent); }
 
 

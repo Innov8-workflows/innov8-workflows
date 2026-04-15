@@ -152,7 +152,7 @@ export const STORAGE = {
 // ─── Custom Asset Types ───
 export const CUSTOM_ASSET_TYPES = {
   property:  { label: 'Property',        icon: '🏠', tab: 'assets',  subtypes: ['Detached', 'Semi-Detached', 'Terraced', 'Flat', 'Bungalow', 'Other'] },
-  pension:   { label: 'Pension',         icon: '🏦', tab: 'finance', subtypes: ['Workplace DC', 'SIPP', 'Defined Benefit', 'State Pension', 'SSAS', 'Stakeholder', 'Other'] },
+  pension:   { label: 'Pension',         icon: '🏦', tab: 'finance', subtypes: ['Workplace Pension', 'Personal Pension', 'SIPP', 'Final Salary (DB)', 'State Pension', 'Stakeholder', 'SSAS', 'Other'] },
   vehicle:   { label: 'Vehicle',         icon: '🚗', tab: 'assets',  subtypes: ['Car', 'Motorcycle', 'Van', 'Other'] },
   watch:     { label: 'Watch',           icon: '⌚', tab: 'assets',  subtypes: ['Luxury', 'Vintage', 'Smart', 'Other'] },
   art:       { label: 'Art',             icon: '🎨', tab: 'assets',  subtypes: ['Painting', 'Sculpture', 'Print', 'Other'] },

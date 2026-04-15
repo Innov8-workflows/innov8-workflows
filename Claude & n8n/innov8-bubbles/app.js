@@ -2,7 +2,7 @@
    app.js — Innov8 Bubbles: Entry point, state, event wiring
    ============================================================ */
 
-import { ASSET_CLASSES, STORAGE, STRIPE_CONFIG, AD_BADGE_TYPES, CURRENCIES, COLOR_SCHEMES, CUSTOM_ASSET_TYPES, PENSION_PROVIDERS, SPONSORED_PRICES, formatPrice, formatLargeNumber, formatChange, getLogoUrl, setColorScheme, getColorScheme } from './config.js';
+import { ASSET_CLASSES, STORAGE, STRIPE_CONFIG, AD_BADGE_TYPES, CURRENCIES, COLOR_SCHEMES, CUSTOM_ASSET_TYPES, PENSION_PROVIDERS, SPONSORED_PRICES, formatPrice, formatLargeNumber, formatChange, changeToColor, getLogoUrl, setColorScheme, getColorScheme } from './config.js';
 import { BubbleEngine } from './bubble-engine.js';
 import { fetchAssets, invalidateCache, fetchChartData } from './data-service.js';
 import * as Portfolio from './portfolio.js';
@@ -108,7 +108,9 @@ const dom = {
   // View toggle + table
   viewBubbles: $('#view-bubbles'),
   viewTable: $('#view-table'),
+  viewBlock: $('#view-block'),
   tableView: $('#table-view'),
+  blockView: $('#block-view'),
   assetTableBody: $('#asset-table-body'),
   assetTable: $('#asset-table'),
 
@@ -603,6 +605,8 @@ function _applyFilters() {
   // Render the active view
   if (state.viewMode === 'table') {
     _renderTable();
+  } else if (state.viewMode === 'block') {
+    _renderBlock();
   } else {
     engine.setBubbles(assets, state.period);
   }
@@ -840,8 +844,28 @@ function _showDetail(asset) {
   const p = dom.detailPanel;
 
   const logoUrl = getLogoUrl(asset);
-  dom.detailImage.src = logoUrl || '';
-  dom.detailImage.style.display = logoUrl ? 'block' : 'none';
+  // Logo with fallback to initial circle on error
+  let detailFallback = document.getElementById('detail-image-fallback');
+  if (!detailFallback) {
+    detailFallback = document.createElement('div');
+    detailFallback.id = 'detail-image-fallback';
+    detailFallback.className = 'detail-image-fallback';
+    dom.detailImage.parentElement.insertBefore(detailFallback, dom.detailImage);
+  }
+  if (logoUrl) {
+    dom.detailImage.src = logoUrl;
+    dom.detailImage.style.display = 'block';
+    detailFallback.style.display = 'none';
+    dom.detailImage.onerror = () => {
+      dom.detailImage.style.display = 'none';
+      detailFallback.textContent = (asset.symbol || '?')[0];
+      detailFallback.style.display = 'flex';
+    };
+  } else {
+    dom.detailImage.style.display = 'none';
+    detailFallback.textContent = (asset.symbol || '?')[0];
+    detailFallback.style.display = 'flex';
+  }
   dom.detailName.textContent = asset.name;
   dom.detailSymbol.textContent = asset.symbol;
   dom.detailPrice.textContent = formatPrice(asset.price);
@@ -1875,6 +1899,7 @@ function _openCustomAssetForEdit(assetId) {
 function _wireViewToggle() {
   dom.viewBubbles.addEventListener('click', () => _setViewMode('bubble'));
   dom.viewTable.addEventListener('click', () => _setViewMode('table'));
+  if (dom.viewBlock) dom.viewBlock.addEventListener('click', () => _setViewMode('block'));
 
   // Table header sort
   dom.assetTable.querySelector('thead').addEventListener('click', (e) => {
@@ -1895,20 +1920,81 @@ function _setViewMode(mode) {
   state.viewMode = mode;
   dom.viewBubbles.classList.toggle('active', mode === 'bubble');
   dom.viewTable.classList.toggle('active', mode === 'table');
+  if (dom.viewBlock) dom.viewBlock.classList.toggle('active', mode === 'block');
 
   // Show/hide views
   dom.canvas.style.display = mode === 'bubble' ? 'block' : 'none';
   document.querySelector('.hero-glow').style.display = mode === 'bubble' ? 'block' : 'none';
   dom.tableView.classList.toggle('hidden', mode !== 'table');
+  if (dom.blockView) dom.blockView.classList.toggle('hidden', mode !== 'block');
 
   // Render
   if (mode === 'table') {
     _renderTable();
+  } else if (mode === 'block') {
+    _renderBlock();
   } else {
     engine.resize();
     engine.setBubbles(state.filteredAssets, state.period);
   }
 }
+
+// ─── Block / Treemap View ───
+
+function _renderBlock() {
+  if (!dom.blockView) return;
+  const assets = [...state.filteredAssets].sort((a, b) => (b.marketCap || 0) - (a.marketCap || 0));
+  if (assets.length === 0) { dom.blockView.innerHTML = ''; return; }
+
+  const activePeriod = state.period;
+  const changeKey = { '1h': 'change1h', '24h': 'change24h', '7d': 'change7d', '30d': 'change30d', '1y': 'change1y' }[activePeriod] || 'change24h';
+
+  // Use holdings value if portfolio is active, otherwise market cap
+  const useHoldings = state.activePortfolioId && assets.some(a => a._holdingsValue > 0);
+  const getValue = (a) => useHoldings ? (a._holdingsValue || a.marketCap || 0) : (a.marketCap || 0);
+
+  const totalValue = assets.reduce((sum, a) => sum + getValue(a), 0);
+  if (totalValue <= 0) { dom.blockView.innerHTML = ''; return; }
+
+  const html = assets.map(a => {
+    const pct = (getValue(a) / totalValue) * 100;
+    if (pct < 0.3) return ''; // skip sub-0.3% assets
+
+    const change = a[changeKey];
+    const color = changeToColor(change, 0.85);
+    const logo = getLogoUrl(a);
+    const changeTxt = change != null ? ((change >= 0 ? '+' : '') + change.toFixed(2) + '%') : '';
+
+    // Size class for adaptive content
+    const sizeClass = pct > 10 ? 'block-lg' : pct > 4 ? 'block-md' : '';
+
+    // Flex basis — min 3% for visibility
+    const basis = Math.max(3, pct);
+
+    // Logo or fallback
+    const logoHtml = logo
+      ? `<img class="block-logo" src="${logo}" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="block-logo-fallback" style="display:none">${(a.symbol || '?')[0]}</span>`
+      : `<span class="block-logo-fallback">${(a.symbol || '?')[0]}</span>`;
+
+    return `<div class="block-item ${sizeClass}" data-block-id="${a.id}" style="flex-basis:${basis}%;background:${color};flex-grow:${Math.max(1, Math.round(pct))}">
+      ${pct > 3 ? logoHtml : ''}
+      <span class="block-symbol">${a.symbol}</span>
+      ${pct > 4 && a.name && sizeClass ? `<span class="block-name">${a.name}</span>` : ''}
+      ${changeTxt ? `<span class="block-change">${changeTxt}</span>` : ''}
+    </div>`;
+  }).join('');
+
+  dom.blockView.innerHTML = `<div class="block-grid">${html}</div>`;
+
+  // Click handler — open detail panel
+  dom.blockView.querySelectorAll('.block-item').forEach(item => {
+    item.addEventListener('click', () => {
+      const asset = state.filteredAssets.find(a => a.id === item.dataset.blockId);
+      if (asset) _showDetail(asset);
+    });
+  });
+}
+
 
 function _renderTable() {
   const assets = _getSortedAssets();
@@ -2337,6 +2423,7 @@ function _wireKeyboardShortcuts() {
       case '6': _switchAssetClass('realestate'); break;
       case 'b': case 'B': _setViewMode('bubble'); break;
       case 't': case 'T': _setViewMode('table'); break;
+      case 'g': case 'G': _setViewMode('block'); break;
       case '/': e.preventDefault(); dom.searchInput.focus(); break;
       case 'Escape': _closeDetail(); break;
     }

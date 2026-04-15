@@ -3,7 +3,7 @@
 // Network-first for app files, cache for offline fallback
 // ============================================================
 
-const CACHE_NAME = 'marketbubbles-v30';
+const CACHE_NAME = 'marketbubbles-v31';
 const STATIC_ASSETS = [
   '/',
   '/index.html',

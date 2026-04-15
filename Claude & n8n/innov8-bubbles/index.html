@@ -336,6 +336,23 @@
         <span class="detail-price" id="detail-price"></span>
         <span class="detail-change" id="detail-change-main"></span>
       </div>
+      <!-- Price Chart -->
+      <div class="detail-chart" id="detail-chart">
+        <div class="detail-chart-header">
+          <div class="pill-group pill-group-sm" id="detail-chart-pills">
+            <button class="pill" data-chart-period="7">7D</button>
+            <button class="pill active" data-chart-period="30">30D</button>
+            <button class="pill" data-chart-period="90">90D</button>
+            <button class="pill" data-chart-period="365">1Y</button>
+            <button class="pill" data-chart-period="max">ALL</button>
+          </div>
+        </div>
+        <div class="detail-chart-wrap">
+          <canvas id="detail-chart-canvas"></canvas>
+        </div>
+        <div class="detail-chart-loading" id="detail-chart-loading">Loading chart...</div>
+      </div>
+
       <div class="detail-grid">
         <div class="detail-stat">
           <span class="detail-stat-label">Market Cap</span>
@@ -988,7 +1005,7 @@
   <!-- ─── Service Worker Registration + Cache Buster ─── -->
   <script>
     (function() {
-      var APP_VERSION = 11;
+      var APP_VERSION = 14;
       var stored = parseInt(localStorage.getItem('innov8-app-version') || '0');
       if (stored < APP_VERSION) {
         // Force purge all old caches and unregister stale service workers

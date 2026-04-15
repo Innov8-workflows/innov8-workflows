@@ -4,7 +4,7 @@
 
 import { ASSET_CLASSES, STORAGE, STRIPE_CONFIG, AD_BADGE_TYPES, CURRENCIES, COLOR_SCHEMES, CUSTOM_ASSET_TYPES, PENSION_PROVIDERS, SPONSORED_PRICES, formatPrice, formatLargeNumber, formatChange, getLogoUrl, setColorScheme, getColorScheme } from './config.js';
 import { BubbleEngine } from './bubble-engine.js';
-import { fetchAssets, invalidateCache } from './data-service.js';
+import { fetchAssets, invalidateCache, fetchChartData } from './data-service.js';
 import * as Portfolio from './portfolio.js';
 import * as CustomAssets from './custom-assets.js';
 import { initFirebase, signInWithGoogle, signInWithEmail, signUpWithEmail, signOut as firebaseSignOut, onAuthChange, getCurrentUser, isSignedIn, getUserInitial, getUserDisplayName, fetchApprovedAds, fetchApprovedSponsored, syncLocalPortfoliosToCloud, loadPortfoliosFromCloud, uploadAdLogo, loadCustomAssetsFromCloud, syncLocalCustomAssetsToCloud } from './auth.js';
@@ -446,6 +446,7 @@ function _init() {
     _wireSearch();
     _wirePortfolioDropdown();
     _wireDetailPanel();
+    _wireDetailChartPills();
     _wireSettingsModal();
     _wirePortfolioModal();
     _wireMobileMenu();
@@ -882,6 +883,9 @@ function _showDetail(asset) {
 
   p.classList.remove('hidden');
   requestAnimationFrame(() => p.classList.add('open'));
+
+  // Render chart (async, non-blocking)
+  _renderDetailChart(asset, 30);
 }
 
 function _setChangeEl(el, val) {
@@ -889,11 +893,154 @@ function _setChangeEl(el, val) {
   el.className = 'detail-stat-value ' + (val == null ? '' : val >= 0 ? 'color-green' : 'color-red');
 }
 
+// ─── Detail Chart ───
+
+let _chartInstance = null;
+let _chartJSLoaded = false;
+let _chartJSLoading = false;
+
+function _loadChartJS() {
+  if (_chartJSLoaded) return Promise.resolve();
+  if (_chartJSLoading) return _chartJSLoading;
+
+  _chartJSLoading = new Promise((resolve, reject) => {
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js';
+    script.onload = () => { _chartJSLoaded = true; resolve(); };
+    script.onerror = () => reject(new Error('Failed to load Chart.js'));
+    document.head.appendChild(script);
+  });
+  return _chartJSLoading;
+}
+
+async function _renderDetailChart(asset, days = 30) {
+  const container = document.getElementById('detail-chart');
+  const loading = document.getElementById('detail-chart-loading');
+  const canvas = document.getElementById('detail-chart-canvas');
+  if (!container || !canvas) return;
+
+  // Show loading
+  if (loading) loading.classList.remove('hidden');
+
+  // Update pill active state
+  container.querySelectorAll('[data-chart-period]').forEach(p => {
+    p.classList.toggle('active', p.dataset.chartPeriod == days);
+  });
+
+  try {
+    // Lazy load Chart.js
+    await _loadChartJS();
+
+    // Fetch data
+    const points = await fetchChartData(asset, days);
+
+    if (loading) loading.classList.add('hidden');
+
+    if (!points || points.length < 2) {
+      canvas.style.display = 'none';
+      return;
+    }
+    canvas.style.display = '';
+
+    // Determine color based on price direction
+    const firstPrice = points[0].price;
+    const lastPrice = points[points.length - 1].price;
+    const isUp = lastPrice >= firstPrice;
+    const lineColor = isUp ? 'rgb(34, 197, 94)' : 'rgb(239, 68, 68)';
+    const fillColor = isUp ? 'rgba(34, 197, 94, 0.1)' : 'rgba(239, 68, 68, 0.1)';
+
+    // Format labels
+    const labels = points.map(p => {
+      const d = new Date(p.date);
+      return days <= 7 ? d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', hour: '2-digit' })
+        : d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
+    });
+    const data = points.map(p => p.price);
+
+    // Destroy old chart
+    if (_chartInstance) { _chartInstance.destroy(); _chartInstance = null; }
+
+    const ctx = canvas.getContext('2d');
+    _chartInstance = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels,
+        datasets: [{
+          data,
+          borderColor: lineColor,
+          backgroundColor: fillColor,
+          fill: true,
+          tension: 0.3,
+          pointRadius: 0,
+          pointHoverRadius: 4,
+          pointHoverBackgroundColor: lineColor,
+          borderWidth: 2,
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: { mode: 'index', intersect: false },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: 'rgba(15, 23, 42, 0.9)',
+            titleFont: { family: '"DM Mono", monospace', size: 11 },
+            bodyFont: { family: '"DM Mono", monospace', size: 12, weight: 'bold' },
+            padding: 10,
+            displayColors: false,
+            callbacks: {
+              label: (ctx) => formatPrice(ctx.raw),
+            }
+          }
+        },
+        scales: {
+          x: {
+            display: true,
+            grid: { display: false },
+            ticks: { maxTicksLimit: 5, font: { family: '"DM Mono", monospace', size: 9 }, color: '#64748b' },
+            border: { display: false },
+          },
+          y: {
+            display: true,
+            position: 'right',
+            grid: { color: 'rgba(100, 116, 139, 0.1)' },
+            ticks: {
+              maxTicksLimit: 4,
+              font: { family: '"DM Mono", monospace', size: 9 },
+              color: '#64748b',
+              callback: (v) => formatPrice(v),
+            },
+            border: { display: false },
+          }
+        }
+      }
+    });
+  } catch (e) {
+    console.warn('[chart] render error:', e.message);
+    if (loading) { loading.textContent = 'Chart unavailable'; loading.classList.remove('hidden'); }
+  }
+}
+
+function _wireDetailChartPills() {
+  const container = document.getElementById('detail-chart-pills');
+  if (!container) return;
+  container.addEventListener('click', (e) => {
+    const pill = e.target.closest('[data-chart-period]');
+    if (!pill || !state.selectedAsset) return;
+    const days = pill.dataset.chartPeriod === 'max' ? 'max' : parseInt(pill.dataset.chartPeriod);
+    _renderDetailChart(state.selectedAsset, days);
+  });
+}
+
+
 function _closeDetail() {
   dom.detailPanel.classList.remove('open');
   setTimeout(() => dom.detailPanel.classList.add('hidden'), 300);
   dom.portfolioPopover.classList.add('hidden');
   state.selectedAsset = null;
+  // Destroy chart to free memory
+  if (_chartInstance) { _chartInstance.destroy(); _chartInstance = null; }
 }
 
 function _renderPopoverPortfolios() {
@@ -1906,16 +2053,52 @@ function _wireNetWorthPanel() {
 }
 
 function _updateNetWorthPanel() {
-  const assets = CustomAssets.loadCustomAssets();
-  const typeMap = {};
-  let totalValue = 0;
-  let totalPurchase = 0;
+  const sym = document.querySelector('[data-currency].active')?.textContent?.charAt(0) || '£';
+  const fmtVal = (v) => sym + Math.abs(v).toLocaleString('en-GB', { maximumFractionDigits: 0 });
 
-  for (const a of assets) {
+  let grandTotal = 0;
+  let grandCost = 0;
+  const rows = [];
+
+  // ── 1. Portfolio holdings (crypto, stocks, indices etc at live prices) ──
+  const portfolios = Portfolio.getPortfolios();
+  // Build price map from all loaded assets
+  const priceMap = {};
+  const nameMap = {};
+  (state.allAssets || []).forEach(a => { priceMap[a.id] = a.price; nameMap[a.id] = a.symbol || a.name; });
+  // Also include custom assets prices
+  CustomAssets.getCustomAssetsNormalized().forEach(a => { priceMap[a.id] = a.price; nameMap[a.id] = a.symbol || a.name; });
+
+  for (const p of portfolios) {
+    const summary = Portfolio.getPortfolioSummary(p, priceMap);
+    if (summary.totalValue > 0 || summary.totalCost > 0) {
+      grandTotal += summary.totalValue;
+      grandCost += summary.totalCost;
+      const isPos = summary.totalPL >= 0;
+      rows.push(`<div class="nw-row">
+        <div class="nw-row-label"><span class="nw-row-icon">📊</span> ${p.name} (${summary.assetSummaries.length})</div>
+        <div class="nw-row-value">${fmtVal(summary.totalValue)}<span class="nw-row-change ${isPos ? 'pos' : 'neg'}">${isPos ? '+' : '-'}${Math.abs(summary.totalPLPercent).toFixed(1)}%</span></div>
+      </div>`);
+    }
+  }
+
+  // ── 2. Custom assets (property, pensions, savings, vehicles etc) ──
+  const customAssets = CustomAssets.loadCustomAssets();
+  const typeMap = {};
+  // Track custom asset IDs already in portfolios to avoid double-counting
+  const portfolioAssetIds = new Set();
+  for (const p of portfolios) {
+    for (const h of (p.holdings || [])) portfolioAssetIds.add(h.assetId);
+  }
+
+  for (const a of customAssets) {
+    // Skip if this custom asset is already counted via portfolio holdings
+    if (portfolioAssetIds.has(a.id)) continue;
+
     const val = a.currentValue || 0;
     const purchase = a.purchasePrice || 0;
-    totalValue += val;
-    totalPurchase += purchase;
+    grandTotal += val;
+    grandCost += purchase;
 
     const typeInfo = CUSTOM_ASSET_TYPES[a.type] || CUSTOM_ASSET_TYPES.other;
     const key = a.type || 'other';
@@ -1927,38 +2110,36 @@ function _updateNetWorthPanel() {
     typeMap[key].count++;
   }
 
+  // Add custom asset type rows
+  for (const [key, t] of Object.entries(typeMap).sort((a, b) => b[1].value - a[1].value)) {
+    const gain = t.value - t.purchase;
+    const gainPct = t.purchase > 0 ? ((gain / t.purchase) * 100).toFixed(1) : '0.0';
+    const isPos = gain >= 0;
+    rows.push(`<div class="nw-row">
+      <div class="nw-row-label"><span class="nw-row-icon">${t.icon}</span> ${t.label} (${t.count})</div>
+      <div class="nw-row-value">${fmtVal(t.value)}<span class="nw-row-change ${isPos ? 'pos' : 'neg'}">${isPos ? '+' : '-'}${Math.abs(parseFloat(gainPct)).toFixed(1)}%</span></div>
+    </div>`);
+  }
+
+  // ── Render ──
   const totalEl = $('#networth-total');
   const changeEl = $('#networth-change');
   const breakdownEl = $('#networth-breakdown');
 
-  // Format with currency symbol
-  const sym = document.querySelector('[data-currency].active')?.textContent?.charAt(0) || '£';
-
-  if (totalEl) totalEl.textContent = sym + totalValue.toLocaleString('en-GB', { maximumFractionDigits: 0 });
+  if (totalEl) totalEl.textContent = fmtVal(grandTotal);
 
   if (changeEl) {
-    const gain = totalValue - totalPurchase;
-    const gainPct = totalPurchase > 0 ? ((gain / totalPurchase) * 100).toFixed(1) : '0.0';
+    const gain = grandTotal - grandCost;
+    const gainPct = grandCost > 0 ? ((gain / grandCost) * 100).toFixed(1) : '0.0';
     const isPos = gain >= 0;
-    changeEl.innerHTML = `<span style="color:var(--${isPos ? 'green' : 'red'})">${isPos ? '+' : ''}${sym}${Math.abs(gain).toLocaleString('en-GB', { maximumFractionDigits: 0 })} (${isPos ? '+' : ''}${gainPct}%)</span> total gain/loss`;
+    changeEl.innerHTML = `<span style="color:var(--${isPos ? 'green' : 'red'})">${isPos ? '+' : '-'}${fmtVal(Math.abs(gain))} (${isPos ? '+' : ''}${gainPct}%)</span> total gain/loss`;
   }
 
   if (breakdownEl) {
-    if (assets.length === 0) {
-      breakdownEl.innerHTML = '<p style="text-align:center;color:var(--muted);font-size:0.75rem;padding:16px 0">No custom assets yet.<br>Add assets in the Assets or Finance tab.</p>';
+    if (rows.length === 0) {
+      breakdownEl.innerHTML = '<p style="text-align:center;color:var(--muted);font-size:0.75rem;padding:16px 0">No holdings or assets yet.<br>Star assets + add holdings, or use Assets/Finance tabs.</p>';
     } else {
-      const rows = Object.entries(typeMap)
-        .sort((a, b) => b[1].value - a[1].value)
-        .map(([key, t]) => {
-          const gain = t.value - t.purchase;
-          const gainPct = t.purchase > 0 ? ((gain / t.purchase) * 100).toFixed(1) : '0.0';
-          const isPos = gain >= 0;
-          return `<div class="nw-row">
-            <div class="nw-row-label"><span class="nw-row-icon">${t.icon}</span> ${t.label} (${t.count})</div>
-            <div class="nw-row-value">${sym}${t.value.toLocaleString('en-GB', { maximumFractionDigits: 0 })}<span class="nw-row-change ${isPos ? 'pos' : 'neg'}">${isPos ? '+' : ''}${gainPct}%</span></div>
-          </div>`;
-        }).join('');
-      breakdownEl.innerHTML = rows;
+      breakdownEl.innerHTML = rows.join('');
     }
   }
 }

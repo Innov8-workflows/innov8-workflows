@@ -1877,6 +1877,43 @@ textarea.form-input {
   font-weight: 600;
 }
 
+/* ─── Detail Chart ─── */
+.detail-chart {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 8px 10px;
+  position: relative;
+  min-height: 180px;
+}
+.detail-chart-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 6px;
+}
+.detail-chart-wrap {
+  height: 150px;
+  position: relative;
+}
+.detail-chart-wrap canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+.detail-chart-loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+  background: var(--bg);
+  border-radius: var(--radius-sm);
+}
+.detail-chart-loading.hidden { display: none; }
+
+
 /* ─── Holdings Form Popover ─── */
 .holdings-form-popover {
   position: fixed;

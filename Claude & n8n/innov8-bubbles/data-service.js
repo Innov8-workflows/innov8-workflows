@@ -374,6 +374,126 @@ async function _fetchWithTimeout(url, ms = 5000) {
   }
 }
 
+// ─── Chart Data Fetching ───
+
+const chartCache = new Map(); // key → { data, timestamp }
+const CHART_TTL = 300_000; // 5 min
+
+export async function fetchChartData(asset, days = 30) {
+  const key = `${asset.id}_${days}`;
+
+  // Check cache
+  const cached = chartCache.get(key);
+  if (cached && Date.now() - cached.timestamp < CHART_TTL) {
+    return cached.data;
+  }
+
+  let points = null;
+
+  try {
+    if (asset._isCustom) {
+      // Custom assets: generate estimated growth curve
+      points = _generateCustomChart(asset, days);
+    } else if (asset.assetClass === 'crypto' || asset.assetClass === 'launches') {
+      points = await _fetchCryptoChart(asset.id, days);
+    } else if (['stocks', 'indices', 'commodities', 'realestate'].includes(asset.assetClass)) {
+      points = await _fetchStockChart(asset.symbol || asset.id, days);
+    }
+  } catch (e) {
+    console.warn('[chart] fetch failed:', e.message);
+  }
+
+  if (points && points.length > 0) {
+    chartCache.set(key, { data: points, timestamp: Date.now() });
+  }
+
+  return points || [];
+}
+
+async function _fetchCryptoChart(coinId, days) {
+  const currency = localStorage.getItem('innov8-bubbles-currency') || 'usd';
+  const daysParam = days === 'max' ? 'max' : days;
+  const url = `${API.COINGECKO_BASE}/coins/${coinId}/market_chart?vs_currency=${currency}&days=${daysParam}`;
+
+  const res = await _fetchWithTimeout(url, 8000);
+  if (!res.ok) throw new Error(`CoinGecko chart ${res.status}`);
+  const json = await res.json();
+
+  if (!json.prices || !Array.isArray(json.prices)) return [];
+
+  return json.prices.map(([ts, price]) => ({
+    date: new Date(ts),
+    price,
+  }));
+}
+
+async function _fetchStockChart(symbol, days) {
+  const apiKey = _getFmpKey();
+  if (!apiKey) return [];
+
+  const url = `${API.FMP_BASE}/historical-price-full/${symbol}?apikey=${apiKey}`;
+  const res = await _fetchWithTimeout(url, 8000);
+  if (!res.ok) throw new Error(`FMP chart ${res.status}`);
+  const json = await res.json();
+
+  if (!json.historical || !Array.isArray(json.historical)) return [];
+
+  // FMP returns newest first — reverse for chronological order
+  let data = json.historical.reverse();
+
+  // Filter to requested period
+  if (days !== 'max') {
+    const cutoff = new Date();
+    cutoff.setDate(cutoff.getDate() - days);
+    data = data.filter(d => new Date(d.date) >= cutoff);
+  }
+
+  return data.map(d => ({
+    date: new Date(d.date),
+    price: d.close,
+  }));
+}
+
+function _generateCustomChart(asset, days) {
+  const purchasePrice = asset._purchasePrice || asset.price || 0;
+  const currentValue = asset.price || 0;
+  const purchaseDate = asset.data?.purchaseDate ? new Date(asset.data.purchaseDate) : null;
+  const growthRate = asset._pensionGrowthRate || asset._savingsGrowthRate || 0;
+
+  const now = new Date();
+  const startDate = purchaseDate && purchaseDate < now ? purchaseDate : new Date(now.getFullYear() - 1, now.getMonth(), now.getDate());
+
+  // Calculate total months from purchase to now
+  const totalMonths = Math.max(1, (now - startDate) / (1000 * 60 * 60 * 24 * 30.44));
+  const numPoints = Math.min(60, Math.max(10, Math.round(totalMonths)));
+  const points = [];
+
+  for (let i = 0; i <= numPoints; i++) {
+    const t = i / numPoints; // 0 to 1
+    const date = new Date(startDate.getTime() + t * (now.getTime() - startDate.getTime()));
+    let price;
+
+    if (growthRate > 0) {
+      // Compound growth curve
+      const monthsElapsed = t * totalMonths;
+      const monthlyRate = growthRate / 100 / 12;
+      price = purchasePrice * Math.pow(1 + monthlyRate, monthsElapsed);
+    } else {
+      // Linear interpolation
+      price = purchasePrice + (currentValue - purchasePrice) * t;
+    }
+    points.push({ date, price });
+  }
+
+  // Ensure last point matches current value
+  if (points.length > 0) {
+    points[points.length - 1].price = currentValue;
+  }
+
+  return points;
+}
+
+
 // ─── Cache Invalidation (used by custom assets) ───
 
 export function invalidateCache(assetClass) {

@@ -3,48 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>MarketBubbles — Multi-Asset Portfolio Visualizer</title>
+  <title>Innov8 Bubbles — Multi-Asset Portfolio Visualizer</title>
 
   <!-- SEO -->
-  <meta name="description" content="See the market. Own your wealth. Track crypto, stocks, property, pensions & more in interactive bubble charts. Create custom portfolios and monitor all your assets in real-time.">
+  <meta name="description" content="Track crypto, stocks, indices, commodities & real estate in one interactive bubble chart. Create custom portfolios and monitor all your assets in real-time.">
   <meta name="keywords" content="crypto, stocks, bubbles, portfolio, bitcoin, ethereum, market cap, trading, investment, real-time">
-  <meta name="author" content="MarketBubbles">
-  <link rel="canonical" href="https://market-bubbles.com">
+  <meta name="author" content="Innov8 Workflows">
+  <link rel="canonical" href="https://bubbles.innov8workflows.com">
 
   <!-- Open Graph / Social -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="MarketBubbles — Multi-Asset Portfolio Visualizer">
-  <meta property="og:description" content="See the market. Own your wealth. Track crypto, stocks, property, pensions & more in interactive bubble charts.">
-  <meta property="og:url" content="https://market-bubbles.com">
-  <meta property="og:site_name" content="MarketBubbles">
+  <meta property="og:title" content="Innov8 Bubbles — Multi-Asset Portfolio Visualizer">
+  <meta property="og:description" content="Track crypto, stocks, indices, commodities & real estate in one interactive bubble chart.">
+  <meta property="og:url" content="https://bubbles.innov8workflows.com">
+  <meta property="og:site_name" content="Innov8 Bubbles">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="MarketBubbles — Multi-Asset Portfolio Visualizer">
-  <meta name="twitter:description" content="See the market. Own your wealth. Track crypto, stocks, property, pensions & more in interactive bubble charts.">
+  <meta name="twitter:title" content="Innov8 Bubbles — Multi-Asset Portfolio Visualizer">
+  <meta name="twitter:description" content="Track crypto, stocks, indices, commodities & real estate in one interactive bubble chart.">
 
   <!-- PWA -->
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#ea580c">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="MarketBubbles">
+  <meta name="apple-mobile-web-app-title" content="Innov8 Bubbles">
   <meta name="mobile-web-app-capable" content="yes">
 
-  <!-- Favicon + App Icons -->
-  <link rel="icon" type="image/png" sizes="48x48" href="favicon.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
-  <link rel="apple-touch-icon" sizes="152x152" href="icon-152.png">
-  <link rel="apple-touch-icon" sizes="167x167" href="icon-167.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-
-  <!-- iOS Splash Screens (iPhone 13 / 14 / 15 — 390x844 @3x) -->
-  <link rel="apple-touch-startup-image" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3)" href="splash-1170x2532.png">
-  <!-- iPhone 14 Pro / 15 Pro — 393x852 @3x -->
-  <link rel="apple-touch-startup-image" media="(device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3)" href="splash-1179x2556.png">
-  <!-- iPhone SE / 8 — 375x667 @2x -->
-  <link rel="apple-touch-startup-image" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)" href="splash-750x1334.png">
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="apple-touch-icon" href="favicon.svg">
 
   <!-- Security -->
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
@@ -63,8 +52,8 @@
   <!-- ─── Loading Screen ─── -->
   <div id="loading-screen" class="loading-screen">
     <div class="loading-brand">
-      <img src="logo-header.png" alt="" width="48" height="48" style="margin-bottom:8px">
-      <span class="loading-title">Market<span style="color:var(--accent)">Bubbles</span></span>
+      <span class="loading-icon">&#9678;</span>
+      <span class="loading-title">Innov8 <span style="color:var(--accent)">Bubbles</span></span>
     </div>
     <div class="spinner"></div>
     <p class="loading-text">Loading market data&hellip;</p>
@@ -74,8 +63,8 @@
   <header id="header" class="header">
     <div class="header-left">
       <div class="logo">
-        <img class="logo-img" src="logo-header.png" alt="MarketBubbles" width="38" height="38">
-        <span class="logo-text">Market<span class="logo-accent">Bubbles</span></span>
+        <span class="logo-icon">&#9678;</span>
+        <span class="logo-text">Innov8 <span class="logo-accent">Bubbles</span></span>
       </div>
     </div>
 
@@ -88,10 +77,6 @@
         <button class="pill" data-class="stocks">Stocks</button>
         <button class="pill" data-class="commodities">Commodities</button>
         <button class="pill" data-class="realestate">Real Estate</button>
-        <button class="pill" data-class="assets">Assets</button>
-        <button class="pill" data-class="finance">Finance</button>
-        <button class="pill pill-launch" data-class="launches">New Launches</button>
-        <button class="pill pill-add" id="add-custom-asset-btn" title="Add custom asset">+</button>
       </div>
 
       <!-- Time Period Pills -->
@@ -110,9 +95,6 @@
         </button>
         <button class="view-btn" id="view-table" title="Table View">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
-        </button>
-        <button class="view-btn" id="view-block" title="Block View">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><rect x="3" y="3" width="10" height="10" rx="1"/><rect x="15" y="3" width="6" height="6" rx="1"/><rect x="15" y="11" width="6" height="10" rx="1"/><rect x="3" y="15" width="10" height="6" rx="1"/></svg>
         </button>
       </div>
     </div>
@@ -171,13 +153,9 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/></svg>
             My Portfolios
           </button>
-          <button class="dropdown-item dropdown-ad-cta" id="user-place-ad">
+          <button class="dropdown-item dropdown-action" id="user-place-ad">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
             Place an Ad
-          </button>
-          <button class="dropdown-item dropdown-sponsored-cta" id="user-promote-launch">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
-            Promote a Launch
           </button>
           <div class="dropdown-divider"></div>
           <button class="dropdown-item" id="user-signout">
@@ -192,15 +170,12 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
       </button>
     </div>
-    <!-- Refresh progress bar -->
-    <div class="refresh-bar" id="refresh-bar"><div class="refresh-bar-fill" id="refresh-bar-fill"></div></div>
   </header>
 
   <!-- ─── Mobile Menu Overlay ─── -->
   <div class="mobile-menu" id="mobile-menu">
     <div class="mobile-menu-header">
-      <img class="logo-img" src="logo-header.png" alt="" width="24" height="24">
-      <span class="logo-text">Market<span class="logo-accent">Bubbles</span></span>
+      <span class="logo-text">Innov8 <span class="logo-accent">Bubbles</span></span>
       <button class="icon-btn" id="mobile-menu-close">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </button>
@@ -233,9 +208,6 @@
         <button class="pill" data-class="stocks">Stocks</button>
         <button class="pill" data-class="commodities">Commodities</button>
         <button class="pill" data-class="realestate">Real Estate</button>
-        <button class="pill" data-class="assets">Assets</button>
-        <button class="pill" data-class="finance">Finance</button>
-        <button class="pill pill-add" id="mobile-add-custom-asset-btn" title="Add custom asset">+</button>
       </div>
     </div>
     <div class="pill-scroll">
@@ -246,19 +218,6 @@
         <button class="pill" data-period="30d">30D</button>
         <button class="pill" data-period="1y">1Y</button>
       </div>
-    </div>
-  </div>
-
-  <!-- ─── Property Sub-Filter Bar ─── -->
-  <div class="property-filter-bar hidden" id="property-filter-bar">
-    <div class="property-filter-inner">
-      <span class="property-filter-label">Show:</span>
-      <div class="pill-group pill-group-sm" id="property-filter-pills">
-        <button class="pill active" data-pf="all">All</button>
-        <button class="pill" data-pf="mine">My Assets</button>
-        <button class="pill" data-pf="regional">Regional</button>
-      </div>
-      <span class="property-filter-count" id="property-filter-count"></span>
     </div>
   </div>
 
@@ -281,8 +240,8 @@
     <div class="sample-badge hidden" id="sample-badge">Sample Data</div>
     <!-- Empty state -->
     <div class="empty-state hidden" id="empty-state">
-      <p class="empty-title" id="empty-title">No assets found</p>
-      <p class="empty-subtitle" id="empty-subtitle">Try a different search or asset class</p>
+      <p class="empty-title">No assets found</p>
+      <p class="empty-subtitle">Try a different search or asset class</p>
     </div>
     <!-- API key prompt -->
     <div class="api-prompt hidden" id="api-prompt">
@@ -292,7 +251,6 @@
     </div>
 
     <!-- ─── Table View ─── -->
-    <div class="block-view hidden" id="block-view"></div>
     <div class="table-view hidden" id="table-view">
       <div class="table-wrapper">
         <table class="asset-table" id="asset-table">
@@ -302,9 +260,6 @@
               <th class="col-rank">#</th>
               <th class="col-name sortable" data-sort="name">Name</th>
               <th class="col-price sortable" data-sort="price">Price</th>
-              <th class="col-holdings sortable" data-sort="holdingsQty">Qty</th>
-              <th class="col-holdings sortable" data-sort="holdingsValue">Value</th>
-              <th class="col-holdings sortable" data-sort="holdingsPL">P&L</th>
               <th class="col-change sortable" data-sort="change1h">1H</th>
               <th class="col-change sortable" data-sort="change24h">24H</th>
               <th class="col-change sortable" data-sort="change7d">7D</th>
@@ -341,23 +296,6 @@
         <span class="detail-price" id="detail-price"></span>
         <span class="detail-change" id="detail-change-main"></span>
       </div>
-      <!-- Price Chart -->
-      <div class="detail-chart" id="detail-chart">
-        <div class="detail-chart-header">
-          <div class="pill-group pill-group-sm" id="detail-chart-pills">
-            <button class="pill" data-chart-period="7">7D</button>
-            <button class="pill active" data-chart-period="30">30D</button>
-            <button class="pill" data-chart-period="90">90D</button>
-            <button class="pill" data-chart-period="365">1Y</button>
-            <button class="pill" data-chart-period="max">ALL</button>
-          </div>
-        </div>
-        <div class="detail-chart-wrap">
-          <canvas id="detail-chart-canvas"></canvas>
-        </div>
-        <div class="detail-chart-loading" id="detail-chart-loading">Loading chart...</div>
-      </div>
-
       <div class="detail-grid">
         <div class="detail-stat">
           <span class="detail-stat-label">Market Cap</span>
@@ -388,7 +326,7 @@
           <span class="detail-stat-value" id="detail-1y"></span>
         </div>
       </div>
-      <div class="detail-actions" id="detail-actions">
+      <div class="detail-actions">
         <div class="detail-portfolio-add" id="detail-portfolio-add">
           <button class="btn btn-secondary" id="add-to-portfolio-btn">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
@@ -406,38 +344,6 @@
       </div>
     </div>
   </aside>
-
-  <!-- ─── Holdings Form Popover ─── -->
-  <div class="holdings-form-popover hidden" id="holdings-form-popover">
-    <div class="holdings-form-header">
-      <span class="holdings-form-title" id="holdings-form-title">Add Holding</span>
-      <button class="icon-btn holdings-form-close" id="holdings-form-close">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-      </button>
-    </div>
-    <div class="holdings-form-asset" id="holdings-form-asset"></div>
-    <select id="holdings-form-portfolio" class="form-input holdings-form-select"></select>
-    <div class="holdings-form-fields">
-      <div class="holdings-form-row">
-        <label class="holdings-field">
-          <span>Quantity</span>
-          <input type="number" id="holdings-qty" class="form-input" step="any" min="0" placeholder="e.g. 1.5">
-        </label>
-        <label class="holdings-field">
-          <span>Buy Price</span>
-          <input type="number" id="holdings-price" class="form-input" step="any" min="0" placeholder="e.g. 65000">
-        </label>
-      </div>
-      <label class="holdings-field">
-        <span>Buy Date</span>
-        <input type="date" id="holdings-date" class="form-input">
-      </label>
-    </div>
-    <div class="holdings-form-actions">
-      <button class="btn btn-primary btn-sm" id="holdings-form-save">Add Holding</button>
-      <button class="btn btn-sm" id="holdings-form-track">Just Track</button>
-    </div>
-  </div>
 
   <!-- ─── Settings Modal ─── -->
   <div class="modal-overlay hidden" id="settings-modal">
@@ -473,24 +379,6 @@
               <span class="swatch-preview" style="background:#f5f5f5;border-color:#ddd"></span>
               <span class="swatch-label">Light</span>
             </button>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Currency</label>
-          <div class="pill-group" id="currency-pills">
-            <button class="pill active" data-currency="usd">$ USD</button>
-            <button class="pill" data-currency="gbp">£ GBP</button>
-            <button class="pill" data-currency="eur">€ EUR</button>
-            <button class="pill" data-currency="jpy">¥ JPY</button>
-            <button class="pill" data-currency="aud">A$ AUD</button>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Bubble Colors</label>
-          <div class="pill-group" id="color-scheme-pills">
-            <button class="pill active" data-colors="red-green">🔴🟢</button>
-            <button class="pill" data-colors="blue-yellow">🔵🟡</button>
-            <button class="pill" data-colors="purple-orange">🟣🟠</button>
           </div>
         </div>
         <div class="form-group">
@@ -626,17 +514,6 @@
             <label class="form-label">Link URL</label>
             <input type="url" id="ad-url" class="form-input" placeholder="https://yourproject.com">
           </div>
-          <div class="form-group">
-            <label class="form-label">Logo (optional)</label>
-            <div class="ad-logo-upload" id="ad-logo-upload">
-              <div class="ad-logo-preview" id="ad-logo-preview">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="24" height="24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-                <span>Click to upload</span>
-              </div>
-              <input type="file" id="ad-logo-input" accept="image/png,image/jpeg,image/svg+xml,image/webp" hidden>
-            </div>
-            <p class="form-help">PNG, JPG or SVG. Max 200KB. Shows next to your ad in the banner.</p>
-          </div>
           <button class="btn btn-primary" id="ad-next-1" style="width:100%">Next: Choose Duration</button>
         </div>
 
@@ -672,261 +549,6 @@
     </div>
   </div>
 
-  <!-- ─── Sponsored Launch Modal ─── -->
-  <div class="modal-overlay hidden" id="sponsored-modal">
-    <div class="modal modal-sponsored">
-      <div class="modal-header">
-        <h3>Promote a Launch</h3>
-        <button class="icon-btn" id="sponsored-close">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-        </button>
-      </div>
-      <div class="modal-body">
-        <!-- Step Indicator -->
-        <div class="ad-steps">
-          <div class="ad-step active" data-sp-step="1"><span>1</span> Details</div>
-          <div class="ad-step" data-sp-step="2"><span>2</span> Duration</div>
-          <div class="ad-step" data-sp-step="3"><span>3</span> Preview</div>
-        </div>
-
-        <!-- Step 1: Project Details -->
-        <div class="sp-step-content" id="sp-step-1">
-          <div class="form-group">
-            <label class="form-label">Launch Type</label>
-            <select id="sp-badge-select" class="form-input">
-              <option value="new-drop">New Crypto Drop</option>
-              <option value="ipo">IPO Announcement</option>
-              <option value="presale">Presale / ICO</option>
-              <option value="promo">General Promotion</option>
-            </select>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label">Token / Company Name</label>
-              <input type="text" id="sp-name" class="form-input" placeholder="e.g. Lunar Protocol" maxlength="30">
-            </div>
-            <div class="form-group">
-              <label class="form-label">Ticker Symbol</label>
-              <input type="text" id="sp-symbol" class="form-input" placeholder="e.g. $LUNAR" maxlength="10">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Short Description</label>
-            <input type="text" id="sp-description" class="form-input" placeholder="e.g. AI-powered DeFi launching May 2026" maxlength="80">
-          </div>
-          <div class="form-group">
-            <label class="form-label">Project URL</label>
-            <input type="url" id="sp-url" class="form-input" placeholder="https://yourproject.com">
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label">Token Price ($)</label>
-              <input type="number" id="sp-price" class="form-input" placeholder="0.00" min="0" step="any">
-            </div>
-            <div class="form-group">
-              <label class="form-label">24h Change (%)</label>
-              <input type="number" id="sp-change" class="form-input" placeholder="0" step="0.1">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Logo (optional)</label>
-            <div class="ad-logo-upload" id="sp-logo-upload">
-              <div class="ad-logo-preview" id="sp-logo-preview">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="24" height="24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-                <span>Click to upload</span>
-              </div>
-              <input type="file" id="sp-logo-input" accept="image/png,image/jpeg,image/svg+xml,image/webp" hidden>
-            </div>
-            <p class="form-help">PNG, JPG or SVG. Max 200KB.</p>
-          </div>
-          <button class="btn btn-primary" id="sp-next-1" style="width:100%">Next: Choose Duration</button>
-        </div>
-
-        <!-- Step 2: Duration Selection -->
-        <div class="sp-step-content hidden" id="sp-step-2">
-          <p class="form-help" style="text-align:center;margin-bottom:12px">Your project will appear as a <strong>featured bubble</strong> with a gold glow + in the <strong>New Launches</strong> strip.</p>
-          <div class="sponsored-duration-grid" id="sp-duration-grid">
-            <!-- Populated by JS from SPONSORED_PRICES -->
-          </div>
-          <div class="ad-step-buttons">
-            <button class="btn btn-secondary" id="sp-back-2">Back</button>
-            <button class="btn btn-primary" id="sp-next-2">Next: Preview</button>
-          </div>
-        </div>
-
-        <!-- Step 3: Preview & Pay -->
-        <div class="sp-step-content hidden" id="sp-step-3">
-          <label class="form-label">Your bubble will look like this:</label>
-          <div class="sp-preview-bubble" id="sp-preview-bubble">
-            <!-- Live canvas preview of the sponsored bubble -->
-          </div>
-          <label class="form-label" style="margin-top:12px">And in the New Launches strip:</label>
-          <div class="sp-preview-strip" id="sp-preview-strip">
-            <!-- Live preview of strip entry -->
-          </div>
-          <div class="ad-summary" id="sp-summary">
-            <!-- Duration + price summary -->
-          </div>
-          <div class="ad-step-buttons">
-            <button class="btn btn-secondary" id="sp-back-3">Back</button>
-            <button class="btn btn-primary btn-pay" id="sp-pay-btn">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-              Pay &amp; Launch
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ─── Custom Asset Modal ─── -->
-  <div class="modal-overlay hidden" id="custom-asset-modal">
-    <div class="modal modal-custom-asset">
-      <div class="modal-header">
-        <h3 id="custom-asset-modal-title">Add Asset</h3>
-        <button class="icon-btn" id="custom-asset-close">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-        </button>
-      </div>
-      <div class="modal-body">
-        <!-- Asset Type Pills -->
-        <div class="form-group">
-          <label class="form-label">Asset Type</label>
-          <div class="pill-group pill-group-wrap" id="ca-type-pills">
-            <button class="pill active" data-ca-type="property">🏠 Property</button>
-            <button class="pill" data-ca-type="pension">🏦 Pension</button>
-            <button class="pill" data-ca-type="vehicle">🚗 Vehicle</button>
-            <button class="pill" data-ca-type="watch">⌚ Watch</button>
-            <button class="pill" data-ca-type="art">🎨 Art</button>
-            <button class="pill" data-ca-type="business">🏢 Business</button>
-            <button class="pill" data-ca-type="savings">💰 Savings</button>
-            <button class="pill" data-ca-type="other">📦 Other</button>
-          </div>
-        </div>
-
-        <!-- Name -->
-        <div class="form-group">
-          <label class="form-label" for="ca-name">Name</label>
-          <input type="text" id="ca-name" class="form-input" placeholder="e.g. My London Flat" maxlength="60">
-        </div>
-
-        <!-- Sub-type -->
-        <div class="form-group">
-          <label class="form-label" for="ca-subtype">Sub-type</label>
-          <select id="ca-subtype" class="form-input">
-            <option value="Detached">Detached</option>
-            <option value="Semi-Detached">Semi-Detached</option>
-            <option value="Terraced">Terraced</option>
-            <option value="Flat">Flat</option>
-            <option value="Bungalow">Bungalow</option>
-            <option value="Other">Other</option>
-          </select>
-        </div>
-
-        <!-- Property-specific fields -->
-        <div id="ca-property-fields">
-          <div class="form-group">
-            <label class="form-label" for="ca-postcode">Postcode</label>
-            <div class="ca-postcode-row">
-              <input type="text" id="ca-postcode" class="form-input" placeholder="e.g. SW1A 1AA">
-              <button class="btn btn-sm btn-primary" id="ca-auto-value" title="Auto-estimate value from Land Registry data">Estimate</button>
-            </div>
-            <p class="form-help" id="ca-valuation-status"></p>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="ca-bedrooms">Bedrooms</label>
-            <select id="ca-bedrooms" class="form-input">
-              <option value="">--</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6+</option>
-            </select>
-          </div>
-        </div>
-
-        <!-- Pension-specific fields -->
-        <div id="ca-pension-fields" class="hidden">
-          <div class="form-group">
-            <label class="form-label" for="ca-pension-provider">Provider</label>
-            <select id="ca-pension-provider" class="form-input">
-              <!-- Populated by JS from PENSION_PROVIDERS -->
-            </select>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label" for="ca-pension-employee">Monthly (You)</label>
-              <input type="number" id="ca-pension-employee" class="form-input" placeholder="0" min="0" step="1">
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="ca-pension-employer">Monthly (Employer)</label>
-              <input type="number" id="ca-pension-employer" class="form-input" placeholder="0" min="0" step="1">
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label" for="ca-pension-growth">Growth Rate %</label>
-              <input type="number" id="ca-pension-growth" class="form-input" placeholder="5" min="0" max="30" step="0.1">
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="ca-pension-retirement-age">Retirement Age</label>
-              <input type="number" id="ca-pension-retirement-age" class="form-input" placeholder="67" min="55" max="75" step="1">
-            </div>
-          </div>
-          <div class="pension-projection" id="ca-pension-projection"></div>
-        </div>
-
-        <!-- Location (shown for non-pension types) -->
-        <div class="form-group" id="ca-location-group">
-          <label class="form-label" for="ca-location">Location</label>
-          <input type="text" id="ca-location" class="form-input" placeholder="e.g. Manchester, UK">
-        </div>
-
-        <!-- Price row — labels change for pension -->
-        <div class="form-row">
-          <div class="form-group">
-            <label class="form-label" id="ca-purchase-price-label" for="ca-purchase-price">Purchase Price</label>
-            <input type="number" id="ca-purchase-price" class="form-input" placeholder="0" min="0" step="1">
-          </div>
-          <div class="form-group">
-            <label class="form-label" id="ca-current-value-label" for="ca-current-value">Current Value</label>
-            <input type="number" id="ca-current-value" class="form-input" placeholder="0" min="0" step="1">
-          </div>
-        </div>
-
-        <!-- Growth rate — shown for savings (pension has its own in pension block) -->
-        <div class="form-group hidden" id="ca-savings-growth-group">
-          <label class="form-label" for="ca-savings-growth">Annual Growth / Interest Rate %</label>
-          <input type="number" id="ca-savings-growth" class="form-input" placeholder="e.g. 4.5" min="0" max="30" step="0.1">
-        </div>
-
-        <!-- Date — label changes for pension -->
-        <div class="form-group">
-          <label class="form-label" id="ca-purchase-date-label" for="ca-purchase-date">Purchase Date</label>
-          <input type="date" id="ca-purchase-date" class="form-input">
-        </div>
-
-        <!-- Notes -->
-        <div class="form-group">
-          <label class="form-label" for="ca-notes">Notes</label>
-          <textarea id="ca-notes" class="form-input" rows="2" placeholder="Optional notes..."></textarea>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-danger" id="ca-delete-btn" style="display:none">Delete</button>
-        <button class="btn btn-portfolio" id="ca-portfolio-btn" style="display:none" title="Add to portfolio">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          Portfolio
-        </button>
-        <div style="flex:1"></div>
-        <button class="btn" id="ca-cancel-btn">Cancel</button>
-        <button class="btn btn-primary" id="ca-save-btn">Save Asset</button>
-      </div>
-    </div>
-  </div>
-
   <!-- ─── Footer Stats Bar ─── -->
   <footer class="stats-footer" id="stats-footer">
     <div class="stats-item">
@@ -947,51 +569,6 @@
     </div>
   </footer>
 
-  <!-- ─── Net Worth FAB ─── -->
-  <button class="networth-fab" id="networth-fab" title="My Net Worth">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
-  </button>
-
-  <!-- ─── Net Worth Panel ─── -->
-  <div class="networth-panel hidden" id="networth-panel">
-    <div class="networth-header">
-      <h3>My Net Worth</h3>
-      <button class="icon-btn" id="networth-close">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-      </button>
-    </div>
-    <div class="networth-total" id="networth-total">£0</div>
-    <div class="networth-change" id="networth-change"></div>
-    <div class="networth-breakdown" id="networth-breakdown">
-      <!-- Populated by JS -->
-    </div>
-    <p class="networth-hint">Based on your custom assets in Assets + Finance tabs</p>
-  </div>
-
-  <!-- ─── PWA Install Banner ─── -->
-  <div class="pwa-install-banner hidden" id="pwa-install-banner">
-    <div class="pwa-install-inner">
-      <img src="apple-touch-icon.png" alt="" class="pwa-install-icon">
-      <div class="pwa-install-text">
-        <strong>Install MarketBubbles</strong>
-        <!-- iOS: instructions (no install API) -->
-        <span class="pwa-install-ios hidden" id="pwa-install-ios">
-          1. Tap <svg viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="2.5" width="16" height="16" style="vertical-align:-3px"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg> at the bottom of Safari<br>
-          2. Scroll down and tap <strong>"Add to Home Screen"</strong>
-        </span>
-        <!-- Android/Desktop: real install button -->
-        <span class="pwa-install-btn-wrap hidden" id="pwa-install-btn-wrap">
-          <button class="btn btn-primary btn-sm" id="pwa-install-btn">Install App</button>
-        </span>
-      </div>
-      <button class="pwa-install-close" id="pwa-install-close" aria-label="Close">&times;</button>
-    </div>
-    <!-- iOS: animated arrow pointing to share button -->
-    <div class="pwa-install-arrow hidden" id="pwa-install-arrow">
-      <svg viewBox="0 0 40 60" width="30" height="45" fill="none" stroke="#ea580c" stroke-width="3" stroke-linecap="round"><path d="M20 5 L20 45"/><polyline points="10 35 20 45 30 35"/></svg>
-    </div>
-  </div>
-
   <!-- ─── Toast Container ─── -->
   <div class="toast-container" id="toast-container"></div>
 
@@ -999,7 +576,6 @@
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
 
   <!-- ─── Stripe SDK (CDN) ─── -->
   <script src="https://js.stripe.com/v3/"></script>
@@ -1007,94 +583,11 @@
   <!-- ─── App ─── -->
   <script type="module" src="app.js"></script>
 
-  <!-- ─── Service Worker Registration + Cache Buster ─── -->
+  <!-- ─── Service Worker Registration ─── -->
   <script>
-    (function() {
-      var APP_VERSION = 32;
-      var stored = parseInt(localStorage.getItem('innov8-app-version') || '0');
-      if (stored < APP_VERSION) {
-        // Force purge all old caches and unregister stale service workers
-        if ('caches' in window) {
-          caches.keys().then(function(keys) {
-            keys.forEach(function(k) { caches.delete(k); });
-          });
-        }
-        if ('serviceWorker' in navigator) {
-          navigator.serviceWorker.getRegistrations().then(function(regs) {
-            regs.forEach(function(r) { r.unregister(); });
-          });
-        }
-        localStorage.setItem('innov8-app-version', APP_VERSION);
-        // Reload once to pick up fresh files
-        if (stored > 0) { location.reload(true); return; }
-      }
-      // Register new SW
-      if ('serviceWorker' in navigator && location.protocol === 'https:') {
-        navigator.serviceWorker.register('/sw.js').catch(function() {});
-      }
-    })();
-
-    // PWA Install Banner — iOS (instructional) + Android/Desktop (real install)
-    (function() {
-      var isStandalone = window.navigator.standalone === true || window.matchMedia('(display-mode: standalone)').matches;
-      var dismissed = localStorage.getItem('innov8-pwa-banner-dismissed');
-      if (isStandalone || dismissed) return;
-
-      var banner = document.getElementById('pwa-install-banner');
-      var iosInstructions = document.getElementById('pwa-install-ios');
-      var androidBtnWrap = document.getElementById('pwa-install-btn-wrap');
-      var installBtn = document.getElementById('pwa-install-btn');
-      var arrow = document.getElementById('pwa-install-arrow');
-      var closeBtn = document.getElementById('pwa-install-close');
-      var deferredPrompt = null;
-
-      // Android/Chrome: capture the native install prompt
-      window.addEventListener('beforeinstallprompt', function(e) {
-        e.preventDefault();
-        deferredPrompt = e;
-        // Show banner with real install button
-        if (androidBtnWrap) androidBtnWrap.classList.remove('hidden');
-        if (banner) { setTimeout(function() { banner.classList.remove('hidden'); }, 2000); }
-      });
-
-      // Install button click — trigger native prompt
-      if (installBtn) {
-        installBtn.addEventListener('click', function() {
-          if (deferredPrompt) {
-            deferredPrompt.prompt();
-            deferredPrompt.userChoice.then(function(result) {
-              if (result.outcome === 'accepted') {
-                if (banner) banner.classList.add('hidden');
-                localStorage.setItem('innov8-pwa-banner-dismissed', '1');
-              }
-              deferredPrompt = null;
-            });
-          }
-        });
-      }
-
-      // iOS: show instructions + animated arrow (no install API available)
-      var isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent);
-      if (isIOS) {
-        if (iosInstructions) iosInstructions.classList.remove('hidden');
-        if (arrow) arrow.classList.remove('hidden');
-        setTimeout(function() { if (banner) banner.classList.remove('hidden'); }, 3000);
-      }
-
-      // Close/dismiss
-      if (closeBtn) {
-        closeBtn.addEventListener('click', function() {
-          if (banner) banner.classList.add('hidden');
-          localStorage.setItem('innov8-pwa-banner-dismissed', '1');
-        });
-      }
-
-      // Auto-hide if installed via Android prompt
-      window.addEventListener('appinstalled', function() {
-        if (banner) banner.classList.add('hidden');
-        localStorage.setItem('innov8-pwa-banner-dismissed', '1');
-      });
-    })();
+    if ('serviceWorker' in navigator && location.protocol === 'https:') {
+      navigator.serviceWorker.register('/sw.js').catch(function() {});
+    }
   </script>
 </body>
 </html>

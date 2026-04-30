@@ -120,7 +120,7 @@ export async function savePortfolioToCloud(portfolio) {
     await _db.collection('users').doc(_currentUser.uid)
       .collection('portfolios').doc(portfolio.id).set({
         name: portfolio.name,
-        holdings: portfolio.holdings || [],
+        assetIds: portfolio.assetIds,
         createdAt: portfolio.createdAt || Date.now(),
       }, { merge: true });
   } catch (e) {
@@ -150,77 +150,6 @@ export async function syncLocalPortfoliosToCloud(localPortfolios) {
   for (const p of localPortfolios) {
     if (!cloudIds.has(p.id)) {
       await savePortfolioToCloud(p);
-    }
-  }
-}
-
-// ─── Firestore: Custom Assets ───
-
-export async function loadCustomAssetsFromCloud() {
-  if (!_db || !_currentUser) return null;
-
-  try {
-    const snap = await _db.collection('users').doc(_currentUser.uid)
-      .collection('custom_assets').orderBy('createdAt', 'asc').get();
-
-    return snap.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-  } catch (e) {
-    console.error('[auth] loadCustomAssets error:', e.message);
-    return null;
-  }
-}
-
-export async function saveCustomAssetToCloud(asset) {
-  if (!_db || !_currentUser) return;
-
-  try {
-    await _db.collection('users').doc(_currentUser.uid)
-      .collection('custom_assets').doc(asset.id).set({
-        name: asset.name,
-        type: asset.type,
-        subtype: asset.subtype || '',
-        location: asset.location || '',
-        postcode: asset.postcode || '',
-        bedrooms: asset.bedrooms || null,
-        purchasePrice: asset.purchasePrice || 0,
-        purchaseDate: asset.purchaseDate || '',
-        currentValue: asset.currentValue || 0,
-        autoValuation: asset.autoValuation || false,
-        notes: asset.notes || '',
-        pensionProvider: asset.pensionProvider || '',
-        pensionEmployeeContrib: asset.pensionEmployeeContrib || 0,
-        pensionEmployerContrib: asset.pensionEmployerContrib || 0,
-        pensionGrowthRate: asset.pensionGrowthRate || 0,
-        pensionRetirementAge: asset.pensionRetirementAge || 0,
-        savingsGrowthRate: asset.savingsGrowthRate || 0,
-        createdAt: asset.createdAt || Date.now(),
-        updatedAt: asset.updatedAt || Date.now(),
-      }, { merge: true });
-  } catch (e) {
-    console.error('[auth] saveCustomAsset error:', e.message);
-  }
-}
-
-export async function deleteCustomAssetFromCloud(assetId) {
-  if (!_db || !_currentUser) return;
-
-  try {
-    await _db.collection('users').doc(_currentUser.uid)
-      .collection('custom_assets').doc(assetId).delete();
-  } catch (e) {
-    console.error('[auth] deleteCustomAsset error:', e.message);
-  }
-}
-
-export async function syncLocalCustomAssetsToCloud(localAssets) {
-  if (!_db || !_currentUser || !localAssets.length) return;
-
-  const cloudAssets = await loadCustomAssetsFromCloud();
-  const cloudIds = new Set((cloudAssets || []).map(a => a.id));
-
-  for (const a of localAssets) {
-    if (!cloudIds.has(a.id)) {
-      await saveCustomAssetToCloud(a);
     }
   }
 }
@@ -275,78 +204,6 @@ export async function fetchApprovedAds() {
     console.error('[auth] fetchApprovedAds error:', e.message);
     return [];
   }
-}
-
-// ─── Firestore: Sponsored Bubbles ───
-
-export async function submitSponsoredToFirestore(data) {
-  if (!_db || !_currentUser) throw new Error('Must be signed in');
-
-  const docRef = await _db.collection('sponsored_submissions').add({
-    ...data,
-    submittedBy: _currentUser.uid,
-    submitterEmail: _currentUser.email,
-    status: 'pending_payment',
-    createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-  });
-
-  return docRef.id;
-}
-
-export async function markSponsoredAsPaid(id) {
-  if (!_db) return;
-  await _db.collection('sponsored_submissions').doc(id).update({
-    status: 'approved',
-    paidAt: firebase.firestore.FieldValue.serverTimestamp(),
-  });
-}
-
-export async function fetchApprovedSponsored() {
-  if (!_db) return [];
-
-  try {
-    const now = new Date();
-    const snap = await _db.collection('sponsored_submissions')
-      .where('status', '==', 'approved')
-      .orderBy('paidAt', 'desc')
-      .limit(10)
-      .get();
-
-    return snap.docs
-      .map(doc => ({ id: doc.id, ...doc.data() }))
-      .filter(s => {
-        if (s.expiresAt) {
-          const expires = s.expiresAt.toDate ? s.expiresAt.toDate() : new Date(s.expiresAt);
-          return expires > now;
-        }
-        return true;
-      });
-  } catch (e) {
-    console.error('[auth] fetchApprovedSponsored error:', e.message);
-    return [];
-  }
-}
-
-// ─── Firebase Storage: Logo Upload ───
-
-export async function uploadAdLogo(file) {
-  if (!_currentUser) throw new Error('Must be signed in');
-  if (!file) return null;
-
-  // Validate file
-  if (file.size > 200 * 1024) throw new Error('Logo must be under 200KB');
-  if (!['image/png', 'image/jpeg', 'image/svg+xml', 'image/webp'].includes(file.type)) {
-    throw new Error('Logo must be PNG, JPG, SVG or WebP');
-  }
-
-  const storage = firebase.storage();
-  const ext = file.name.split('.').pop();
-  const path = `ad-logos/${_currentUser.uid}/${Date.now()}.${ext}`;
-  const ref = storage.ref(path);
-
-  await ref.put(file);
-  const url = await ref.getDownloadURL();
-  return url;
 }
 
 // ─── Helpers ───

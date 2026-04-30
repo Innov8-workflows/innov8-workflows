@@ -206,29 +206,27 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
   .monitor-stat-row { grid-template-columns: 1fr; }
 }
 
-/* ── DNA VIDEO HERO (matches React hero-section-5) ── */
-.dna-hero { position: relative; z-index: 1; width: 100%; padding: 96px 0 128px; }
+/* ── DNA VIDEO HERO (hero-section-5) ── */
+.dna-hero { position: relative; z-index: 1; width: 100%; min-height: 100vh; }
 .dna-hero-frame { position: absolute; inset: 4px; overflow: hidden; border-radius: 24px; border: 1px solid rgba(255,255,255,0.05); z-index: 0; }
-.dna-hero-video { width: 100%; height: 100%; object-fit: cover; opacity: 0.35; }
-.dna-hero-content { position: relative; z-index: 2; max-width: 1100px; margin: 0 auto; padding: 0 24px; text-align: center; }
-.dna-hero-content h1 { font-size: clamp(2.8rem, 7vw, 5rem); font-weight: 800; line-height: 1.05; letter-spacing: -0.03em; margin-top: 64px; margin-bottom: 24px; color: #fff; max-width: 700px; text-wrap: balance; }
+.dna-hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.75; }
+.dna-hero-content { position: relative; z-index: 2; max-width: 1100px; margin: 0 auto; padding: 180px 24px 80px; text-align: center; }
+.dna-hero-content h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 800; line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 24px; color: #fff; max-width: 620px; text-wrap: balance; }
 .dna-hero-content h1 span { color: var(--accent); }
-.dna-hero-content > p { font-size: clamp(1rem, 2vw, 1.15rem); color: rgba(240,240,240,0.7); max-width: 560px; line-height: 1.65; margin-bottom: 40px; }
-.dna-hero-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 28px; }
-.dna-hero-actions .btn-primary { font-size: 0.95rem; padding: 14px 24px 14px 20px; border-radius: 100px; display: inline-flex; align-items: center; gap: 4px; }
-.dna-hero-actions .btn-ghost { font-size: 0.95rem; padding: 14px 24px; border-radius: 100px; }
+.dna-hero-content > p { font-size: clamp(1rem, 1.8vw, 1.15rem); color: rgba(240,240,240,0.7); max-width: 520px; line-height: 1.65; margin-bottom: 40px; }
+.dna-hero-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; align-items: center; justify-content: center; }
+.dna-hero-actions .btn-primary { font-size: 0.95rem; padding: 14px 12px 14px 20px; border-radius: 100px; display: inline-flex; align-items: center; gap: 4px; }
+.dna-hero-actions .btn-ghost { font-size: 0.95rem; padding: 14px 20px; border-radius: 100px; background: transparent; border-color: transparent; color: rgba(255,255,255,0.7); }
+.dna-hero-actions .btn-ghost:hover { color: #fff; background: rgba(255,255,255,0.05); }
 .dna-hero .hero-word { display: inline-block; opacity: 0; transform: translateY(20px); animation: fadeUp 0.5s ease forwards; }
-.dna-hero .flex-notice { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 0; }
+.dna-hero .flex-notice { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
 .dna-hero .flex-pill { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 8px; font-size: 0.82rem; border: 1px solid; backdrop-filter: blur(8px); color: var(--muted2); }
 @media (min-width: 1024px) {
-  .dna-hero { padding: 288px 0 144px; }
   .dna-hero-frame { border-radius: 48px; }
-  .dna-hero-content { text-align: left; padding: 0 48px; }
-  .dna-hero-content h1 { margin-top: 0; }
-  .dna-hero-content > p { margin-left: 0; margin-right: auto; }
+  .dna-hero-content { text-align: left; padding: 260px 48px 120px; }
+  .dna-hero-content > p { margin-left: 0; }
   .dna-hero-actions { justify-content: flex-start; }
   .dna-hero .flex-notice { justify-content: flex-start; }
-  .dna-hero-video { opacity: 0.75; }
 }
 
 /* Logo slider */
@@ -278,8 +276,13 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
   <a href="consultancy.html#contact" class="mobile-cta">Get Started</a>
 </div>
 
-<!-- DNA Video Hero (matches hero-section-5 layout) -->
+<!-- DNA Video Hero (hero-section-5) -->
 <div class="dna-hero">
+  <!-- Video fills entire rounded frame behind content -->
+  <div class="dna-hero-frame">
+    <video class="dna-hero-video" autoplay loop muted playsinline src="dna-hero-video.mp4"></video>
+  </div>
+  <!-- Content overlaid on top -->
   <div class="dna-hero-content">
     <div class="page-hero-badge hero-word" style="animation-delay:0.2s">What We Build</div>
     <h1 class="hero-word" style="animation-delay:0.4s">Every layer your <span>business needs.</span></h1>
@@ -296,9 +299,6 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
         <span style="font-size:14px">⚡</span> <strong style="color:var(--text)">Have a site?</strong>&nbsp;Automation &amp; AI added on top
       </div>
     </div>
-  </div>
-  <div class="dna-hero-frame">
-    <video class="dna-hero-video" autoplay loop muted playsinline src="dna-hero-video.mp4"></video>
   </div>
 </div>
 

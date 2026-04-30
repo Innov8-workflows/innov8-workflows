@@ -28,21 +28,6 @@ export const ASSET_CLASSES = {
     icon: '🏠',
     requiresKey: true,
   },
-  assets: {
-    label: 'Assets',
-    icon: '🏡',
-    requiresKey: false,
-  },
-  finance: {
-    label: 'Finance',
-    icon: '🏦',
-    requiresKey: false,
-  },
-  launches: {
-    label: 'New Launches',
-    icon: '🚀',
-    requiresKey: false,
-  },
 };
 
 export const TIME_PERIODS = [
@@ -73,7 +58,6 @@ export const BUBBLE = {
 export const API = {
   COINGECKO_BASE: 'https://api.coingecko.com/api/v3',
   FMP_BASE: 'https://financialmodelingprep.com/api/v3',
-  LAND_REGISTRY: 'https://landregistry.data.gov.uk/data/ppi/transaction-record.json',
 
   COMMODITY_SYMBOLS: [
     'GLD',  // Gold
@@ -135,9 +119,6 @@ export const CACHE_TTL = {
   stocks: 300_000,
   commodities: 300_000,
   realestate: 300_000,
-  assets: 3600_000,  // 1 hour — property/asset data doesn't change often
-  finance: 3600_000, // 1 hour — pension/savings data doesn't change often
-  launches: 300_000,  // 5 min — sponsored launches refresh frequently
 };
 
 // ─── LocalStorage keys ───
@@ -146,92 +127,30 @@ export const STORAGE = {
   PORTFOLIOS: 'innov8-bubbles-portfolios',
   SETTINGS: 'innov8-bubbles-settings',
   AUTH_USER: 'innov8-bubbles-auth-user',
-  CUSTOM_ASSETS: 'innov8-bubbles-custom-assets',
 };
-
-// ─── Custom Asset Types ───
-export const CUSTOM_ASSET_TYPES = {
-  property:  { label: 'Property',        icon: '🏠', tab: 'assets',  subtypes: ['Detached', 'Semi-Detached', 'Terraced', 'Flat', 'Bungalow', 'Other'] },
-  pension:   { label: 'Pension',         icon: '🏦', tab: 'finance', subtypes: ['Workplace Pension', 'Personal Pension', 'SIPP', 'Final Salary (DB)', 'State Pension', 'Stakeholder', 'SSAS', 'Other'] },
-  vehicle:   { label: 'Vehicle',         icon: '🚗', tab: 'assets',  subtypes: ['Car', 'Motorcycle', 'Van', 'Other'] },
-  watch:     { label: 'Watch',           icon: '⌚', tab: 'assets',  subtypes: ['Luxury', 'Vintage', 'Smart', 'Other'] },
-  art:       { label: 'Art',             icon: '🎨', tab: 'assets',  subtypes: ['Painting', 'Sculpture', 'Print', 'Other'] },
-  business:  { label: 'Business Equity', icon: '🏢', tab: 'assets',  subtypes: ['Ltd Company', 'Partnership', 'Sole Trader', 'Other'] },
-  savings:   { label: 'Savings',         icon: '💰', tab: 'finance', subtypes: ['Cash ISA', 'Savings Account', 'Premium Bonds', 'Other'] },
-  other:     { label: 'Other',           icon: '📦', tab: 'assets',  subtypes: ['Collectible', 'Jewellery', 'Equipment', 'Other'] },
-};
-
-// ─── Pension Providers (UK) ───
-export const PENSION_PROVIDERS = [
-  'Workplace (auto-enrol)', 'Aviva', 'Scottish Widows', 'Legal & General', 'Royal London',
-  'Standard Life', 'Nest', 'Aegon', 'Fidelity', 'Hargreaves Lansdown',
-  'AJ Bell', 'Vanguard', 'Interactive Investor', 'PensionBee', 'Nutmeg',
-  'Smart Pension', 'The People\'s Pension', 'NOW: Pensions', 'State Pension (DWP)', 'Other',
-];
 
 // ─── Firebase Config ───
 // Replace with your Firebase project config from Firebase Console → Project Settings
 export const FIREBASE_CONFIG = {
-  apiKey: 'AIzaSyAF5AZPZ3caJu47BF-tQG4UVrGT2j5UqYE',
-  authDomain: 'innov8-bubbles.firebaseapp.com',
-  projectId: 'innov8-bubbles',
-  storageBucket: 'innov8-bubbles.firebasestorage.app',
-  messagingSenderId: '309940607663',
-  appId: '1:309940607663:web:e2cc46f04546213c7b125a',
-  measurementId: 'G-2ZZR76XZM0',
+  apiKey: 'YOUR_API_KEY',
+  authDomain: 'YOUR_PROJECT.firebaseapp.com',
+  projectId: 'YOUR_PROJECT_ID',
+  storageBucket: 'YOUR_PROJECT.appspot.com',
+  messagingSenderId: 'YOUR_SENDER_ID',
+  appId: 'YOUR_APP_ID',
 };
 
 // ─── Stripe Config ───
 // Replace with your Stripe publishable key and price IDs
 export const STRIPE_CONFIG = {
-  publishableKey: 'pk_live_51TLhmHLwaoUSAyt5dQl2gxneget7LzKvMSJelKsPNA6PcgQNF4JPcQcaarrQmF6iVEpghgU0RDXrs2y0ISTXTybm00AC6v7CiQ',
+  publishableKey: 'pk_test_YOUR_STRIPE_KEY',
+  // Create these products/prices in your Stripe Dashboard
   prices: [
-    { days: 7,  label: '7 Days',  price: '£29',  priceId: 'price_1TLhsOLwaoUSAyt5GdFgKhK4', paymentLink: 'https://buy.stripe.com/4gM5kEfwSaMo8xVdnZe3e00' },
-    { days: 14, label: '14 Days', price: '£49',  priceId: 'price_1TLht2LwaoUSAyt5B2e2KeRI', paymentLink: 'https://buy.stripe.com/eVq3cwacy1bO5lJ6ZBe3e01' },
-    { days: 30, label: '30 Days', price: '£99',  priceId: 'price_1TLhtSLwaoUSAyt5ytLH6hiZ', paymentLink: 'https://buy.stripe.com/4gMfZi98uf2Eg0ncjVe3e02' },
+    { days: 7,  label: '7 Days',  price: '$29',  priceId: 'price_7day_ID' },
+    { days: 14, label: '14 Days', price: '$49',  priceId: 'price_14day_ID' },
+    { days: 30, label: '30 Days', price: '$99',  priceId: 'price_30day_ID' },
   ],
 };
-
-// ─── Sponsored Bubble Pricing ───
-// Payment links are placeholders — create in Stripe dashboard and replace
-export const SPONSORED_PRICES = [
-  { days: 1,  label: '1 Day',    price: '£500',   priceId: 'TBD', paymentLink: '#' },
-  { days: 2,  label: '2 Days',   price: '£800',   priceId: 'TBD', paymentLink: '#' },
-  { days: 7,  label: '1 Week',   price: '£1,500', priceId: 'TBD', paymentLink: '#' },
-  { days: 14, label: '2 Weeks',  price: '£3,000', priceId: 'TBD', paymentLink: '#' },
-  { days: 30, label: '1 Month',  price: '£5,000', priceId: 'TBD', paymentLink: '#' },
-];
-
-// ─── Color Schemes ───
-export const COLOR_SCHEMES = {
-  'red-green': {
-    label: 'Red + Green',
-    pos: (mag) => [Math.round(15 - mag * 15), Math.round(140 + mag * 57), Math.round(40 + mag * 54)],
-    neg: (mag) => [Math.round(180 + mag * 40), Math.round(30 + mag * 8), Math.round(30 + mag * 8)],
-    neutral: [55, 55, 70],
-  },
-  'blue-yellow': {
-    label: 'Blue + Yellow',
-    pos: (mag) => [Math.round(200 + mag * 55), Math.round(180 + mag * 55), Math.round(20 + mag * 10)],
-    neg: (mag) => [Math.round(30 + mag * 30), Math.round(80 + mag * 60), Math.round(180 + mag * 60)],
-    neutral: [60, 60, 75],
-  },
-  'purple-orange': {
-    label: 'Purple + Orange',
-    pos: (mag) => [Math.round(220 + mag * 35), Math.round(120 + mag * 60), Math.round(20 + mag * 10)],
-    neg: (mag) => [Math.round(100 + mag * 40), Math.round(40 + mag * 20), Math.round(160 + mag * 60)],
-    neutral: [65, 55, 70],
-  },
-};
-
-// ─── Currencies ───
-export const CURRENCIES = [
-  { code: 'usd', symbol: '$', label: 'USD' },
-  { code: 'gbp', symbol: '£', label: 'GBP' },
-  { code: 'eur', symbol: '€', label: 'EUR' },
-  { code: 'jpy', symbol: '¥', label: 'JPY' },
-  { code: 'aud', symbol: 'A$', label: 'AUD' },
-];
 
 // ─── Ad Badge Types ───
 export const AD_BADGE_TYPES = [
@@ -243,32 +162,34 @@ export const AD_BADGE_TYPES = [
 
 
 // ─── Color Scale ───
-// Active color scheme — set by app.js when user changes it
-let _activeScheme = 'red-green';
-
-export function setColorScheme(scheme) {
-  _activeScheme = COLOR_SCHEMES[scheme] ? scheme : 'red-green';
-}
-
-export function getColorScheme() {
-  return _activeScheme;
-}
-
+// CryptoBubbles-style: vibrant, saturated colors that pop on dark backgrounds
 export function changeToColor(pct, alpha = 1.0) {
   const [r, g, b] = changeToRGB(pct);
   return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 }
 
-// Returns [r, g, b] array — uses active color scheme
+// Returns [r, g, b] array — the base bubble color
 export function changeToRGB(pct) {
-  const scheme = COLOR_SCHEMES[_activeScheme] || COLOR_SCHEMES['red-green'];
-  if (pct == null || isNaN(pct)) return scheme.neutral;
+  if (pct == null || isNaN(pct)) return [55, 50, 60]; // dark neutral
 
-  const magnitude = Math.min(Math.abs(pct) / 10, 1);
+  const magnitude = Math.min(Math.abs(pct) / 10, 1); // cap at ±10%
 
-  if (pct > 0) return scheme.pos(magnitude);
-  if (pct < 0) return scheme.neg(magnitude);
-  return scheme.neutral;
+  if (pct > 0) {
+    // Vivid green: from muted (#2d6b3f) to bright (#22c55e)
+    return [
+      Math.round(30 - magnitude * 10),
+      Math.round(85 + magnitude * 112),
+      Math.round(50 + magnitude * 44),
+    ];
+  } else if (pct < 0) {
+    // Vivid red: from muted (#8b3030) to bright (#dc2626)
+    return [
+      Math.round(110 + magnitude * 110),
+      Math.round(35 + magnitude * 3),
+      Math.round(35 + magnitude * 3),
+    ];
+  }
+  return [55, 50, 60];
 }
 
 // ─── Logo URL Helper ───
@@ -298,28 +219,20 @@ export function marketCapToRadius(cap, minCap, maxCap) {
 
 
 // ─── Formatting Utilities ───
-function _currencySymbol() {
-  const code = (typeof localStorage !== 'undefined' && localStorage.getItem('innov8-bubbles-currency')) || 'usd';
-  const cur = CURRENCIES.find(c => c.code === code);
-  return cur ? cur.symbol : '$';
-}
-
 export function formatPrice(price) {
   if (price == null) return '—';
-  const s = _currencySymbol();
-  if (price >= 1) return s + price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-  if (price >= 0.01) return s + price.toFixed(4);
-  return s + price.toFixed(8);
+  if (price >= 1) return '$' + price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  if (price >= 0.01) return '$' + price.toFixed(4);
+  return '$' + price.toFixed(8);
 }
 
 export function formatLargeNumber(n) {
   if (n == null) return '—';
-  const s = _currencySymbol();
-  if (n >= 1e12) return s + (n / 1e12).toFixed(2) + 'T';
-  if (n >= 1e9) return s + (n / 1e9).toFixed(2) + 'B';
-  if (n >= 1e6) return s + (n / 1e6).toFixed(2) + 'M';
-  if (n >= 1e3) return s + (n / 1e3).toFixed(1) + 'K';
-  return s + n.toFixed(2);
+  if (n >= 1e12) return '$' + (n / 1e12).toFixed(2) + 'T';
+  if (n >= 1e9) return '$' + (n / 1e9).toFixed(2) + 'B';
+  if (n >= 1e6) return '$' + (n / 1e6).toFixed(2) + 'M';
+  if (n >= 1e3) return '$' + (n / 1e3).toFixed(1) + 'K';
+  return '$' + n.toFixed(2);
 }
 
 export function formatChange(pct) {
@@ -419,30 +332,5 @@ export const SAMPLE_DATA = {
     { id: 'PSA', symbol: 'PSA', name: 'Public Storage', assetClass: 'realestate', price: 285.50, marketCap: 50000000000, volume24h: 850000, change1h: 0.0, change24h: 0.3, change7d: 0.8, change30d: 2.5, change1y: 8.2, image: '' },
     { id: 'AVB', symbol: 'AVB', name: 'AvalonBay Communities', assetClass: 'realestate', price: 198.70, marketCap: 28000000000, volume24h: 620000, change1h: 0.1, change24h: 0.5, change7d: 1.5, change30d: 4.2, change1y: 15.8, image: '' },
     { id: 'VICI', symbol: 'VICI', name: 'VICI Properties', assetClass: 'realestate', price: 31.20, marketCap: 32000000000, volume24h: 8500000, change1h: 0.2, change24h: 0.8, change7d: 1.8, change30d: 5.2, change1y: 12.5, image: '' },
-  ],
-  property: [
-    // UK Regions — avg house prices (ONS data Q1 2026 approx)
-    // UK Regions — all use GB flag
-    { id: 'uk-london', symbol: 'LDN', name: 'London', assetClass: 'property', price: 523000, marketCap: 523000000000, volume24h: 0, change1h: null, change24h: null, change7d: 0.1, change30d: 0.4, change1y: 2.1, image: 'https://flagcdn.com/w80/gb.png' },
-    { id: 'uk-south-east', symbol: 'SE', name: 'South East', assetClass: 'property', price: 385000, marketCap: 385000000000, volume24h: 0, change1h: null, change24h: null, change7d: 0.1, change30d: 0.5, change1y: 3.2, image: 'https://flagcdn.com/w80/gb.png' },
-    { id: 'uk-east', symbol: 'EAST', name: 'East of England', assetClass: 'property', price: 342000, marketCap: 342000000000, volume24h: 0, change1h: null, change24h: null, change7d: 0.1, change30d: 0.4, change1y: 2.8, image: 'https://flagcdn.com/w80/gb.png' },
-    { id: 'uk-south-west', symbol: 'SW', name: 'South West', assetClass: 'property', price: 315000, marketCap: 315000000000, volume24h: 0, change1h: null, change24h: null, change7d: 0.1, change30d: 0.6, change1y: 3.5, image: 'https://flagcdn.com/w80/gb.png' },
-    { id: 'uk-west-midlands', symbol: 'WM', name: 'West Midlands', assetClass: 'property', price: 248000, marketCap: 248000000000, volume24h: 0, change1h: null, change24h: null, change7d: 0.1, change30d: 0.5, change1y: 4.1, image: 'https://flagcdn.com/w80/gb.png' },
-    { id: 'uk-east-midlands', symbol: 'EM', name: 'East Midlands', assetClass: 'property', price: 242000, marketCap: 242000000000, volume24h: 0, change1h: null, change24h: null, change7d: 0.1, change30d: 0.6, change1y: 4.5, image: 'https://flagcdn.com/w80/gb.png' },
-    { id: 'uk-north-west', symbol: 'NW', name: 'North West', assetClass: 'property', price: 218000, marketCap: 218000000000, volume24h: 0, change1h: null, change24h: null, change7d: 0.1, change30d: 0.7, change1y: 5.2, image: 'https://flagcdn.com/w80/gb.png' },
-    { id: 'uk-yorkshire', symbol: 'YORKS', name: 'Yorkshire & Humber', assetClass: 'property', price: 205000, marketCap: 205000000000, volume24h: 0, change1h: null, change24h: null, change7d: 0.1, change30d: 0.7, change1y: 5.8, image: 'https://flagcdn.com/w80/gb.png' },
-    { id: 'uk-wales', symbol: 'WAL', name: 'Wales', assetClass: 'property', price: 198000, marketCap: 198000000000, volume24h: 0, change1h: null, change24h: null, change7d: 0.1, change30d: 0.8, change1y: 4.8, image: 'https://flagcdn.com/w80/gb-wls.png' },
-    { id: 'uk-north-east', symbol: 'NE', name: 'North East', assetClass: 'property', price: 162000, marketCap: 162000000000, volume24h: 0, change1h: null, change24h: null, change7d: 0.1, change30d: 0.9, change1y: 6.2, image: 'https://flagcdn.com/w80/gb.png' },
-    { id: 'uk-scotland', symbol: 'SCOT', name: 'Scotland', assetClass: 'property', price: 195000, marketCap: 195000000000, volume24h: 0, change1h: null, change24h: null, change7d: 0.1, change30d: 0.6, change1y: 4.2, image: 'https://flagcdn.com/w80/gb-sct.png' },
-    { id: 'uk-ni', symbol: 'NI', name: 'Northern Ireland', assetClass: 'property', price: 178000, marketCap: 178000000000, volume24h: 0, change1h: null, change24h: null, change7d: 0.1, change30d: 0.8, change1y: 5.5, image: 'https://flagcdn.com/w80/gb-nir.png' },
-    // Global Property Markets — country flags
-    { id: 'global-us', symbol: 'US', name: 'United States', assetClass: 'property', price: 420000, marketCap: 420000000000, volume24h: 0, change1h: null, change24h: null, change7d: 0.0, change30d: 0.3, change1y: 4.8, image: 'https://flagcdn.com/w80/us.png' },
-    { id: 'global-aus', symbol: 'AUS', name: 'Australia', assetClass: 'property', price: 780000, marketCap: 390000000000, volume24h: 0, change1h: null, change24h: null, change7d: 0.1, change30d: 0.4, change1y: 7.2, image: 'https://flagcdn.com/w80/au.png' },
-    { id: 'global-canada', symbol: 'CAN', name: 'Canada', assetClass: 'property', price: 650000, marketCap: 325000000000, volume24h: 0, change1h: null, change24h: null, change7d: 0.0, change30d: -0.2, change1y: -1.5, image: 'https://flagcdn.com/w80/ca.png' },
-    { id: 'global-germany', symbol: 'DEU', name: 'Germany', assetClass: 'property', price: 310000, marketCap: 310000000000, volume24h: 0, change1h: null, change24h: null, change7d: 0.0, change30d: -0.3, change1y: -3.2, image: 'https://flagcdn.com/w80/de.png' },
-    { id: 'global-france', symbol: 'FRA', name: 'France', assetClass: 'property', price: 295000, marketCap: 295000000000, volume24h: 0, change1h: null, change24h: null, change7d: 0.0, change30d: -0.1, change1y: -2.1, image: 'https://flagcdn.com/w80/fr.png' },
-    { id: 'global-dubai', symbol: 'UAE', name: 'Dubai', assetClass: 'property', price: 450000, marketCap: 225000000000, volume24h: 0, change1h: null, change24h: null, change7d: 0.2, change30d: 1.5, change1y: 18.5, image: 'https://flagcdn.com/w80/ae.png' },
-    { id: 'global-singapore', symbol: 'SGP', name: 'Singapore', assetClass: 'property', price: 1250000, marketCap: 312000000000, volume24h: 0, change1h: null, change24h: null, change7d: 0.1, change30d: 0.3, change1y: 5.2, image: 'https://flagcdn.com/w80/sg.png' },
-    { id: 'global-japan', symbol: 'JPN', name: 'Japan', assetClass: 'property', price: 380000, marketCap: 380000000000, volume24h: 0, change1h: null, change24h: null, change7d: 0.1, change30d: 0.5, change1y: 8.5, image: 'https://flagcdn.com/w80/jp.png' },
   ],
 };

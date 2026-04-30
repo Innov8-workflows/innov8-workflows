@@ -2,71 +2,7 @@
    data-service.js — API fetching, normalization, caching
    ============================================================ */
 
-import { API, CACHE_TTL, STORAGE, SAMPLE_DATA, CUSTOM_ASSET_TYPES } from './config.js';
-import { getCustomAssetsNormalized } from './custom-assets.js';
-import { fetchApprovedSponsored } from './auth.js';
-
-// ─── Sponsored Bubbles Cache ───
-let _sponsoredCache = { data: [], timestamp: 0 };
-const SPONSORED_TTL = 300_000; // 5 min
-
-export async function getSponsoredBubbles() {
-  if (Date.now() - _sponsoredCache.timestamp < SPONSORED_TTL && _sponsoredCache.data.length > 0) {
-    return _sponsoredCache.data;
-  }
-  try {
-    const approved = await fetchApprovedSponsored();
-    const bubbles = approved.map(s => ({
-      id: 'sp_' + s.id,
-      symbol: (s.symbol || s.name || '').replace('$', '').slice(0, 6).toUpperCase(),
-      name: s.name || '',
-      assetClass: 'crypto', // show on crypto tab primarily
-      price: s.price || 0,
-      marketCap: s.price ? s.price * 1e9 : 1e9, // give them decent bubble size
-      volume24h: 0,
-      change1h: s.change24h || 0,
-      change24h: s.change24h || 0,
-      change7d: s.change24h || 0,
-      change30d: s.change24h || 0,
-      change1y: s.change24h || 0,
-      image: s.logoUrl || '',
-      _isSponsored: true,
-      _sponsoredUrl: s.url || '#',
-      _sponsoredBadge: s.badge || 'new-drop',
-      _sponsoredDescription: s.description || '',
-    }));
-    // Fall back to demo if no real sponsors yet
-    const result = bubbles.length > 0 ? bubbles : _demoSponsored();
-    _sponsoredCache = { data: result, timestamp: Date.now() };
-    return result;
-  } catch (e) {
-    console.warn('[data-service] Failed to fetch sponsored:', e.message);
-    return _sponsoredCache.data.length ? _sponsoredCache.data : _demoSponsored();
-  }
-}
-
-// Demo sponsored bubble — remove once real Stripe payments are flowing
-function _demoSponsored() {
-  return [{
-    id: 'sp_demo_lunar',
-    symbol: '$LUNAR',
-    name: 'Lunar Protocol',
-    assetClass: 'crypto',
-    price: 0.045,
-    marketCap: 5_000_000_000,
-    volume24h: 820_000_000,
-    change1h: 12.3,
-    change24h: 142.5,
-    change7d: 310.8,
-    change30d: 142.5,
-    change1y: 142.5,
-    image: '',
-    _isSponsored: true,
-    _sponsoredUrl: 'https://market-bubbles.com',
-    _sponsoredBadge: 'new-drop',
-    _sponsoredDescription: 'AI-powered DeFi launching May 2026 — Early access live',
-  }];
-}
+import { API, CACHE_TTL, STORAGE, SAMPLE_DATA } from './config.js';
 
 // ─── Cache ───
 const cache = new Map(); // key → { data, timestamp }
@@ -114,11 +50,11 @@ export async function fetchAssets(assetClass) {
 }
 
 async function _fetchAll() {
-  const classes = ['crypto', 'indices', 'stocks', 'commodities', 'realestate', 'assets', 'finance', 'launches'];
+  const classes = ['crypto', 'indices', 'stocks', 'commodities', 'realestate'];
   const hasFmpKey = !!localStorage.getItem(STORAGE.FMP_KEY);
 
-  // Only fetch classes we have keys for (crypto, assets, finance don't need FMP key)
-  const toFetch = classes.filter(c => c === 'crypto' || c === 'assets' || c === 'finance' || c === 'launches' || hasFmpKey);
+  // Only fetch classes we have keys for
+  const toFetch = classes.filter(c => c === 'crypto' || hasFmpKey);
 
   const results = await Promise.allSettled(
     toFetch.map(c => fetchAssets(c))
@@ -135,7 +71,6 @@ async function _fetchAll() {
   }
 
   // If we got no FMP data, add sample data for those classes
-  // Note: don't add property — it's already included via the 'assets' class fetch above
   if (!hasFmpKey) {
     allData = allData.concat(
       SAMPLE_DATA.indices || [],
@@ -170,28 +105,6 @@ async function _doFetch(assetClass, cacheKey) {
       case 'realestate':
         data = await _fetchRealEstate();
         break;
-      case 'assets': {
-        // Assets tab: regional property data + custom assets (property, vehicle, watch, art, business, other)
-        const sampleProperty = SAMPLE_DATA.property || [];
-        const assetCustom = getCustomAssetsNormalized().filter(a => {
-          const typeInfo = CUSTOM_ASSET_TYPES[a._type];
-          return !typeInfo || typeInfo.tab === 'assets';
-        });
-        return { data: [...sampleProperty, ...assetCustom], isSample: assetCustom.length === 0 };
-      }
-      case 'launches': {
-        // New Launches tab: sponsored bubbles only
-        const sponsored = await getSponsoredBubbles();
-        return { data: sponsored, isSample: false };
-      }
-      case 'finance': {
-        // Finance tab: pensions + savings (no sample data, purely user-added)
-        const financeCustom = getCustomAssetsNormalized().filter(a => {
-          const typeInfo = CUSTOM_ASSET_TYPES[a._type];
-          return typeInfo && typeInfo.tab === 'finance';
-        });
-        return { data: financeCustom, isSample: false };
-      }
       default:
         throw new Error('Unknown asset class: ' + assetClass);
     }
@@ -221,8 +134,7 @@ async function _doFetch(assetClass, cacheKey) {
 // ─── Crypto (CoinGecko) ───
 
 async function _fetchCrypto() {
-  const currency = localStorage.getItem('innov8-bubbles-currency') || 'usd';
-  const url = `${API.COINGECKO_BASE}/coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=1h,24h,7d,30d,1y`;
+  const url = `${API.COINGECKO_BASE}/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=1h,24h,7d,30d,1y`;
 
   const res = await _fetchWithTimeout(url, 8000);
   if (!res.ok) throw new Error(`CoinGecko ${res.status}`);
@@ -372,127 +284,4 @@ async function _fetchWithTimeout(url, ms = 5000) {
   } finally {
     clearTimeout(timer);
   }
-}
-
-// ─── Chart Data Fetching ───
-
-const chartCache = new Map(); // key → { data, timestamp }
-const CHART_TTL = 300_000; // 5 min
-
-export async function fetchChartData(asset, days = 30) {
-  // Strategy: fetch full history ONCE per asset, then slice locally for any period.
-  // This avoids multiple API calls and rate limiting.
-  const fullKey = `${asset.id}_full`;
-
-  let fullData = null;
-  const cached = chartCache.get(fullKey);
-  if (cached && Date.now() - cached.timestamp < CHART_TTL) {
-    fullData = cached.data;
-  }
-
-  if (!fullData) {
-    try {
-      if (asset._isCustom) {
-        fullData = _generateCustomChart(asset, 'max');
-      } else if (asset.assetClass === 'crypto' || asset.assetClass === 'launches') {
-        fullData = await _fetchCryptoChart(asset.id, 365); // Fetch 1 year, covers all periods
-      } else if (['stocks', 'indices', 'commodities', 'realestate'].includes(asset.assetClass)) {
-        fullData = await _fetchStockChart(asset.symbol || asset.id);
-      }
-    } catch (e) {
-      console.warn('[chart] fetch failed:', e.message);
-    }
-
-    if (fullData && fullData.length > 0) {
-      chartCache.set(fullKey, { data: fullData, timestamp: Date.now() });
-    }
-  }
-
-  if (!fullData || fullData.length === 0) return [];
-
-  // Slice to requested period
-  if (days === 'max' || days >= 9999) return fullData;
-  const cutoff = new Date();
-  cutoff.setDate(cutoff.getDate() - days);
-  return fullData.filter(p => new Date(p.date) >= cutoff);
-}
-
-async function _fetchCryptoChart(coinId, days) {
-  const currency = localStorage.getItem('innov8-bubbles-currency') || 'usd';
-  const url = `${API.COINGECKO_BASE}/coins/${coinId}/market_chart?vs_currency=${currency}&days=${days}`;
-
-  const res = await _fetchWithTimeout(url, 10000);
-  if (!res.ok) throw new Error(`CoinGecko chart ${res.status}`);
-  const json = await res.json();
-
-  if (!json.prices || !Array.isArray(json.prices)) return [];
-
-  return json.prices.map(([ts, price]) => ({
-    date: new Date(ts),
-    price,
-  }));
-}
-
-async function _fetchStockChart(symbol) {
-  const apiKey = _getFmpKey();
-  if (!apiKey) return [];
-
-  const url = `${API.FMP_BASE}/historical-price-full/${symbol}?apikey=${apiKey}`;
-  const res = await _fetchWithTimeout(url, 10000);
-  if (!res.ok) throw new Error(`FMP chart ${res.status}`);
-  const json = await res.json();
-
-  if (!json.historical || !Array.isArray(json.historical)) return [];
-
-  // FMP returns newest first — reverse for chronological order
-  return json.historical.reverse().map(d => ({
-    date: new Date(d.date),
-    price: d.close,
-  }));
-}
-
-function _generateCustomChart(asset, days) {
-  const purchasePrice = asset._purchasePrice || asset.price || 0;
-  const currentValue = asset.price || 0;
-  const purchaseDate = asset.data?.purchaseDate ? new Date(asset.data.purchaseDate) : null;
-  const growthRate = asset._pensionGrowthRate || asset._savingsGrowthRate || 0;
-
-  const now = new Date();
-  const startDate = purchaseDate && purchaseDate < now ? purchaseDate : new Date(now.getFullYear() - 1, now.getMonth(), now.getDate());
-
-  // Calculate total months from purchase to now
-  const totalMonths = Math.max(1, (now - startDate) / (1000 * 60 * 60 * 24 * 30.44));
-  const numPoints = Math.min(60, Math.max(10, Math.round(totalMonths)));
-  const points = [];
-
-  for (let i = 0; i <= numPoints; i++) {
-    const t = i / numPoints; // 0 to 1
-    const date = new Date(startDate.getTime() + t * (now.getTime() - startDate.getTime()));
-    let price;
-
-    if (growthRate > 0) {
-      // Compound growth curve
-      const monthsElapsed = t * totalMonths;
-      const monthlyRate = growthRate / 100 / 12;
-      price = purchasePrice * Math.pow(1 + monthlyRate, monthsElapsed);
-    } else {
-      // Linear interpolation
-      price = purchasePrice + (currentValue - purchasePrice) * t;
-    }
-    points.push({ date, price });
-  }
-
-  // Ensure last point matches current value
-  if (points.length > 0) {
-    points[points.length - 1].price = currentValue;
-  }
-
-  return points;
-}
-
-
-// ─── Cache Invalidation (used by custom assets) ───
-
-export function invalidateCache(assetClass) {
-  cache.delete(getCacheKey(assetClass));
 }

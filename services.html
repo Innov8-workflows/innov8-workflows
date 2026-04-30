@@ -282,11 +282,11 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 <div class="dna-hero">
   <!-- Orange DNA layer (base) -->
   <video class="dna-hero-video orange" autoplay loop muted playsinline>
-    <source src="https://videos.pexels.com/video-files/3129671/3129671-uhd_2560_1440_30fps.mp4" type="video/mp4"/>
+    <source src="https://videos.pexels.com/video-files/3129671/3129671-hd_1920_1080_30fps.mp4" type="video/mp4"/>
   </video>
   <!-- Neon green DNA layer (peels through from bottom-right) -->
   <video class="dna-hero-video green" autoplay loop muted playsinline>
-    <source src="https://videos.pexels.com/video-files/3129671/3129671-uhd_2560_1440_30fps.mp4" type="video/mp4"/>
+    <source src="https://videos.pexels.com/video-files/3129671/3129671-hd_1920_1080_30fps.mp4" type="video/mp4"/>
   </video>
   <div class="dna-hero-overlay"></div>
 
@@ -725,6 +725,11 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
     entries.forEach(e => { if (e.isIntersecting) { setTimeout(()=>e.target.classList.add('visible'),60); obs.unobserve(e.target); } });
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+// Force-play hero videos (autoplay fallback)
+document.querySelectorAll('.dna-hero-video').forEach(function(v) {
+  v.play().catch(function(){});
+  v.addEventListener('canplay', function() { v.play().catch(function(){}); });
+});
 </script>
 
 

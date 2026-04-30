@@ -206,30 +206,30 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
   .monitor-stat-row { grid-template-columns: 1fr; }
 }
 
-/* ── DNA VIDEO HERO ── */
-.dna-hero { position: relative; z-index: 1; width: 100%; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 120px 24px 80px; overflow: hidden; }
-/* Orange video layer (base — left/top dominant) */
-.dna-hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
-.dna-hero-video.orange { opacity: 0.55; filter: sepia(1) saturate(6) hue-rotate(-10deg) brightness(1.4) contrast(1.2); }
-/* Neon green video layer (peels through from bottom-right) */
-.dna-hero-video.green { opacity: 0.5; filter: sepia(1) saturate(8) hue-rotate(60deg) brightness(1.6) contrast(1.1);
-  -webkit-mask-image: linear-gradient(135deg, transparent 15%, rgba(0,0,0,0.2) 35%, rgba(0,0,0,0.7) 55%, black 75%);
-  mask-image: linear-gradient(135deg, transparent 15%, rgba(0,0,0,0.2) 35%, rgba(0,0,0,0.7) 55%, black 75%); z-index: 0; }
-/* Color glow overlay */
-.dna-hero-overlay { position: absolute; inset: 0; z-index: 1;
-  background: linear-gradient(180deg, rgba(15,15,15,0.35) 0%, rgba(15,15,15,0.05) 35%, rgba(15,15,15,0.5) 100%),
-              radial-gradient(ellipse at 20% 40%, rgba(234,88,12,0.12) 0%, transparent 50%),
-              radial-gradient(ellipse at 80% 60%, rgba(34,197,94,0.08) 0%, transparent 50%); }
-.dna-hero-content { position: relative; z-index: 2; max-width: 720px; }
-.dna-hero-content h1 { font-size: clamp(2.8rem, 7vw, 5.5rem); font-weight: 800; line-height: 0.95; letter-spacing: -0.04em; margin-bottom: 24px; color: #fff; }
+/* ── DNA VIDEO HERO (matches React hero-section-5) ── */
+.dna-hero { position: relative; z-index: 1; width: 100%; padding: 96px 0 128px; }
+.dna-hero-frame { position: absolute; inset: 4px; overflow: hidden; border-radius: 24px; border: 1px solid rgba(255,255,255,0.05); z-index: 0; }
+.dna-hero-video { width: 100%; height: 100%; object-fit: cover; opacity: 0.35; }
+.dna-hero-content { position: relative; z-index: 2; max-width: 1100px; margin: 0 auto; padding: 0 24px; text-align: center; }
+.dna-hero-content h1 { font-size: clamp(2.8rem, 7vw, 5rem); font-weight: 800; line-height: 1.05; letter-spacing: -0.03em; margin-top: 64px; margin-bottom: 24px; color: #fff; max-width: 700px; text-wrap: balance; }
 .dna-hero-content h1 span { color: var(--accent); }
-.dna-hero-content p { font-size: clamp(1rem, 2vw, 1.15rem); color: rgba(240,240,240,0.75); max-width: 560px; margin: 0 auto 36px; line-height: 1.65; }
-.dna-hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-.dna-hero-actions .btn-primary { font-size: 0.95rem; padding: 14px 28px; border-radius: 100px; }
-.dna-hero-actions .btn-ghost { font-size: 0.95rem; padding: 14px 28px; border-radius: 100px; }
+.dna-hero-content > p { font-size: clamp(1rem, 2vw, 1.15rem); color: rgba(240,240,240,0.7); max-width: 560px; line-height: 1.65; margin-bottom: 40px; }
+.dna-hero-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 28px; }
+.dna-hero-actions .btn-primary { font-size: 0.95rem; padding: 14px 24px 14px 20px; border-radius: 100px; display: inline-flex; align-items: center; gap: 4px; }
+.dna-hero-actions .btn-ghost { font-size: 0.95rem; padding: 14px 24px; border-radius: 100px; }
 .dna-hero .hero-word { display: inline-block; opacity: 0; transform: translateY(20px); animation: fadeUp 0.5s ease forwards; }
-.dna-hero .flex-notice { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 28px; }
+.dna-hero .flex-notice { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 0; }
 .dna-hero .flex-pill { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 8px; font-size: 0.82rem; border: 1px solid; backdrop-filter: blur(8px); color: var(--muted2); }
+@media (min-width: 1024px) {
+  .dna-hero { padding: 288px 0 144px; }
+  .dna-hero-frame { border-radius: 48px; }
+  .dna-hero-content { text-align: left; padding: 0 48px; }
+  .dna-hero-content h1 { margin-top: 0; }
+  .dna-hero-content > p { margin-left: 0; margin-right: auto; }
+  .dna-hero-actions { justify-content: flex-start; }
+  .dna-hero .flex-notice { justify-content: flex-start; }
+  .dna-hero-video { opacity: 0.75; }
+}
 
 /* Logo slider */
 .logo-slider-section { position: relative; z-index: 1; background: var(--bg); border-top: 1px solid var(--border); padding: 0 24px; }
@@ -278,32 +278,17 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
   <a href="consultancy.html#contact" class="mobile-cta">Get Started</a>
 </div>
 
-<!-- DNA Video Hero -->
+<!-- DNA Video Hero (matches hero-section-5 layout) -->
 <div class="dna-hero">
-  <!-- Orange DNA layer (base) -->
-  <video class="dna-hero-video orange" autoplay loop muted playsinline>
-    <source src="dna-hero-video.mp4" type="video/mp4"/>
-  </video>
-  <!-- Neon green DNA layer (peels through from bottom-right) -->
-  <video class="dna-hero-video green" autoplay loop muted playsinline>
-    <source src="dna-hero-video.mp4" type="video/mp4"/>
-  </video>
-  <div class="dna-hero-overlay"></div>
-
   <div class="dna-hero-content">
-    <div class="page-hero-badge hero-word" style="animation-delay:0.2s;margin:0 auto 24px">What We Build</div>
-    <h1>
-      <span class="hero-word" style="animation-delay:0.4s">Every layer</span>
-      <span class="hero-word" style="animation-delay:0.55s">your</span><br/>
-      <span class="hero-word" style="animation-delay:0.7s;color:var(--accent)">business</span>
-      <span class="hero-word" style="animation-delay:0.85s;color:var(--accent)">needs.</span>
-    </h1>
-    <p class="hero-word" style="animation-delay:1.1s">A branded website, intelligent automation, AI chatbots, and deep integrations — built fresh, or layered onto your existing site.</p>
-    <div class="dna-hero-actions hero-word" style="animation-delay:1.4s">
-      <a href="consultancy.html#contact" class="btn-primary">Book Free Consultation →</a>
+    <div class="page-hero-badge hero-word" style="animation-delay:0.2s">What We Build</div>
+    <h1 class="hero-word" style="animation-delay:0.4s">Every layer your <span>business needs.</span></h1>
+    <p class="hero-word" style="animation-delay:0.7s">A branded website, intelligent automation, AI chatbots, and deep integrations — built fresh, or layered onto your existing site.</p>
+    <div class="dna-hero-actions hero-word" style="animation-delay:1.0s">
+      <a href="consultancy.html#contact" class="btn-primary">Book Free Consultation <span style="margin-left:4px">→</span></a>
       <a href="case-studies.html" class="btn-ghost">View Case Studies</a>
     </div>
-    <div class="flex-notice hero-word" style="animation-delay:1.7s">
+    <div class="flex-notice hero-word" style="animation-delay:1.3s">
       <div class="flex-pill" style="background:rgba(234,88,12,0.1);border-color:rgba(234,88,12,0.25)">
         <span style="font-size:14px">🆕</span> <strong style="color:var(--text)">Starting fresh?</strong>&nbsp;Full website + automation build
       </div>
@@ -311,6 +296,9 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
         <span style="font-size:14px">⚡</span> <strong style="color:var(--text)">Have a site?</strong>&nbsp;Automation &amp; AI added on top
       </div>
     </div>
+  </div>
+  <div class="dna-hero-frame">
+    <video class="dna-hero-video" autoplay loop muted playsinline src="dna-hero-video.mp4"></video>
   </div>
 </div>
 

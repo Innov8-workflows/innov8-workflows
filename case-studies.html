@@ -99,8 +99,14 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; a
 .websites-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 48px; }
 .site-card { background: var(--bg); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; transition: border-color 0.25s, transform 0.2s; display: flex; flex-direction: column; }
 .site-card:hover { border-color: rgba(234,88,12,0.4); transform: translateY(-4px); }
-.site-preview { position: relative; height: 220px; overflow: hidden; background: var(--surface2); }
+.site-preview { position: relative; min-height: 220px; overflow: hidden; background: var(--surface2); }
 .site-preview iframe { width: 160%; height: 160%; border: none; transform: scale(0.625); transform-origin: top left; pointer-events: none; }
+.site-preview img { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* Floating result badge on the preview image */
+.site-result-badge { position: absolute; bottom: 16px; right: 16px; z-index: 2; display: flex; align-items: center; gap: 12px; padding: 12px 18px; background: rgba(15,15,15,0.92); backdrop-filter: blur(10px); border: 1px solid rgba(34,197,94,0.4); border-radius: 12px; box-shadow: 0 8px 28px rgba(0,0,0,0.5); }
+.site-result-arrow { font-size: 1.6rem; color: var(--node-green); font-weight: 700; line-height: 1; }
+.site-result-stat { font-size: 1rem; font-weight: 800; color: #fff; letter-spacing: -0.01em; line-height: 1.1; }
+.site-result-label { font-family: var(--font-mono); font-size: 0.62rem; color: var(--node-green); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 2px; }
 .site-preview-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 50%, var(--bg) 100%); }
 .site-preview-bar { position: absolute; top: 12px; left: 12px; right: 12px; background: rgba(15,15,15,0.9); backdrop-filter: blur(8px); border-radius: 6px; padding: 8px 12px; display: flex; align-items: center; gap: 8px; border: 1px solid var(--border); }
 .site-preview-dots { display: flex; gap: 5px; }
@@ -225,9 +231,9 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 
     <div class="websites-grid">
 
-      <div class="site-card reveal">
-        <div class="site-preview">
-          <iframe src="https://Innov8-workflows.github.io/MitechJoinery/" title="Mitech Joinery" loading="lazy" tabindex="-1"></iframe>
+      <div class="site-card reveal" style="grid-column: 1 / -1; border-color: rgba(234,88,12,0.35);">
+        <div class="site-preview" style="aspect-ratio: 16/9; background:#000;">
+          <img src="case-jgs.jpg" alt="JGS Construction Services Limited — Derbyshire driveway contractor website" style="width:100%;height:100%;object-fit:cover;display:block;"/>
           <div class="site-preview-overlay"></div>
           <div class="site-preview-bar">
             <div class="site-preview-dots">
@@ -235,102 +241,22 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
               <div class="site-preview-dot" style="background:#febc2e"></div>
               <div class="site-preview-dot" style="background:#28c840"></div>
             </div>
-            <div class="site-preview-url">Innov8-workflows.github.io/MitechJoinery</div>
+            <div class="site-preview-url">jgslimited.co.uk</div>
           </div>
-        </div>
-        <div class="site-info">
-          <div class="site-industry">🪵 Bespoke Joinery · Ripley, Derbyshire</div>
-          <div class="site-name">Mitech Joinery Limited</div>
-          <p class="site-desc">Custom bespoke gate and joinery specialist. Full multi-page site with gallery, services, and AI chatbot for customer enquiries.</p>
-          <div class="site-tags"><span class="site-tag">HTML/CSS/JS</span><span class="site-tag">AI Chatbot</span><span class="site-tag">GitHub Pages</span><span class="site-tag">Custom Domain</span></div>
-          <a href="https://Innov8-workflows.github.io/MitechJoinery/" target="_blank" rel="noopener" class="site-link">View live site →</a>
-        </div>
-      </div>
-
-      <div class="site-card reveal">
-        <div class="site-preview">
-          <iframe src="https://Innov8-workflows.github.io/HRSPlumbing/" title="HRS Plumbing" loading="lazy" tabindex="-1"></iframe>
-          <div class="site-preview-overlay"></div>
-          <div class="site-preview-bar">
-            <div class="site-preview-dots">
-              <div class="site-preview-dot" style="background:#ff5f57"></div>
-              <div class="site-preview-dot" style="background:#febc2e"></div>
-              <div class="site-preview-dot" style="background:#28c840"></div>
+          <div class="site-result-badge">
+            <div class="site-result-arrow">↑</div>
+            <div>
+              <div class="site-result-stat">6th → 2nd</div>
+              <div class="site-result-label">Local SEO Ranking</div>
             </div>
-            <div class="site-preview-url">Innov8-workflows.github.io/HRSPlumbing</div>
           </div>
         </div>
         <div class="site-info">
-          <div class="site-industry">🔧 Plumbing & Heating · Derbyshire</div>
-          <div class="site-name">HRS Plumbing & Heating Ltd</div>
-          <p class="site-desc">Gas Safe registered trade business serving Derbyshire. Professional multi-page site with emergency contact, services overview and AI chatbot.</p>
-          <div class="site-tags"><span class="site-tag">HTML/CSS/JS</span><span class="site-tag">AI Chatbot</span><span class="site-tag">GitHub Pages</span><span class="site-tag">Gas Safe</span></div>
-          <a href="https://Innov8-workflows.github.io/HRSPlumbing/" target="_blank" rel="noopener" class="site-link">View live site →</a>
-        </div>
-      </div>
-
-      <div class="site-card reveal">
-        <div class="site-preview">
-          <iframe src="https://Innov8-workflows.github.io/BetterBarlow/" title="BarlowBetter" loading="lazy" tabindex="-1"></iframe>
-          <div class="site-preview-overlay"></div>
-          <div class="site-preview-bar">
-            <div class="site-preview-dots">
-              <div class="site-preview-dot" style="background:#ff5f57"></div>
-              <div class="site-preview-dot" style="background:#febc2e"></div>
-              <div class="site-preview-dot" style="background:#28c840"></div>
-            </div>
-            <div class="site-preview-url">Innov8-workflows.github.io/BetterBarlow</div>
-          </div>
-        </div>
-        <div class="site-info">
-          <div class="site-industry">💼 Executive Consultancy · UK</div>
-          <div class="site-name">BarlowBetter Ltd</div>
-          <p class="site-desc">Executive consultancy specialising in contact centre and CX transformation at director and C-suite level. Premium branded site with AI chatbot integration.</p>
-          <div class="site-tags"><span class="site-tag">HTML/CSS/JS</span><span class="site-tag">AI Chatbot</span><span class="site-tag">GitHub Pages</span><span class="site-tag">Executive</span></div>
-          <a href="https://Innov8-workflows.github.io/BetterBarlow/" target="_blank" rel="noopener" class="site-link">View live site →</a>
-        </div>
-      </div>
-
-      <div class="site-card reveal">
-        <div class="site-preview">
-          <iframe src="https://Innov8-workflows.github.io/JGS/index.html" title="JGS" loading="lazy" tabindex="-1"></iframe>
-          <div class="site-preview-overlay"></div>
-          <div class="site-preview-bar">
-            <div class="site-preview-dots">
-              <div class="site-preview-dot" style="background:#ff5f57"></div>
-              <div class="site-preview-dot" style="background:#febc2e"></div>
-              <div class="site-preview-dot" style="background:#28c840"></div>
-            </div>
-            <div class="site-preview-url">Innov8-workflows.github.io/JGS</div>
-          </div>
-        </div>
-        <div class="site-info">
-          <div class="site-industry">🏗️ Trade Services · UK</div>
-          <div class="site-name">JGS</div>
-          <p class="site-desc">Professional trade services website built and deployed to GitHub Pages with a clean branded design, service listings and integrated AI chatbot.</p>
-          <div class="site-tags"><span class="site-tag">HTML/CSS/JS</span><span class="site-tag">AI Chatbot</span><span class="site-tag">GitHub Pages</span><span class="site-tag">Trade</span></div>
-          <a href="https://Innov8-workflows.github.io/JGS/index.html" target="_blank" rel="noopener" class="site-link">View live site →</a>
-        </div>
-
-      <div class="site-card reveal" style="border-color:rgba(234,88,12,0.3);">
-        <div class="site-preview">
-          <iframe src="https://innov8workflows.co.uk/index.html" title="Innov8 Workflows" loading="lazy" tabindex="-1"></iframe>
-          <div class="site-preview-overlay"></div>
-          <div class="site-preview-bar">
-            <div class="site-preview-dots">
-              <div class="site-preview-dot" style="background:#ff5f57"></div>
-              <div class="site-preview-dot" style="background:#febc2e"></div>
-              <div class="site-preview-dot" style="background:#28c840"></div>
-            </div>
-            <div class="site-preview-url">innov8workflows.co.uk</div>
-          </div>
-        </div>
-        <div class="site-info">
-          <div class="site-industry">⚡ Digital Agency · UK — <span style="color:var(--accent)">Our own site</span></div>
-          <div class="site-name">Innov8 Workflows</div>
-          <p class="site-desc">Our own agency website — fully custom built with dark-themed branding, animated canvas background, multi-page architecture, AI chatbot, cookie consent, and a live n8n-powered enquiry workflow.</p>
-          <div class="site-tags"><span class="site-tag">HTML/CSS/JS</span><span class="site-tag">AI Chatbot</span><span class="site-tag">n8n Workflow</span><span class="site-tag">Custom Domain</span><span class="site-tag">Live</span></div>
-          <a href="https://innov8workflows.co.uk" target="_blank" rel="noopener" class="site-link">View live site →</a>
+          <div class="site-industry">🏗️ Driveways &amp; Block Paving · Derby, Belper, Ripley, Heanor, Alfreton, Matlock, Chesterfield, Long Eaton &amp; Ilkeston</div>
+          <div class="site-name">JGS Construction Services Limited</div>
+          <p class="site-desc">A family-run Derbyshire driveway and groundworks specialist with 35+ years of experience. We rebuilt their online presence from the ground up — branded site, optimised local SEO, mobile-first design, click-to-call and WhatsApp widgets — and got them ranking <strong style="color:var(--accent)">2nd on Google</strong> in their primary service area, up from 6th.</p>
+          <div class="site-tags"><span class="site-tag">Branded Website</span><span class="site-tag">Local SEO</span><span class="site-tag">Mobile Optimised</span><span class="site-tag">Click-to-Call</span><span class="site-tag">WhatsApp Widget</span><span class="site-tag">Custom Domain</span></div>
+          <a href="https://jgslimited.co.uk/" target="_blank" rel="noopener" class="site-link">View live site →</a>
         </div>
       </div>
 

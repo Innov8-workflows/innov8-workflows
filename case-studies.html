@@ -204,137 +204,16 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
     <p class="hero-word" style="animation-delay:1.3s">Workflows we've automated and websites we've built — from first conversation to live deployment.</p>
   </div>
 
-  <a href="#workflows" class="explore-btn">
+  <a href="#case-studies-content" class="explore-btn">
     Scroll to explore
     <svg width="18" height="18" viewBox="0 0 22 22" fill="none"><path d="M11 5V17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M6 12L11 17L16 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
   </a>
 </div>
 
-<div class="breadcrumb" id="workflows" style="padding-top:32px">
+<div class="breadcrumb" id="case-studies-content" style="padding-top:32px">
   <a href="index.html">Home</a>
   <span>/</span>
   <span style="color:var(--text)">Case Studies</span>
-</div>
-
-<!-- WORKFLOWS -->
-<div class="workflows-section">
-  <div class="section-label reveal">Workflow Automation</div>
-  <h2 class="section-title reveal">Automations we've built.</h2>
-  <p class="section-desc reveal">End-to-end workflow builds replacing manual work with intelligent, reliable automation.</p>
-
-  <div class="workflows-grid">
-
-    <div class="workflow-card reveal">
-      <div class="workflow-card-header">
-        <div>
-          <div class="workflow-industry"><div class="workflow-dot" style="background:var(--node-blue)"></div><span style="color:var(--node-blue)">Professional Services</span></div>
-          <div class="workflow-title">Lead capture to CRM to invoice — fully automated</div>
-          <p class="workflow-summary">A UK consultancy was manually processing every new enquiry — copying details into their CRM, creating invoices in Xero, and sending follow-ups by hand. Each new lead took 25–30 minutes of admin.</p>
-        </div>
-        <div class="workflow-stats">
-          <div class="workflow-stat"><div class="workflow-stat-num" style="color:var(--node-green)">92%</div><div class="workflow-stat-label">Time saved</div></div>
-          <div class="workflow-stat"><div class="workflow-stat-num" style="color:var(--accent)">2min</div><div class="workflow-stat-label">Response time</div></div>
-        </div>
-      </div>
-      <div class="workflow-flow">
-        <div class="flow-node flow-trigger"><div class="flow-node-icon" style="background:rgba(234,88,12,0.15)">📋</div><div><div class="flow-node-name">Jotform</div><span class="flow-node-sub">Trigger</span></div></div>
-        <span class="flow-arrow">→</span>
-        <div class="flow-node"><div class="flow-node-icon" style="background:rgba(59,130,246,0.15)">👤</div><div><div class="flow-node-name">HubSpot</div><span class="flow-node-sub">Create contact</span></div></div>
-        <span class="flow-arrow">→</span>
-        <div class="flow-node"><div class="flow-node-icon" style="background:rgba(168,85,247,0.15)">🤖</div><div><div class="flow-node-name">AI Scoring</div><span class="flow-node-sub">Route lead</span></div></div>
-        <span class="flow-arrow">→</span>
-        <div class="flow-node"><div class="flow-node-icon" style="background:rgba(234,179,8,0.15)">💰</div><div><div class="flow-node-name">Xero</div><span class="flow-node-sub">Draft invoice</span></div></div>
-        <span class="flow-arrow">→</span>
-        <div class="flow-node"><div class="flow-node-icon" style="background:rgba(34,197,94,0.15)">📧</div><div><div class="flow-node-name">Gmail</div><span class="flow-node-sub">Confirmation</span></div></div>
-      </div>
-      <div class="workflow-footer">
-        <div class="workflow-tags"><span class="workflow-tag">Jotform</span><span class="workflow-tag">HubSpot</span><span class="workflow-tag">Xero</span><span class="workflow-tag">AI Lead Scoring</span><span class="workflow-tag">n8n</span></div>
-        <div class="workflow-result">25 mins of admin per lead → under 2 minutes</div>
-      </div>
-    </div>
-
-    <div class="workflow-card reveal">
-      <div class="workflow-card-header">
-        <div>
-          <div class="workflow-industry"><div class="workflow-dot" style="background:var(--node-green)"></div><span style="color:var(--node-green)">Trade & Construction</span></div>
-          <div class="workflow-title">Quote request to job booking — instant response</div>
-          <p class="workflow-summary">A growing trades business was missing leads because quote requests weren't being followed up fast enough. Response times averaged 4–6 hours — by which time many customers had booked elsewhere.</p>
-        </div>
-        <div class="workflow-stats">
-          <div class="workflow-stat"><div class="workflow-stat-num" style="color:var(--node-green)">85%</div><div class="workflow-stat-label">Faster response</div></div>
-          <div class="workflow-stat"><div class="workflow-stat-num" style="color:var(--accent)">3→1</div><div class="workflow-stat-label">Systems synced</div></div>
-        </div>
-      </div>
-      <div class="workflow-flow">
-        <div class="flow-node flow-trigger"><div class="flow-node-icon" style="background:rgba(234,88,12,0.15)">🌐</div><div><div class="flow-node-name">Website Form</div><span class="flow-node-sub">Trigger</span></div></div>
-        <span class="flow-arrow">→</span>
-        <div class="flow-node"><div class="flow-node-icon" style="background:rgba(6,182,212,0.15)">📱</div><div><div class="flow-node-name">SMS Alert</div><span class="flow-node-sub">Instant notify</span></div></div>
-        <span class="flow-arrow">→</span>
-        <div class="flow-node"><div class="flow-node-icon" style="background:rgba(59,130,246,0.15)">🔄</div><div><div class="flow-node-name">CRM + FreeAgent</div><span class="flow-node-sub">Sync all systems</span></div></div>
-        <span class="flow-arrow">→</span>
-        <div class="flow-node"><div class="flow-node-icon" style="background:rgba(34,197,94,0.15)">📧</div><div><div class="flow-node-name">Auto-reply</div><span class="flow-node-sub">Customer notified</span></div></div>
-      </div>
-      <div class="workflow-footer">
-        <div class="workflow-tags"><span class="workflow-tag">Webhook</span><span class="workflow-tag">FreeAgent</span><span class="workflow-tag">CRM</span><span class="workflow-tag">SMS</span><span class="workflow-tag">n8n</span></div>
-        <div class="workflow-result">Response time cut from 4–6 hours to under 5 minutes</div>
-      </div>
-    </div>
-
-    <div class="workflow-card reveal">
-      <div class="workflow-card-header">
-        <div>
-          <div class="workflow-industry"><div class="workflow-dot" style="background:var(--node-purple)"></div><span style="color:var(--node-purple)">Financial Services</span></div>
-          <div class="workflow-title">End-to-end client onboarding — zero manual steps</div>
-          <p class="workflow-summary">An IFA practice was spending 3–4 hours onboarding each new client — collecting documents, creating records across multiple systems, and manually sending welcome packs and compliance documentation.</p>
-        </div>
-        <div class="workflow-stats">
-          <div class="workflow-stat"><div class="workflow-stat-num" style="color:var(--node-green)">4hrs</div><div class="workflow-stat-label">Saved per client</div></div>
-          <div class="workflow-stat"><div class="workflow-stat-num" style="color:var(--accent)">0</div><div class="workflow-stat-label">Manual steps</div></div>
-        </div>
-      </div>
-      <div class="workflow-flow">
-        <div class="flow-node flow-trigger"><div class="flow-node-icon" style="background:rgba(168,85,247,0.15)">📝</div><div><div class="flow-node-name">Jotform</div><span class="flow-node-sub">Client form</span></div></div>
-        <span class="flow-arrow">→</span>
-        <div class="flow-node"><div class="flow-node-icon" style="background:rgba(59,130,246,0.15)">🗂️</div><div><div class="flow-node-name">Google Drive</div><span class="flow-node-sub">Folder created</span></div></div>
-        <span class="flow-arrow">→</span>
-        <div class="flow-node"><div class="flow-node-icon" style="background:rgba(234,88,12,0.15)">👤</div><div><div class="flow-node-name">CRM + Compliance</div><span class="flow-node-sub">Records created</span></div></div>
-        <span class="flow-arrow">→</span>
-        <div class="flow-node"><div class="flow-node-icon" style="background:rgba(34,197,94,0.15)">📧</div><div><div class="flow-node-name">Welcome Pack</div><span class="flow-node-sub">Auto-sent</span></div></div>
-      </div>
-      <div class="workflow-footer">
-        <div class="workflow-tags"><span class="workflow-tag">Jotform</span><span class="workflow-tag">Google Drive</span><span class="workflow-tag">CRM</span><span class="workflow-tag">Compliance</span><span class="workflow-tag">n8n</span></div>
-        <div class="workflow-result">4 hours of manual onboarding eliminated entirely</div>
-      </div>
-    </div>
-
-    <div class="workflow-card reveal" style="border-color:rgba(234,88,12,0.3);">
-      <div class="workflow-card-header">
-        <div>
-          <div class="workflow-industry"><div class="workflow-dot" style="background:var(--accent)"></div><span style="color:var(--accent2)">Innov8 Workflows — Live</span></div>
-          <div class="workflow-title">Website enquiry → Airtable → Email confirmation</div>
-          <p class="workflow-summary">Our own live enquiry workflow — when someone submits the contact form on this website, a lead record is created in Airtable and a confirmation email is sent automatically, with zero manual involvement.</p>
-        </div>
-        <div class="workflow-stats">
-          <div class="workflow-stat"><div class="workflow-stat-num" style="color:var(--node-green)">Live</div><div class="workflow-stat-label">Right now</div></div>
-          <div class="workflow-stat"><div class="workflow-stat-num" style="color:var(--accent)">&lt;2s</div><div class="workflow-stat-label">Response time</div></div>
-        </div>
-      </div>
-      <div class="workflow-flow">
-        <div class="flow-node flow-trigger"><div class="flow-node-icon" style="background:rgba(234,88,12,0.15)">🌐</div><div><div class="flow-node-name">Website Form</div><span class="flow-node-sub">Webhook trigger</span></div></div>
-        <span class="flow-arrow">→</span>
-        <div class="flow-node"><div class="flow-node-icon" style="background:rgba(59,130,246,0.15)">✏️</div><div><div class="flow-node-name">Map Fields</div><span class="flow-node-sub">Enrich data</span></div></div>
-        <span class="flow-arrow">→</span>
-        <div class="flow-node"><div class="flow-node-icon" style="background:rgba(234,179,8,0.15)">📊</div><div><div class="flow-node-name">Airtable</div><span class="flow-node-sub">Create lead</span></div></div>
-        <span class="flow-arrow">→</span>
-        <div class="flow-node"><div class="flow-node-icon" style="background:rgba(34,197,94,0.15)">📧</div><div><div class="flow-node-name">Gmail</div><span class="flow-node-sub">Confirmation sent</span></div></div>
-      </div>
-      <div class="workflow-footer">
-        <div class="workflow-tags"><span class="workflow-tag">Webhook</span><span class="workflow-tag">n8n</span><span class="workflow-tag">Airtable</span><span class="workflow-tag">Gmail SMTP</span><span class="workflow-tag">Railway</span></div>
-        <div class="workflow-result">Powers this website's enquiry form right now</div>
-      </div>
-    </div>
-
-  </div>
 </div>
 
 <!-- WEBSITES -->

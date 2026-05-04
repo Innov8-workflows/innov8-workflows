@@ -12,6 +12,7 @@
   inset: 0;
   z-index: 0;
   background: url('hero-laptop.png') center/cover no-repeat;
+  filter: brightness(0.55) saturate(1.05);
 }
 .hero-laptop-fade {
   position: absolute;
@@ -19,8 +20,9 @@
   z-index: 1;
   pointer-events: none;
   background:
-    linear-gradient(to right, rgba(15,15,15,0.65) 0%, transparent 35%, transparent 65%, rgba(15,15,15,0.65) 100%),
-    linear-gradient(to bottom, rgba(15,15,15,0.45) 0%, rgba(15,15,15,0.15) 40%, rgba(15,15,15,0.85) 100%);
+    radial-gradient(ellipse 60% 70% at center, rgba(15,15,15,0.7) 0%, rgba(15,15,15,0.45) 40%, transparent 80%),
+    linear-gradient(to right, rgba(15,15,15,0.5) 0%, transparent 30%, transparent 70%, rgba(15,15,15,0.5) 100%),
+    linear-gradient(to bottom, rgba(15,15,15,0.4) 0%, rgba(15,15,15,0.1) 35%, rgba(15,15,15,0.85) 100%);
 }
 :root {
   --bg: #0f0f0f; --surface: #161616; --surface2: #1e1e1e; --border: #2a2a2a;
@@ -146,9 +148,9 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; a
 .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(234,88,12,0.1); border: 1px solid rgba(234,88,12,0.28); border-radius: 100px; padding: 6px 16px; font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent2); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 28px; animation: fadeUp 0.6s ease both; align-self: center; }
 .badge-dot { width: 6px; height: 6px; background: var(--accent2); border-radius: 50%; animation: pulse 2s infinite; }
 @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
-.hero h1 { font-size: clamp(3rem, 8vw, 6.5rem); font-weight: 800; line-height: 0.95; letter-spacing: -0.04em; margin-bottom: 24px; animation: fadeUp 0.6s 0.1s ease both; }
+.hero h1 { font-size: clamp(3rem, 8vw, 6.5rem); font-weight: 800; line-height: 0.95; letter-spacing: -0.04em; margin-bottom: 24px; animation: fadeUp 0.6s 0.1s ease both; text-shadow: 0 2px 24px rgba(0,0,0,0.85), 0 1px 3px rgba(0,0,0,0.5); }
 .hero h1 span { color: var(--accent); display: block; }
-.hero-sub { font-size: clamp(1rem, 2vw, 1.15rem); color: rgba(240,240,240,0.85); max-width: 600px; line-height: 1.65; font-weight: 400; margin-bottom: 44px; animation: fadeUp 0.6s 0.2s ease both; }
+.hero-sub { font-size: clamp(1rem, 2vw, 1.15rem); color: rgba(240,240,240,0.92); max-width: 600px; line-height: 1.65; font-weight: 400; margin-bottom: 44px; animation: fadeUp 0.6s 0.2s ease both; text-shadow: 0 1px 12px rgba(0,0,0,0.8); }
 .hero-actions { display: flex; gap: 14px; align-items: center; justify-content: center; animation: fadeUp 0.6s 0.3s ease both; }
 
 .btn-primary { background: var(--accent); color: #fff; padding: 14px 32px; border-radius: 8px; font-weight: 700; font-size: 0.95rem; text-decoration: none; border: none; cursor: pointer; transition: background 0.2s, transform 0.15s, box-shadow 0.2s; display: inline-block; font-family: var(--font-display); }
@@ -853,6 +855,7 @@ const obs = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) { setTimeout(()=>e.target.classList.add('visible'),60); obs.unobserve(e.target); } });
 }, { threshold: 0.12 });
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
 
 <!-- Logic AI Chatbot (Jotform) -->
 <script src='https://cdn.jotfor.ms/agent/embedjs/019d21ae740c7db289b331944a1348e32b39/embed.js'></script>

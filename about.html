@@ -60,7 +60,8 @@ section { position: relative; z-index: 1; }
 .founder-card::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle, #2a2a2a 1px, transparent 1px); background-size: 20px 20px; opacity: 0.4; }
 .founder-card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--accent), var(--accent2)); }
 .founder-inner { position: relative; z-index: 1; }
-.founder-avatar { width: 72px; height: 72px; border-radius: 16px; background: linear-gradient(135deg, var(--accent), var(--accent2)); display: flex; align-items: center; justify-content: center; font-size: 28px; margin-bottom: 20px; }
+.founder-avatar { width: 100%; max-width: 360px; aspect-ratio: 1 / 1; border-radius: 16px; overflow: hidden; margin-bottom: 24px; border: 2px solid rgba(234,88,12,0.3); box-shadow: 0 16px 48px rgba(0,0,0,0.4); }
+.founder-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .founder-name { font-size: 1.2rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 4px; }
 .founder-role { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent2); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 16px; }
 .founder-bio { font-size: 0.875rem; color: var(--muted2); line-height: 1.7; margin-bottom: 20px; }
@@ -224,7 +225,7 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 
   <div class="shader-hero-founder">
     <div class="founder-dot">👋</div>
-    <span>Founded by <strong style="color:var(--text)">James Barlow</strong> · UK-based</span>
+    <span>Founded by <strong style="color:var(--text)">Jamie Barlow</strong> · UK-based</span>
   </div>
 </div>
 
@@ -238,15 +239,16 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 <div style="position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:48px 48px 0;">
   <div class="founder-card reveal">
     <div class="founder-inner">
-      <div class="founder-avatar">👋</div>
-      <div class="founder-name">James Barlow</div>
+      <div class="founder-avatar"><img src="jamie-barlow.jpg" alt="Jamie Barlow, Founder of Innov8 Workflows"/></div>
+      <div class="founder-name">Jamie Barlow</div>
       <div class="founder-role">Founder, Innov8 Workflows</div>
-      <p class="founder-bio">I started Innov8 Workflows because I kept seeing the same problem — talented people buried in admin, manually copying data between systems, chasing invoices, and missing leads because no one had time to respond fast enough. The tools to fix all of that exist. Most businesses just don't know how to connect them. That's what we do.</p>
+      <p class="founder-bio">A decade in the tech industry and a business degree taught me one thing — most local businesses are leaving money on the table. Outdated websites that don't convert, missed phone calls, manual admin eating into the day. I started Innov8 Workflows to give local UK businesses the same tools and tech advantages the big players take for granted — built around what local businesses actually need to grow: more traffic, more leads, more bookings.</p>
       <div class="founder-tags">
-        <span class="founder-tag">Workflow Automation</span>
-        <span class="founder-tag">AI Systems</span>
-        <span class="founder-tag">Web Development</span>
-        <span class="founder-tag">Systems Integration</span>
+        <span class="founder-tag">10+ Years in Tech</span>
+        <span class="founder-tag">Business Degree</span>
+        <span class="founder-tag">Web Design</span>
+        <span class="founder-tag">Local Business Growth</span>
+        <span class="founder-tag">AI &amp; Automation</span>
         <span class="founder-tag">UK-based</span>
       </div>
     </div>

@@ -113,6 +113,15 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; a
 /* "Launching Soon" pill (sites not yet live) */
 .site-coming-soon { display: inline-flex; align-items: center; gap: 8px; align-self: flex-start; margin-top: 16px; padding: 10px 20px; background: rgba(234,88,12,0.08); color: var(--accent2); border: 1px solid rgba(234,88,12,0.3); border-radius: 100px; font-family: var(--font-mono); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
 .site-coming-soon-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); animation: pulse 2s infinite; }
+/* Case study filter pills (auto-populated from data-category) */
+.case-filters { display: flex; gap: 10px; flex-wrap: wrap; margin: 32px 0 40px; }
+.case-filter { background: var(--surface); border: 1px solid var(--border); color: var(--muted2); padding: 10px 20px; border-radius: 100px; font-family: var(--font-mono); font-size: 0.7rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px; }
+.case-filter:hover { border-color: rgba(234,88,12,0.45); color: var(--text); }
+.case-filter.active { background: var(--accent); border-color: var(--accent); color: #fff; box-shadow: 0 4px 14px rgba(234,88,12,0.35); }
+.case-filter-count { display: inline-flex; align-items: center; justify-content: center; min-width: 20px; height: 20px; padding: 0 6px; background: rgba(255,255,255,0.08); border-radius: 100px; font-size: 0.62rem; font-weight: 700; line-height: 1; }
+.case-filter.active .case-filter-count { background: rgba(255,255,255,0.25); }
+.site-card { transition: opacity 0.3s ease, transform 0.3s ease; }
+.site-card.is-hidden { display: none; }
 .site-preview-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 50%, var(--bg) 100%); }
 .site-preview-bar { position: absolute; top: 12px; left: 12px; right: 12px; background: rgba(15,15,15,0.9); backdrop-filter: blur(8px); border-radius: 6px; padding: 8px 12px; display: flex; align-items: center; gap: 8px; border: 1px solid var(--border); }
 .site-preview-dots { display: flex; gap: 5px; }
@@ -253,9 +262,12 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
     <h2 class="section-title reveal">Sites we've built<br/>and launched.</h2>
     <p class="section-desc reveal">Branded, professional websites built with organic SEO HTML and functionality that enables local businesses to convert online traffic into business.</p>
 
+    <!-- Filter pills (auto-generated from data-category attributes on .site-card) -->
+    <div class="case-filters reveal" id="caseFilters" role="group" aria-label="Filter case studies by industry"></div>
+
     <div class="websites-grid">
 
-      <div class="site-card reveal" style="grid-column: 1 / -1; border-color: rgba(234,88,12,0.35);">
+      <div class="site-card reveal" data-category="construction" style="grid-column: 1 / -1; border-color: rgba(234,88,12,0.35);">
         <div class="site-preview" style="aspect-ratio: 16/9; background:#000;">
           <img src="case-jgs.png" alt="JGS Construction Services Limited — Derbyshire driveway contractor website" style="width:100%;height:100%;object-fit:cover;display:block;"/>
           <div class="site-preview-overlay"></div>
@@ -288,7 +300,7 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
       </div>
 
       <!-- MarketBubbles -->
-      <div class="site-card reveal" style="grid-column: 1 / -1; border-color: rgba(234,88,12,0.35);">
+      <div class="site-card reveal" data-category="saas" style="grid-column: 1 / -1; border-color: rgba(234,88,12,0.35);">
         <div class="site-preview" style="aspect-ratio: 16/9; background:#000;">
           <img src="case-marketbubbles.png" alt="MarketBubbles — multi-asset investment visualisation platform" style="width:100%;height:100%;object-fit:cover;display:block;"/>
           <div class="site-preview-overlay"></div>
@@ -321,7 +333,7 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
       </div>
 
       <!-- HRS Plumbing & Heating -->
-      <div class="site-card reveal" style="grid-column: 1 / -1; border-color: rgba(234,88,12,0.35);">
+      <div class="site-card reveal" data-category="plumbing" style="grid-column: 1 / -1; border-color: rgba(234,88,12,0.35);">
         <div class="site-preview" style="aspect-ratio: 16/9; background:#000;">
           <img src="case-hrs.png" alt="HRS Plumbing &amp; Heating Ltd — Gas Safe registered plumbing & heating contractor website" style="width:100%;height:100%;object-fit:cover;display:block;"/>
           <div class="site-preview-overlay"></div>
@@ -354,7 +366,7 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
       </div>
 
       <!-- Mitech Joinery -->
-      <div class="site-card reveal" style="grid-column: 1 / -1; border-color: rgba(234,88,12,0.35);">
+      <div class="site-card reveal" data-category="joinery" style="grid-column: 1 / -1; border-color: rgba(234,88,12,0.35);">
         <div class="site-preview" style="aspect-ratio: 16/9; background:#000;">
           <img src="mitech_innov8.png" alt="Mitech Joinery — bespoke gate specialist website (Derby & Nationwide)" style="width:100%;height:100%;object-fit:cover;display:block;"/>
           <div class="site-preview-overlay"></div>
@@ -451,6 +463,67 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
     entries.forEach(e => { if (e.isIntersecting) { setTimeout(()=>e.target.classList.add('visible'),60); obs.unobserve(e.target); } });
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// ── CASE STUDY FILTERS (auto-generated from data-category) ───
+(function() {
+  // Display labels for known categories — extend this map when adding new ones.
+  // Any data-category not in the map will render as Capitalized fallback.
+  var labels = {
+    'all':           'All',
+    'construction':  'Construction',
+    'plumbing':      'Plumbing & Heating',
+    'joinery':       'Joinery & Gates',
+    'electrical':    'Electrical',
+    'roofing':       'Roofing',
+    'building':      'Building',
+    'driveways':     'Driveways',
+    'landscaping':   'Landscaping',
+    'saas':          'SaaS / Tech',
+    'fintech':       'FinTech',
+    'consultancy':   'Consultancy',
+    'hospitality':   'Hospitality',
+    'retail':        'Retail',
+  };
+
+  var container = document.getElementById('caseFilters');
+  if (!container) return;
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.site-card[data-category]'));
+  if (!cards.length) return;
+
+  // Count cards per category and preserve first-seen order
+  var counts = { all: cards.length };
+  var order = ['all'];
+  cards.forEach(function(c) {
+    var cat = c.dataset.category;
+    if (!counts[cat]) { counts[cat] = 0; order.push(cat); }
+    counts[cat]++;
+  });
+
+  function setFilter(cat, btn) {
+    Array.prototype.slice.call(container.querySelectorAll('.case-filter')).forEach(function(b) {
+      b.classList.remove('active');
+      b.setAttribute('aria-pressed', 'false');
+    });
+    btn.classList.add('active');
+    btn.setAttribute('aria-pressed', 'true');
+    cards.forEach(function(c) {
+      if (cat === 'all' || c.dataset.category === cat) c.classList.remove('is-hidden');
+      else c.classList.add('is-hidden');
+    });
+  }
+
+  order.forEach(function(cat) {
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'case-filter' + (cat === 'all' ? ' active' : '');
+    btn.dataset.filter = cat;
+    btn.setAttribute('aria-pressed', cat === 'all' ? 'true' : 'false');
+    var label = labels[cat] || (cat.charAt(0).toUpperCase() + cat.slice(1));
+    btn.innerHTML = label + ' <span class="case-filter-count">' + counts[cat] + '</span>';
+    btn.addEventListener('click', function() { setFilter(cat, btn); });
+    container.appendChild(btn);
+  });
+})();
 
 // ── FUTURISTIC 3D HERO (Three.js Depth Parallax + Scan) ──────
 (function() {

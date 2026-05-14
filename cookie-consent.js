@@ -20,6 +20,8 @@
   const CONSENT_KEY = 'innov8_cookie_consent';
   const CONSENT_EXPIRY_DAYS = 365;
   const JOTFORM_AGENT_ID = '019d21ae740c7db289b331944a1348e32b39';
+  const TRACKER_SRC = 'https://crm.innov8workflows.co.uk/track.js';
+  const TRACKER_PROJECT_ID = 'proj_f5d3ac1edd12';
 
   // ── Check existing consent ──
   function getConsent() {
@@ -57,6 +59,22 @@
     // Remove Jotform widget iframe if already rendered
     const widgets = document.querySelectorAll('iframe[src*="jotform"], [id*="jotform"], [class*="jotform"]');
     widgets.forEach(w => w.remove());
+  }
+
+  // ── Load CRM analytics tracker ──
+  function loadTracker() {
+    if (document.querySelector('script[src*="crm.innov8workflows.co.uk/track.js"]')) return;
+    const s = document.createElement('script');
+    s.src = TRACKER_SRC;
+    s.setAttribute('data-id', TRACKER_PROJECT_ID);
+    s.async = true;
+    document.body.appendChild(s);
+  }
+
+  // ── Remove tracker (on decline) ──
+  function removeTracker() {
+    const existing = document.querySelector('script[src*="crm.innov8workflows.co.uk/track.js"]');
+    if (existing) existing.remove();
   }
 
   // ── Build and inject the banner ──
@@ -185,7 +203,7 @@
         <div class="i8-cb-title">We use cookies</div>
       </div>
       <p class="i8-cb-body">
-        We use essential cookies to keep the site working, and third-party cookies (including our AI chatbot) to improve your experience. Read our <a href="privacy-policy.html">Privacy Policy</a> for full details.
+        We use essential cookies to keep the site working, plus our AI chatbot and first-party analytics (page views, contact-link clicks) to understand how the site is used. Read our <a href="privacy-policy.html">Privacy Policy</a> for full details.
       </p>
       <div class="i8-cb-actions">
         <button class="i8-cb-accept" id="i8-accept-btn">Accept cookies</button>
@@ -200,12 +218,14 @@
     document.getElementById('i8-accept-btn').addEventListener('click', function () {
       setConsent('accepted');
       loadChatbot();
+      loadTracker();
       dismissBanner();
     });
 
     document.getElementById('i8-decline-btn').addEventListener('click', function () {
       setConsent('declined');
       removeChatbot();
+      removeTracker();
       dismissBanner();
     });
   }
@@ -225,10 +245,12 @@
     const consent = getConsent();
     if (consent === 'accepted') {
       loadChatbot();
+      loadTracker();
     } else if (consent === 'declined') {
       removeChatbot();
+      removeTracker();
     } else {
-      // No consent yet — show banner, don't load chatbot
+      // No consent yet — show banner, don't load chatbot or tracker
       showBanner();
     }
   }

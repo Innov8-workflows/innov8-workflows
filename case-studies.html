@@ -309,8 +309,8 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
         </div>
       </div>
 
-      <!-- MarketBubbles -->
-      <div class="site-card reveal" data-category="saas" style="grid-column: 1 / -1; border-color: rgba(234,88,12,0.35);">
+      <!-- MarketBubbles (hidden from 'All' — only shown when 'SaaS / Tech' filter is active) -->
+      <div class="site-card reveal" data-category="saas" data-show-in-all="false" style="grid-column: 1 / -1; border-color: rgba(234,88,12,0.35);">
         <div class="site-preview" style="aspect-ratio: 16/9; background:#000;">
           <img src="case-marketbubbles.png" alt="MarketBubbles — multi-asset investment visualisation platform" style="width:100%;height:100%;object-fit:cover;display:block;"/>
           <div class="site-preview-overlay"></div>
@@ -608,8 +608,12 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
   var cards = Array.prototype.slice.call(document.querySelectorAll('.site-card[data-category]'));
   if (!cards.length) return;
 
-  // Count cards per category and preserve first-seen order
-  var counts = { all: cards.length };
+  // Count cards per category and preserve first-seen order.
+  // 'All' count excludes cards with data-show-in-all="false" (e.g. MarketBubbles
+  // — SaaS, not a local-business case study). Those cards still appear under
+  // their own category filter.
+  var visibleInAll = cards.filter(function(c) { return c.dataset.showInAll !== 'false'; });
+  var counts = { all: visibleInAll.length };
   var order = ['all'];
   cards.forEach(function(c) {
     var cat = c.dataset.category;
@@ -625,8 +629,15 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
     btn.classList.add('active');
     btn.setAttribute('aria-pressed', 'true');
     cards.forEach(function(c) {
-      if (cat === 'all' || c.dataset.category === cat) c.classList.remove('is-hidden');
-      else c.classList.add('is-hidden');
+      if (cat === 'all') {
+        // 'All' shows everything EXCEPT cards flagged data-show-in-all="false"
+        if (c.dataset.showInAll === 'false') c.classList.add('is-hidden');
+        else c.classList.remove('is-hidden');
+      } else if (c.dataset.category === cat) {
+        c.classList.remove('is-hidden');
+      } else {
+        c.classList.add('is-hidden');
+      }
     });
   }
 
@@ -640,6 +651,11 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
     btn.innerHTML = label + ' <span class="case-filter-count">' + counts[cat] + '</span>';
     btn.addEventListener('click', function() { setFilter(cat, btn); });
     container.appendChild(btn);
+  });
+  // Apply the initial 'All' filter so any data-show-in-all="false" cards
+  // (e.g. MarketBubbles) are hidden by default on page load.
+  cards.forEach(function(c) {
+    if (c.dataset.showInAll === 'false') c.classList.add('is-hidden');
   });
 })();
 

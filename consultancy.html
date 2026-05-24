@@ -24,8 +24,10 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; a
 .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
 .nav-links a { color: var(--muted2); text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: color 0.2s; }
 .nav-links a:hover, .nav-links a.active { color: var(--text); }
-.nav-cta { background: var(--accent) !important; color: #fff !important; padding: 8px 20px; border-radius: 6px; font-weight: 600 !important; font-size: 0.78rem !important; letter-spacing: 0.04em !important; text-transform: uppercase; }
-.nav-cta:hover { background: var(--accent2) !important; }
+.nav-actions { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.nav-cta { display: inline-flex; align-items: center; gap: 6px; background: var(--accent); color: #fff; padding: 9px 18px; border-radius: 8px; font-weight: 700; font-size: 0.78rem; letter-spacing: 0.04em; text-transform: uppercase; transition: background 0.2s, transform 0.15s; text-decoration: none; white-space: nowrap; }
+.nav-cta:hover { background: var(--accent2); transform: translateY(-1px); }
+.nav-cta svg { width: 13px; height: 13px; flex-shrink: 0; }
 
 @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
 @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
@@ -177,6 +179,12 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
   nav { padding: 16px 24px; }
   .nav-links { display: none; }
   .nav-hamburger { display: block; }
+
+  .nav-cta { padding: 7px 12px; font-size: 0.7rem; }
+
+  .nav-cta-text { display: none; }
+
+  .nav-cta svg { width: 15px; height: 15px; }
   .breadcrumb, .page-hero, .consult-hero, .expect-section, .pricing-section, .contact-section { padding-left: 24px; padding-right: 24px; }
   .consult-hero-card { grid-template-columns: 1fr; gap: 32px; padding: 36px 28px; }
   .expect-grid, .trust-grid, .pricing-grid { grid-template-columns: 1fr; }
@@ -243,11 +251,15 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
     <li><a href="how-it-works.html">How It Works</a></li>
     <li><a href="case-studies.html">Case Studies</a></li>
     <li><a href="consultancy.html" class="active">Consultancy</a></li>
-    <li><a href="tel:+447718155997" class="nav-cta" style="display:inline-flex;align-items:center;gap:6px"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.35-.11-.74-.03-1.02.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.21c.28-.27.36-.66.25-1.01-.37-1.12-.57-2.32-.57-3.57 0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.49c0-.55-.45-1-1-1z"/></svg>07718 155997</a></li>
-  </ul>
-  <button class="nav-hamburger" onclick="document.getElementById('mobileMenu').classList.toggle('open')" aria-label="Menu">
-    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-  </button>
+  </ul><div class="nav-actions">
+  <a href="tel:+447718155997" class="nav-cta" aria-label="Call 07718 155997">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.35-.11-.74-.03-1.02.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.21c.28-.27.36-.66.25-1.01-.37-1.12-.57-2.32-.57-3.57 0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.49c0-.55-.45-1-1-1z"/></svg>
+    <span class="nav-cta-text">07718 155997</span>
+  </a>
+  <button class="nav-hamburger" onclick="document.getElementById('mobileMenu').classList.toggle('open')" aria-label="Menu">
+    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+  </button>
+</div>
 </nav>
 <div id="mobileMenu" class="mobile-menu" onclick="this.classList.remove('open')">
   <a href="about.html">About</a>

@@ -20,14 +20,16 @@ body { background: var(--bg); color: var(--text); font-family: var(--font-displa
 #canvas-bg { position: fixed; inset: 0; z-index: 0; opacity: 0.35; pointer-events: none; }
 
 /* ── NAV ── */
-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 18px 48px; background: rgba(15,15,15,0.88); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); }
-.nav-logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.2rem; letter-spacing: -0.02em; color: var(--text); text-decoration: none; }
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 14px 48px; background: rgba(15,15,15,0.88); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); gap: 16px; }
+.nav-logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.2rem; letter-spacing: -0.02em; color: var(--text); text-decoration: none; flex-shrink: 0; }
 .logo-box { width: 32px; height: 32px; background: var(--accent); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 13px; color: #fff; font-weight: 500; }
 .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
 .nav-links a { color: var(--muted2); text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: color 0.2s; }
 .nav-links a:hover, .nav-links a.active { color: var(--text); }
-.nav-cta { background: var(--accent) !important; color: #fff !important; padding: 8px 20px; border-radius: 6px; font-weight: 600 !important; font-size: 0.78rem !important; letter-spacing: 0.04em !important; text-transform: uppercase; transition: background 0.2s !important; }
-.nav-cta:hover { background: var(--accent2) !important; }
+.nav-actions { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.nav-cta { display: inline-flex; align-items: center; gap: 6px; background: var(--accent); color: #fff; padding: 9px 18px; border-radius: 8px; font-weight: 700; font-size: 0.78rem; letter-spacing: 0.04em; text-transform: uppercase; transition: background 0.2s, transform 0.15s; text-decoration: none; white-space: nowrap; }
+.nav-cta:hover { background: var(--accent2); transform: translateY(-1px); }
+.nav-cta svg { width: 13px; height: 13px; flex-shrink: 0; }
 
 /* ── HERO ── */
 .hero {
@@ -332,15 +334,6 @@ footer { border-top: 1px solid var(--border); padding: 48px 48px 32px; position:
 .footer-bottom a { color: var(--muted); text-decoration: none; }
 .footer-bottom a:hover { color: var(--text); }
 
-/* ── FLOATING CONTACT WIDGETS (§6a) ── */
-.floating-contact { position: fixed; right: 20px; z-index: 9999; width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 20px rgba(0,0,0,0.3); transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; text-decoration: none; }
-.floating-contact:hover { transform: scale(1.08); }
-.floating-contact-wa { bottom: 280px; background: #25D366; box-shadow: 0 6px 20px rgba(37,211,102,0.4); }
-.floating-contact-wa:hover { box-shadow: 0 8px 28px rgba(37,211,102,0.6); }
-.floating-contact-call { bottom: 210px; background: var(--accent); box-shadow: 0 6px 20px rgba(234,88,12,0.4); }
-.floating-contact-call:hover { box-shadow: 0 8px 28px rgba(234,88,12,0.6); }
-.floating-contact svg { width: 28px; height: 28px; fill: #fff; }
-
 /* ── MOBILE NAV ── */
 .nav-hamburger { display: none; background: none; border: none; color: var(--text); cursor: pointer; padding: 8px; z-index: 101; }
 .nav-hamburger svg { width: 24px; height: 24px; }
@@ -353,17 +346,28 @@ footer { border-top: 1px solid var(--border); padding: 48px 48px 32px; position:
 
 /* ── MOBILE (≤768px) ── */
 @media (max-width: 768px) {
-  nav { padding: 14px 18px; }
-  .nav-logo { font-size: 1.05rem; gap: 8px; }
-  .nav-logo .logo-box { width: 28px; height: 28px; font-size: 12px; }
+  nav { padding: 10px 14px; gap: 8px; }
+  .nav-logo { font-size: 0.98rem; gap: 8px; }
+  .nav-logo .logo-box { width: 26px; height: 26px; font-size: 11px; }
   .nav-links { display: none; }
   .nav-hamburger { display: block; }
+  .nav-cta { padding: 7px 12px; font-size: 0.7rem; }
+  .nav-cta-text { display: none; }
+  .nav-cta svg { width: 15px; height: 15px; }
 
-  .hero { padding: 100px 20px 64px; min-height: auto; background: radial-gradient(ellipse at 50% 35%, rgba(234,88,12,0.10) 0%, transparent 55%), linear-gradient(180deg, #0f0f0f 0%, #161616 100%); }
-  .hero h1 { font-size: clamp(1.85rem, 8.5vw, 2.8rem); line-height: 1.05; margin-bottom: 18px; letter-spacing: -0.03em; }
-  .hero-sub { font-size: 0.92rem; margin-bottom: 26px; max-width: 100%; line-height: 1.55; }
-  /* Strip the busy slider, workflow preview, and slide UI on mobile — clean focused hero */
-  .hero-slider, .hero-laptop-fade, .hero-overlay, .hero-dots, .hero-progress, .workflow-preview { display: none; }
+  .hero { padding: 86px 0 0; min-height: 78vh; align-items: stretch; justify-content: flex-end; text-align: center; }
+  .hero h1 { font-size: clamp(1.85rem, 8.5vw, 2.6rem); line-height: 1.05; margin-bottom: 14px; letter-spacing: -0.03em; }
+  .hero-sub { font-size: 0.9rem; margin-bottom: 0; max-width: 100%; line-height: 1.5; }
+  /* Hero is visual-only on mobile: hide CTAs and workflow nodes, keep the slider running */
+  .hero-actions, .workflow-preview { display: none; }
+  .hero-content { padding: 0 22px 70px; }
+  /* Stronger uniform overlay so headline stays readable against any slide */
+  .hero-laptop-fade {
+    background:
+      linear-gradient(rgba(15,15,15,0.45), rgba(15,15,15,0.45)),
+      linear-gradient(to bottom, rgba(15,15,15,0.2) 0%, transparent 35%, rgba(15,15,15,0.92) 100%);
+  }
+  .hero-slide { filter: brightness(0.5) saturate(0.95); }
   .hero-actions { flex-direction: column; width: 100%; gap: 10px; }
   .hero-actions .btn-primary, .hero-actions .btn-ghost { width: 100%; text-align: center; padding: 13px 20px; }
   .hero-badge { font-size: 0.58rem; padding: 5px 12px; margin-bottom: 18px; line-height: 1.4; text-align: center; }
@@ -436,10 +440,6 @@ footer { border-top: 1px solid var(--border); padding: 48px 48px 32px; position:
   .footer-col ul { gap: 8px; }
   .footer-bottom { flex-direction: column; gap: 8px; text-align: center; margin-top: 18px; font-size: 0.65rem; }
 
-  .floating-contact { width: 50px; height: 50px; right: 14px; }
-  .floating-contact svg { width: 24px; height: 24px; }
-  .floating-contact-wa { bottom: 240px; }
-  .floating-contact-call { bottom: 180px; }
 }
 
 /* ── EXTRA-SMALL PHONES (≤380px) ── */
@@ -467,11 +467,16 @@ footer { border-top: 1px solid var(--border); padding: 48px 48px 32px; position:
     <li><a href="how-it-works.html">How It Works</a></li>
     <li><a href="case-studies.html">Case Studies</a></li>
     <li><a href="consultancy.html">Consultancy</a></li>
-    <li><a href="tel:+447718155997" class="nav-cta" style="display:inline-flex;align-items:center;gap:6px"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.35-.11-.74-.03-1.02.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.21c.28-.27.36-.66.25-1.01-.37-1.12-.57-2.32-.57-3.57 0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.49c0-.55-.45-1-1-1z"/></svg>07718 155997</a></li>
   </ul>
-  <button class="nav-hamburger" onclick="document.getElementById('mobileMenu').classList.toggle('open')" aria-label="Menu">
-    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-  </button>
+  <div class="nav-actions">
+    <a href="tel:+447718155997" class="nav-cta" aria-label="Call 07718 155997">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.35-.11-.74-.03-1.02.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.21c.28-.27.36-.66.25-1.01-.37-1.12-.57-2.32-.57-3.57 0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.49c0-.55-.45-1-1-1z"/></svg>
+      <span class="nav-cta-text">07718 155997</span>
+    </a>
+    <button class="nav-hamburger" onclick="document.getElementById('mobileMenu').classList.toggle('open')" aria-label="Menu">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
 </nav>
 <div id="mobileMenu" class="mobile-menu" onclick="this.classList.remove('open')">
   <a href="about.html">About</a>
@@ -949,14 +954,6 @@ footer { border-top: 1px solid var(--border); padding: 48px 48px 32px; position:
     <div><a href="privacy-policy.html">Privacy Policy</a></div>
   </div>
 </footer>
-
-<!-- ═══════════════ FLOATING CONTACT WIDGETS (§6a) ═══════════════ -->
-<a href="https://wa.me/447718155997" target="_blank" rel="noopener" class="floating-contact floating-contact-wa" aria-label="WhatsApp Innov8 Workflows">
-  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.464 3.488"/></svg>
-</a>
-<a href="tel:+447718155997" class="floating-contact floating-contact-call" aria-label="Call Innov8 Workflows">
-  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.35-.11-.74-.03-1.02.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.21c.28-.27.36-.66.25-1.01-.37-1.12-.57-2.32-.57-3.57 0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.49c0-.55-.45-1-1-1z"/></svg>
-</a>
 
 <script>
 // ── HERO SLIDER ──────────────────────────────────────────────

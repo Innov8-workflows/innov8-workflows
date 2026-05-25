@@ -133,7 +133,8 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; a
 }
 .hero-content a, .hero-content button { pointer-events: auto; }
 
-.hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(234,88,12,0.1); border: 1px solid rgba(234,88,12,0.28); border-radius: 100px; padding: 6px 16px; font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent2); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 28px; animation: fadeUp 0.6s ease both; align-self: center; }
+.hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(234,88,12,0.1); border: 1px solid rgba(234,88,12,0.28); border-radius: 100px; padding: 6px 16px; font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent2); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 28px; animation: fadeUp 0.6s ease both; align-self: center; position: relative; z-index: 3; }
+.hero-badge-top { align-self: flex-start; }
 .badge-dot { width: 6px; height: 6px; background: var(--accent2); border-radius: 50%; animation: pulse 2s infinite; }
 @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
 .hero h1 { font-size: clamp(3rem, 8vw, 6.5rem); font-weight: 800; line-height: 0.95; letter-spacing: -0.04em; margin-bottom: 24px; animation: fadeUp 0.6s 0.1s ease both; text-shadow: 0 2px 24px rgba(0,0,0,0.85), 0 1px 3px rgba(0,0,0,0.5); }
@@ -151,7 +152,6 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; a
 @media (min-width: 769px) {
   .hero { align-items: flex-start; padding-left: clamp(48px, 8vw, 120px); padding-right: clamp(48px, 8vw, 120px); }
   .hero-content-main { align-items: flex-start; text-align: left; max-width: 600px; margin-left: 0; margin-right: auto; }
-  .hero-content-main .hero-badge { align-self: flex-start; }
   .hero-content-main .hero-actions { justify-content: flex-start; }
   .hero > .workflow-preview { align-self: center; }
 }
@@ -363,6 +363,8 @@ footer { border-top: 1px solid var(--border); padding: 48px 48px 32px; position:
   /* Hero is visual-only on mobile: hide CTAs and workflow nodes, keep the slider running */
   .hero-actions, .workflow-preview { display: none; }
   .hero-content { padding: 0 22px 70px; }
+  /* Lift the badge to the top of the hero, just under the nav */
+  .hero-badge-top { position: absolute; top: 82px; left: 50%; transform: translateX(-50%); margin: 0; white-space: nowrap; font-size: 0.56rem; padding: 5px 13px; max-width: calc(100vw - 28px); }
   /* Light scrim only at the top, heavier dark band at the bottom for headline legibility */
   .hero-laptop-fade {
     background:
@@ -504,11 +506,12 @@ footer { border-top: 1px solid var(--border); padding: 48px 48px 32px; position:
     <button class="hero-dot" type="button" aria-label="Slide 3" onclick="goToSlide(2)"></button>
   </div>
 
+  <div class="hero-badge hero-badge-top">
+    <div class="badge-dot"></div>
+    Web Design · Local SEO · Lead Generation · Conversion
+  </div>
+
   <div class="hero-content hero-content-main">
-    <div class="hero-badge">
-      <div class="badge-dot"></div>
-      Web Design · Local SEO · Lead Generation · Conversion
-    </div>
     <h1>
       Websites that turn<br/>
       visitors into <span>paying customers.</span>

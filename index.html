@@ -258,19 +258,21 @@ section { position: relative; z-index: 1; }
 .reviews-track::-webkit-scrollbar-thumb { background: var(--border); border-radius: 100px; }
 .reviews-track.single { justify-content: center; }
 .review-card { background: var(--bg); border: 1px solid var(--border); border-radius: 16px; padding: 36px 38px; min-width: min(640px, 90vw); max-width: 640px; flex-shrink: 0; scroll-snap-align: center; display: flex; flex-direction: column; gap: 20px; position: relative; text-decoration: none; color: inherit; transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s; }
-.review-card:hover { border-color: rgba(24,119,242,0.45); transform: translateY(-2px); box-shadow: 0 16px 40px rgba(0,0,0,0.35); }
-.review-fb-mark { position: absolute; top: 22px; right: 24px; width: 28px; height: 28px; border-radius: 50%; background: #1877F2; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-.review-fb-mark svg { width: 16px; height: 16px; fill: #fff; }
-.review-stars { display: flex; gap: 4px; color: #fbbf24; font-size: 1.1rem; }
+.review-card:hover { border-color: rgba(66,133,244,0.45); transform: translateY(-2px); box-shadow: 0 16px 40px rgba(0,0,0,0.35); }
+.review-g-mark { position: absolute; top: 20px; right: 22px; width: 32px; height: 32px; border-radius: 50%; background: #fff; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 2px 10px rgba(0,0,0,0.25); }
+.review-g-mark svg { width: 18px; height: 18px; }
+.review-stars { display: flex; gap: 3px; color: #FBBC04; font-size: 1.05rem; }
 .review-stars span { display: inline-block; }
-.review-quote { font-size: 1.05rem; line-height: 1.6; color: var(--text); font-weight: 400; }
+.review-quote { font-size: 1rem; line-height: 1.6; color: var(--text); font-weight: 400; }
 .review-meta { display: flex; align-items: center; gap: 12px; padding-top: 16px; border-top: 1px solid var(--border); }
-.review-avatar { width: 40px; height: 40px; border-radius: 50%; background: #1877F2; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.95rem; flex-shrink: 0; }
+.review-avatar { width: 40px; height: 40px; border-radius: 50%; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.98rem; flex-shrink: 0; font-family: var(--font-display); }
+.review-avatar-blue { background: #4285F4; }
+.review-avatar-green { background: #34A853; }
 .review-author { font-size: 0.9rem; font-weight: 700; }
 .review-source { font-family: var(--font-mono); font-size: 0.68rem; color: var(--muted); letter-spacing: 0.04em; margin-top: 2px; display: inline-flex; align-items: center; gap: 6px; }
-.review-source svg { width: 11px; height: 11px; fill: #1877F2; flex-shrink: 0; }
-.review-cta { margin-left: auto; font-size: 0.78rem; font-weight: 600; color: #1877F2; display: inline-flex; align-items: center; gap: 6px; flex-shrink: 0; }
-.review-card:hover .review-cta { color: #4a92f5; }
+.review-source svg { width: 12px; height: 12px; flex-shrink: 0; }
+.review-cta { margin-left: auto; font-size: 0.78rem; font-weight: 600; color: #4285F4; display: inline-flex; align-items: center; gap: 6px; flex-shrink: 0; }
+.review-card:hover .review-cta { color: #5b96f5; }
 @media (max-width: 600px) {
   .review-cta { margin-left: 0; width: 100%; padding-top: 12px; border-top: 1px solid var(--border); justify-content: center; }
   .review-meta { flex-wrap: wrap; }
@@ -361,13 +363,12 @@ footer { border-top: 1px solid var(--border); padding: 48px 48px 32px; position:
   /* Hero is visual-only on mobile: hide CTAs and workflow nodes, keep the slider running */
   .hero-actions, .workflow-preview { display: none; }
   .hero-content { padding: 0 22px 70px; }
-  /* Stronger uniform overlay so headline stays readable against any slide */
+  /* Light scrim only at the top, heavier dark band at the bottom for headline legibility */
   .hero-laptop-fade {
     background:
-      linear-gradient(rgba(15,15,15,0.45), rgba(15,15,15,0.45)),
-      linear-gradient(to bottom, rgba(15,15,15,0.2) 0%, transparent 35%, rgba(15,15,15,0.92) 100%);
+      linear-gradient(to bottom, rgba(15,15,15,0.15) 0%, transparent 30%, rgba(15,15,15,0.55) 60%, rgba(15,15,15,0.95) 100%);
   }
-  .hero-slide { filter: brightness(0.5) saturate(0.95); }
+  .hero-slide { filter: brightness(0.95) saturate(1.05); }
   .hero-actions { flex-direction: column; width: 100%; gap: 10px; }
   .hero-actions .btn-primary, .hero-actions .btn-ghost { width: 100%; text-align: center; padding: 13px 20px; }
   .hero-badge { font-size: 0.58rem; padding: 5px 12px; margin-bottom: 18px; line-height: 1.4; text-align: center; }
@@ -803,27 +804,56 @@ footer { border-top: 1px solid var(--border); padding: 48px 48px 32px; position:
     <h2 class="section-title reveal">Real words from<br/>real businesses.</h2>
     <p class="section-desc reveal">Straight from our clients — no edits, no marketing spin.</p>
 
-    <div class="reviews-track single reveal" id="reviewsTrack">
-      <a class="review-card" href="https://www.facebook.com/profile.php?id=61589162941652&amp;sk=reviews" target="_blank" rel="noopener" aria-label="View A2B Roofing's recommendation on Facebook">
-        <div class="review-fb-mark" aria-hidden="true">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 21.5v-8h2.7l.4-3.13h-3.1V8.37c0-.9.25-1.52 1.55-1.52h1.66V4.06a22.1 22.1 0 0 0-2.42-.12c-2.4 0-4.04 1.46-4.04 4.15v2.31H7.55v3.13h2.7v8h3.25z"/></svg>
+    <div class="reviews-track reveal" id="reviewsTrack">
+      <a class="review-card" href="https://www.google.com/search?q=Innov8+Workflows&amp;stick=H4sIAAAAAAAA_-NgU1I1qDCxMLe0NE5MMUtMMTExSzO1MqgwT0pNSkk0MjK3NDYxN01NWsQq4JmXl19moRCeX5SdlpNfXgwA1ZlEAzwAAAA&amp;hl=en-GB#lrd=0x487993ad6ad446f5:0x7bebda22793475eb,1" target="_blank" rel="noopener" aria-label="View Alfie Williams-Fairley's review on Google">
+        <div class="review-g-mark" aria-hidden="true" title="Google review">
+          <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/>
+            <path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/>
+            <path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/>
+            <path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/>
+          </svg>
         </div>
         <div class="review-stars" aria-label="5 out of 5 stars">
           <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
         </div>
-        <p class="review-quote">Jamie was really helpful and efficient helping build my website and getting me onto Google. Stress free which is really helpful for new and smaller businesses. Would definitely recommend to other businesses/people — even if they're just looking for advice on starting up.</p>
+        <p class="review-quote">Absolutely outstanding service from start to finish. Jamie is professional, friendly, and always willing to help. I previously had my website hosted with another provider, and Jamie handled the domain transfer seamlessly, liaising directly with the previous provider to ensure a smooth handover with no issues throughout the process. I wouldn't hesitate to recommend Jamie and his services to anyone considering them. A great experience all round.</p>
         <div class="review-meta">
-          <div class="review-avatar" aria-hidden="true">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:20px;height:20px;fill:#fff"><path d="M13.5 21.5v-8h2.7l.4-3.13h-3.1V8.37c0-.9.25-1.52 1.55-1.52h1.66V4.06a22.1 22.1 0 0 0-2.42-.12c-2.4 0-4.04 1.46-4.04 4.15v2.31H7.55v3.13h2.7v8h3.25z"/></svg>
-          </div>
+          <div class="review-avatar review-avatar-blue" aria-hidden="true">A</div>
           <div>
-            <div class="review-author">A2B Roofing &amp; Scaffolding</div>
+            <div class="review-author">Alfie Williams-Fairley</div>
             <div class="review-source">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 21.5v-8h2.7l.4-3.13h-3.1V8.37c0-.9.25-1.52 1.55-1.52h1.66V4.06a22.1 22.1 0 0 0-2.42-.12c-2.4 0-4.04 1.46-4.04 4.15v2.31H7.55v3.13h2.7v8h3.25z"/></svg>
-              Facebook recommendation · 10 May
+              <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/><path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/><path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/><path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/></svg>
+              Google review · 1 day ago
             </div>
           </div>
-          <div class="review-cta">View on Facebook →</div>
+          <div class="review-cta">View on Google →</div>
+        </div>
+      </a>
+
+      <a class="review-card" href="https://www.google.com/search?q=Innov8+Workflows&amp;stick=H4sIAAAAAAAA_-NgU1I1qDCxMLe0NE5MMUtMMTExSzO1MqgwT0pNSkk0MjK3NDYxN01NWsQq4JmXl19moRCeX5SdlpNfXgwA1ZlEAzwAAAA&amp;hl=en-GB#lrd=0x487993ad6ad446f5:0x7bebda22793475eb,1" target="_blank" rel="noopener" aria-label="View Andrew Laxton's review on Google">
+        <div class="review-g-mark" aria-hidden="true" title="Google review">
+          <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/>
+            <path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/>
+            <path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/>
+            <path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/>
+          </svg>
+        </div>
+        <div class="review-stars" aria-label="5 out of 5 stars">
+          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+        </div>
+        <p class="review-quote">Recently set me up with a website and review link for my roofing business — very professional and easy to communicate with! Highly recommended.</p>
+        <div class="review-meta">
+          <div class="review-avatar review-avatar-green" aria-hidden="true">A</div>
+          <div>
+            <div class="review-author">Andrew Laxton</div>
+            <div class="review-source">
+              <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/><path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/><path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/><path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/></svg>
+              Google review · 3 days ago
+            </div>
+          </div>
+          <div class="review-cta">View on Google →</div>
         </div>
       </a>
     </div>
@@ -1041,12 +1071,64 @@ const obs = new IntersectionObserver(entries => {
 }, { threshold: 0.12 });
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-// ── REVIEWS: drop the .single centring class if more than one card is added later ──
+// ── REVIEWS AUTO-ROLL ──
 (function() {
   const track = document.getElementById('reviewsTrack');
-  if (track && track.querySelectorAll('.review-card').length > 1) {
-    track.classList.remove('single');
+  if (!track) return;
+  const cards = track.querySelectorAll('.review-card');
+  if (cards.length < 2) { track.classList.add('single'); return; }
+
+  const REVIEW_INTERVAL = 7000;
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let currentIdx = 0;
+  let timer = null;
+  let paused = false;
+  let userScrolling = false;
+  let userScrollTimeout = null;
+
+  function snapTo(idx) {
+    const card = cards[idx];
+    if (!card) return;
+    const target = card.offsetLeft - (track.clientWidth - card.clientWidth) / 2;
+    track.scrollTo({ left: target, behavior: reducedMotion ? 'auto' : 'smooth' });
   }
+
+  function tick() {
+    if (paused || userScrolling) return;
+    currentIdx = (currentIdx + 1) % cards.length;
+    snapTo(currentIdx);
+  }
+
+  function restart() {
+    clearInterval(timer);
+    if (!paused && !userScrolling) timer = setInterval(tick, REVIEW_INTERVAL);
+  }
+
+  track.addEventListener('mouseenter', () => { paused = true; clearInterval(timer); });
+  track.addEventListener('mouseleave', () => { paused = false; restart(); });
+
+  // Pause auto-roll briefly when the user manually swipes/scrolls
+  track.addEventListener('scroll', () => {
+    if (paused) return;
+    userScrolling = true;
+    clearInterval(timer);
+    clearTimeout(userScrollTimeout);
+    userScrollTimeout = setTimeout(() => {
+      userScrolling = false;
+      // Sync currentIdx to whichever card is most visible
+      let bestIdx = 0, bestDelta = Infinity;
+      const trackCenter = track.scrollLeft + track.clientWidth / 2;
+      cards.forEach((c, i) => {
+        const cCenter = c.offsetLeft + c.clientWidth / 2;
+        const d = Math.abs(cCenter - trackCenter);
+        if (d < bestDelta) { bestDelta = d; bestIdx = i; }
+      });
+      currentIdx = bestIdx;
+      restart();
+    }, 2500);
+  }, { passive: true });
+
+  restart();
 })();
 
 // ── WHATSAPP-REDIRECT FORM ───────────────────────────────────

@@ -228,11 +228,14 @@ section { position: relative; z-index: 1; }
 
 /* ── HOW IT WORKS (6 steps) ── */
 .hiw-section { border-top: 1px solid var(--border); }
-.hiw-cards { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; margin-top: 48px; }
-.hiw-card { background: #fff; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.28); transition: transform 0.2s, box-shadow 0.2s; }
+.hiw-shell { margin-top: 48px; }
+.hiw-track { display: flex; align-items: center; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -ms-overflow-style: none; padding: 4px 2px 10px; }
+.hiw-track::-webkit-scrollbar { display: none; }
+.hiw-card { flex: 0 0 210px; scroll-snap-align: start; background: #fff; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.28); transition: transform 0.2s, box-shadow 0.2s; align-self: stretch; }
 .hiw-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.42); }
 .hiw-card img { display: block; width: 100%; height: auto; }
-@media (max-width: 1000px) { .hiw-cards { grid-template-columns: repeat(3, 1fr); } }
+.hiw-arrow { flex: 0 0 auto; width: 42px; display: flex; align-items: center; justify-content: center; color: var(--accent); }
+.hiw-arrow svg { width: 24px; height: 24px; }
 
 /* ── BEFORE & AFTER GALLERY ── */
 .work-section { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
@@ -448,7 +451,10 @@ footer { border-top: 1px solid var(--border); padding: 48px 48px 32px; position:
   .services-grid { grid-template-columns: 1fr; }
   .service-card { padding: 28px 22px; }
 
-  .hiw-cards { grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 36px; }
+  .hiw-shell { margin-top: 36px; }
+  .hiw-card { flex: 0 0 158px; }
+  .hiw-arrow { width: 30px; }
+  .hiw-arrow svg { width: 18px; height: 18px; }
 
   .work-grid { grid-template-columns: 1fr; gap: 16px; margin-top: 36px; }
   .work-body { padding: 16px 18px 18px; }
@@ -728,13 +734,20 @@ footer { border-top: 1px solid var(--border); padding: 48px 48px 32px; position:
     <h2 class="section-title reveal">From first demo to live<br/>in 7 days.</h2>
     <p class="section-desc reveal">Six simple steps take you from a free branded demo to a live, lead-generating site — with a free Google review page included to keep the 5★ reviews rolling in.</p>
 
-    <div class="hiw-cards reveal">
-      <div class="hiw-card"><img src="hiw-step-1.png" alt="Step 1 — Free branded demo website sent across" loading="lazy"/></div>
-      <div class="hiw-card"><img src="hiw-step-2.png" alt="Step 2 — Schedule a call to discuss further" loading="lazy"/></div>
-      <div class="hiw-card"><img src="hiw-step-3.png" alt="Step 3 — Subscribe" loading="lazy"/></div>
-      <div class="hiw-card"><img src="hiw-step-4.png" alt="Step 4 — Onboarding form" loading="lazy"/></div>
-      <div class="hiw-card"><img src="hiw-step-5.png" alt="Step 5 — Live in 7 days" loading="lazy"/></div>
-      <div class="hiw-card"><img src="hiw-step-6.png" alt="Step 6 — Free Google review page included" loading="lazy"/></div>
+    <div class="hiw-shell reveal">
+      <div class="hiw-track" id="hiwTrack">
+        <div class="hiw-card"><img src="hiw-step-1.png" alt="Step 1 — Free branded demo website sent across" loading="lazy"/></div>
+        <div class="hiw-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></div>
+        <div class="hiw-card"><img src="hiw-step-2.png" alt="Step 2 — Schedule a call to discuss further" loading="lazy"/></div>
+        <div class="hiw-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></div>
+        <div class="hiw-card"><img src="hiw-step-3.png" alt="Step 3 — Subscribe" loading="lazy"/></div>
+        <div class="hiw-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></div>
+        <div class="hiw-card"><img src="hiw-step-4.png" alt="Step 4 — Onboarding form" loading="lazy"/></div>
+        <div class="hiw-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></div>
+        <div class="hiw-card"><img src="hiw-step-5.png" alt="Step 5 — Live in 7 days" loading="lazy"/></div>
+        <div class="hiw-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></div>
+        <div class="hiw-card"><img src="hiw-step-6.png" alt="Step 6 — Free Google review page included" loading="lazy"/></div>
+      </div>
     </div>
 
     <div class="section-cta reveal">
@@ -1315,6 +1328,56 @@ document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
         if (d < bestDelta) { bestDelta = d; bestIdx = i; }
       });
       currentIdx = bestIdx;
+      restart();
+    }, 2500);
+  }, { passive: true });
+
+  restart();
+})();
+
+// ── HOW IT WORKS AUTO-ROLL ──
+(function() {
+  const track = document.getElementById('hiwTrack');
+  if (!track) return;
+  const cards = track.querySelectorAll('.hiw-card');
+  if (cards.length < 2) return;
+
+  const STEP_INTERVAL = 3500;
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let idx = 0, timer = null, paused = false, userScrolling = false, userScrollTimeout = null;
+
+  function maxScroll() { return track.scrollWidth - track.clientWidth; }
+  function snapTo(i) {
+    const card = cards[i];
+    if (!card) return;
+    const target = Math.min(card.offsetLeft - cards[0].offsetLeft, maxScroll());
+    track.scrollTo({ left: target, behavior: reducedMotion ? 'auto' : 'smooth' });
+  }
+  function tick() {
+    if (paused || userScrolling) return;
+    // loop back to start once the end of the track is reached
+    idx = (track.scrollLeft >= maxScroll() - 4) ? 0 : (idx + 1) % cards.length;
+    snapTo(idx);
+  }
+  function restart() {
+    clearInterval(timer);
+    if (!paused && !userScrolling) timer = setInterval(tick, STEP_INTERVAL);
+  }
+  track.addEventListener('mouseenter', () => { paused = true; clearInterval(timer); });
+  track.addEventListener('mouseleave', () => { paused = false; restart(); });
+  track.addEventListener('scroll', () => {
+    if (paused) return;
+    userScrolling = true;
+    clearInterval(timer);
+    clearTimeout(userScrollTimeout);
+    userScrollTimeout = setTimeout(() => {
+      userScrolling = false;
+      let best = 0, bestD = Infinity;
+      cards.forEach((c, i) => {
+        const d = Math.abs((c.offsetLeft - cards[0].offsetLeft) - track.scrollLeft);
+        if (d < bestD) { bestD = d; best = i; }
+      });
+      idx = best;
       restart();
     }, 2500);
   }, { passive: true });

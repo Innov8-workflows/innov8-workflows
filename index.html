@@ -204,17 +204,20 @@ section { position: relative; z-index: 1; }
 /* What's Included — main image + grouped bullet columns */
 .wi-image { margin-top: 40px; border: 1px solid var(--border); border-radius: 16px; overflow: hidden; box-shadow: 0 16px 48px rgba(0,0,0,0.35); }
 .wi-image img { display: block; width: 100%; height: auto; }
-.wi-groups { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px 36px; margin-top: 48px; }
+.wi-groups { display: flex; flex-direction: column; gap: 40px; margin-top: 48px; }
 .wi-group { display: flex; flex-direction: column; }
 .wi-group-head { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
 .wi-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
-.wi-group-head h3 { font-size: 1.05rem; font-weight: 700; letter-spacing: -0.01em; display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-.wi-tag { font-family: var(--font-mono); font-size: 0.55rem; color: var(--node-purple); background: rgba(168,85,247,0.12); border: 1px solid rgba(168,85,247,0.25); padding: 2px 8px; border-radius: 100px; letter-spacing: 0.06em; text-transform: uppercase; }
-.wi-outcome { font-size: 0.875rem; color: var(--muted2); line-height: 1.55; margin-bottom: 16px; }
-.feature-list { list-style: none; padding: 0; margin: 4px 0 0 0; display: flex; flex-direction: column; gap: 9px; }
+.wi-group-head h3 { font-size: 1.05rem; font-weight: 700; letter-spacing: -0.01em; display: inline-flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.wi-tag { font-family: var(--font-mono); font-size: 0.55rem; color: var(--accent2); background: rgba(234,88,12,0.12); border: 1px solid rgba(234,88,12,0.28); padding: 3px 9px; border-radius: 100px; letter-spacing: 0.08em; text-transform: uppercase; }
+.wi-outcome { font-size: 0.875rem; color: var(--muted2); line-height: 1.55; margin-bottom: 18px; }
+.feature-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 9px; }
 .feature-list li { font-size: 0.85rem; color: var(--muted2); line-height: 1.5; display: flex; align-items: flex-start; gap: 9px; }
 .feature-list li::before { content: '✓'; color: var(--accent); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
-.wi-group.ai .feature-list li::before { color: var(--node-purple); }
+.feature-list li strong { color: var(--text); font-weight: 600; }
+.wi-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px 32px; }
+.wi-cols-desc { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px 36px; }
+.wi-cols-desc li::before { content: '+'; font-size: 0.95rem; line-height: 1.3; }
 
 /* ── HOW IT WORKS (6 steps) ── */
 .hiw-section { border-top: 1px solid var(--border); }
@@ -438,7 +441,9 @@ footer { border-top: 1px solid var(--border); padding: 48px 48px 32px; position:
   .trust-logos .tl-item { font-size: 0.88rem; }
 
   .wi-image { margin-top: 32px; border-radius: 12px; }
-  .wi-groups { grid-template-columns: 1fr; gap: 28px; margin-top: 36px; }
+  .wi-groups { gap: 32px; margin-top: 36px; }
+  .wi-cols { grid-template-columns: repeat(2, 1fr); gap: 8px 18px; }
+  .wi-cols-desc { grid-template-columns: 1fr; gap: 13px; }
 
   .hiw-shell { margin-top: 36px; }
   .hiw-card { flex: 0 0 158px; }
@@ -655,47 +660,39 @@ footer { border-top: 1px solid var(--border); padding: 48px 48px 32px; position:
       <div class="wi-group">
         <div class="wi-group-head">
           <div class="wi-icon" style="background:rgba(234,88,12,0.12)">🌐</div>
-          <h3>Website Foundation</h3>
+          <h3>Website Foundation <span class="wi-tag">Included as standard</span></h3>
         </div>
-        <p class="wi-outcome">Look professional from day one. Convert visitors into enquiries.</p>
-        <ul class="feature-list">
+        <p class="wi-outcome">Everything below is built into every site we ship — no upfront cost, live in 7 days.</p>
+        <ul class="feature-list wi-cols">
           <li>Professional Branded Website</li>
+          <li>Hosting &amp; Support</li>
+          <li>Organic SEO/GEO</li>
+          <li>Regular SEO/GEO Enhancements</li>
+          <li>Click-to-Call</li>
+          <li>Contact Forms (WhatsApp/Email)</li>
           <li>Mobile Optimised</li>
-          <li>Click-to-Call &amp; WhatsApp Widgets</li>
+          <li>Google/Facebook Reviews (Link)</li>
           <li>Before &amp; Afters Slider</li>
-          <li>Google Reviews Integration</li>
-          <li>Contact Forms</li>
-          <li>Organic SEO Baked In</li>
+          <li>WhatsApp/Messenger Widget</li>
           <li>Socials Linked</li>
+          <li>Live in 7 Days</li>
         </ul>
       </div>
 
       <div class="wi-group">
         <div class="wi-group-head">
-          <div class="wi-icon" style="background:rgba(59,130,246,0.12)">⚡</div>
-          <h3>Growth &amp; Automation</h3>
+          <div class="wi-icon" style="background:rgba(234,88,12,0.12)">🚀</div>
+          <h3>Add-Ons <span class="wi-tag">Enhance your results</span></h3>
         </div>
-        <p class="wi-outcome">Capture every lead, follow up automatically, never miss a booking.</p>
-        <ul class="feature-list">
-          <li>Custom CRM App</li>
-          <li>Automated Lead Follow-Up</li>
-          <li>Missed Call Text-Back</li>
-          <li>Booking Calendar</li>
-          <li>Email Automation</li>
-          <li>Scannable Google Review Cards</li>
-          <li>5-Star Magic Review Funnel</li>
-        </ul>
-      </div>
-
-      <div class="wi-group ai">
-        <div class="wi-group-head">
-          <div class="wi-icon" style="background:rgba(168,85,247,0.12)">🤖</div>
-          <h3>AI Add-Ons <span class="wi-tag">Optional</span></h3>
-        </div>
-        <p class="wi-outcome">Let AI handle enquiries while you're on the tools.</p>
-        <ul class="feature-list">
-          <li>AI Chatbot — trained on your business, qualifies leads and books calls</li>
-          <li>AI Voice Call Handler — answers your phone, captures details, books jobs</li>
+        <p class="wi-outcome">Optional extras you can bolt on to grow your business even faster.</p>
+        <ul class="feature-list wi-cols-desc">
+          <li><strong>AI Chatbot</strong> — engages visitors 24/7, answers questions and captures more leads automatically.</li>
+          <li><strong>Quote Funnel</strong> — smart quote-request funnels that qualify leads and convert more enquiries.</li>
+          <li><strong>Custom Business CRM App</strong> — manage leads, customers, follow-ups and projects in one dashboard.</li>
+          <li><strong>Missed Call Text Back</strong> — instantly text back missed calls so no lead ever slips away.</li>
+          <li><strong>Review Funnel</strong> — branded review system with landing page, QR code and direct links to grow your 5-star reviews.</li>
+          <li><strong>Email Hosting</strong> — professional email addresses that build trust and credibility.</li>
+          <li><strong>Drone Photography</strong> — striking aerial shots that showcase your work, baked into your website.</li>
         </ul>
       </div>
     </div>

@@ -228,10 +228,11 @@ section { position: relative; z-index: 1; }
 
 /* ── HOW IT WORKS (6 steps) ── */
 .hiw-section { border-top: 1px solid var(--border); }
-.hiw-shell { margin-top: 48px; }
-.hiw-track { display: flex; align-items: center; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -ms-overflow-style: none; padding: 4px 2px 10px; }
-.hiw-track::-webkit-scrollbar { display: none; }
-.hiw-card { flex: 0 0 210px; scroll-snap-align: start; background: #fff; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.28); transition: transform 0.2s, box-shadow 0.2s; align-self: stretch; }
+.hiw-shell { margin-top: 48px; overflow: hidden; position: relative; }
+.hiw-track { display: flex; align-items: center; width: max-content; animation: hiw-scroll 44s linear infinite; }
+.hiw-shell:hover .hiw-track { animation-play-state: paused; }
+@keyframes hiw-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.hiw-card { flex: 0 0 210px; background: #fff; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.28); transition: transform 0.2s, box-shadow 0.2s; }
 .hiw-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.42); }
 .hiw-card img { display: block; width: 100%; height: auto; }
 .hiw-arrow { flex: 0 0 auto; width: 42px; display: flex; align-items: center; justify-content: center; color: var(--accent); }
@@ -747,6 +748,20 @@ footer { border-top: 1px solid var(--border); padding: 48px 48px 32px; position:
         <div class="hiw-card"><img src="hiw-step-5.png" alt="Step 5 — Live in 7 days" loading="lazy"/></div>
         <div class="hiw-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></div>
         <div class="hiw-card"><img src="hiw-step-6.png" alt="Step 6 — Free Google review page included" loading="lazy"/></div>
+        <div class="hiw-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></div>
+        <!-- duplicate copy for a seamless infinite loop -->
+        <div class="hiw-card" aria-hidden="true"><img src="hiw-step-1.png" alt="" loading="lazy"/></div>
+        <div class="hiw-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></div>
+        <div class="hiw-card" aria-hidden="true"><img src="hiw-step-2.png" alt="" loading="lazy"/></div>
+        <div class="hiw-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></div>
+        <div class="hiw-card" aria-hidden="true"><img src="hiw-step-3.png" alt="" loading="lazy"/></div>
+        <div class="hiw-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></div>
+        <div class="hiw-card" aria-hidden="true"><img src="hiw-step-4.png" alt="" loading="lazy"/></div>
+        <div class="hiw-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></div>
+        <div class="hiw-card" aria-hidden="true"><img src="hiw-step-5.png" alt="" loading="lazy"/></div>
+        <div class="hiw-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></div>
+        <div class="hiw-card" aria-hidden="true"><img src="hiw-step-6.png" alt="" loading="lazy"/></div>
+        <div class="hiw-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></div>
       </div>
     </div>
 
@@ -1328,56 +1343,6 @@ document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
         if (d < bestDelta) { bestDelta = d; bestIdx = i; }
       });
       currentIdx = bestIdx;
-      restart();
-    }, 2500);
-  }, { passive: true });
-
-  restart();
-})();
-
-// ── HOW IT WORKS AUTO-ROLL ──
-(function() {
-  const track = document.getElementById('hiwTrack');
-  if (!track) return;
-  const cards = track.querySelectorAll('.hiw-card');
-  if (cards.length < 2) return;
-
-  const STEP_INTERVAL = 3500;
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let idx = 0, timer = null, paused = false, userScrolling = false, userScrollTimeout = null;
-
-  function maxScroll() { return track.scrollWidth - track.clientWidth; }
-  function snapTo(i) {
-    const card = cards[i];
-    if (!card) return;
-    const target = Math.min(card.offsetLeft - cards[0].offsetLeft, maxScroll());
-    track.scrollTo({ left: target, behavior: reducedMotion ? 'auto' : 'smooth' });
-  }
-  function tick() {
-    if (paused || userScrolling) return;
-    // loop back to start once the end of the track is reached
-    idx = (track.scrollLeft >= maxScroll() - 4) ? 0 : (idx + 1) % cards.length;
-    snapTo(idx);
-  }
-  function restart() {
-    clearInterval(timer);
-    if (!paused && !userScrolling) timer = setInterval(tick, STEP_INTERVAL);
-  }
-  track.addEventListener('mouseenter', () => { paused = true; clearInterval(timer); });
-  track.addEventListener('mouseleave', () => { paused = false; restart(); });
-  track.addEventListener('scroll', () => {
-    if (paused) return;
-    userScrolling = true;
-    clearInterval(timer);
-    clearTimeout(userScrollTimeout);
-    userScrollTimeout = setTimeout(() => {
-      userScrolling = false;
-      let best = 0, bestD = Infinity;
-      cards.forEach((c, i) => {
-        const d = Math.abs((c.offsetLeft - cards[0].offsetLeft) - track.scrollLeft);
-        if (d < bestD) { bestD = d; best = i; }
-      });
-      idx = best;
       restart();
     }, 2500);
   }, { passive: true });

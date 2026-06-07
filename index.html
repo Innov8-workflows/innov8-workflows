@@ -228,17 +228,9 @@ section { position: relative; z-index: 1; }
 
 /* ── HOW IT WORKS (6 steps) ── */
 .hiw-section { border-top: 1px solid var(--border); }
-.hiw-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 56px; counter-reset: hiw; }
-.hiw-step { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 28px 28px; position: relative; transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s; display: flex; flex-direction: column; gap: 14px; }
-.hiw-step:hover { border-color: rgba(234,88,12,0.35); transform: translateY(-3px); box-shadow: 0 16px 40px rgba(0,0,0,0.3); }
-.hiw-step::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 0.3s ease; border-radius: 14px 14px 0 0; }
-.hiw-step:hover::before { transform: scaleX(1); }
-.hiw-num { font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent); letter-spacing: 0.12em; display: inline-flex; align-items: center; gap: 10px; }
-.hiw-num::after { content: ''; display: inline-block; width: 22px; height: 1.5px; background: var(--accent); }
-.hiw-step h4 { font-size: 1rem; font-weight: 700; line-height: 1.4; letter-spacing: -0.01em; color: var(--text); }
-.hiw-step.final { background: linear-gradient(160deg, rgba(234,88,12,0.08) 0%, var(--surface) 60%); border-color: rgba(234,88,12,0.35); }
-.hiw-step.final .hiw-num { color: var(--accent2); }
-.hiw-step.final::before { transform: scaleX(1); }
+.hiw-figure { margin: 56px 0 0; background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 14px; overflow: hidden; box-shadow: 0 16px 48px rgba(0,0,0,0.32); }
+.hiw-figure img { display: block; width: 100%; height: auto; border-radius: 8px; }
+.hiw-hint { display: none; margin-top: 14px; text-align: center; font-family: var(--font-mono); font-size: 0.65rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; }
 
 /* ── BEFORE & AFTER GALLERY ── */
 .work-section { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
@@ -454,9 +446,11 @@ footer { border-top: 1px solid var(--border); padding: 48px 48px 32px; position:
   .services-grid { grid-template-columns: 1fr; }
   .service-card { padding: 28px 22px; }
 
-  .hiw-grid { grid-template-columns: 1fr; gap: 12px; margin-top: 36px; }
-  .hiw-step { padding: 22px 22px; }
-  .hiw-step h4 { font-size: 0.95rem; }
+  /* Steps image scrolls horizontally on mobile so all 6 stay legible */
+  .hiw-figure { margin-top: 36px; padding: 10px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .hiw-figure::-webkit-scrollbar { display: none; }
+  .hiw-figure img { min-width: 740px; border-radius: 6px; }
+  .hiw-hint { display: block; }
 
   .work-grid { grid-template-columns: 1fr; gap: 16px; margin-top: 36px; }
   .work-body { padding: 16px 18px 18px; }
@@ -729,39 +723,17 @@ footer { border-top: 1px solid var(--border); padding: 48px 48px 32px; position:
   </div>
 </section>
 
-<!-- ═══════════════ 4b. HOW IT WORKS (6 steps) ═══════════════ -->
+<!-- ═══════════════ 4b. HOW IT WORKS (6-step visual) ═══════════════ -->
 <section id="process" class="hiw-section">
   <div class="section-inner">
     <div class="section-label reveal">How It Works</div>
-    <h2 class="section-title reveal">From request to live site<br/>in 7 days.</h2>
-    <p class="section-desc reveal">A clear six-step flow from the moment you submit a request to the day your branded site goes live. No surprises, no faff.</p>
+    <h2 class="section-title reveal">From first demo to live<br/>in 7 days.</h2>
+    <p class="section-desc reveal">Six simple steps take you from a free branded demo to a live, lead-generating site — with a free Google review page included to keep the 5★ reviews rolling in.</p>
 
-    <div class="hiw-grid reveal">
-      <div class="hiw-step">
-        <div class="hiw-num">Step 01</div>
-        <h4>Submit a website request for your business</h4>
-      </div>
-      <div class="hiw-step">
-        <div class="hiw-num">Step 02</div>
-        <h4>Free demo website link sent across — built from your logo and job photos</h4>
-      </div>
-      <div class="hiw-step">
-        <div class="hiw-num">Step 03</div>
-        <h4>Video walkthrough of the benefits, products and services</h4>
-      </div>
-      <div class="hiw-step">
-        <div class="hiw-num">Step 04</div>
-        <h4>Schedule a call to answer any questions</h4>
-      </div>
-      <div class="hiw-step">
-        <div class="hiw-num">Step 05</div>
-        <h4>Make payment</h4>
-      </div>
-      <div class="hiw-step final">
-        <div class="hiw-num">Step 06</div>
-        <h4>Branded professional website live in 7 days</h4>
-      </div>
-    </div>
+    <figure class="hiw-figure reveal">
+      <img src="how-it-works-steps.png" alt="How it works in six steps: free branded demo website sent across, schedule a call to discuss further, subscribe, onboarding form, live in 7 days, free Google review page included" loading="lazy"/>
+    </figure>
+    <div class="hiw-hint">← Swipe to see all six steps →</div>
 
     <div class="section-cta reveal">
       <a href="how-it-works.html">See the full process →</a>

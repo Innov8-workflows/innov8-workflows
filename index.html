@@ -271,6 +271,11 @@ section { position: relative; z-index: 1; }
 .why-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 28px 30px; transition: border-color 0.2s, transform 0.2s; }
 .why-card:hover { border-color: rgba(234,88,12,0.35); transform: translateY(-3px); }
 .why-icon { width: 40px; height: 40px; border-radius: 10px; background: rgba(234,88,12,0.12); border: 1px solid rgba(234,88,12,0.25); display: flex; align-items: center; justify-content: center; font-size: 18px; margin-bottom: 18px; }
+/* Professional line-icon SVGs inside the chips (replace emoji) */
+.trust-icon, .wi-icon, .why-icon { color: var(--accent2); }
+.trust-icon svg { width: 18px; height: 18px; }
+.wi-icon svg, .why-icon svg { width: 20px; height: 20px; }
+.node-icon svg { width: 16px; height: 16px; }
 .why-card h4 { font-size: 1.02rem; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 8px; }
 .why-card p { font-size: 0.88rem; color: var(--muted2); line-height: 1.65; }
 
@@ -578,22 +583,22 @@ footer { border-top: 1px solid var(--border); padding: 48px 48px 32px; position:
     <div class="workflow-canvas">
       <div class="wf-row">
         <div class="wf-node active">
-          <div class="node-icon" style="background:rgba(234,88,12,0.15)">🔍</div>
+          <div class="node-icon" style="background:rgba(234,88,12,0.15);color:#f97316"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div>
           <div><div class="node-label">traffic</div><div class="node-name">Google Search</div></div>
         </div>
         <div class="wf-edge"><div class="edge-line"><div class="edge-dot"></div></div><div class="edge-arrow"></div></div>
         <div class="wf-node">
-          <div class="node-icon" style="background:rgba(59,130,246,0.15)">🌐</div>
+          <div class="node-icon" style="background:rgba(59,130,246,0.15);color:#3b82f6"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.5 2.5 15.5 0 18M12 3c-2.5 2.5-2.5 15.5 0 18"/></svg></div>
           <div><div class="node-label">engage</div><div class="node-name">Visit Website</div></div>
         </div>
         <div class="wf-edge"><div class="edge-line"><div class="edge-dot" style="animation-delay:0.8s"></div></div><div class="edge-arrow"></div></div>
         <div class="wf-node">
-          <div class="node-icon" style="background:rgba(168,85,247,0.15)">📝</div>
+          <div class="node-icon" style="background:rgba(168,85,247,0.15);color:#a855f7"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 9h6M9 13h6M9 17h3"/></svg></div>
           <div><div class="node-label">capture</div><div class="node-name">Submit Form</div></div>
         </div>
         <div class="wf-edge"><div class="edge-line"><div class="edge-dot" style="animation-delay:1.6s"></div></div><div class="edge-arrow"></div></div>
         <div class="wf-node">
-          <div class="node-icon" style="background:rgba(34,197,94,0.15)">💼</div>
+          <div class="node-icon" style="background:rgba(34,197,94,0.15);color:#22c55e"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M3.5 20c0-3.3 2.5-5.5 5.5-5.5s5.5 2.2 5.5 5.5"/><path d="M16 12.5l2 2 4-4"/></svg></div>
           <div><div class="node-label">convert</div><div class="node-name">New Customer</div></div>
         </div>
       </div>
@@ -606,28 +611,28 @@ footer { border-top: 1px solid var(--border); padding: 48px 48px 32px; position:
   <div class="trust-inner">
     <div class="trust-strip reveal">
       <div class="trust-item">
-        <div class="trust-icon">🛡️</div>
+        <div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
         <div>
           <h5>No Long-Term Contracts</h5>
           <p>Cancel anytime</p>
         </div>
       </div>
       <div class="trust-item">
-        <div class="trust-icon">🔒</div>
+        <div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div>
         <div>
           <h5>Secure &amp; Reliable</h5>
           <p>Your data is safe with us</p>
         </div>
       </div>
       <div class="trust-item">
-        <div class="trust-icon">🇬🇧</div>
+        <div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13a8 8 0 0 1 16 0"/><rect x="3" y="13" width="4" height="6" rx="1.5"/><rect x="17" y="13" width="4" height="6" rx="1.5"/><path d="M20 19a3 3 0 0 1-3 3h-2"/></svg></div>
         <div>
           <h5>UK-Based Support</h5>
           <p>Real people, real support</p>
         </div>
       </div>
       <div class="trust-item">
-        <div class="trust-icon">🚀</div>
+        <div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M17 7h4v4"/></svg></div>
         <div>
           <h5>Built to Grow</h5>
           <p>Scales as your business grows</p>
@@ -659,7 +664,7 @@ footer { border-top: 1px solid var(--border); padding: 48px 48px 32px; position:
     <div class="wi-groups reveal">
       <div class="wi-group">
         <div class="wi-group-head">
-          <div class="wi-icon" style="background:rgba(234,88,12,0.12)">🌐</div>
+          <div class="wi-icon" style="background:rgba(234,88,12,0.12)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M3 8h18"/><path d="M8 21h8M12 17v4"/></svg></div>
           <h3>Website Foundation <span class="wi-tag">Included as standard</span></h3>
         </div>
         <p class="wi-outcome">Everything below is built into every site we ship — no upfront cost, live in 7 days.</p>
@@ -681,7 +686,7 @@ footer { border-top: 1px solid var(--border); padding: 48px 48px 32px; position:
 
       <div class="wi-group">
         <div class="wi-group-head">
-          <div class="wi-icon" style="background:rgba(234,88,12,0.12)">🚀</div>
+          <div class="wi-icon" style="background:rgba(234,88,12,0.12)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/></svg></div>
           <h3>Add-Ons <span class="wi-tag">Enhance your results</span></h3>
         </div>
         <p class="wi-outcome">Optional extras you can bolt on to grow your business even faster.</p>
@@ -909,32 +914,32 @@ footer { border-top: 1px solid var(--border); padding: 48px 48px 32px; position:
 
     <div class="why-grid reveal">
       <div class="why-card">
-        <div class="why-icon">🛠️</div>
+        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
         <h4>Built for local trades</h4>
         <p>Plumbers, electricians, roofers, builders, joiners, driveway contractors. We know what wins in local search and what converts a phone-toting customer into a booking.</p>
       </div>
       <div class="why-card">
-        <div class="why-icon">⚡</div>
+        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8l-4 4 4 4"/><path d="M16 8l4 4-4 4"/><path d="M13 5l-2 14"/></svg></div>
         <h4>No template builders</h4>
         <p>Every site is custom-coded for speed, SEO, and conversion. No Wix bloat, no Squarespace lock-in, no third-party watermarks.</p>
       </div>
       <div class="why-card">
-        <div class="why-icon">📱</div>
+        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 18h2"/></svg></div>
         <h4>One-tap contact baked in</h4>
         <p>WhatsApp and click-to-call widgets on every site we ship. We use the same widgets on our own — because that's how customers actually want to get in touch.</p>
       </div>
       <div class="why-card">
-        <div class="why-icon">👤</div>
+        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c0-3.5 3-6 7-6s7 2.5 7 6"/></svg></div>
         <h4>Founder-led, no middlemen</h4>
         <p>You work with Jamie directly from first call to launch and beyond. No account managers, no offshored support tickets, no hand-offs.</p>
       </div>
       <div class="why-card">
-        <div class="why-icon">💬</div>
+        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 4H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3v4l5-4h8a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1z"/></svg></div>
         <h4>Same-day reply on WhatsApp</h4>
         <p>Send us a message during the working day, get an answer the same day. Most enquiries are answered in under an hour.</p>
       </div>
       <div class="why-card">
-        <div class="why-icon">📈</div>
+        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M17 7h4v4"/></svg></div>
         <h4>Built to grow with you</h4>
         <p>Start with the website. Add automation, AI chat, missed-call text-back, or a custom CRM whenever you're ready. The foundation is set up for it from day one.</p>
       </div>

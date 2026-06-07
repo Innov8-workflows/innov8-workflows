@@ -201,30 +201,20 @@ section { position: relative; z-index: 1; }
 .trust-logos .tl-item { font-family: var(--font-display); font-weight: 700; font-size: 0.95rem; color: var(--muted2); letter-spacing: -0.01em; }
 
 /* ── SERVICES ── */
-.flex-banner { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 32px 36px; margin-top: 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.flex-option { display: flex; gap: 16px; align-items: flex-start; padding: 20px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg); transition: border-color 0.2s; }
-.flex-option:hover { border-color: var(--accent); }
-.flex-option-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
-.flex-option h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; }
-.flex-option p { font-size: 0.82rem; color: var(--muted2); line-height: 1.55; }
-.flex-option-tag { display: inline-block; margin-top: 10px; font-family: var(--font-mono); font-size: 0.62rem; padding: 3px 10px; border-radius: 100px; letter-spacing: 0.06em; }
-
-.services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 48px; border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
-.service-card { background: var(--surface); padding: 36px 32px; transition: background 0.25s; position: relative; overflow: hidden; }
-.service-card:hover { background: var(--surface2); }
-.service-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 0.3s ease; }
-.service-card:hover::after { transform: scaleX(1); }
-.service-card.highlight { background: linear-gradient(160deg, rgba(168,85,247,0.07) 0%, var(--surface) 60%); }
-.service-card.highlight::after { background: var(--node-purple); }
-.service-icon { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 20px; }
-.service-card h3 { font-size: 1.1rem; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 10px; }
-.service-outcome { font-size: 0.925rem; color: var(--text); line-height: 1.5; font-weight: 500; margin-bottom: 6px; }
-.service-card p { font-size: 0.875rem; color: var(--muted2); line-height: 1.65; font-weight: 400; }
-.service-new-tag { display: inline-block; margin-top: 12px; font-family: var(--font-mono); font-size: 0.6rem; color: var(--node-purple); background: rgba(168,85,247,0.1); border: 1px solid rgba(168,85,247,0.2); padding: 3px 10px; border-radius: 100px; letter-spacing: 0.08em; }
-.feature-list { list-style: none; padding: 0; margin: 16px 0 0 0; display: flex; flex-direction: column; gap: 8px; }
-.feature-list li { font-size: 0.82rem; color: var(--muted2); line-height: 1.5; display: flex; align-items: flex-start; gap: 8px; }
+/* What's Included — main image + grouped bullet columns */
+.wi-image { margin-top: 40px; border: 1px solid var(--border); border-radius: 16px; overflow: hidden; box-shadow: 0 16px 48px rgba(0,0,0,0.35); }
+.wi-image img { display: block; width: 100%; height: auto; }
+.wi-groups { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px 36px; margin-top: 48px; }
+.wi-group { display: flex; flex-direction: column; }
+.wi-group-head { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+.wi-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+.wi-group-head h3 { font-size: 1.05rem; font-weight: 700; letter-spacing: -0.01em; display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.wi-tag { font-family: var(--font-mono); font-size: 0.55rem; color: var(--node-purple); background: rgba(168,85,247,0.12); border: 1px solid rgba(168,85,247,0.25); padding: 2px 8px; border-radius: 100px; letter-spacing: 0.06em; text-transform: uppercase; }
+.wi-outcome { font-size: 0.875rem; color: var(--muted2); line-height: 1.55; margin-bottom: 16px; }
+.feature-list { list-style: none; padding: 0; margin: 4px 0 0 0; display: flex; flex-direction: column; gap: 9px; }
+.feature-list li { font-size: 0.85rem; color: var(--muted2); line-height: 1.5; display: flex; align-items: flex-start; gap: 9px; }
 .feature-list li::before { content: '✓'; color: var(--accent); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
-.service-card.highlight .feature-list li::before { color: var(--node-purple); }
+.wi-group.ai .feature-list li::before { color: var(--node-purple); }
 
 /* ── HOW IT WORKS (6 steps) ── */
 .hiw-section { border-top: 1px solid var(--border); }
@@ -447,10 +437,8 @@ footer { border-top: 1px solid var(--border); padding: 48px 48px 32px; position:
   .trust-logos span { width: 100%; text-align: center; margin: 0 0 2px; }
   .trust-logos .tl-item { font-size: 0.88rem; }
 
-  .flex-banner { grid-template-columns: 1fr; padding: 18px; gap: 12px; }
-  .flex-option { padding: 16px; }
-  .services-grid { grid-template-columns: 1fr; }
-  .service-card { padding: 28px 22px; }
+  .wi-image { margin-top: 32px; border-radius: 12px; }
+  .wi-groups { grid-template-columns: 1fr; gap: 28px; margin-top: 36px; }
 
   .hiw-shell { margin-top: 36px; }
   .hiw-card { flex: 0 0 158px; }
@@ -659,30 +647,17 @@ footer { border-top: 1px solid var(--border); padding: 48px 48px 32px; position:
     <h2 class="section-title reveal">Built to convert.<br/>Built to grow.</h2>
     <p class="section-desc reveal">Every site we build is mobile-first, SEO-ready, and engineered for conversion — with optional automation and AI bolt-ons when you're ready to scale.</p>
 
-    <div class="flex-banner reveal">
-      <div class="flex-option">
-        <div class="flex-option-icon">🏗️</div>
-        <div>
-          <h4>New Build</h4>
-          <p>No website? We design and build one from scratch — fast-loading, fully optimised, ready to convert visitors into enquiries from day one.</p>
-          <span class="flex-option-tag" style="color:var(--accent);background:rgba(234,88,12,0.1);border:1px solid rgba(234,88,12,0.2)">From zero to live</span>
-        </div>
-      </div>
-      <div class="flex-option">
-        <div class="flex-option-icon">⚙️</div>
-        <div>
-          <h4>Existing Site</h4>
-          <p>Already have a site? We layer automation, AI chat, and integrations on top — no rebuild needed. Your platform, upgraded.</p>
-          <span class="flex-option-tag" style="color:var(--node-blue);background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.2)">Works with any platform</span>
-        </div>
-      </div>
+    <div class="wi-image reveal">
+      <img src="whats-included.png" alt="A modern Innov8 Workflows website shown on a laptop in a home office at sunset" loading="lazy"/>
     </div>
 
-    <div class="services-grid reveal">
-      <div class="service-card">
-        <div class="service-icon" style="background:rgba(234,88,12,0.12)">🌐</div>
-        <h3>Website Foundation</h3>
-        <p class="service-outcome">Look professional from day one. Convert visitors into enquiries.</p>
+    <div class="wi-groups reveal">
+      <div class="wi-group">
+        <div class="wi-group-head">
+          <div class="wi-icon" style="background:rgba(234,88,12,0.12)">🌐</div>
+          <h3>Website Foundation</h3>
+        </div>
+        <p class="wi-outcome">Look professional from day one. Convert visitors into enquiries.</p>
         <ul class="feature-list">
           <li>Professional Branded Website</li>
           <li>Mobile Optimised</li>
@@ -695,10 +670,12 @@ footer { border-top: 1px solid var(--border); padding: 48px 48px 32px; position:
         </ul>
       </div>
 
-      <div class="service-card">
-        <div class="service-icon" style="background:rgba(59,130,246,0.12)">⚡</div>
-        <h3>Growth &amp; Automation</h3>
-        <p class="service-outcome">Capture every lead, follow up automatically, never miss a booking.</p>
+      <div class="wi-group">
+        <div class="wi-group-head">
+          <div class="wi-icon" style="background:rgba(59,130,246,0.12)">⚡</div>
+          <h3>Growth &amp; Automation</h3>
+        </div>
+        <p class="wi-outcome">Capture every lead, follow up automatically, never miss a booking.</p>
         <ul class="feature-list">
           <li>Custom CRM App</li>
           <li>Automated Lead Follow-Up</li>
@@ -710,15 +687,16 @@ footer { border-top: 1px solid var(--border); padding: 48px 48px 32px; position:
         </ul>
       </div>
 
-      <div class="service-card highlight">
-        <div class="service-icon" style="background:rgba(168,85,247,0.12)">🤖</div>
-        <h3>AI Add-Ons</h3>
-        <p class="service-outcome">Let AI handle enquiries while you're on the tools.</p>
+      <div class="wi-group ai">
+        <div class="wi-group-head">
+          <div class="wi-icon" style="background:rgba(168,85,247,0.12)">🤖</div>
+          <h3>AI Add-Ons <span class="wi-tag">Optional</span></h3>
+        </div>
+        <p class="wi-outcome">Let AI handle enquiries while you're on the tools.</p>
         <ul class="feature-list">
           <li>AI Chatbot — trained on your business, qualifies leads and books calls</li>
           <li>AI Voice Call Handler — answers your phone, captures details, books jobs</li>
         </ul>
-        <span class="service-new-tag">Optional</span>
       </div>
     </div>
 

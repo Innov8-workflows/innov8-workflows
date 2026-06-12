@@ -193,8 +193,8 @@ section { position: relative; z-index: 1; }
 .work-card { background: var(--bg); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s; display: flex; flex-direction: column; text-decoration: none; color: inherit; }
 .work-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.4); border-color: rgba(234,88,12,0.3); }
 .work-image { position: relative; aspect-ratio: 16/10; overflow: hidden; background: var(--surface2); }
-.work-image img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
-.work-card:hover .work-image img { transform: scale(1.04); }
+.work-image img, .work-image video { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
+.work-card:hover .work-image img, .work-card:hover .work-image video { transform: scale(1.04); }
 .work-status { position: absolute; top: 12px; right: 12px; font-family: var(--font-mono); font-size: 0.6rem; padding: 4px 10px; border-radius: 100px; letter-spacing: 0.08em; text-transform: uppercase; backdrop-filter: blur(8px); }
 .work-status.live { background: rgba(34,197,94,0.18); border: 1px solid rgba(34,197,94,0.35); color: #4ade80; }
 .work-status.soon { background: rgba(234,179,8,0.18); border: 1px solid rgba(234,179,8,0.35); color: #fbbf24; }
@@ -766,7 +766,7 @@ footer { border-top: 1px solid var(--border); padding: 48px 48px 32px; position:
 
       <a class="work-card" href="https://ksbuildingservices.co.uk/" target="_blank" rel="noopener">
         <div class="work-image">
-          <img src="ksmithurst_innov8.png" alt="K. Smithurst Building Contractors website mockup" loading="lazy"/>
+          <video class="ks-video" src="ksmithurst-video.mp4" poster="ksmithurst-video-poster.jpg" autoplay muted loop playsinline preload="auto" aria-label="K. Smithurst Building Contractors website"></video>
           <span class="work-status live">Live</span>
         </div>
         <div class="work-body">
@@ -1126,6 +1126,17 @@ footer { border-top: 1px solid var(--border); padding: 48px 48px 32px; position:
     }, { threshold: 0.1 });
     io.observe(v);
   }
+})();
+
+// ── CASE-STUDY VIDEOS (.ks-video — silent autoplay loop, plays only while on screen) ──
+(function() {
+  const vids = document.querySelectorAll('.ks-video');
+  if (!vids.length) return;
+  const play = v => { v.muted = true; const p = v.play(); if (p && p.catch) p.catch(() => {}); };
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting ? play(e.target) : e.target.pause()), { threshold: 0.25 });
+    vids.forEach(v => io.observe(v));
+  } else { vids.forEach(play); }
 })();
 
 // ── CANVAS BACKGROUND ───────────────────────────────────────

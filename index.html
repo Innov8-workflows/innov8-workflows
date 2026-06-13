@@ -237,21 +237,17 @@ section { position: relative; z-index: 1; }
 
 /* ── REVIEWS ── */
 .reviews-section { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-.reviews-shell { position: relative; margin-top: 56px; }
-.reviews-track { display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 4px 4px 24px; scrollbar-width: none; -ms-overflow-style: none; }
+.reviews-shell { margin-top: 56px; }
+.reviews-track { display: flex; gap: 20px; overflow-x: auto; padding: 4px 4px 8px; scrollbar-width: none; -ms-overflow-style: none; }
 .reviews-track::-webkit-scrollbar { display: none; width: 0; height: 0; }
 .reviews-track.single { justify-content: center; }
 
-/* Desktop nav arrows */
-.reviews-nav { position: absolute; top: 50%; transform: translateY(-50%); z-index: 5; width: 44px; height: 44px; border-radius: 50%; background: #fff; border: 1px solid #dadce0; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 16px rgba(0,0,0,0.35); transition: background 0.2s, transform 0.15s, box-shadow 0.2s; padding: 0; }
-.reviews-nav:hover { background: #f8f9fa; transform: translateY(-50%) scale(1.06); box-shadow: 0 6px 22px rgba(0,0,0,0.45); }
-.reviews-nav:active { transform: translateY(-50%) scale(0.96); }
+/* Nav arrows — centred row beneath the cards */
+.reviews-nav-row { display: flex; justify-content: center; gap: 16px; margin-top: 24px; }
+.reviews-nav { width: 44px; height: 44px; border-radius: 50%; background: #fff; border: 1px solid #dadce0; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 16px rgba(0,0,0,0.3); transition: background 0.2s, transform 0.15s, box-shadow 0.2s; padding: 0; }
+.reviews-nav:hover { background: #f8f9fa; transform: scale(1.08); box-shadow: 0 6px 22px rgba(0,0,0,0.4); }
+.reviews-nav:active { transform: scale(0.94); }
 .reviews-nav svg { width: 18px; height: 18px; fill: #3c4043; }
-.reviews-nav-prev { left: 8px; }
-.reviews-nav-next { right: 8px; }
-@media (max-width: 768px) {
-  .reviews-nav { display: none; }
-}
 .review-card { background: #fff; border: 1px solid #dadce0; border-radius: 16px; padding: 30px 32px; min-width: min(640px, 90vw); max-width: 640px; flex-shrink: 0; scroll-snap-align: center; display: flex; flex-direction: column; gap: 18px; position: relative; text-decoration: none; color: #3c4043; transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s; }
 .review-card:hover { border-color: rgba(66,133,244,0.55); transform: translateY(-2px); box-shadow: 0 12px 32px rgba(0,0,0,0.22); }
 .review-g-header { display: flex; align-items: center; gap: 8px; padding-bottom: 14px; border-bottom: 1px solid #dadce0; }
@@ -900,12 +896,6 @@ footer { border-top: 1px solid var(--border); padding: 48px 48px 32px; position:
     <p class="section-desc reveal">Straight from our clients — no edits, no marketing spin.</p>
 
     <div class="reviews-shell reveal">
-    <button class="reviews-nav reviews-nav-prev" type="button" aria-label="Previous review">
-      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
-    </button>
-    <button class="reviews-nav reviews-nav-next" type="button" aria-label="Next review">
-      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
-    </button>
     <div class="reviews-track" id="reviewsTrack">
       <a class="review-card" href="https://www.google.com/search?q=Innov8+Workflows&amp;stick=H4sIAAAAAAAA_-NgU1I1qDCxMLe0NE5MMUtMMTExSzO1MqgwT0pNSkk0MjK3NDYxN01NWsQq4JmXl19moRCeX5SdlpNfXgwA1ZlEAzwAAAA&amp;hl=en-GB#lrd=0x487993ad6ad446f5:0x7bebda22793475eb,1" target="_blank" rel="noopener" aria-label="View Alfie Williams-Fairley's review on Google">
         <div class="review-g-header">
@@ -982,6 +972,14 @@ footer { border-top: 1px solid var(--border); padding: 48px 48px 32px; position:
         </div>
       </a>
 
+    </div>
+    <div class="reviews-nav-row">
+      <button class="reviews-nav reviews-nav-prev" type="button" aria-label="Previous review">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
+      </button>
+      <button class="reviews-nav reviews-nav-next" type="button" aria-label="Next review">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+      </button>
     </div>
     </div>
   </div>
@@ -1177,81 +1175,53 @@ const obs = new IntersectionObserver(entries => {
 }, { threshold: 0.12 });
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-// ── REVIEWS AUTO-ROLL ──
+// ── REVIEWS — continuous slow slide + manual arrows underneath ──
 (function() {
   const track = document.getElementById('reviewsTrack');
   if (!track) return;
-  const cards = track.querySelectorAll('.review-card');
-  if (cards.length < 2) { track.classList.add('single'); return; }
+  const originals = Array.from(track.querySelectorAll('.review-card'));
+  if (originals.length < 2) { track.classList.add('single'); return; }
 
-  const REVIEW_INTERVAL = 7000;
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let currentIdx = 0;
-  let timer = null;
-  let paused = false;
-  let userScrolling = false;
-  let userScrollTimeout = null;
-
-  function snapTo(idx) {
-    const card = cards[idx];
-    if (!card) return;
-    const target = card.offsetLeft - (track.clientWidth - card.clientWidth) / 2;
-    track.scrollTo({ left: target, behavior: reducedMotion ? 'auto' : 'smooth' });
-  }
-
-  function tick() {
-    if (paused || userScrolling) return;
-    currentIdx = (currentIdx + 1) % cards.length;
-    snapTo(currentIdx);
-  }
-
-  function restart() {
-    clearInterval(timer);
-    if (!paused && !userScrolling) timer = setInterval(tick, REVIEW_INTERVAL);
-  }
-
-  track.addEventListener('mouseenter', () => { paused = true; clearInterval(timer); });
-  track.addEventListener('mouseleave', () => { paused = false; restart(); });
-
-  // Desktop prev/next arrows — re-anchor currentIdx, snap, restart timer
-  const prevBtn = document.querySelector('.reviews-nav-prev');
-  const nextBtn = document.querySelector('.reviews-nav-next');
-  function go(delta) {
-    currentIdx = (currentIdx + delta + cards.length) % cards.length;
-    snapTo(currentIdx);
-    restart();
-  }
-  if (prevBtn) prevBtn.addEventListener('click', () => go(-1));
-  if (nextBtn) nextBtn.addEventListener('click', () => go(1));
-  // Also pause auto-roll briefly when buttons are hovered, like the track
-  [prevBtn, nextBtn].forEach(btn => {
-    if (!btn) return;
-    btn.addEventListener('mouseenter', () => { paused = true; clearInterval(timer); });
-    btn.addEventListener('mouseleave', () => { paused = false; restart(); });
+  // Duplicate the set once so the loop is seamless
+  originals.forEach(c => {
+    const clone = c.cloneNode(true);
+    clone.setAttribute('aria-hidden', 'true');
+    clone.setAttribute('tabindex', '-1');
+    track.appendChild(clone);
   });
 
-  // Pause auto-roll briefly when the user manually swipes/scrolls
-  track.addEventListener('scroll', () => {
-    if (paused) return;
-    userScrolling = true;
-    clearInterval(timer);
-    clearTimeout(userScrollTimeout);
-    userScrollTimeout = setTimeout(() => {
-      userScrolling = false;
-      // Sync currentIdx to whichever card is most visible
-      let bestIdx = 0, bestDelta = Infinity;
-      const trackCenter = track.scrollLeft + track.clientWidth / 2;
-      cards.forEach((c, i) => {
-        const cCenter = c.offsetLeft + c.clientWidth / 2;
-        const d = Math.abs(cCenter - trackCenter);
-        if (d < bestDelta) { bestDelta = d; bestIdx = i; }
-      });
-      currentIdx = bestIdx;
-      restart();
-    }, 2500);
-  }, { passive: true });
+  let half = track.scrollWidth / 2;
+  window.addEventListener('resize', () => { half = track.scrollWidth / 2; });
 
-  restart();
+  const SPEED = 0.5; // px per frame — slow drift
+  let paused = false, resumeTimer = null;
+
+  function wrap() {
+    if (track.scrollLeft >= half) track.scrollLeft -= half;
+    else if (track.scrollLeft < 0) track.scrollLeft += half;
+  }
+  function frame() {
+    if (!paused) { track.scrollLeft += SPEED; wrap(); }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+
+  track.addEventListener('mouseenter', () => { paused = true; clearTimeout(resumeTimer); });
+  track.addEventListener('mouseleave', () => { paused = false; });
+
+  const prevBtn = document.querySelector('.reviews-nav-prev');
+  const nextBtn = document.querySelector('.reviews-nav-next');
+  function nudge(dir) {
+    const stepW = originals[0].getBoundingClientRect().width + 20; // card + gap
+    // give room for a backward nudge by hopping into the duplicate band first
+    if (dir < 0 && track.scrollLeft < stepW) track.scrollLeft += half;
+    paused = true;
+    clearTimeout(resumeTimer);
+    track.scrollBy({ left: dir * stepW, behavior: 'smooth' });
+    resumeTimer = setTimeout(() => { wrap(); paused = false; }, 1600);
+  }
+  if (prevBtn) prevBtn.addEventListener('click', () => nudge(-1));
+  if (nextBtn) nextBtn.addEventListener('click', () => nudge(1));
 })();
 
 // ── WHATSAPP-REDIRECT FORM ───────────────────────────────────

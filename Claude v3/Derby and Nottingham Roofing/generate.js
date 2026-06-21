@@ -611,5 +611,8 @@ fs.writeFileSync("sitemap.xml", `<?xml version="1.0" encoding="UTF-8"?>\n<urlset
 /* robots.txt */
 fs.writeFileSync("robots.txt", `User-agent: *\nAllow: /\n\nSitemap: ${SITE.url}/sitemap.xml\n`);
 
-console.log("Generated " + count + " HTML pages + sitemap.xml + robots.txt");
+/* CNAME — custom domain for GitHub Pages (keeps the domain on every deploy) */
+fs.writeFileSync("CNAME", new URL(SITE.url).host + "\n");
+
+console.log("Generated " + count + " HTML pages + sitemap.xml + robots.txt + CNAME");
 console.log(Object.keys(OUT).join("  "));

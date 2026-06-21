@@ -8,8 +8,8 @@ const fs = require("fs");
 /* ---------- site config ---------- */
 const SITE = {
   name: "Derby & Nottingham Roofing",
-  // Live URL (GitHub Pages project site). If you later move to a custom domain, update this and rerun `node generate.js`.
-  url: "https://innov8-workflows.github.io/Derby-and-Nottingham-Roofing",
+  // Live URL (custom domain on GitHub Pages).
+  url: "https://derbyandnottinghamroofing.co.uk",
   phone: "07838 250910",
   phoneIntl: "447838250910",
   hours: "Mon–Sat, 7am–6pm",

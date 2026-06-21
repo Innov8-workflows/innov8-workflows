@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://innov8-workflows.github.io/Derby-and-Nottingham-Roofing/sitemap.xml

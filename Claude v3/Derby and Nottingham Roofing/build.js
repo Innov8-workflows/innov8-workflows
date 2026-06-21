@@ -1,0 +1,343 @@
+/* ============================================================
+   Derby & Nottingham Roofing — static site generator
+   Generates all pages from shared chrome + per-page content.
+   Run:  node build.js
+   ============================================================ */
+const fs = require("fs");
+
+/* ---------- site config ---------- */
+const SITE = {
+  name: "Derby & Nottingham Roofing",
+  // Live URL (GitHub Pages project site). If you later move to a custom domain, update this and rerun `node generate.js`.
+  url: "https://innov8-workflows.github.io/Derby-and-Nottingham-Roofing",
+  phone: "07838 250910",
+  phoneIntl: "447838250910",
+  hours: "Mon–Sat, 7am–6pm",
+  area: "Derby & Nottingham",
+};
+const TEL = "tel:+" + SITE.phoneIntl;
+
+/* ---------- services ---------- */
+const SERVICES = [
+  { slug: "new-roofs", short: "New Roofs", nav: "New Roofs & Re-Roofing", img: "g1.jpg",
+    icon: '<path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v9h14v-9"/><path d="M10 19v-5h4v5"/>',
+    blurb: "Full roof replacements and new builds using quality tiles and felt, built to last for decades." },
+  { slug: "roof-repairs", short: "Roof Repairs", nav: "Roof Repairs", img: "g3.jpg",
+    icon: '<path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2-2 2.5-2.5z"/>',
+    blurb: "Slipped tiles, leaks, storm damage and ridge work — fast, tidy repairs that stop the problem." },
+  { slug: "flat-roofing", short: "Flat Roofing", nav: "Flat Roofing", img: "work-1.jpg",
+    icon: '<path d="M3 7h18"/><path d="M3 12h18"/><path d="M3 17h18"/><path d="M3 7v10"/><path d="M21 7v10"/>',
+    blurb: "Long-life EPDM rubber and GRP fibreglass flat roofs for extensions, garages and dormers." },
+  { slug: "chimney-repairs", short: "Chimneys", nav: "Chimney & Repointing", img: "g2.jpg",
+    icon: '<path d="M4 20V9l8-5 8 5v11"/><path d="M15 20v-6h3v6"/><path d="M15 4v3"/>',
+    blurb: "Chimney repairs, rebuilds, flashing and lead work to keep water where it belongs." },
+  { slug: "guttering", short: "Guttering", nav: "Guttering, Fascias & Soffits", img: "g5.jpg",
+    icon: '<path d="M3 8h18l-2 5H5z"/><path d="M5 13v5"/><path d="M19 13v5"/><path d="M9 18h6"/>',
+    blurb: "New and replacement uPVC guttering, fascias and soffits — clean lines and proper drainage." },
+  { slug: "roof-surveys", short: "Roof Surveys", nav: "Free Roof Surveys", img: "work-3.jpg",
+    icon: '<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 3v3h6V3"/><path d="M9 11h6"/><path d="M9 15h4"/>',
+    blurb: "An honest inspection and a clear written quote — no pressure, no obligation, no surprises." },
+];
+const svcBySlug = Object.fromEntries(SERVICES.map(s => [s.slug, s]));
+
+/* ---------- towns ---------- */
+const TOWNS = [
+  { slug: "roofers-derby", town: "Derby", county: "Derbyshire", group: "Cities" },
+  { slug: "roofers-nottingham", town: "Nottingham", county: "Nottinghamshire", group: "Cities" },
+  { slug: "roofers-long-eaton", town: "Long Eaton", county: "Derbyshire", group: "Corridor" },
+  { slug: "roofers-beeston", town: "Beeston", county: "Nottinghamshire", group: "Corridor" },
+  { slug: "roofers-ilkeston", town: "Ilkeston", county: "Derbyshire", group: "Corridor" },
+  { slug: "roofers-stapleford", town: "Stapleford", county: "Nottinghamshire", group: "Corridor" },
+  { slug: "roofers-belper", town: "Belper", county: "Derbyshire", group: "Derbyshire" },
+  { slug: "roofers-ripley", town: "Ripley", county: "Derbyshire", group: "Derbyshire" },
+  { slug: "roofers-heanor", town: "Heanor", county: "Derbyshire", group: "Derbyshire" },
+  { slug: "roofers-alfreton", town: "Alfreton", county: "Derbyshire", group: "Derbyshire" },
+  { slug: "roofers-borrowash", town: "Borrowash", county: "Derbyshire", group: "Derbyshire" },
+  { slug: "roofers-spondon", town: "Spondon", county: "Derbyshire", group: "Derbyshire" },
+  { slug: "roofers-west-bridgford", town: "West Bridgford", county: "Nottinghamshire", group: "Nottinghamshire" },
+  { slug: "roofers-arnold", town: "Arnold", county: "Nottinghamshire", group: "Nottinghamshire" },
+  { slug: "roofers-carlton", town: "Carlton", county: "Nottinghamshire", group: "Nottinghamshire" },
+  { slug: "roofers-hucknall", town: "Hucknall", county: "Nottinghamshire", group: "Nottinghamshire" },
+  { slug: "roofers-bingham", town: "Bingham", county: "Nottinghamshire", group: "Nottinghamshire" },
+];
+
+/* unique local context per town (keeps location pages from being duplicate content) */
+const TOWN_COPY = {
+  "roofers-derby": { intro: "From the Victorian terraces of Normanton and Peartree to the 1930s semis of Littleover, Mickleover and Allestree, Derby's housing stock is as varied as it gets — and every roof type needs a slightly different approach. As local Derby roofers we work right across the city and its suburbs, on everything from a single slipped tile to a full re-roof.", nearby: ["Mickleover", "Allestree", "Spondon", "Borrowash"], landmarks: "across Derby, from the city centre and Normanton to Mickleover, Allestree, Chaddesden and Sinfin" },
+  "roofers-nottingham": { intro: "Nottingham's rooftops range from the red-brick Victorian terraces of Forest Fields, Sneinton and Lenton to the bay-fronted semis of Wollaton and Mapperley. We're local Nottingham roofers covering the whole city, and we know how the city's older slate and clay-tiled roofs behave when the weather turns.", nearby: ["West Bridgford", "Beeston", "Arnold", "Carlton"], landmarks: "throughout Nottingham, including Wollaton, Mapperley, Sneinton, Bulwell and the city centre" },
+  "roofers-long-eaton": { intro: "Sitting right on the Derby–Nottingham border, Long Eaton is packed with Victorian and Edwardian terraces from its lace-making days — many still on their original slate. We cover Long Eaton and the wider Erewash area constantly, so we're rarely more than a short drive away when a roof needs sorting.", nearby: ["Sandiacre", "Sawley", "Breaston", "Beeston"], landmarks: "across Long Eaton, Sawley, Sandiacre and Breaston" },
+  "roofers-beeston": { intro: "Beeston's mix of period terraces near the town centre and inter-war semis out towards Chilwell and Bramcote means we see a real range of roofs here. As regular Beeston roofers — just south-west of Nottingham — we handle repairs, re-roofs, flat roofs and guttering throughout the Broxtowe area.", nearby: ["Chilwell", "Bramcote", "Stapleford", "Nottingham"], landmarks: "across Beeston, Chilwell, Bramcote and Attenborough" },
+  "roofers-ilkeston": { intro: "Ilkeston's hilltop streets and old mining and lace terraces throw up plenty of steep, exposed roofs that take a battering in the wind. We're out in Ilkeston and the surrounding Erewash villages regularly, dealing with slipped slates, leaks, ridge work and full re-roofs.", nearby: ["Cotmanhay", "Kirk Hallam", "West Hallam", "Stanton"], landmarks: "throughout Ilkeston, Cotmanhay, Kirk Hallam and West Hallam" },
+  "roofers-stapleford": { intro: "Between Nottingham and Ilkeston, Stapleford is a busy Broxtowe town with everything from terraced cottages to modern estates. We cover Stapleford day in, day out, so whether it's an emergency repair or a planned re-roof, we can usually be with you quickly.", nearby: ["Sandiacre", "Bramcote", "Trowell", "Beeston"], landmarks: "across Stapleford, Sandiacre, Trowell and Bramcote" },
+  "roofers-belper": { intro: "Belper is a historic Derwent Valley mill town and part of a World Heritage Site, with a lot of older stone and brick properties that need a sympathetic, careful approach. As Belper roofers we're used to working on period homes as well as the town's newer estates, matching materials so repairs and re-roofs look right.", nearby: ["Duffield", "Milford", "Ambergate", "Holbrook"], landmarks: "across Belper, Duffield, Milford and Ambergate" },
+  "roofers-ripley": { intro: "Ripley is a former mining market town in Amber Valley with rows of solid brick terraces and post-war housing. We cover Ripley and the surrounding villages for everything from storm-damaged tiles to new flat roofs on extensions and garages.", nearby: ["Codnor", "Swanwick", "Marehay", "Heanor"], landmarks: "throughout Ripley, Codnor, Swanwick and Marehay" },
+  "roofers-heanor": { intro: "Heanor sits high on its hilltop, which means plenty of weather-exposed roofs across the town and out towards Loscoe and Langley Mill. We're regularly in Heanor handling repairs, re-roofs, chimney work and guttering on its mix of terraced and semi-detached homes.", nearby: ["Loscoe", "Langley Mill", "Codnor", "Smalley"], landmarks: "across Heanor, Loscoe, Langley Mill and Marlpool" },
+  "roofers-alfreton": { intro: "On the A38 between Derby and the M1, Alfreton is a Derbyshire market town with a broad spread of property ages. We cover Alfreton and nearby villages for pitched and flat roofing, repairs, chimneys and full re-roofs — honest quotes, tidy work.", nearby: ["Somercotes", "Riddings", "South Normanton", "Swanwick"], landmarks: "throughout Alfreton, Somercotes, Riddings and South Normanton" },
+  "roofers-borrowash": { intro: "Borrowash is a sought-after village just east of Derby, with a mix of older cottages, 1930s semis and newer family homes. We're local to Borrowash and the Erewash villages, so we can get to you fast for repairs or a planned re-roof.", nearby: ["Spondon", "Draycott", "Ockbrook", "Breaston"], landmarks: "across Borrowash, Ockbrook, Draycott and Spondon" },
+  "roofers-spondon": { intro: "Spondon, on the eastern edge of Derby, blends a historic village core with large inter-war and post-war estates. As roofers covering Spondon we handle the full range — slipped tiles, leaks, flat roofs, fascias and complete re-roofs.", nearby: ["Borrowash", "Chaddesden", "Ockbrook", "Derby"], landmarks: "across Spondon, Chaddesden, Borrowash and Ockbrook" },
+  "roofers-west-bridgford": { intro: "Just south of the Trent, West Bridgford is known for its handsome Edwardian villas and bay-fronted semis — roofs that reward a careful, quality job. As West Bridgford roofers we work throughout 'Bridgford' and Rushcliffe, matching tiles and slates so the work blends in seamlessly.", nearby: ["Gamston", "Edwalton", "Lady Bay", "Ruddington"], landmarks: "across West Bridgford, Gamston, Edwalton and Lady Bay" },
+  "roofers-arnold": { intro: "Arnold is one of north-east Nottingham's largest suburbs, with extensive inter-war and post-war housing across the Gedling area. We cover Arnold constantly for roof repairs, re-roofs, flat roofing and guttering, and can be on site quickly when there's a leak.", nearby: ["Daybrook", "Woodthorpe", "Redhill", "Carlton"], landmarks: "throughout Arnold, Daybrook, Woodthorpe and Redhill" },
+  "roofers-carlton": { intro: "Carlton, in the Gedling borough east of Nottingham, is a settled suburb of terraces and semis where roofs are reaching the age where repairs and re-roofs are common. We're regular Carlton roofers, handling everything from a quick fix to a full strip and re-cover.", nearby: ["Gedling", "Netherfield", "Mapperley", "Arnold"], landmarks: "across Carlton, Gedling, Netherfield and Mapperley" },
+  "roofers-hucknall": { intro: "Hucknall, north of Nottingham in Ashfield, is a former mining town with solid brick terraces and large estates. We cover Hucknall and the surrounding area for pitched and flat roofing, chimney work, repairs and complete re-roofs at fair, honest prices.", nearby: ["Bulwell", "Linby", "Papplewick", "Bestwood"], landmarks: "throughout Hucknall, Bulwell, Linby and Papplewick" },
+  "roofers-bingham": { intro: "Bingham is a growing Rushcliffe market town east of Nottingham, with a historic centre and plenty of newer development. We cover Bingham and the Vale of Belvoir villages for all roofing work, from emergency repairs to planned re-roofs and new flat roofs.", nearby: ["Radcliffe-on-Trent", "Cotgrave", "East Bridgford", "Whatton"], landmarks: "across Bingham, Radcliffe-on-Trent, Cotgrave and East Bridgford" },
+};
+const townBySlug = Object.fromEntries(TOWNS.map(t => [t.slug, t]));
+
+/* ---------- shared SVG icons ---------- */
+const I = {
+  phone: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>',
+  pin: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>',
+  clock: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg>',
+  check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>',
+  arrow: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>',
+  quote: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8" fill="none" stroke="#fff" stroke-width="2"/></svg>',
+  wa: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.15-1.77-.87-2.04-.97s-.47-.15-.67.15-.77.97-.94 1.17-.35.22-.65.07a8.2 8.2 0 0 1-2.4-1.48 9 9 0 0 1-1.66-2.06c-.17-.3 0-.46.13-.61.13-.13.3-.35.45-.52a2 2 0 0 0 .3-.5.55.55 0 0 0 0-.52c-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57a1.1 1.1 0 0 0-.8.37 3.35 3.35 0 0 0-1.04 2.48 5.8 5.8 0 0 0 1.22 3.09 13.3 13.3 0 0 0 5.1 4.5c.71.3 1.26.49 1.7.63a4.1 4.1 0 0 0 1.88.12 3.07 3.07 0 0 0 2-1.42 2.5 2.5 0 0 0 .17-1.41c-.07-.12-.27-.2-.57-.35zM12 2a10 10 0 0 0-8.6 15.07L2 22l5.05-1.32A10 10 0 1 0 12 2z"/></svg>',
+  plus: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>',
+};
+
+/* ---------- helpers ---------- */
+const esc = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+const jstr = o => JSON.stringify(o).replace(/</g, "\\u003c");
+
+function ld(objs) {
+  return '<script type="application/ld+json">' + jstr(objs.length === 1 ? objs[0] : objs) + "</scr" + "ipt>";
+}
+function localBusinessLD() {
+  return {
+    "@context": "https://schema.org", "@type": "RoofingContractor",
+    name: SITE.name, url: SITE.url, telephone: "+" + SITE.phoneIntl,
+    image: SITE.url + "/assets/img/logo.png",
+    areaServed: TOWNS.map(t => ({ "@type": "City", name: t.town })),
+    address: { "@type": "PostalAddress", addressLocality: "Derby", addressRegion: "Derbyshire", addressCountry: "GB" },
+    openingHoursSpecification: [{ "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"], opens: "07:00", closes: "18:00" }],
+    priceRange: "££",
+  };
+}
+function breadcrumbLD(items) {
+  return { "@context": "https://schema.org", "@type": "BreadcrumbList",
+    itemListElement: items.map((it, i) => ({ "@type": "ListItem", position: i + 1, name: it.name, item: SITE.url + "/" + it.slug })) };
+}
+function faqLD(faqs) {
+  return { "@context": "https://schema.org", "@type": "FAQPage",
+    mainEntity: faqs.map(f => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) };
+}
+function serviceLD(name, desc) {
+  return { "@context": "https://schema.org", "@type": "Service", serviceType: name, description: desc,
+    provider: { "@type": "RoofingContractor", name: SITE.name, telephone: "+" + SITE.phoneIntl, url: SITE.url },
+    areaServed: TOWNS.map(t => t.town) };
+}
+
+/* ---------- chrome ---------- */
+function head(p) {
+  const canon = SITE.url + "/" + (p.slug === "index.html" ? "" : p.slug);
+  const ogImg = SITE.url + "/assets/img/" + (p.ogImg || "g1.jpg");
+  return `<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>${esc(p.title)}</title>
+<meta name="description" content="${esc(p.desc)}">
+<link rel="canonical" href="${canon}">
+<meta name="robots" content="index,follow">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="${esc(SITE.name)}">
+<meta property="og:title" content="${esc(p.title)}">
+<meta property="og:description" content="${esc(p.desc)}">
+<meta property="og:url" content="${canon}">
+<meta property="og:image" content="${ogImg}">
+<meta name="theme-color" content="#0C0E13">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+${ld(p.schema)}
+</head>
+<body>`;
+}
+
+function navbar(active) {
+  const svcDrop = SERVICES.map(s => `<a href="${s.slug}.html">${s.nav}</a>`).join("");
+  const areaDrop = ["roofers-derby","roofers-nottingham","roofers-long-eaton","roofers-beeston","roofers-west-bridgford","roofers-ilkeston","roofers-belper","roofers-arnold"]
+    .map(sl => `<a href="${sl}.html">${townBySlug[sl].town}</a>`).join("") + `<a href="index.html#areas"><strong>All areas &rarr;</strong></a>`;
+  const cls = a => active === a ? ' class="active"' : "";
+  return `
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="index.html" class="brand"><img src="assets/img/logo.png" alt="${esc(SITE.name)}" width="120" height="80"></a>
+    <nav class="nav-links">
+      <a href="index.html"${cls("home")}>Home</a>
+      <div class="has-drop"><a href="${SERVICES[0].slug}.html"${cls("services")}>Services</a><div class="drop">${svcDrop}</div></div>
+      <div class="has-drop"><a href="roofers-derby.html"${cls("areas")}>Areas</a><div class="drop">${areaDrop}</div></div>
+      <a href="gallery.html"${cls("gallery")}>Gallery</a>
+      <a href="reviews.html"${cls("reviews")}>Reviews</a>
+      <a href="about.html"${cls("about")}>About</a>
+      <a href="contact.html"${cls("contact")}>Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="call-pill" href="${TEL}">${I.phone}<span><small>Call now</small><span class="num">${SITE.phone}</span></span></a>
+      <button class="hamburger" id="burger" aria-label="Open menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+    </div>
+  </div>
+</header>
+<div class="drawer" id="drawer">
+  <div class="drawer-top">
+    <img src="assets/img/logo.png" alt="${esc(SITE.name)}" width="110" height="73">
+    <button class="hamburger" id="closeDrawer" aria-label="Close menu" style="display:flex"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+  </div>
+  <a class="link" href="index.html">Home</a>
+  <a class="link" href="${SERVICES[0].slug}.html">Services</a>
+  ${SERVICES.map(s => `<a class="sublink" href="${s.slug}.html">${s.nav}</a>`).join("\n  ")}
+  <a class="link" href="roofers-derby.html">Areas</a>
+  <a class="link" href="gallery.html">Gallery</a>
+  <a class="link" href="reviews.html">Reviews</a>
+  <a class="link" href="about.html">About</a>
+  <a class="link" href="contact.html">Contact</a>
+  <div class="drawer-actions">
+    <a class="btn btn-primary" href="${TEL}">${I.phone}Call ${SITE.phone}</a>
+    <a class="btn btn-dark" href="contact.html" style="justify-content:center">Get a free quote</a>
+  </div>
+</div>`;
+}
+
+function trustStrip() {
+  const items = [
+    ['<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/>', "Fully Insured"],
+    ['<path d="M3 9l9-6 9 6v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>', "Free Roof Surveys"],
+    ['<path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>', "Derby &amp; Nottingham"],
+    ['<circle cx="12" cy="8" r="6"/><path d="M8.21 13.89 7 22l5-3 5 3-1.21-8.11"/>', "Workmanship Guarantee"],
+    ['<line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>', "Free, No-Obligation Quotes"],
+  ];
+  return `<section class="trust"><div class="wrap trust-row">${items.map(([p, t]) =>
+    `<div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${p}</svg>${t}</div>`).join("")}</div></section>`;
+}
+
+function areasSection(currentSlug) {
+  const groups = ["Cities", "Corridor", "Derbyshire", "Nottinghamshire"];
+  const labels = { Cities: "Derby &amp; Nottingham", Corridor: "Between the cities", Derbyshire: "Derbyshire", Nottinghamshire: "Nottinghamshire" };
+  let html = `<section class="section areas" id="areas"><div class="wrap"><div class="section-head center"><span class="eyebrow">Areas we cover</span><h2>Local roofers across Derby &amp; Nottingham</h2><p>We cover both cities and the towns and villages around them. Find your area below.</p></div>`;
+  groups.forEach(g => {
+    const list = TOWNS.filter(t => t.group === g);
+    html += `<div style="margin-bottom:22px"><div class="eyebrow" style="margin-bottom:12px">${labels[g]}</div><div class="area-grid">` +
+      list.map(t => `<a class="area-link${t.slug === currentSlug ? " active" : ""}" href="${t.slug}.html">${I.pin}${t.town}</a>`).join("") +
+      `</div></div>`;
+  });
+  html += `</div></section>`;
+  return html;
+}
+
+function finalCta(text) {
+  return `<section class="final"><div class="final-bg" style="background-image:url(assets/img/roof1.jpg)"></div><div class="final-overlay"></div><div class="final-content">
+    <h2>Need a roofer you can rely on?</h2>
+    <p>${text || "Get a free, no-obligation quote from your local Derby &amp; Nottingham roofing team today."}</p>
+    <div class="final-btns">
+      <a class="btn btn-dark" href="contact.html" style="background:#fff;color:var(--ink)">Get my free quote</a>
+      <a class="btn btn-ghost" href="${TEL}">${I.phone}${SITE.phone}</a>
+    </div></div></section>`;
+}
+
+function footer() {
+  const svc = SERVICES.map(s => `<li><a href="${s.slug}.html">${s.nav}</a></li>`).join("");
+  const area = TOWNS.slice(0, 8).map(t => `<li><a href="${t.slug}.html">Roofers in ${t.town}</a></li>`).join("");
+  return `
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <img src="assets/img/logo.png" alt="${esc(SITE.name)}" width="150" height="100">
+        <p>Trusted local roofing contractors covering Derby, Nottingham and the surrounding East Midlands. Pitched roofs, flat roofs, repairs, chimneys and guttering.</p>
+        <p style="margin-top:14px"><a href="${TEL}" style="color:#fff;font-weight:700;font-size:1.15rem">${SITE.phone}</a><br><span style="font-size:.82rem">${SITE.hours}</span></p>
+      </div>
+      <div><h4>Services</h4><ul>${svc}</ul></div>
+      <div><h4>Areas</h4><ul>${area}</ul></div>
+      <div><h4>Company</h4><ul>
+        <li><a href="about.html">About us</a></li>
+        <li><a href="gallery.html">Our work</a></li>
+        <li><a href="reviews.html">Reviews</a></li>
+        <li><a href="faqs.html">Roofing FAQs</a></li>
+        <li><a href="contact.html">Contact &amp; free quote</a></li>
+      </ul></div>
+    </div>
+    <div class="foot-accred">
+      <span style="color:#6a7280;font-size:.78rem;font-family:'Barlow',sans-serif;text-transform:uppercase;letter-spacing:.12em;margin-right:8px">Accredited by</span>
+      <div class="aslot">Badge</div><div class="aslot">Badge</div><div class="aslot">Badge</div><div class="aslot">Badge</div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; <span id="yr"></span> ${esc(SITE.name)}. All rights reserved.</span>
+      <span>Website by Innov8 Workflows</span>
+    </div>
+  </div>
+</footer>
+<a class="wa-float" id="waFloat" href="#" aria-label="Chat on WhatsApp">${I.wa}</a>
+<script src="assets/app.js"></script>
+</body>
+</html>`;
+}
+
+function pageHero(p) {
+  const crumbs = (p.crumbs || []).map((c, i, a) =>
+    i === a.length - 1 ? `<span style="color:#cfd6e0">${c.name}</span>` : `<a href="${c.slug}">${c.name}</a><span>/</span>`).join("");
+  return `<section class="page-hero">
+  <div class="page-hero-bg" style="background-image:url(assets/img/${p.heroImg || "hero-poster.jpg"})"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="wrap">
+    ${crumbs ? `<div class="crumbs">${crumbs}</div>` : ""}
+    <span class="eyebrow">${p.eyebrow || ""}</span>
+    <h1>${p.h1}</h1>
+    ${p.lead ? `<p class="lead">${p.lead}</p>` : ""}
+    <div class="hero-btns">
+      <a class="btn btn-primary" href="contact.html">${I.quote}Get my free quote</a>
+      <a class="btn btn-ghost" href="${TEL}">${I.phone}${SITE.phone}</a>
+    </div>
+  </div>
+</section>`;
+}
+
+function sidebar(activeSlug) {
+  const nav = SERVICES.map(s => `<a href="${s.slug}.html"${s.slug === activeSlug ? ' class="active"' : ""}>${s.nav}${s.slug === activeSlug ? "" : " " + I.arrow}</a>`).join("");
+  return `<aside>
+    <div class="side-card sticky">
+      <h3>Free, no-obligation quote</h3>
+      <p>Tell us about your roof and we'll get straight back to you — usually the same day.</p>
+      <a class="btn btn-primary" href="contact.html">${I.quote}Request a quote</a>
+      <a class="btn btn-ghost" href="${TEL}" style="border-color:rgba(255,255,255,.4)">${I.phone}${SITE.phone}</a>
+      <span class="callnum" style="margin-top:6px">${SITE.hours}</span>
+    </div>
+    <div class="side-card light">
+      <h3>Our services</h3>
+      <ul class="side-nav">${nav}</ul>
+    </div>
+  </aside>`;
+}
+
+function faqSection(faqs) {
+  if (!faqs || !faqs.length) return "";
+  return `<section class="section faq"><div class="wrap">
+    <div class="section-head center"><span class="eyebrow">FAQs</span><h2>Common questions</h2></div>
+    <div class="faq-list">${faqs.map(f => `
+      <div class="faq-item"><button class="faq-q" aria-expanded="false">${f.q}<span class="ic">${I.plus}</span></button><div class="faq-a"><p>${f.a}</p></div></div>`).join("")}
+    </div></div></section>`;
+}
+
+function relatedServices(currentSlug) {
+  const others = SERVICES.filter(s => s.slug !== currentSlug).slice(0, 3);
+  return `<section class="section related"><div class="wrap">
+    <div class="section-head center"><span class="eyebrow">More from us</span><h2>Other roofing services</h2></div>
+    <div class="related-grid">${others.map(s => `
+      <a class="rel-card" href="${s.slug}.html"><img src="assets/img/${s.img}" alt="${s.nav} in Derby &amp; Nottingham" loading="lazy"><div class="b"><h3>${s.nav}</h3><p>${s.blurb}</p></div></a>`).join("")}
+    </div></div></section>`;
+}
+
+/* ============================================================
+   PAGE BUILDERS
+   ============================================================ */
+const OUT = {};
+
+/* ---- generic page assembler ---- */
+function page(p, bodyHtml) {
+  return head(p) + navbar(p.active) + bodyHtml + footer();
+}
+
+module.exports = { SITE, SERVICES, TOWNS, TOWN_COPY, svcBySlug, townBySlug, I, esc, ld,
+  localBusinessLD, breadcrumbLD, faqLD, serviceLD, head, navbar, trustStrip, areasSection,
+  finalCta, footer, pageHero, sidebar, faqSection, relatedServices, page, TEL };

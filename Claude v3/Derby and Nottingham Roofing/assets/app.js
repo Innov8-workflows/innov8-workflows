@@ -39,7 +39,7 @@
     } else { tryPlay(); }
   }
   autoplay($("heroVideo"));
-  autoplay($("baVideo"));
+  document.querySelectorAll(".ba-video").forEach(autoplay);
 
   /* ---------- reviews data ---------- */
   var REVIEWS = [

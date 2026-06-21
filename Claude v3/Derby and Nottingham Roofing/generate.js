@@ -361,6 +361,11 @@ ${trustStrip()}
       <video id="baVideo" class="ba-video" muted loop playsinline autoplay preload="auto" poster="assets/img/g1.jpg" disablepictureinpicture>
         <source src="assets/before-after.mp4" type="video/mp4"></video>
     </div>
+    <div class="ba-video-wrap ba-second">
+      <div class="ba-corner"><span class="dot"></span>Before &rarr; After</div>
+      <video id="baVideo2" class="ba-video" muted loop playsinline autoplay preload="auto" poster="assets/img/ba2-poster.jpg" disablepictureinpicture>
+        <source src="assets/before-after-02.mp4" type="video/mp4"></video>
+    </div>
     <div class="ba-info">
       <span class="eyebrow">Recent project &middot; Derby &amp; Nottingham</span>
       <h3>Full Roof Strip &amp; Re-Slate</h3>

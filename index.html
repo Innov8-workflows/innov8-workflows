@@ -237,42 +237,7 @@ section { position: relative; z-index: 1; }
 
 /* ── REVIEWS ── */
 .reviews-section { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-.reviews-shell { margin-top: 56px; }
-.reviews-track { display: flex; gap: 20px; overflow-x: auto; padding: 4px 4px 8px; scrollbar-width: none; -ms-overflow-style: none; }
-.reviews-track::-webkit-scrollbar { display: none; width: 0; height: 0; }
-.reviews-track.single { justify-content: center; }
-
-/* Nav arrows — centred row beneath the cards */
-.reviews-nav-row { display: flex; justify-content: center; gap: 16px; margin-top: 24px; }
-.reviews-nav { width: 44px; height: 44px; border-radius: 50%; background: #fff; border: 1px solid #dadce0; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 16px rgba(0,0,0,0.3); transition: background 0.2s, transform 0.15s, box-shadow 0.2s; padding: 0; }
-.reviews-nav:hover { background: #f8f9fa; transform: scale(1.08); box-shadow: 0 6px 22px rgba(0,0,0,0.4); }
-.reviews-nav:active { transform: scale(0.94); }
-.reviews-nav svg { width: 18px; height: 18px; fill: #3c4043; }
-.review-card { background: #fff; border: 1px solid #dadce0; border-radius: 16px; padding: 30px 32px; min-width: min(640px, 90vw); max-width: 640px; flex-shrink: 0; scroll-snap-align: center; display: flex; flex-direction: column; gap: 18px; position: relative; text-decoration: none; color: #3c4043; transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s; }
-.review-card:hover { border-color: rgba(66,133,244,0.55); transform: translateY(-2px); box-shadow: 0 12px 32px rgba(0,0,0,0.22); }
-.review-g-header { display: flex; align-items: center; gap: 8px; padding-bottom: 14px; border-bottom: 1px solid #dadce0; }
-.review-g-header svg { width: 22px; height: 22px; flex-shrink: 0; }
-.review-g-label { font-family: var(--font-display); font-size: 0.85rem; font-weight: 700; color: #3c4043; letter-spacing: -0.01em; }
-.review-g-meta { margin-left: auto; font-family: var(--font-mono); font-size: 0.65rem; color: #5f6368; letter-spacing: 0.04em; text-transform: uppercase; }
-.review-g-mark { display: none; } /* legacy, replaced by .review-g-header */
-.review-stars { display: flex; gap: 3px; color: #FBBC04; font-size: 1.05rem; }
-.review-stars span { display: inline-block; }
-.review-quote { font-size: 0.98rem; line-height: 1.6; color: #3c4043; font-weight: 400; }
-.review-meta { display: flex; align-items: center; gap: 12px; padding-top: 14px; border-top: 1px solid #dadce0; }
-.review-avatar { width: 40px; height: 40px; border-radius: 50%; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.98rem; flex-shrink: 0; font-family: var(--font-display); }
-.review-avatar-blue { background: #4285F4; }
-.review-avatar-green { background: #34A853; }
-.review-avatar-red { background: #EA4335; }
-.review-author { font-size: 0.92rem; font-weight: 700; color: #202124; }
-.review-source { font-family: var(--font-mono); font-size: 0.66rem; color: #5f6368; letter-spacing: 0.04em; margin-top: 2px; display: inline-flex; align-items: center; gap: 6px; }
-.review-source svg { width: 12px; height: 12px; flex-shrink: 0; }
-.review-cta { margin-left: auto; font-size: 0.78rem; font-weight: 600; color: #1a73e8; display: inline-flex; align-items: center; gap: 6px; flex-shrink: 0; }
-.review-card:hover .review-cta { color: #1557b0; }
-@media (max-width: 600px) {
-  .review-cta { margin-left: 0; width: 100%; padding-top: 12px; border-top: 1px solid #dadce0; justify-content: center; }
-  .review-meta { flex-wrap: wrap; }
-  .review-g-header { padding-bottom: 12px; }
-}
+.reviews-featurable { margin-top: 56px; }
 
 /* ── CONTACT FORM (WhatsApp redirect) ── */
 .contact-section { border-top: 1px solid var(--border); }
@@ -416,15 +381,6 @@ footer { border-top: 1px solid var(--border); padding: 48px 48px 32px; position:
 
   .why-grid { grid-template-columns: 1fr; gap: 12px; margin-top: 36px; }
   .why-card { padding: 22px 22px; }
-
-  .reviews-track { padding: 4px 0 24px; }
-  .review-card { padding: 24px 22px; min-width: calc(100vw - 36px); max-width: calc(100vw - 36px); gap: 16px; }
-  .review-card::before, .review-fb-mark { right: 18px; }
-  .review-quote { font-size: 0.95rem; }
-  .review-avatar { width: 36px; height: 36px; }
-  .review-avatar svg { width: 17px !important; height: 17px !important; }
-  .review-meta { gap: 10px; flex-wrap: wrap; }
-  .review-cta { font-size: 0.76rem; }
 
   .contact-inner { padding: 60px 18px; }
   .wa-form-card { margin-top: 24px; }
@@ -906,92 +862,9 @@ footer { border-top: 1px solid var(--border); padding: 48px 48px 32px; position:
     <h2 class="section-title reveal">Real words from<br/>real businesses.</h2>
     <p class="section-desc reveal">Straight from our clients — no edits, no marketing spin.</p>
 
-    <div class="reviews-shell reveal">
-    <div class="reviews-track" id="reviewsTrack">
-      <a class="review-card" href="https://www.google.com/search?q=Innov8+Workflows&amp;stick=H4sIAAAAAAAA_-NgU1I1qDCxMLe0NE5MMUtMMTExSzO1MqgwT0pNSkk0MjK3NDYxN01NWsQq4JmXl19moRCeX5SdlpNfXgwA1ZlEAzwAAAA&amp;hl=en-GB#lrd=0x487993ad6ad446f5:0x7bebda22793475eb,1" target="_blank" rel="noopener" aria-label="View Alfie Williams-Fairley's review on Google">
-        <div class="review-g-header">
-          <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/>
-            <path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/>
-            <path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/>
-            <path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/>
-          </svg>
-          <span class="review-g-label">Williams Electrical</span>
-          <span class="review-g-meta">1 day ago</span>
-        </div>
-        <div class="review-stars" aria-label="5 out of 5 stars">
-          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-        </div>
-        <p class="review-quote">Absolutely outstanding service from start to finish. Jamie is professional, friendly, and always willing to help. I previously had my website hosted with another provider, and Jamie handled the domain transfer seamlessly, liaising directly with the previous provider to ensure a smooth handover with no issues throughout the process. I wouldn't hesitate to recommend Jamie and his services to anyone considering them. A great experience all round.</p>
-        <div class="review-meta">
-          <div class="review-avatar review-avatar-blue" aria-hidden="true">A</div>
-          <div>
-            <div class="review-author">Alfie Williams-Fairley</div>
-            <div class="review-source">Owner · Google review</div>
-          </div>
-          <div class="review-cta">View on Google →</div>
-        </div>
-      </a>
-
-      <a class="review-card" href="https://www.google.com/search?q=Innov8+Workflows&amp;stick=H4sIAAAAAAAA_-NgU1I1qDCxMLe0NE5MMUtMMTExSzO1MqgwT0pNSkk0MjK3NDYxN01NWsQq4JmXl19moRCeX5SdlpNfXgwA1ZlEAzwAAAA&amp;hl=en-GB#lrd=0x487993ad6ad446f5:0x7bebda22793475eb,1" target="_blank" rel="noopener" aria-label="View Joe Grace's review on Google">
-        <div class="review-g-header">
-          <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/>
-            <path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/>
-            <path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/>
-            <path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/>
-          </svg>
-          <span class="review-g-label">JGS Construction</span>
-          <span class="review-g-meta">1 day ago</span>
-        </div>
-        <div class="review-stars" aria-label="5 out of 5 stars">
-          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-        </div>
-        <p class="review-quote">Jamie was fantastic in developing our site and talking me through the various ways he can grow and help reach more clients within our area. Highly recommend and look forward to seeing what he can do for us in the future.</p>
-        <div class="review-meta">
-          <div class="review-avatar review-avatar-red" aria-hidden="true">J</div>
-          <div>
-            <div class="review-author">Joe Grace</div>
-            <div class="review-source">Owner · Google review</div>
-          </div>
-          <div class="review-cta">View on Google →</div>
-        </div>
-      </a>
-
-      <a class="review-card" href="https://www.google.com/search?q=Innov8+Workflows&amp;stick=H4sIAAAAAAAA_-NgU1I1qDCxMLe0NE5MMUtMMTExSzO1MqgwT0pNSkk0MjK3NDYxN01NWsQq4JmXl19moRCeX5SdlpNfXgwA1ZlEAzwAAAA&amp;hl=en-GB#lrd=0x487993ad6ad446f5:0x7bebda22793475eb,1" target="_blank" rel="noopener" aria-label="View Andrew Laxton's review on Google">
-        <div class="review-g-header">
-          <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/>
-            <path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/>
-            <path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/>
-            <path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/>
-          </svg>
-          <span class="review-g-label">A2B Roofing &amp; Scaffolding</span>
-          <span class="review-g-meta">3 days ago</span>
-        </div>
-        <div class="review-stars" aria-label="5 out of 5 stars">
-          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-        </div>
-        <p class="review-quote">Recently set me up with a website and review link for my roofing business — very professional and easy to communicate with! Highly recommended.</p>
-        <div class="review-meta">
-          <div class="review-avatar review-avatar-green" aria-hidden="true">A</div>
-          <div>
-            <div class="review-author">Andrew Laxton</div>
-            <div class="review-source">Owner · Google review</div>
-          </div>
-          <div class="review-cta">View on Google →</div>
-        </div>
-      </a>
-
-    </div>
-    <div class="reviews-nav-row">
-      <button class="reviews-nav reviews-nav-prev" type="button" aria-label="Previous review">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
-      </button>
-      <button class="reviews-nav reviews-nav-next" type="button" aria-label="Next review">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
-      </button>
-    </div>
+    <!-- Live Google reviews via Featurable — auto-syncs from the Google Business Profile -->
+    <div class="reviews-featurable reveal">
+      <div id="featurable-80095f51-5e13-45c1-acf9-b2d14d9f7411" data-featurable-async></div>
     </div>
   </div>
 </section>
@@ -1186,54 +1059,7 @@ const obs = new IntersectionObserver(entries => {
 }, { threshold: 0.12 });
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-// ── REVIEWS — continuous slow slide + manual arrows underneath ──
-(function() {
-  const track = document.getElementById('reviewsTrack');
-  if (!track) return;
-  const originals = Array.from(track.querySelectorAll('.review-card'));
-  if (originals.length < 2) { track.classList.add('single'); return; }
-
-  // Duplicate the set once so the loop is seamless
-  originals.forEach(c => {
-    const clone = c.cloneNode(true);
-    clone.setAttribute('aria-hidden', 'true');
-    clone.setAttribute('tabindex', '-1');
-    track.appendChild(clone);
-  });
-
-  let half = track.scrollWidth / 2;
-  window.addEventListener('resize', () => { half = track.scrollWidth / 2; });
-
-  const SPEED = 0.5; // px per frame — slow drift
-  let paused = false, resumeTimer = null;
-
-  function wrap() {
-    if (track.scrollLeft >= half) track.scrollLeft -= half;
-    else if (track.scrollLeft < 0) track.scrollLeft += half;
-  }
-  function frame() {
-    if (!paused) { track.scrollLeft += SPEED; wrap(); }
-    requestAnimationFrame(frame);
-  }
-  requestAnimationFrame(frame);
-
-  track.addEventListener('mouseenter', () => { paused = true; clearTimeout(resumeTimer); });
-  track.addEventListener('mouseleave', () => { paused = false; });
-
-  const prevBtn = document.querySelector('.reviews-nav-prev');
-  const nextBtn = document.querySelector('.reviews-nav-next');
-  function nudge(dir) {
-    const stepW = originals[0].getBoundingClientRect().width + 20; // card + gap
-    // give room for a backward nudge by hopping into the duplicate band first
-    if (dir < 0 && track.scrollLeft < stepW) track.scrollLeft += half;
-    paused = true;
-    clearTimeout(resumeTimer);
-    track.scrollBy({ left: dir * stepW, behavior: 'smooth' });
-    resumeTimer = setTimeout(() => { wrap(); paused = false; }, 1600);
-  }
-  if (prevBtn) prevBtn.addEventListener('click', () => nudge(-1));
-  if (nextBtn) nextBtn.addEventListener('click', () => nudge(1));
-})();
+// ── REVIEWS — now rendered live by the Featurable widget (cdn.featurable.com/widget/v2/embed.js) ──
 
 // ── WHATSAPP-REDIRECT FORM ───────────────────────────────────
 (function() {
@@ -1281,6 +1107,9 @@ document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
 <!-- Innov8 CRM analytics -->
 <script defer src="https://crm.innov8workflows.co.uk/track.js" data-id="proj_f5d3ac1edd12"></script>
+
+<!-- Featurable — live Google reviews widget (renders into #featurable-… in the Reviews section) -->
+<script src="https://cdn.featurable.com/widget/v2/embed.js" defer charset="UTF-8"></script>
 <!-- Floating WhatsApp widget -->
 <a href="https://wa.me/447718155997?text=Hi%20Jamie%20%E2%80%94%20I%27d%20like%20to%20chat%20about%20a%20website" target="_blank" rel="noopener" class="wa-widget" aria-label="Chat with us on WhatsApp">
   <span class="wa-widget-label">Chat with us on WhatsApp</span>

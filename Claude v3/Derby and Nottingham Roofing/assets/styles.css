@@ -412,10 +412,13 @@ footer ul a:hover{color:var(--orange-bright)}
   .call-pill .num{display:none}.call-pill{padding:11px}
   .section{padding:62px 0}
   .section-head{margin-bottom:34px}
-  .svc-card{padding:20px 16px}
-  .svc-card h3{font-size:1.25rem}
-  .svc-ico{width:44px;height:44px}.svc-ico svg{width:24px;height:24px}
-  .svc-grid,.gal-grid,.related-grid,.rev-grid{grid-template-columns:1fr}
+  .svc-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .svc-card{padding:15px 13px}
+  .svc-card h3{font-size:1.02rem;margin-bottom:5px}
+  .svc-card p{font-size:.8rem;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .svc-ico{width:38px;height:38px;margin-bottom:11px}.svc-ico svg{width:21px;height:21px}
+  .svc-card .more{font-size:.74rem;margin-top:9px}
+  .gal-grid,.related-grid,.rev-grid{grid-template-columns:1fr}
   .area-grid{grid-template-columns:repeat(2,1fr)}
   .foot-grid{grid-template-columns:1fr}
   .hero-content{padding:104px 18px 80px}

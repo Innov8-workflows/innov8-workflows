@@ -565,7 +565,7 @@ function buildFaqs() {
     { q: "What types of roof do you work on?", a: "Both pitched and flat. That includes concrete, clay and natural slate pitched roofs, and EPDM rubber and GRP fibreglass flat roofs on extensions, garages and dormers." },
     { q: "How do I get a quote?", a: "Call or text us on " + SITE.phone + ", or send the contact form and it'll open in WhatsApp with your details ready to go. We'll arrange a free survey and get a written quote to you quickly." }
   ];
-  const p = { slug: "faqs.html", active: "", ogImg: "g1.jpg",
+  const p = { slug: "faqs.html", active: "faqs", ogImg: "g1.jpg",
     title: `Roofing FAQs | ${SITE.name} | Derby & Nottingham`,
     desc: `Answers to common roofing questions — areas covered, insurance, quotes, guarantees, emergency repairs and more — from ${SITE.name}, your local Derby & Nottingham roofers.`,
     schema: [localBusinessLD(), faqLD(faqs), breadcrumbLD([{ name: "Home", slug: "" }, { name: "FAQs", slug: "faqs.html" }])] };

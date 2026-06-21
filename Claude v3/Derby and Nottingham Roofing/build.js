@@ -176,6 +176,7 @@ function navbar(active) {
       <a href="gallery.html"${cls("gallery")}>Gallery</a>
       <a href="reviews.html"${cls("reviews")}>Reviews</a>
       <a href="about.html"${cls("about")}>About</a>
+      <a href="faqs.html"${cls("faqs")}>FAQs</a>
       <a href="contact.html"${cls("contact")}>Contact</a>
     </nav>
     <div class="nav-cta">
@@ -196,6 +197,7 @@ function navbar(active) {
   <a class="link" href="gallery.html">Gallery</a>
   <a class="link" href="reviews.html">Reviews</a>
   <a class="link" href="about.html">About</a>
+  <a class="link" href="faqs.html">FAQs</a>
   <a class="link" href="contact.html">Contact</a>
   <div class="drawer-actions">
     <a class="btn btn-primary" href="${TEL}">${I.phone}Call ${SITE.phone}</a>

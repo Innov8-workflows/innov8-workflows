@@ -14,6 +14,11 @@ const SITE = {
   phoneIntl: "447838250910",
   hours: "Mon–Sat, 7am–6pm",
   area: "Derby & Nottingham",
+  years: 23,
+  founded: "2003",
+  liability: "£5 million",
+  guarantee: "25-year",
+  team: 15,
 };
 const TEL = "tel:+" + SITE.phoneIntl;
 
@@ -42,23 +47,15 @@ const svcBySlug = Object.fromEntries(SERVICES.map(s => [s.slug, s]));
 
 /* ---------- towns ---------- */
 const TOWNS = [
-  { slug: "roofers-derby", town: "Derby", county: "Derbyshire", group: "Cities" },
-  { slug: "roofers-nottingham", town: "Nottingham", county: "Nottinghamshire", group: "Cities" },
-  { slug: "roofers-long-eaton", town: "Long Eaton", county: "Derbyshire", group: "Corridor" },
-  { slug: "roofers-beeston", town: "Beeston", county: "Nottinghamshire", group: "Corridor" },
-  { slug: "roofers-ilkeston", town: "Ilkeston", county: "Derbyshire", group: "Corridor" },
-  { slug: "roofers-stapleford", town: "Stapleford", county: "Nottinghamshire", group: "Corridor" },
-  { slug: "roofers-belper", town: "Belper", county: "Derbyshire", group: "Derbyshire" },
-  { slug: "roofers-ripley", town: "Ripley", county: "Derbyshire", group: "Derbyshire" },
-  { slug: "roofers-heanor", town: "Heanor", county: "Derbyshire", group: "Derbyshire" },
-  { slug: "roofers-alfreton", town: "Alfreton", county: "Derbyshire", group: "Derbyshire" },
-  { slug: "roofers-borrowash", town: "Borrowash", county: "Derbyshire", group: "Derbyshire" },
-  { slug: "roofers-spondon", town: "Spondon", county: "Derbyshire", group: "Derbyshire" },
-  { slug: "roofers-west-bridgford", town: "West Bridgford", county: "Nottinghamshire", group: "Nottinghamshire" },
-  { slug: "roofers-arnold", town: "Arnold", county: "Nottinghamshire", group: "Nottinghamshire" },
-  { slug: "roofers-carlton", town: "Carlton", county: "Nottinghamshire", group: "Nottinghamshire" },
-  { slug: "roofers-hucknall", town: "Hucknall", county: "Nottinghamshire", group: "Nottinghamshire" },
-  { slug: "roofers-bingham", town: "Bingham", county: "Nottinghamshire", group: "Nottinghamshire" },
+  { slug: "roofers-derby", town: "Derby", county: "Derbyshire", group: "Derby & Nottingham" },
+  { slug: "roofers-nottingham", town: "Nottingham", county: "Nottinghamshire", group: "Derby & Nottingham" },
+  { slug: "roofers-long-eaton", town: "Long Eaton", county: "Derbyshire", group: "Derby & Nottingham" },
+  { slug: "roofers-loughborough", town: "Loughborough", county: "Leicestershire", group: "Leicestershire" },
+  { slug: "roofers-shepshed", town: "Shepshed", county: "Leicestershire", group: "Leicestershire" },
+  { slug: "roofers-coalville", town: "Coalville", county: "Leicestershire", group: "Leicestershire" },
+  { slug: "roofers-ashby", town: "Ashby-de-la-Zouch", county: "Leicestershire", group: "Leicestershire" },
+  { slug: "roofers-lichfield", town: "Lichfield", county: "Staffordshire", group: "Staffordshire" },
+  { slug: "roofers-tamworth", town: "Tamworth", county: "Staffordshire", group: "Staffordshire" },
 ];
 
 /* unique local context per town (keeps location pages from being duplicate content) */
@@ -66,20 +63,12 @@ const TOWN_COPY = {
   "roofers-derby": { intro: "From the Victorian terraces of Normanton and Peartree to the 1930s semis of Littleover, Mickleover and Allestree, Derby's housing stock is as varied as it gets — and every roof type needs a slightly different approach. As local Derby roofers we work right across the city and its suburbs, on everything from a single slipped tile to a full re-roof.", nearby: ["Mickleover", "Allestree", "Spondon", "Borrowash"], landmarks: "across Derby, from the city centre and Normanton to Mickleover, Allestree, Chaddesden and Sinfin" },
   "roofers-nottingham": { intro: "Nottingham's rooftops range from the red-brick Victorian terraces of Forest Fields, Sneinton and Lenton to the bay-fronted semis of Wollaton and Mapperley. We're local Nottingham roofers covering the whole city, and we know how the city's older slate and clay-tiled roofs behave when the weather turns.", nearby: ["West Bridgford", "Beeston", "Arnold", "Carlton"], landmarks: "throughout Nottingham, including Wollaton, Mapperley, Sneinton, Bulwell and the city centre" },
   "roofers-long-eaton": { intro: "Sitting right on the Derby–Nottingham border, Long Eaton is packed with Victorian and Edwardian terraces from its lace-making days — many still on their original slate. We cover Long Eaton and the wider Erewash area constantly, so we're rarely more than a short drive away when a roof needs sorting.", nearby: ["Sandiacre", "Sawley", "Breaston", "Beeston"], landmarks: "across Long Eaton, Sawley, Sandiacre and Breaston" },
-  "roofers-beeston": { intro: "Beeston's mix of period terraces near the town centre and inter-war semis out towards Chilwell and Bramcote means we see a real range of roofs here. As regular Beeston roofers — just south-west of Nottingham — we handle repairs, re-roofs, flat roofs and guttering throughout the Broxtowe area.", nearby: ["Chilwell", "Bramcote", "Stapleford", "Nottingham"], landmarks: "across Beeston, Chilwell, Bramcote and Attenborough" },
-  "roofers-ilkeston": { intro: "Ilkeston's hilltop streets and old mining and lace terraces throw up plenty of steep, exposed roofs that take a battering in the wind. We're out in Ilkeston and the surrounding Erewash villages regularly, dealing with slipped slates, leaks, ridge work and full re-roofs.", nearby: ["Cotmanhay", "Kirk Hallam", "West Hallam", "Stanton"], landmarks: "throughout Ilkeston, Cotmanhay, Kirk Hallam and West Hallam" },
-  "roofers-stapleford": { intro: "Between Nottingham and Ilkeston, Stapleford is a busy Broxtowe town with everything from terraced cottages to modern estates. We cover Stapleford day in, day out, so whether it's an emergency repair or a planned re-roof, we can usually be with you quickly.", nearby: ["Sandiacre", "Bramcote", "Trowell", "Beeston"], landmarks: "across Stapleford, Sandiacre, Trowell and Bramcote" },
-  "roofers-belper": { intro: "Belper is a historic Derwent Valley mill town and part of a World Heritage Site, with a lot of older stone and brick properties that need a sympathetic, careful approach. As Belper roofers we're used to working on period homes as well as the town's newer estates, matching materials so repairs and re-roofs look right.", nearby: ["Duffield", "Milford", "Ambergate", "Holbrook"], landmarks: "across Belper, Duffield, Milford and Ambergate" },
-  "roofers-ripley": { intro: "Ripley is a former mining market town in Amber Valley with rows of solid brick terraces and post-war housing. We cover Ripley and the surrounding villages for everything from storm-damaged tiles to new flat roofs on extensions and garages.", nearby: ["Codnor", "Swanwick", "Marehay", "Heanor"], landmarks: "throughout Ripley, Codnor, Swanwick and Marehay" },
-  "roofers-heanor": { intro: "Heanor sits high on its hilltop, which means plenty of weather-exposed roofs across the town and out towards Loscoe and Langley Mill. We're regularly in Heanor handling repairs, re-roofs, chimney work and guttering on its mix of terraced and semi-detached homes.", nearby: ["Loscoe", "Langley Mill", "Codnor", "Smalley"], landmarks: "across Heanor, Loscoe, Langley Mill and Marlpool" },
-  "roofers-alfreton": { intro: "On the A38 between Derby and the M1, Alfreton is a Derbyshire market town with a broad spread of property ages. We cover Alfreton and nearby villages for pitched and flat roofing, repairs, chimneys and full re-roofs — honest quotes, tidy work.", nearby: ["Somercotes", "Riddings", "South Normanton", "Swanwick"], landmarks: "throughout Alfreton, Somercotes, Riddings and South Normanton" },
-  "roofers-borrowash": { intro: "Borrowash is a sought-after village just east of Derby, with a mix of older cottages, 1930s semis and newer family homes. We're local to Borrowash and the Erewash villages, so we can get to you fast for repairs or a planned re-roof.", nearby: ["Spondon", "Draycott", "Ockbrook", "Breaston"], landmarks: "across Borrowash, Ockbrook, Draycott and Spondon" },
-  "roofers-spondon": { intro: "Spondon, on the eastern edge of Derby, blends a historic village core with large inter-war and post-war estates. As roofers covering Spondon we handle the full range — slipped tiles, leaks, flat roofs, fascias and complete re-roofs.", nearby: ["Borrowash", "Chaddesden", "Ockbrook", "Derby"], landmarks: "across Spondon, Chaddesden, Borrowash and Ockbrook" },
-  "roofers-west-bridgford": { intro: "Just south of the Trent, West Bridgford is known for its handsome Edwardian villas and bay-fronted semis — roofs that reward a careful, quality job. As West Bridgford roofers we work throughout 'Bridgford' and Rushcliffe, matching tiles and slates so the work blends in seamlessly.", nearby: ["Gamston", "Edwalton", "Lady Bay", "Ruddington"], landmarks: "across West Bridgford, Gamston, Edwalton and Lady Bay" },
-  "roofers-arnold": { intro: "Arnold is one of north-east Nottingham's largest suburbs, with extensive inter-war and post-war housing across the Gedling area. We cover Arnold constantly for roof repairs, re-roofs, flat roofing and guttering, and can be on site quickly when there's a leak.", nearby: ["Daybrook", "Woodthorpe", "Redhill", "Carlton"], landmarks: "throughout Arnold, Daybrook, Woodthorpe and Redhill" },
-  "roofers-carlton": { intro: "Carlton, in the Gedling borough east of Nottingham, is a settled suburb of terraces and semis where roofs are reaching the age where repairs and re-roofs are common. We're regular Carlton roofers, handling everything from a quick fix to a full strip and re-cover.", nearby: ["Gedling", "Netherfield", "Mapperley", "Arnold"], landmarks: "across Carlton, Gedling, Netherfield and Mapperley" },
-  "roofers-hucknall": { intro: "Hucknall, north of Nottingham in Ashfield, is a former mining town with solid brick terraces and large estates. We cover Hucknall and the surrounding area for pitched and flat roofing, chimney work, repairs and complete re-roofs at fair, honest prices.", nearby: ["Bulwell", "Linby", "Papplewick", "Bestwood"], landmarks: "throughout Hucknall, Bulwell, Linby and Papplewick" },
-  "roofers-bingham": { intro: "Bingham is a growing Rushcliffe market town east of Nottingham, with a historic centre and plenty of newer development. We cover Bingham and the Vale of Belvoir villages for all roofing work, from emergency repairs to planned re-roofs and new flat roofs.", nearby: ["Radcliffe-on-Trent", "Cotgrave", "East Bridgford", "Whatton"], landmarks: "across Bingham, Radcliffe-on-Trent, Cotgrave and East Bridgford" },
+  "roofers-loughborough": { intro: "Loughborough is a busy Leicestershire market and university town with a real spread of property — Victorian terraces near the centre, large student lets, and inter-war and modern semis across Charnwood. We cover Loughborough and the surrounding villages for everything from a slipped tile to a full re-roof.", nearby: ["Shepshed", "Quorn", "Barrow upon Soar", "Mountsorrel"], landmarks: "across Loughborough, Quorn, Barrow upon Soar and Shepshed" },
+  "roofers-shepshed": { intro: "Shepshed sits just west of Loughborough on the edge of the National Forest, with a mix of older brick cottages, post-war housing and newer estates. We're regularly in Shepshed handling repairs, re-roofs, flat roofing, chimneys and guttering.", nearby: ["Loughborough", "Hathern", "Belton", "Hoton"], landmarks: "across Shepshed, Hathern, Belton and the surrounding villages" },
+  "roofers-coalville": { intro: "Coalville grew up around the Leicestershire coalfield, so it's packed with solid Victorian and Edwardian terraces alongside large modern estates. We cover Coalville and the surrounding National Forest towns for pitched and flat roofing, repairs and complete re-roofs.", nearby: ["Whitwick", "Ibstock", "Hugglescote", "Bardon"], landmarks: "throughout Coalville, Whitwick, Ibstock and Hugglescote" },
+  "roofers-ashby": { intro: "Ashby-de-la-Zouch is a handsome Leicestershire market town with period properties, a conservation core and plenty of newer development around the edges. We work right across Ashby and the National Forest villages, matching materials so repairs and re-roofs suit the property.", nearby: ["Measham", "Moira", "Coalville", "Smisby"], landmarks: "across Ashby-de-la-Zouch, Measham, Moira and Smisby" },
+  "roofers-lichfield": { intro: "Lichfield is a historic Staffordshire cathedral city, with everything from Georgian and Victorian properties in the centre to large modern estates on the outskirts. We cover Lichfield and the surrounding villages for all roofing work, taking a careful approach on older and conservation-area homes.", nearby: ["Burntwood", "Whittington", "Shenstone", "Fradley"], landmarks: "across Lichfield, Burntwood, Whittington and Shenstone" },
+  "roofers-tamworth": { intro: "Tamworth is a busy Staffordshire town with its castle at the heart and a broad spread of post-war and modern housing across its estates. We cover Tamworth and the surrounding area for repairs, re-roofs, flat roofing, chimneys and guttering.", nearby: ["Polesworth", "Fazeley", "Kingsbury", "Wilnecote"], landmarks: "throughout Tamworth, Fazeley, Polesworth and Wilnecote" },
 };
 const townBySlug = Object.fromEntries(TOWNS.map(t => [t.slug, t]));
 
@@ -107,6 +96,8 @@ function localBusinessLD() {
     "@context": "https://schema.org", "@type": "RoofingContractor",
     name: SITE.name, url: SITE.url, telephone: "+" + SITE.phoneIntl,
     image: SITE.url + "/assets/img/logo.png",
+    foundingDate: SITE.founded,
+    numberOfEmployees: SITE.team,
     areaServed: TOWNS.map(t => ({ "@type": "City", name: t.town })),
     address: { "@type": "PostalAddress", addressLocality: "Derby", addressRegion: "Derbyshire", addressCountry: "GB" },
     openingHoursSpecification: [{ "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"], opens: "07:00", closes: "18:00" }],
@@ -162,7 +153,7 @@ ${ld(p.schema)}
 
 function navbar(active) {
   const svcDrop = SERVICES.map(s => `<a href="${s.slug}.html">${s.nav}</a>`).join("");
-  const areaDrop = ["roofers-derby","roofers-nottingham","roofers-long-eaton","roofers-beeston","roofers-west-bridgford","roofers-ilkeston","roofers-belper","roofers-arnold"]
+  const areaDrop = ["roofers-derby","roofers-nottingham","roofers-long-eaton","roofers-loughborough","roofers-coalville","roofers-ashby","roofers-lichfield","roofers-tamworth"]
     .map(sl => `<a href="${sl}.html">${townBySlug[sl].town}</a>`).join("") + `<a href="index.html#areas"><strong>All areas &rarr;</strong></a>`;
   const cls = a => active === a ? ' class="active"' : "";
   return `
@@ -208,20 +199,20 @@ function navbar(active) {
 
 function trustStrip() {
   const items = [
-    ['<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/>', "Fully Insured"],
+    ['<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/>', "&pound;5m Public Liability"],
+    ['<circle cx="12" cy="8" r="6"/><path d="M8.21 13.89 7 22l5-3 5 3-1.21-8.11"/>', "25-Year Guarantee"],
+    ['<circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/>', "23 Years’ Experience"],
     ['<path d="M3 9l9-6 9 6v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>', "Free Roof Surveys"],
-    ['<path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>', "Derby &amp; Nottingham"],
-    ['<circle cx="12" cy="8" r="6"/><path d="M8.21 13.89 7 22l5-3 5 3-1.21-8.11"/>', "Workmanship Guarantee"],
-    ['<line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>', "Free, No-Obligation Quotes"],
+    ['<path d="M12 2l2.9 6.3 6.9.6-5.2 4.6 1.6 6.8L12 17.3 5.8 20.9l1.6-6.8L2.2 8.9l6.9-.6z"/>', "5&#9733; Rated"],
   ];
   return `<section class="trust"><div class="wrap trust-row">${items.map(([p, t]) =>
     `<div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${p}</svg>${t}</div>`).join("")}</div></section>`;
 }
 
 function areasSection(currentSlug) {
-  const groups = ["Cities", "Corridor", "Derbyshire", "Nottinghamshire"];
-  const labels = { Cities: "Derby &amp; Nottingham", Corridor: "Between the cities", Derbyshire: "Derbyshire", Nottinghamshire: "Nottinghamshire" };
-  let html = `<section class="section areas" id="areas"><div class="wrap"><div class="section-head center"><span class="eyebrow">Areas we cover</span><h2>Local roofers across Derby &amp; Nottingham</h2><p>We cover both cities and the towns and villages around them. Find your area below.</p></div>`;
+  const groups = ["Derby & Nottingham", "Leicestershire", "Staffordshire"];
+  const labels = { "Derby & Nottingham": "Derby &amp; Nottingham", "Leicestershire": "Leicestershire", "Staffordshire": "Staffordshire" };
+  let html = `<section class="section areas" id="areas"><div class="wrap"><div class="section-head center"><span class="eyebrow">Areas we cover</span><h2>Roofers across the East Midlands &amp; Staffordshire</h2><p>From Derby and Nottingham down through Leicestershire and into Staffordshire — find your area below.</p></div>`;
   groups.forEach(g => {
     const list = TOWNS.filter(t => t.group === g);
     html += `<div style="margin-bottom:22px"><div class="eyebrow" style="margin-bottom:12px">${labels[g]}</div><div class="area-grid">` +

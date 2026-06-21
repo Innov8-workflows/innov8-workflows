@@ -25,7 +25,7 @@ const SERVICES = [
   { slug: "roof-repairs", short: "Roof Repairs", nav: "Roof Repairs", img: "g3.jpg",
     icon: '<path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2-2 2.5-2.5z"/>',
     blurb: "Slipped tiles, leaks, storm damage and ridge work — fast, tidy repairs that stop the problem." },
-  { slug: "flat-roofing", short: "Flat Roofing", nav: "Flat Roofing", img: "work-1.jpg",
+  { slug: "flat-roofing", short: "Flat Roofing", nav: "Flat Roofing", img: "flat-roof.jpg",
     icon: '<path d="M3 7h18"/><path d="M3 12h18"/><path d="M3 17h18"/><path d="M3 7v10"/><path d="M21 7v10"/>',
     blurb: "Long-life EPDM rubber and GRP fibreglass flat roofs for extensions, garages and dormers." },
   { slug: "chimney-repairs", short: "Chimneys", nav: "Chimney & Repointing", img: "g2.jpg",

@@ -308,17 +308,11 @@ ${finalCta(`Looking for trusted roofers in ${t.town}? Get a free, no-obligation 
 
 /* ---------- homepage ---------- */
 function buildHome() {
-  const faqs = [
-    { q: "What areas do you cover?", a: "We cover Derby, Nottingham and the towns and villages around both cities — including Long Eaton, Beeston, Ilkeston, Stapleford, Belper, Ripley, West Bridgford, Arnold, Carlton, Hucknall and more across Derbyshire and Nottinghamshire." },
-    { q: "Are you insured?", a: "Yes — we carry public liability insurance and work to proper safety standards on every job, large or small." },
-    { q: "Do you charge for quotes?", a: "No. All our roof surveys and quotes are free and with no obligation. We'll inspect the roof, explain what we find and give you a clear written price." },
-    { q: "Do you do emergency roof repairs?", a: "Yes. For leaks and storm damage we prioritise getting out quickly to make the roof safe, then return to carry out a permanent repair." }
-  ];
   const p = {
     slug: "index.html", active: "home", ogImg: "g1.jpg",
     title: `${SITE.name} | Roofers in Derby & Nottingham | Free Quotes`,
     desc: "Trusted roofing contractors covering Derby & Nottingham. New roofs, roof repairs, flat roofing, chimneys, guttering & free roof surveys. Fully insured. Free, no-obligation quotes.",
-    schema: [localBusinessLD(), faqLD(faqs),
+    schema: [localBusinessLD(),
       { "@context": "https://schema.org", "@type": "WebSite", name: SITE.name, url: SITE.url }]
   };
   const svcCards = SERVICES.map(s => `
@@ -426,7 +420,6 @@ ${trustStrip()}
 </div></section>
 ${areasSection()}
 ${contactSection()}
-${faqSection(faqs)}
 ${finalCta()}`;
   OUT["index.html"] = head(p) + navbar(p.active) + body + footer();
 }

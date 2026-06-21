@@ -354,29 +354,35 @@ ${trustStrip()}
   <div class="svc-grid">${svcCards}</div></div></section>
 <section class="section ba" id="ba"><div class="wrap">
   <div class="section-head center"><span class="eyebrow">See the difference</span><h2>Before &amp; after</h2>
-    <p>Watch a recent job go from tired and worn to a fresh, watertight finish.</p></div>
-  <div class="ba-grid">
-    <div class="ba-video-wrap">
-      <div class="ba-corner"><span class="dot"></span>Before &rarr; After</div>
-      <video id="baVideo" class="ba-video" muted loop playsinline autoplay preload="auto" poster="assets/img/g1.jpg" disablepictureinpicture>
-        <source src="assets/before-after.mp4" type="video/mp4"></video>
-    </div>
-    <div class="ba-video-wrap ba-second">
-      <div class="ba-corner"><span class="dot"></span>Before &rarr; After</div>
-      <video id="baVideo2" class="ba-video" muted loop playsinline autoplay preload="auto" poster="assets/img/ba2-poster.jpg" disablepictureinpicture>
-        <source src="assets/before-after-02.mp4" type="video/mp4"></video>
-    </div>
-    <div class="ba-info">
-      <span class="eyebrow">Recent project &middot; Derby &amp; Nottingham</span>
-      <h3>Full Roof Strip &amp; Re-Slate</h3>
-      <p>An old, weathered slate roof stripped right back and replaced with a brand-new natural slate covering — complete with new guttering and a crisp, clean line across the eaves.</p>
-      <ul class="ba-points">
-        <li>${I.check}Worn slates fully stripped and replaced</li>
-        <li>${I.check}New guttering, fascias &amp; clean eaves detail</li>
-        <li>${I.check}Watertight, weatherproof finish built to last</li>
-      </ul>
-      <a class="btn btn-primary" href="contact.html">${I.quote}Get a quote like this</a>
-    </div></div></div></section>
+    <p>Watch recent jobs go from tired and worn to a fresh, watertight finish — real roofs, real results across Derby &amp; Nottingham.</p></div>
+  <div class="cases">
+    <article class="case">
+      <div class="case-media"><div class="case-frame">
+        <div class="ba-corner"><span class="dot"></span>Before &rarr; After</div>
+        <video id="baVideo" class="ba-video" muted loop playsinline autoplay preload="auto" poster="assets/img/g1.jpg" disablepictureinpicture><source src="assets/before-after.mp4" type="video/mp4"></video>
+      </div></div>
+      <div class="case-body">
+        <span class="eyebrow">Full Roof Strip &amp; Re-Slate</span>
+        <h3>A worn slate roof made watertight again</h3>
+        <p>An old, weathered slate roof stripped right back and re-covered with brand-new natural slate over a breathable membrane and fresh battens — finished with new guttering and a crisp, clean line across the eaves.</p>
+        <span class="case-loc">${I.pin}Derby</span>
+      </div>
+    </article>
+    <article class="case">
+      <div class="case-media"><div class="case-frame">
+        <div class="ba-corner"><span class="dot"></span>Before &rarr; After</div>
+        <video id="baVideo2" class="ba-video" muted loop playsinline autoplay preload="auto" poster="assets/img/ba2-poster.jpg" disablepictureinpicture><source src="assets/before-after-02.mp4" type="video/mp4"></video>
+      </div></div>
+      <div class="case-body">
+        <span class="eyebrow">Full Re-Roof</span>
+        <h3>Stripped back and built to last</h3>
+        <p>Taken right back and rebuilt properly — new timbers, breathable felt, treated battens and a fresh tile covering throughout, with new ridge and leadwork. A complete re-roof built to keep the home dry and solid for decades.</p>
+        <span class="case-loc">${I.pin}Nottingham</span>
+      </div>
+    </article>
+  </div>
+  <div class="center" style="margin-top:46px"><a class="btn btn-primary" href="contact.html">${I.quote}Get a quote like this</a></div>
+</div></section>
 <section class="section gallery" id="work"><div class="wrap">
   <div class="section-head center"><span class="eyebrow">Our work</span><h2>Recent projects</h2>
     <p>A look at some of the roofs we've completed for homeowners across the East Midlands.</p></div>

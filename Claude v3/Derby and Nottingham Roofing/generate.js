@@ -727,8 +727,8 @@ h1{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:2.4rem;li
   var GOOGLE_REVIEW_URL   = "PASTE_GOOGLE_REVIEW_LINK_HERE";
   var FACEBOOK_REVIEW_URL = "PASTE_FACEBOOK_REVIEWS_LINK_HERE";
   function set(id, url, fallback){ var a = document.getElementById(id); a.href = (url && url.indexOf('PASTE_') !== 0) ? url : fallback; }
-  set('googleBtn', GOOGLE_REVIEW_URL, "https://www.google.com/search?q=" + encodeURIComponent("${esc(SITE.name)} reviews"));
-  set('fbBtn', FACEBOOK_REVIEW_URL, "https://www.facebook.com/search/top?q=" + encodeURIComponent("${esc(SITE.name)}"));
+  set('googleBtn', GOOGLE_REVIEW_URL, "https://www.google.com/search?q=" + encodeURIComponent("${SITE.name} reviews"));
+  set('fbBtn', FACEBOOK_REVIEW_URL, "https://www.facebook.com/search/top?q=" + encodeURIComponent("${SITE.name}"));
   document.getElementById('year').textContent = new Date().getFullYear();
 </script>
 </body>

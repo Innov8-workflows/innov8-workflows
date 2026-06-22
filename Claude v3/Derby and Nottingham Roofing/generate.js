@@ -383,6 +383,18 @@ ${trustStrip()}
         <span class="case-loc">${I.pin}Nottingham</span>
       </div>
     </article>
+    <article class="case">
+      <div class="case-media"><div class="case-frame">
+        <div class="ba-corner"><span class="dot"></span>Before &rarr; After</div>
+        <video id="baVideo3" class="ba-video" muted loop playsinline autoplay preload="auto" poster="assets/img/ba3-poster.jpg" disablepictureinpicture><source src="assets/before-after-03.mp4" type="video/mp4"></video>
+      </div></div>
+      <div class="case-body">
+        <span class="eyebrow">Chimney Rebuild &amp; Repoint</span>
+        <h3>A tired chimney made solid again</h3>
+        <p>A weathered chimney stack rebuilt and repointed from the flashing up — fresh lead, a new cap and crisp mortar joints throughout, so the wet stays out and the stack stands straight for years to come.</p>
+        <span class="case-loc">${I.pin}Loughborough</span>
+      </div>
+    </article>
   </div>
   <div class="center" style="margin-top:46px"><a class="btn btn-primary" href="contact.html">${I.quote}Get a quote like this</a></div>
 </div></section>

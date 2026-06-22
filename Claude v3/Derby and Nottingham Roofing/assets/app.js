@@ -48,12 +48,28 @@
     var START = [3, 1, 0];   // orbital-03 begins 3s in, hero 1s in, orbital-02 from the start
     var FADE = 1.5;       // begin the crossfade this many seconds before a clip ends (matches CSS)
     var cur = -1, busy = false;
+    function dramatize(v) {
+      // first clip: open fast for drama, then ease back to normal speed
+      var DUR = 2200, FROM = 2.5, TO = 1, t0 = null;
+      v.playbackRate = FROM;
+      function step(ts) {
+        if (cur !== 0) { v.playbackRate = TO; return; }   // bail if we've moved on
+        if (t0 === null) t0 = ts;
+        var k = Math.min(1, (ts - t0) / DUR);
+        var e = 1 - Math.pow(1 - k, 3);                    // ease-out
+        v.playbackRate = FROM + (TO - FROM) * e;
+        if (k < 1) requestAnimationFrame(step); else v.playbackRate = TO;
+      }
+      requestAnimationFrame(step);
+    }
     function go(idx) {
       busy = false; cur = idx;
       var v = hv[idx];
       try { v.currentTime = START[idx] || 0; } catch (e) {}
+      try { v.playbackRate = 1; } catch (e) {}
       var p = v.play(); if (p && p.catch) p.catch(function () {});
       hv.forEach(function (x, k) { x.classList.toggle("active", k === idx); });
+      if (idx === 0) dramatize(v);
     }
     hv.forEach(function (v, idx) {
       v.addEventListener("timeupdate", function () {

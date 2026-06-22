@@ -38,8 +38,21 @@
       io.observe(v);
     } else { tryPlay(); }
   }
-  autoplay($("heroVideo"));
+  document.querySelectorAll(".hero-video").forEach(autoplay);
   document.querySelectorAll(".ba-video").forEach(autoplay);
+
+  /* ---------- hero: crossfade between background videos ---------- */
+  (function () {
+    var hv = [].slice.call(document.querySelectorAll(".hero-video"));
+    if (hv.length < 2) return;
+    if (!hv.some(function (v) { return v.classList.contains("active"); })) hv[0].classList.add("active");
+    var i = 0;
+    setInterval(function () {
+      hv[i].classList.remove("active");
+      i = (i + 1) % hv.length;
+      hv[i].classList.add("active");
+    }, 7000);
+  })();
 
   /* ---------- reviews data ---------- */
   var REVIEWS = [

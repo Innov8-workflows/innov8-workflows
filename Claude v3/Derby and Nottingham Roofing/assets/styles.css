@@ -101,7 +101,8 @@ header.nav.solid{background:var(--ink)}
 /* ---------- hero (home) ---------- */
 .hero{position:relative;min-height:100svh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
 .hero-slides{position:absolute;inset:0;z-index:0}
-.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;background:#0c0e13}
+.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;background:#0c0e13;opacity:0;transition:opacity 1.5s ease}
+.hero-video.active{opacity:1}
 .hero-overlay{position:absolute;inset:0;z-index:1;
   background:linear-gradient(180deg,rgba(12,14,19,.74) 0%,rgba(12,14,19,.55) 42%,rgba(12,14,19,.86) 100%)}
 .hero-overlay:after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 38%,rgba(244,115,27,.16),transparent 60%)}

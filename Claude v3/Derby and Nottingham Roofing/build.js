@@ -214,7 +214,7 @@ function trustStrip() {
 function areasSection(currentSlug) {
   const groups = ["Derby & Nottingham", "Leicestershire", "Staffordshire"];
   const labels = { "Derby & Nottingham": "Derby &amp; Nottingham", "Leicestershire": "Leicestershire", "Staffordshire": "Staffordshire" };
-  let html = `<section class="section areas" id="areas"><div class="wrap"><div class="section-head center"><span class="eyebrow">Areas we cover</span><h2>Roofers across the East Midlands &amp; Staffordshire</h2><p>From Derby and Nottingham down through Leicestershire and into Staffordshire — find your area below.</p></div>`;
+  let html = `<section class="section areas" id="areas"><div class="wrap"><div class="section-head center"><span class="eyebrow">Areas we cover</span><h2>Roofers across the East Midlands</h2><p>From Derby and Nottingham down through Leicestershire and the surrounding towns — find your area below.</p></div>`;
   groups.forEach(g => {
     const list = TOWNS.filter(t => t.group === g);
     html += `<div style="margin-bottom:22px"><div class="eyebrow" style="margin-bottom:12px">${labels[g]}</div><div class="area-grid">` +

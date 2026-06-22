@@ -45,7 +45,7 @@
     var hv = [].slice.call(document.querySelectorAll(".hero-video"));
     if (!hv.length) return;
     hv.forEach(function (v) { v.muted = true; v.loop = false; });
-    var START = [1, 0];   // first clip begins 1 second in; the rest from the start
+    var START = [3, 1, 0];   // orbital-03 begins 3s in, hero 1s in, orbital-02 from the start
     var FADE = 1.5;       // begin the crossfade this many seconds before a clip ends (matches CSS)
     var cur = -1, busy = false;
     function go(idx) {

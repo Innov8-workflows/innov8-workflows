@@ -5,6 +5,20 @@
   var WA_BASE = "https://wa.me/" + PHONE_INTL + "?text=";
   var $ = function (id) { return document.getElementById(id); };
 
+  /* ---------- GA4 event helper ---------- */
+  function track(name, params) {
+    try { if (typeof window.gtag === "function") window.gtag("event", name, params || {}); } catch (e) {}
+  }
+  function locOf(el) {
+    if (!el || !el.closest) return "page";
+    if (el.closest("#drawer")) return "mobile_menu";
+    if (el.closest("#nav") || el.closest("header.nav")) return "nav";
+    if (el.closest(".hero")) return "hero";
+    if (el.closest("form")) return "contact_form";
+    if (el.closest("footer")) return "footer";
+    return "page";
+  }
+
   /* ---------- navbar scroll ---------- */
   var nav = $("nav");
   if (nav) {
@@ -180,6 +194,12 @@
       var name = ($("fName") && $("fName").value.trim()) || "";
       var phone = ($("fPhone") && $("fPhone").value.trim()) || "";
       if (!name || !phone) { alert("Please add your name and phone number so we can get back to you."); return; }
+      track("generate_lead", {
+        method: "whatsapp",
+        link_location: "contact_form",
+        service: ($("fService") && $("fService").value) || "",
+        area: ($("fArea") && $("fArea").value.trim()) || ""
+      });
       window.open(buildWa(), "_blank");
     };
   }
@@ -187,7 +207,20 @@
   if (waFloat) {
     waFloat.onclick = function (e) {
       e.preventDefault();
+      track("click_whatsapp", { link_location: "float" });
       window.open(WA_BASE + "Hi%20Derby%20%26%20Nottingham%20Roofing%2C%20I%20found%20your%20website%20and%20I%27d%20like%20a%20free%20roofing%20quote.%0A%0ASource%3A%20website%20enquiry", "_blank");
     };
   }
+
+  /* ---------- conversion events: clicks to call + inline WhatsApp ---------- */
+  document.addEventListener("click", function (e) {
+    var a = e.target && e.target.closest ? e.target.closest("a[href]") : null;
+    if (!a) return;
+    var href = a.getAttribute("href") || "";
+    if (href.indexOf("tel:") === 0) {
+      track("click_to_call", { link_location: locOf(a) });
+    } else if (href.indexOf("wa.me") !== -1 && a.id !== "waFloat") {
+      track("click_whatsapp", { link_location: locOf(a) });
+    }
+  }, true);
 })();

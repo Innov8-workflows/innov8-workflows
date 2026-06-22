@@ -127,10 +127,12 @@ function head(p) {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; form-action 'self'; img-src 'self' data: https://www.google-analytics.com; media-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com">
 <title>${esc(p.title)}</title>
 <meta name="description" content="${esc(p.desc)}">
 <link rel="canonical" href="${canon}">
-<meta name="robots" content="index,follow">
+<meta name="robots" content="${p.noindex ? "noindex,follow" : "index,follow"}">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="${esc(SITE.name)}">
 <meta property="og:title" content="${esc(p.title)}">

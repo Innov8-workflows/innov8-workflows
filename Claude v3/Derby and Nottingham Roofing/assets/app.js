@@ -94,6 +94,8 @@
     function begin() { if (cur === -1) go(0); }
     if (hv[0].readyState >= 1) begin();
     else hv[0].addEventListener("loadedmetadata", begin, { once: true });
+    // warm up the other hero clips in the background (after first paint) so crossfades stay smooth
+    setTimeout(function () { hv.slice(1).forEach(function (v) { if (v.preload !== "auto") v.preload = "auto"; }); }, 2200);
   })();
 
   /* ---------- reviews data ---------- */

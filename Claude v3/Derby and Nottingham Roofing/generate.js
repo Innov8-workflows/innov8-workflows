@@ -335,10 +335,10 @@ function buildHome() {
     <video class="hero-video active" id="heroVideo3" muted playsinline preload="auto" poster="assets/img/hero-03-poster.jpg" disablepictureinpicture>
       <source src="assets/orbital-03.mp4" type="video/mp4">
     </video>
-    <video class="hero-video" id="heroVideo" muted playsinline preload="auto" poster="assets/img/hero-poster.jpg" disablepictureinpicture>
+    <video class="hero-video" id="heroVideo" muted playsinline preload="metadata" poster="assets/img/hero-poster.jpg" disablepictureinpicture>
       <source src="assets/hero.mp4" type="video/mp4">
     </video>
-    <video class="hero-video" id="heroVideo2" muted playsinline preload="auto" poster="assets/img/hero-02-poster.jpg" disablepictureinpicture>
+    <video class="hero-video" id="heroVideo2" muted playsinline preload="metadata" poster="assets/img/hero-02-poster.jpg" disablepictureinpicture>
       <source src="assets/orbital-02.mp4" type="video/mp4">
     </video>
   </div>
@@ -365,7 +365,7 @@ ${trustStrip()}
     <article class="case">
       <div class="case-media"><div class="case-frame">
         <div class="ba-corner"><span class="dot"></span>Before &rarr; After</div>
-        <video id="baVideo" class="ba-video" muted loop playsinline autoplay preload="auto" poster="assets/img/g1.jpg" disablepictureinpicture><source src="assets/before-after.mp4" type="video/mp4"></video>
+        <video id="baVideo" class="ba-video" muted loop playsinline preload="none" poster="assets/img/g1.jpg" disablepictureinpicture><source src="assets/before-after.mp4" type="video/mp4"></video>
       </div></div>
       <div class="case-body">
         <span class="eyebrow">Full Roof Strip &amp; Re-Slate</span>
@@ -377,7 +377,7 @@ ${trustStrip()}
     <article class="case">
       <div class="case-media"><div class="case-frame">
         <div class="ba-corner"><span class="dot"></span>Before &rarr; After</div>
-        <video id="baVideo2" class="ba-video" muted loop playsinline autoplay preload="auto" poster="assets/img/ba2-poster.jpg" disablepictureinpicture><source src="assets/before-after-02.mp4" type="video/mp4"></video>
+        <video id="baVideo2" class="ba-video" muted loop playsinline preload="none" poster="assets/img/ba2-poster.jpg" disablepictureinpicture><source src="assets/before-after-02.mp4" type="video/mp4"></video>
       </div></div>
       <div class="case-body">
         <span class="eyebrow">Full Re-Roof</span>
@@ -389,7 +389,7 @@ ${trustStrip()}
     <article class="case">
       <div class="case-media"><div class="case-frame">
         <div class="ba-corner"><span class="dot"></span>Before &rarr; After</div>
-        <video id="baVideo3" class="ba-video" muted loop playsinline autoplay preload="auto" poster="assets/img/ba3-poster.jpg" disablepictureinpicture><source src="assets/before-after-03.mp4" type="video/mp4"></video>
+        <video id="baVideo3" class="ba-video" muted loop playsinline preload="none" poster="assets/img/ba3-poster.jpg" disablepictureinpicture><source src="assets/before-after-03.mp4" type="video/mp4"></video>
       </div></div>
       <div class="case-body">
         <span class="eyebrow">Chimney Rebuild &amp; Repoint</span>
@@ -618,6 +618,8 @@ function buildReview() {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; img-src 'self' data:; media-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'">
 <meta name="robots" content="noindex">
 <title>Leave a Review · ${esc(SITE.name)}</title>
 <meta name="description" content="Thank you for choosing ${esc(SITE.name)}. Leave us a quick Google or Facebook review — it only takes 30 seconds.">
@@ -759,7 +761,26 @@ fs.writeFileSync("robots.txt", `User-agent: *\nAllow: /\n\nSitemap: ${SITE.url}/
 fs.writeFileSync("CNAME", new URL(SITE.url).host + "\n");
 
 /* review.html — private review-request card (noindex; deliberately NOT in OUT/sitemap) */
+function build404() {
+  const p = { slug: "404.html", active: "", noindex: true, ogImg: "g1.jpg",
+    title: `Page Not Found | ${SITE.name}`,
+    desc: "Sorry, that page can't be found. Browse our roofing services and areas across Derby, Nottingham, Leicestershire & Staffordshire, or get a free quote.",
+    schema: [localBusinessLD()] };
+  const svcLinks = SERVICES.map(s => `<a class="area-link" href="${s.slug}.html">${I.arrow}${s.nav}</a>`).join("");
+  const body = `
+${pageHero({ heroImg: "g3.jpg", eyebrow: "Error 404", h1: 'Page <span class="hl">not found</span>', lead: "Sorry — the page you were after doesn't exist or has moved. Let's get you back on track.", crumbs: [{ name: "Home", slug: "index.html" }, { name: "Not found" }] })}
+${trustStrip()}
+<section class="section content"><div class="wrap center" style="max-width:780px;text-align:center">
+  <span class="eyebrow">Our services</span>
+  <h2 style="text-transform:uppercase;margin:8px 0 22px">Jump to what you need</h2>
+  <div class="area-grid" style="text-align:left">${svcLinks}</div>
+</div></section>
+${areasSection()}
+${finalCta()}`;
+  return head(p) + navbar(p.active) + body + footer();
+}
 fs.writeFileSync("review.html", buildReview());
+fs.writeFileSync("404.html", build404());
 
 console.log("Generated " + count + " HTML pages + review.html + sitemap.xml + robots.txt + CNAME");
 console.log(Object.keys(OUT).join("  "));

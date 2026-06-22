@@ -386,12 +386,17 @@ footer ul a:hover{color:var(--orange-bright)}
 .foot-bottom a{color:#6a7280}
 
 /* ---------- floating WhatsApp ---------- */
-.wa-float{position:fixed;right:20px;bottom:20px;z-index:80;width:60px;height:60px;border-radius:50%;background:var(--wa);
-  display:flex;align-items:center;justify-content:center;box-shadow:0 12px 28px -8px rgba(37,211,102,.6);transition:transform .15s}
-.wa-float:hover{transform:scale(1.07)}
-.wa-float svg{width:34px;height:34px;color:#fff}
-.wa-float:after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--wa);animation:pulse 2.4s ease-out infinite}
-@keyframes pulse{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.55);opacity:0}}
+.wa-float{position:fixed;right:20px;bottom:20px;z-index:80;display:flex;align-items:center;justify-content:flex-end;
+  height:58px;width:58px;border-radius:29px;background:var(--wa);overflow:hidden;text-decoration:none;
+  box-shadow:0 10px 26px -8px rgba(37,211,102,.55);transition:width .32s cubic-bezier(.4,0,.2,1),box-shadow .2s,transform .12s}
+.wa-float .wa-ico{flex:none;width:58px;height:58px;display:flex;align-items:center;justify-content:center}
+.wa-float .wa-ico svg{width:32px;height:32px;color:#fff}
+.wa-float .wa-txt{color:#fff;font-family:'Barlow',sans-serif;font-weight:700;font-size:.95rem;white-space:nowrap;padding-left:18px;opacity:0;transition:opacity .18s}
+.wa-float:active{transform:scale(.96)}
+@media(hover:hover){
+  .wa-float:hover{width:212px;box-shadow:0 14px 30px -8px rgba(37,211,102,.72)}
+  .wa-float:hover .wa-txt{opacity:1}
+}
 
 /* ---------- responsive ---------- */
 @media(max-width:960px){

@@ -163,12 +163,13 @@
   function buildWa() {
     var v = function (id) { var el = $(id); return el ? (el.value || "").trim() : ""; };
     var name = v("fName"), phone = v("fPhone"), area = v("fArea"), service = v("fService"), msg = v("fMsg");
-    var t = "Hi Derby & Nottingham Roofing, I'd like a free quote.%0A%0A";
+    var t = "Hi Derby & Nottingham Roofing, I found your website and I'd like a free quote.%0A%0A";
     if (name) t += "Name: " + encodeURIComponent(name) + "%0A";
     if (phone) t += "Phone: " + encodeURIComponent(phone) + "%0A";
     if (area) t += "Location: " + encodeURIComponent(area) + "%0A";
     if (service) t += "Service: " + encodeURIComponent(service) + "%0A";
     if (msg) t += "Details: " + encodeURIComponent(msg) + "%0A";
+    t += "%0ASource: website enquiry";
     return WA_BASE + t;
   }
   var sendWa = $("sendWa");
@@ -184,7 +185,7 @@
   if (waFloat) {
     waFloat.onclick = function (e) {
       e.preventDefault();
-      window.open(WA_BASE + "Hi%20Derby%20%26%20Nottingham%20Roofing%2C%20I%27d%20like%20a%20free%20quote.", "_blank");
+      window.open(WA_BASE + "Hi%20Derby%20%26%20Nottingham%20Roofing%2C%20I%20found%20your%20website%20and%20I%27d%20like%20a%20free%20roofing%20quote.%0A%0ASource%3A%20website%20enquiry", "_blank");
     };
   }
 })();

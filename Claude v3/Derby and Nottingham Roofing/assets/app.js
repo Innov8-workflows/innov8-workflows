@@ -38,20 +38,46 @@
       io.observe(v);
     } else { tryPlay(); }
   }
-  document.querySelectorAll(".hero-video").forEach(autoplay);
   document.querySelectorAll(".ba-video").forEach(autoplay);
 
-  /* ---------- hero: crossfade between background videos ---------- */
+  /* ---------- hero: sequential bg videos — 1st starts 1s in, crossfade as each clip ends, then loop ---------- */
   (function () {
     var hv = [].slice.call(document.querySelectorAll(".hero-video"));
-    if (hv.length < 2) return;
-    if (!hv.some(function (v) { return v.classList.contains("active"); })) hv[0].classList.add("active");
-    var i = 0;
-    setInterval(function () {
-      hv[i].classList.remove("active");
-      i = (i + 1) % hv.length;
-      hv[i].classList.add("active");
-    }, 7000);
+    if (!hv.length) return;
+    hv.forEach(function (v) { v.muted = true; v.loop = false; });
+    var START = [1, 0];   // first clip begins 1 second in; the rest from the start
+    var FADE = 1.5;       // begin the crossfade this many seconds before a clip ends (matches CSS)
+    var cur = -1, busy = false;
+    function go(idx) {
+      busy = false; cur = idx;
+      var v = hv[idx];
+      try { v.currentTime = START[idx] || 0; } catch (e) {}
+      var p = v.play(); if (p && p.catch) p.catch(function () {});
+      hv.forEach(function (x, k) { x.classList.toggle("active", k === idx); });
+    }
+    hv.forEach(function (v, idx) {
+      v.addEventListener("timeupdate", function () {
+        if (idx !== cur || busy) return;
+        var d = v.duration;
+        if (d && isFinite(d) && v.currentTime >= d - FADE) { busy = true; go((idx + 1) % hv.length); }
+      });
+      v.addEventListener("ended", function () {
+        if (idx === cur && !busy) { busy = true; go((idx + 1) % hv.length); }
+      });
+    });
+    if ("IntersectionObserver" in window) {
+      var io = new IntersectionObserver(function (ents) {
+        ents.forEach(function (e) {
+          if (cur < 0 || e.target !== hv[cur]) return;
+          if (e.isIntersecting) { var p = hv[cur].play(); if (p && p.catch) p.catch(function () {}); }
+          else hv[cur].pause();
+        });
+      }, { threshold: 0.1 });
+      hv.forEach(function (v) { io.observe(v); });
+    }
+    function begin() { if (cur === -1) go(0); }
+    if (hv[0].readyState >= 1) begin();
+    else hv[0].addEventListener("loadedmetadata", begin, { once: true });
   })();
 
   /* ---------- reviews data ---------- */

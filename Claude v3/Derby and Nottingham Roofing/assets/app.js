@@ -50,7 +50,7 @@
     var cur = -1, busy = false;
     function dramatize(v) {
       // first clip: open fast for drama, then ease back to normal speed
-      var DUR = 2200, FROM = 2.5, TO = 1, t0 = null;
+      var DUR = 2200, FROM = 5, TO = 1, t0 = null;
       v.playbackRate = FROM;
       function step(ts) {
         if (cur !== 0) { v.playbackRate = TO; return; }   // bail if we've moved on

@@ -163,14 +163,14 @@
   function buildWa() {
     var v = function (id) { var el = $(id); return el ? (el.value || "").trim() : ""; };
     var name = v("fName"), phone = v("fPhone"), area = v("fArea"), service = v("fService"), msg = v("fMsg");
-    var t = "Hi Derby & Nottingham Roofing, I found your website and I'd like a free quote.%0A%0A";
-    if (name) t += "Name: " + encodeURIComponent(name) + "%0A";
-    if (phone) t += "Phone: " + encodeURIComponent(phone) + "%0A";
-    if (area) t += "Location: " + encodeURIComponent(area) + "%0A";
-    if (service) t += "Service: " + encodeURIComponent(service) + "%0A";
-    if (msg) t += "Details: " + encodeURIComponent(msg) + "%0A";
-    t += "%0ASource: website enquiry";
-    return WA_BASE + t;
+    var lines = ["Hi Derby & Nottingham Roofing, I found your website and I'd like a free quote.", ""];
+    if (name) lines.push("Name: " + name);
+    if (phone) lines.push("Phone: " + phone);
+    if (area) lines.push("Location: " + area);
+    if (service) lines.push("Service: " + service);
+    if (msg) lines.push("Details: " + msg);
+    lines.push("", "Source: website enquiry");
+    return WA_BASE + encodeURIComponent(lines.join("\n"));
   }
   var sendWa = $("sendWa");
   if (sendWa) {

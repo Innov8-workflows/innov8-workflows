@@ -10,8 +10,9 @@ const SITE = {
   name: "Derby & Nottingham Roofing",
   // Live URL (custom domain on GitHub Pages).
   url: "https://derbyandnottinghamroofing.co.uk",
-  phone: "07838 250910",
-  phoneIntl: "447838250910",
+  phone: "07944 635771",
+  phoneIntl: "447944635771",
+  email: "info@derbyandnottinghamroofing.co.uk",
   hours: "Mon–Sat, 7am–6pm",
   area: "Derby & Nottingham",
   years: 23,
@@ -77,6 +78,7 @@ const I = {
   phone: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>',
   pin: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>',
   clock: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg>',
+  mail: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="3 7 12 13 21 7"/></svg>',
   check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>',
   arrow: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>',
   quote: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8" fill="none" stroke="#fff" stroke-width="2"/></svg>',
@@ -94,7 +96,7 @@ function ld(objs) {
 function localBusinessLD() {
   return {
     "@context": "https://schema.org", "@type": "RoofingContractor",
-    name: SITE.name, url: SITE.url, telephone: "+" + SITE.phoneIntl,
+    name: SITE.name, url: SITE.url, telephone: "+" + SITE.phoneIntl, email: SITE.email,
     image: SITE.url + "/assets/img/logo.png",
     foundingDate: SITE.founded,
     numberOfEmployees: SITE.team,
@@ -253,7 +255,7 @@ function footer() {
       <div class="foot-brand">
         <img src="assets/img/logo.png" alt="${esc(SITE.name)}" width="150" height="100">
         <p>Trusted local roofing contractors covering Derby, Nottingham and the surrounding East Midlands. Pitched roofs, flat roofs, repairs, chimneys and guttering.</p>
-        <p style="margin-top:14px"><a href="${TEL}" style="color:#fff;font-weight:700;font-size:1.15rem">${SITE.phone}</a><br><span style="font-size:.82rem">${SITE.hours}</span></p>
+        <p style="margin-top:14px"><a href="${TEL}" style="color:#fff;font-weight:700;font-size:1.15rem">${SITE.phone}</a><br><a href="mailto:${SITE.email}" style="color:#fff;font-size:.92rem">${SITE.email}</a><br><span style="font-size:.82rem">${SITE.hours}</span></p>
       </div>
       <div><h4>Services</h4><ul>${svc}</ul></div>
       <div><h4>Areas</h4><ul>${area}</ul></div>

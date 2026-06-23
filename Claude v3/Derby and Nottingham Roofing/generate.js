@@ -458,6 +458,7 @@ function contactSection() {
       <div class="section-head" style="margin-bottom:0"><span class="eyebrow">Get in touch</span><h2>Free quote, no obligation</h2></div>
       <p>Tell us about your roof and we'll come back to you fast — usually the same day. Send the form and it'll open straight in WhatsApp, or call us now.</p>
       <div class="ci-item"><div class="ic">${I.phone}</div><div class="t"><small>Call or text</small><a href="${TEL}">${SITE.phone}</a></div></div>
+      <div class="ci-item"><div class="ic">${I.mail}</div><div class="t"><small>Email</small><a href="mailto:${SITE.email}">${SITE.email}</a></div></div>
       <div class="ci-item"><div class="ic">${I.pin}</div><div class="t"><small>Areas covered</small><span>Derby &amp; Nottingham</span></div></div>
       <div class="ci-item"><div class="ic">${I.clock}</div><div class="t"><small>Hours</small><span>${SITE.hours}</span></div></div>
     </div>
@@ -713,7 +714,7 @@ h1{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:2.4rem;li
       <div class="divider">No Google account?</div>
       <p class="alt-note">No problem — you can leave us a review on Facebook instead. It helps just as much.</p>
       <a id="fbBtn" class="btn btn-facebook" href="#" target="_blank" rel="noopener"><span class="btn-icon">${F_SVG}</span>Review us on Facebook</a>
-      <p class="reassure">Not quite 100% happy? Please give us the chance to put it right first — call <a href="tel:+${SITE.phoneIntl}">07838&nbsp;250910</a> or <a href="https://wa.me/${SITE.phoneIntl}" target="_blank" rel="noopener">WhatsApp us</a>.</p>
+      <p class="reassure">Not quite 100% happy? Please give us the chance to put it right first — call <a href="tel:+${SITE.phoneIntl}">${SITE.phone}</a> or <a href="https://wa.me/${SITE.phoneIntl}" target="_blank" rel="noopener">WhatsApp us</a>.</p>
     </div>
     <footer class="card-foot">
       &copy; <span id="year"></span> ${esc(SITE.name)} &middot; Derby &amp; Nottingham, UK

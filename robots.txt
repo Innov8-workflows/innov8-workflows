@@ -1,0 +1,8 @@
+# robots.txt — innov8workflows.co.uk
+User-agent: *
+Allow: /
+
+# Stale backup copy of the homepage — keep it out of the index (duplicate content)
+Disallow: /indexold.html
+
+Sitemap: https://innov8workflows.co.uk/sitemap.xml

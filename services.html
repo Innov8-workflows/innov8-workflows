@@ -239,10 +239,11 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 
 /* ── GALAXY INTERACTIVE HERO ── */
 .galaxy-hero { position: relative; z-index: 1; width: 100%; min-height: 100vh; overflow: hidden; }
-.galaxy-hero spline-viewer { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; display: block; pointer-events: auto; }
+.galaxy-hero .hero-bg-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; display: block; pointer-events: none; }
 .galaxy-hero-fade { position: absolute; inset: 0; z-index: 1; pointer-events: none;
-  background: linear-gradient(to right, rgba(0,0,0,0.8), transparent 30%, transparent 70%, rgba(0,0,0,0.8)),
-              linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.9)); }
+  background: linear-gradient(rgba(0,0,0,0.34), rgba(0,0,0,0.34)),
+              linear-gradient(to right, rgba(0,0,0,0.85), transparent 32%, transparent 68%, rgba(0,0,0,0.85)),
+              linear-gradient(to bottom, transparent 45%, rgba(0,0,0,0.92)); }
 .galaxy-hero-content { position: absolute; top: 0; left: 0; width: 100%; height: 100vh; z-index: 2; display: flex; justify-content: flex-start; align-items: center; pointer-events: none; }
 .galaxy-hero-content .inner { padding: 64px 24px; max-width: 680px; text-align: left; }
 .galaxy-hero-content h1 { font-size: clamp(2rem, 5vw, 4.5rem); font-weight: 700; line-height: 1.1; letter-spacing: 0.02em; color: #fff; margin-bottom: 20px; }
@@ -319,10 +320,11 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
   </div>
 </nav>
 
-<!-- Galaxy Interactive Hero (Spline 3D) -->
-<script type="module" src="https://unpkg.com/@splinetool/viewer/build/spline-viewer.js"></script>
+<!-- Services hero — full-width background video -->
 <div class="galaxy-hero">
-  <spline-viewer url="https://prod.spline.design/us3ALejTXl6usHZ7/scene.splinecode" loading-anim-type="none"></spline-viewer>
+  <video class="hero-bg-video" autoplay loop muted playsinline preload="auto" poster="services-media/hero-services-01-poster.jpg" aria-hidden="true">
+    <source src="services-media/hero-services-01.mp4" type="video/mp4"/>
+  </video>
   <div class="galaxy-hero-fade"></div>
   <div class="galaxy-hero-content">
     <div class="container mx-auto" style="max-width:1100px">

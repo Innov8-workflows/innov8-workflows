@@ -113,6 +113,15 @@ section { position: relative; z-index: 1; }
 .platform-badge svg { width: 17px; height: 17px; flex-shrink: 0; }
 .platform-badge .stars { color: #FBBC04; font-size: 0.7rem; letter-spacing: 1.5px; }
 
+/* Included-features checklist (Essential website block) */
+.included-head { font-family: var(--font-mono); font-size: 0.66rem; color: var(--node-green); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 16px; }
+.included-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 11px 20px; margin-bottom: 24px; }
+.included-item { display: flex; align-items: flex-start; gap: 9px; font-size: 0.86rem; color: var(--muted2); line-height: 1.45; }
+.included-check { width: 17px; height: 17px; border-radius: 50%; background: rgba(34,197,94,0.15); border: 1px solid rgba(34,197,94,0.45); color: var(--node-green); display: inline-flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 700; flex-shrink: 0; margin-top: 2px; line-height: 1; }
+.included-deliver { display: flex; align-items: center; gap: 10px; background: rgba(34,197,94,0.08); border: 1px solid rgba(34,197,94,0.25); border-radius: 10px; padding: 12px 16px; margin-bottom: 28px; font-size: 0.85rem; color: var(--muted2); }
+.included-deliver strong { color: var(--node-green); font-weight: 700; }
+@media (max-width: 600px) { .included-grid { grid-template-columns: 1fr; } }
+
 /* browser mock */
 .browser-mock { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
 .browser-bar { background: var(--bg); padding: 10px 14px; display: flex; align-items: center; gap: 6px; border-bottom: 1px solid var(--border); }
@@ -380,21 +389,23 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
     <div class="service-block-label">Essential</div>
     <h2>Branded<br/><span>Website Design</span></h2>
     <p class="lead">Your website is the foundation of everything we build together. We design and develop custom, fully responsive sites that capture your brand and turn visitors into enquiries — built to plug into automation, video, and reviews whenever you're ready.</p>
-    <p class="works-with"><span>✓ Included</span> — custom design, mobile-responsive build &amp; on-page SEO</p>
-    <div class="feature-list">
-      <div class="feature-item">
-        <div class="feature-icon">✦</div>
-        <div><strong>Custom Design</strong><p>No templates. Every site is designed from scratch to match your brand identity, tone, and audience.</p></div>
-      </div>
-      <div class="feature-item">
-        <div class="feature-icon">✦</div>
-        <div><strong>Conversion-Focused</strong><p>Every layout decision is made with your goals in mind — enquiries, bookings, or sales.</p></div>
-      </div>
-      <div class="feature-item">
-        <div class="feature-icon">✦</div>
-        <div><strong>Automation-Ready</strong><p>Built from day one to connect to your CRM, AI chatbot, and workflow layer — whenever you're ready.</p></div>
-      </div>
+    <div class="included-head">✓ Included with every website</div>
+    <div class="included-grid">
+      <div class="included-item"><span class="included-check">✓</span>Professional Branded Website</div>
+      <div class="included-item"><span class="included-check">✓</span>Google/Facebook Reviews</div>
+      <div class="included-item"><span class="included-check">✓</span>Hosting &amp; Support</div>
+      <div class="included-item"><span class="included-check">✓</span>Before &amp; After Slider</div>
+      <div class="included-item"><span class="included-check">✓</span>Organic SEO/GEO</div>
+      <div class="included-item"><span class="included-check">✓</span>Hero Video</div>
+      <div class="included-item"><span class="included-check">✓</span>Regular SEO/GEO Enhancements</div>
+      <div class="included-item"><span class="included-check">✓</span>Visual Transformation Videos</div>
+      <div class="included-item"><span class="included-check">✓</span>Click-to-Call</div>
+      <div class="included-item"><span class="included-check">✓</span>WhatsApp/Messenger Widget</div>
+      <div class="included-item"><span class="included-check">✓</span>Contact Forms (WhatsApp/Email)</div>
+      <div class="included-item"><span class="included-check">✓</span>Socials Linked</div>
+      <div class="included-item"><span class="included-check">✓</span>Mobile Optimised</div>
     </div>
+    <div class="included-deliver"><span class="included-check">✓</span><span>Live in <strong>7 business days</strong> — your website, live and ready to go.</span></div>
     <a href="consultancy.html#contact" class="service-link">Book a free consultation →</a>
   </div>
   <div class="service-media">

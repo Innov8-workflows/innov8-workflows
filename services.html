@@ -105,6 +105,14 @@ section { position: relative; z-index: 1; }
 .service-media img, .service-media video { display: block; width: 100%; height: auto; }
 .service-media.portrait { max-width: 430px; margin: 0 auto; }
 
+/* Review-platform badges (Google / Facebook) */
+.review-platforms { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 28px; }
+.review-platforms-label { width: 100%; font-family: var(--font-mono); font-size: 0.65rem; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 4px; }
+.platform-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--surface2); border: 1px solid var(--border); border-radius: 100px; padding: 7px 15px 7px 12px; font-size: 0.84rem; font-weight: 600; color: var(--text); transition: border-color 0.2s, transform 0.2s; }
+.platform-badge:hover { border-color: var(--muted); transform: translateY(-1px); }
+.platform-badge svg { width: 17px; height: 17px; flex-shrink: 0; }
+.platform-badge .stars { color: #FBBC04; font-size: 0.7rem; letter-spacing: 1.5px; }
+
 /* browser mock */
 .browser-mock { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
 .browser-bar { background: var(--bg); padding: 10px 14px; display: flex; align-items: center; gap: 6px; border-bottom: 1px solid var(--border); }
@@ -433,12 +441,25 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
   <div>
     <div class="service-block-label">Reputation</div>
     <h2>Review Funnel<br/><span>+ Transformation Video</span></h2>
-    <p class="lead">Capture more 5-star reviews and showcase your work in one place. We build a branded review funnel that guides happy customers straight to Google, paired with an embedded transformation video that proves your quality before they read a word.</p>
+    <p class="lead">Capture more 5-star reviews and showcase your work in one place. We build a branded review funnel that guides happy customers straight to Google or Facebook, paired with an embedded transformation video that proves your quality before they read a word.</p>
     <p class="works-with"><span>✓ Includes</span> — hosted review funnel + embedded video</p>
+    <div class="review-platforms">
+      <span class="review-platforms-label">Collects verified reviews on</span>
+      <span class="platform-badge">
+        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/><path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/><path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/><path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/></svg>
+        Google
+        <span class="stars" aria-hidden="true">★★★★★</span>
+      </span>
+      <span class="platform-badge">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#1877F2" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/><path fill="#fff" d="M16.671 15.543l.532-3.47h-3.328v-2.25c0-.949.465-1.874 1.956-1.874h1.513V4.996s-1.374-.235-2.686-.235c-2.741 0-4.533 1.662-4.533 4.669v2.643H7.078v3.47h3.047v8.385a12.137 12.137 0 003.75 0v-8.385h2.796z"/></svg>
+        Facebook
+        <span class="stars" aria-hidden="true">★★★★★</span>
+      </span>
+    </div>
     <div class="feature-list">
       <div class="feature-item">
         <div class="feature-icon">✦</div>
-        <div><strong>Guided Review Funnel</strong><p>A simple, on-brand page that routes satisfied customers to leave a Google review in seconds.</p></div>
+        <div><strong>Guided Review Funnel</strong><p>A simple, on-brand page that routes satisfied customers to leave a Google or Facebook review in seconds.</p></div>
       </div>
       <div class="feature-item">
         <div class="feature-icon">✦</div>
@@ -446,7 +467,7 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
       </div>
       <div class="feature-item">
         <div class="feature-icon">✦</div>
-        <div><strong>More Reviews, Higher Ranking</strong><p>A steady flow of fresh reviews builds trust and lifts your local search visibility.</p></div>
+        <div><strong>Stronger Local SEO</strong><p>Fresh Google reviews are a direct local-search ranking signal, and Facebook reviews add reach and social proof — together they push you up the local results.</p></div>
       </div>
     </div>
     <a href="consultancy.html#contact" class="service-link">Book a free consultation →</a>

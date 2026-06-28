@@ -100,6 +100,11 @@ section { position: relative; z-index: 1; }
 .visual-card::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle, #2a2a2a 1px, transparent 1px); background-size: 20px 20px; opacity: 0.5; }
 .visual-card-inner { position: relative; z-index: 1; }
 
+/* REAL MEDIA (image / video) embedded in service blocks */
+.service-media { border-radius: 16px; overflow: hidden; border: 1px solid var(--border); background: var(--surface2); line-height: 0; box-shadow: 0 24px 60px rgba(0,0,0,0.4); }
+.service-media img, .service-media video { display: block; width: 100%; height: auto; }
+.service-media.portrait { max-width: 430px; margin: 0 auto; }
+
 /* browser mock */
 .browser-mock { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
 .browser-bar { background: var(--bg); padding: 10px 14px; display: flex; align-items: center; gap: 6px; border-bottom: 1px solid var(--border); }
@@ -361,13 +366,13 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 
 <hr class="divider"/>
 
-<!-- SERVICE 1: Branded Websites -->
-<div class="service-block reveal" id="websites">
+<!-- SERVICE 1: Branded Website Design — media LEFT -->
+<div class="service-block reverse reveal" id="websites">
   <div>
-    <div class="service-block-label">Service 01</div>
+    <div class="service-block-label">Essential</div>
     <h2>Branded<br/><span>Website Design</span></h2>
-    <p class="lead">Your website is the foundation of everything we build together. We design and develop custom, fully responsive sites that capture your brand and convert your visitors — and that are built to plug into automation from day one.</p>
-    <p class="works-with"><span>✓ Optional</span> — automate workflows on top, or keep it standalone</p>
+    <p class="lead">Your website is the foundation of everything we build together. We design and develop custom, fully responsive sites that capture your brand and turn visitors into enquiries — built to plug into automation, video, and reviews whenever you're ready.</p>
+    <p class="works-with"><span>✓ Included</span> — custom design, mobile-responsive build &amp; on-page SEO</p>
     <div class="feature-list">
       <div class="feature-item">
         <div class="feature-icon">✦</div>
@@ -379,295 +384,77 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
       </div>
       <div class="feature-item">
         <div class="feature-icon">✦</div>
-        <div><strong>Automation-Ready</strong><p>Built from day one to connect to your CRM, finance tools, AI chatbot, and workflow layer — whenever you're ready.</p></div>
+        <div><strong>Automation-Ready</strong><p>Built from day one to connect to your CRM, AI chatbot, and workflow layer — whenever you're ready.</p></div>
       </div>
     </div>
     <a href="consultancy.html#contact" class="service-link">Book a free consultation →</a>
   </div>
-  <div class="visual-card">
-    <div class="visual-card-inner">
-      <div class="browser-mock">
-        <div class="browser-bar">
-          <div class="browser-dot" style="background:#ff5f57"></div>
-          <div class="browser-dot" style="background:#ffbd2e"></div>
-          <div class="browser-dot" style="background:#28c840"></div>
-          <div class="browser-url">yourbusiness.com</div>
-        </div>
-        <div class="browser-body">
-          <div class="mock-hero-bar"></div>
-          <div class="mock-sub-bar"></div>
-          <div class="mock-sub-bar short"></div>
-          <div class="mock-btn"><div class="mock-btn-inner"></div></div>
-          <div class="mock-cards">
-            <div class="mock-card"><div class="mock-card-icon" style="background:rgba(234,88,12,0.15)"></div><div class="mock-card-line"></div><div class="mock-card-line short"></div></div>
-            <div class="mock-card"><div class="mock-card-icon" style="background:rgba(59,130,246,0.15)"></div><div class="mock-card-line"></div><div class="mock-card-line short"></div></div>
-            <div class="mock-card"><div class="mock-card-icon" style="background:rgba(168,85,247,0.15)"></div><div class="mock-card-line"></div><div class="mock-card-line short"></div></div>
-          </div>
-        </div>
-      </div>
-      <div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap">
-        <span style="font-family:var(--font-mono);font-size:0.65rem;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.2);color:var(--node-green);padding:4px 10px;border-radius:4px">✓ Mobile responsive</span>
-        <span style="font-family:var(--font-mono);font-size:0.65rem;background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.2);color:var(--node-blue);padding:4px 10px;border-radius:4px">✓ SEO optimised</span>
-        <span style="font-family:var(--font-mono);font-size:0.65rem;background:rgba(234,88,12,0.1);border:1px solid rgba(234,88,12,0.2);color:var(--accent2);padding:4px 10px;border-radius:4px">✓ Automation-ready</span>
-      </div>
-    </div>
+  <div class="service-media">
+    <img src="services-media/hero4.webp" width="1200" height="800" loading="lazy" alt="A branded, conversion-focused website designed by Innov8 Workflows"/>
   </div>
 </div>
 
 <hr class="divider"/>
 
-<!-- SERVICE 2: Workflow Automation -->
-<div class="service-block reverse reveal" id="automation">
+<!-- SERVICE 2: Visual Transformation Videos — media RIGHT -->
+<div class="service-block reveal" id="transformation-videos">
   <div>
-    <div class="service-block-label">Service 02</div>
-    <h2>Workflow<br/><span>Automation</span></h2>
-    <p class="lead">Connect your forms, website, or any existing tool to the rest of your business stack — automatically. Whether you have a branded site we built or one you already own, we can plug straight in.</p>
-    <p class="works-with"><span>✓ Works with</span> — any existing website, Jotform, Google Forms, Typeform, Tally, webhooks &amp; more</p>
-    <div class="trigger-chips">
-      <div class="trigger-chip">📋 Jotform</div>
-      <div class="trigger-chip">📝 Google Forms</div>
-      <div class="trigger-chip">🟣 Typeform</div>
-      <div class="trigger-chip">📊 Tally</div>
-      <div class="trigger-chip">🌐 Contact Forms</div>
-      <div class="trigger-chip">⚡ Webhooks</div>
-    </div>
+    <div class="service-block-label">Visual Content</div>
+    <h2>Visual Transformation<br/><span>Videos</span></h2>
+    <p class="lead">Turn your best work into scroll-stopping proof. We produce short before-and-after transformation videos and embed them directly into your website — where they do the selling for you, silently and automatically.</p>
+    <p class="works-with"><span>✓ Works with</span> — any website, new or existing</p>
     <div class="feature-list">
       <div class="feature-item">
         <div class="feature-icon">✦</div>
-        <div><strong>Any Form as a Trigger</strong><p>Jotform, Google Forms, Typeform, Tally, or your own site forms — any submission can kick off an automated pipeline instantly.</p></div>
+        <div><strong>Real Before &amp; After</strong><p>Show the genuine transformation of your work — the single most persuasive thing a prospect can see.</p></div>
       </div>
       <div class="feature-item">
         <div class="feature-icon">✦</div>
-        <div><strong>Multi-System Pipelines</strong><p>Data flows from your trigger into your CRM, finance tools, email platform, and beyond — without anyone touching it.</p></div>
+        <div><strong>Embedded Where It Counts</strong><p>Placed on your homepage, service, or landing pages so visitors see proof the moment they arrive.</p></div>
       </div>
       <div class="feature-item">
         <div class="feature-icon">✦</div>
-        <div><strong>Error Handling Built-In</strong><p>Every workflow includes fallback logic and alerting so nothing slips through the cracks.</p></div>
+        <div><strong>Fast &amp; Silent</strong><p>Web-compressed to load instantly and autoplay without sound, on mobile and desktop, without slowing your site.</p></div>
       </div>
     </div>
     <a href="consultancy.html#contact" class="service-link">Book a free consultation →</a>
   </div>
-  <div class="visual-card">
-    <div class="visual-card-inner">
-      <div class="flow-visual">
-        <div class="flow-node" style="border-color:rgba(234,88,12,0.4)">
-          <div class="flow-node-icon" style="background:rgba(234,88,12,0.15)">📋</div>
-          <div><div class="flow-node-label">trigger · jotform / google forms / typeform</div><div class="flow-node-name">Form Submitted</div></div>
-        </div>
-        <div class="flow-connector"><div class="flow-line"></div></div>
-        <div class="flow-node">
-          <div class="flow-node-icon" style="background:rgba(59,130,246,0.15)">👤</div>
-          <div><div class="flow-node-label">action</div><div class="flow-node-name">Create CRM Contact</div></div>
-        </div>
-        <div class="flow-connector"><div class="flow-line"></div></div>
-        <div class="flow-node">
-          <div class="flow-node-icon" style="background:rgba(234,179,8,0.15)">💰</div>
-          <div><div class="flow-node-label">action</div><div class="flow-node-name">Generate Invoice (Xero)</div></div>
-        </div>
-        <div class="flow-connector"><div class="flow-line"></div></div>
-        <div class="flow-node">
-          <div class="flow-node-icon" style="background:rgba(6,182,212,0.15)">📨</div>
-          <div><div class="flow-node-label">action</div><div class="flow-node-name">Slack Notification Sent</div></div>
-        </div>
-        <div class="flow-connector"><div class="flow-line"></div></div>
-        <div class="flow-node" style="border-color:rgba(34,197,94,0.4)">
-          <div class="flow-node-icon" style="background:rgba(34,197,94,0.15)">✅</div>
-          <div><div class="flow-node-label">complete</div><div class="flow-node-name">Confirmation Email Sent</div></div>
-        </div>
-      </div>
-    </div>
+  <div class="service-media">
+    <video autoplay loop muted playsinline preload="metadata" poster="services-media/before-after-02-poster.jpg" aria-label="Before-and-after visual transformation video">
+      <source src="services-media/before-after-02.mp4" type="video/mp4"/>
+    </video>
   </div>
 </div>
 
 <hr class="divider"/>
 
-<!-- SERVICE 3: AI Chatbots -->
-<div class="service-block reveal" id="chatbots">
+<!-- SERVICE 3: Review Funnel + Transformation Video — media LEFT -->
+<div class="service-block reverse reveal" id="review-funnel">
   <div>
-    <div class="service-block-label purple">Service 03 · Featured</div>
-    <h2>AI Chatbots<br/><span class="purple">for your business.</span></h2>
-    <p class="lead">Deploy a custom AI chatbot trained on your products, services, and FAQs — available 24/7 to engage visitors, qualify leads, and book calls. Works on any website, new or existing.</p>
-    <p class="works-with"><span>✓ Works with</span> — any existing website, no rebuild required</p>
-    <div class="feature-list">
-      <div class="feature-item">
-        <div class="feature-icon purple">✦</div>
-        <div><strong>Trained on Your Business</strong><p>We train the chatbot on your services, FAQs, pricing, and tone — so it answers like a knowledgeable member of your team.</p></div>
-      </div>
-      <div class="feature-item">
-        <div class="feature-icon purple">✦</div>
-        <div><strong>Lead Capture &amp; Routing</strong><p>Captures visitor details and pushes them directly into your CRM or triggers an automation workflow automatically.</p></div>
-      </div>
-      <div class="feature-item">
-        <div class="feature-icon purple">✦</div>
-        <div><strong>Human Handoff</strong><p>When a conversation needs a real person, the chatbot hands off cleanly — with full context passed along.</p></div>
-      </div>
-      <div class="feature-item">
-        <div class="feature-icon purple">✦</div>
-        <div><strong>Embeds in Minutes</strong><p>A single line of code adds the chatbot to any existing site — no rebuild, no developer bottleneck.</p></div>
-      </div>
-    </div>
-    <a href="consultancy.html#contact" class="service-link" style="color:var(--node-purple)">Get an AI Chatbot →</a>
-  </div>
-  <div class="visual-card purple-tint">
-    <div class="visual-card-inner">
-      <div class="chat-demo">
-        <div class="chat-demo-bar">
-          <div class="chat-demo-dot"></div>
-          <div class="chat-demo-title">Your Business Assistant</div>
-          <div class="chat-demo-sub">Online · Powered by AI</div>
-        </div>
-        <div class="chat-msg bot">Hi there! 👋 I'm here to help. What can I do for you today?</div>
-        <div class="chat-msg user">Do you need to rebuild my website to add a chatbot?</div>
-        <div class="chat-msg bot">Not at all — we can add an AI chatbot to any existing website with a single line of code. No rebuild needed. Want to book a free call to discuss?</div>
-        <div class="chat-msg user">Yes, that'd be great!</div>
-        <div class="chat-typing"><span></span><span></span><span></span></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<hr class="divider"/>
-
-<!-- SERVICE 4: Agentic AI -->
-<div class="service-block reverse reveal" id="ai">
-  <div>
-    <div class="service-block-label">Service 04</div>
-    <h2>Agentic<br/><span>AI Systems</span></h2>
-    <p class="lead">Beyond chatbots — we build AI agents that are embedded into your workflows, making decisions, processing documents, qualifying leads, and routing work automatically at scale.</p>
-    <p class="works-with"><span>✓ Works with</span> — any existing website or system, no rebuild needed</p>
+    <div class="service-block-label">Reputation</div>
+    <h2>Review Funnel<br/><span>+ Transformation Video</span></h2>
+    <p class="lead">Capture more 5-star reviews and showcase your work in one place. We build a branded review funnel that guides happy customers straight to Google, paired with an embedded transformation video that proves your quality before they read a word.</p>
+    <p class="works-with"><span>✓ Includes</span> — hosted review funnel + embedded video</p>
     <div class="feature-list">
       <div class="feature-item">
         <div class="feature-icon">✦</div>
-        <div><strong>Lead Qualification</strong><p>AI reads inbound enquiries and scores or routes them based on intent, urgency, and fit — automatically.</p></div>
+        <div><strong>Guided Review Funnel</strong><p>A simple, on-brand page that routes satisfied customers to leave a Google review in seconds.</p></div>
       </div>
       <div class="feature-item">
         <div class="feature-icon">✦</div>
-        <div><strong>Document Processing</strong><p>Extract, classify, and act on data from invoices, contracts, and forms without manual review.</p></div>
+        <div><strong>Proof Built In</strong><p>Your transformation video sits front and centre, turning a review request into a showcase.</p></div>
       </div>
       <div class="feature-item">
         <div class="feature-icon">✦</div>
-        <div><strong>Intelligent Routing</strong><p>Agents decide which path a workflow takes — which team, which template, which action — in milliseconds.</p></div>
+        <div><strong>More Reviews, Higher Ranking</strong><p>A steady flow of fresh reviews builds trust and lifts your local search visibility.</p></div>
       </div>
     </div>
     <a href="consultancy.html#contact" class="service-link">Book a free consultation →</a>
   </div>
-  <div class="visual-card">
-    <div class="visual-card-inner">
-      <div class="ai-visual">
-        <div class="ai-input">
-          <span>// inbound enquiry — form trigger</span><br/>
-          "Hi, we're a 50-person logistics firm looking<br/>
-          to automate our invoicing and onboarding.<br/>
-          Budget confirmed. Ready to start ASAP."
-        </div>
-        <div class="ai-process">
-          <div class="ai-pulse"></div>
-          <div class="ai-process-text">AI agent processing · analysing intent &amp; urgency...</div>
-        </div>
-        <div class="ai-outputs">
-          <div class="ai-output-chip"><div class="ai-output-dot" style="background:var(--node-green)"></div>Score: High Intent</div>
-          <div class="ai-output-chip"><div class="ai-output-dot" style="background:var(--accent)"></div>Priority: Urgent</div>
-          <div class="ai-output-chip"><div class="ai-output-dot" style="background:var(--node-blue)"></div>Route: Sales Lead</div>
-          <div class="ai-output-chip"><div class="ai-output-dot" style="background:var(--node-purple)"></div>Action: Book Call</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<hr class="divider"/>
-
-<!-- SERVICE 5: Systems Integration -->
-<div class="service-block reveal" id="integration">
-  <div>
-    <div class="service-block-label">Service 05</div>
-    <h2>Systems<br/><span>Integration</span></h2>
-    <p class="lead">Connect your existing tools — CRMs, finance platforms, comms, and data systems — into a single coherent data flow. Whether you have a new site or an existing one, we build the bridges.</p>
-    <p class="works-with"><span>✓ Works with</span> — any existing website or toolstack, including Jotform &amp; Google Forms as entry points</p>
-    <div class="feature-list">
-      <div class="feature-item">
-        <div class="feature-icon">✦</div>
-        <div><strong>CRM &amp; Finance</strong><p>Salesforce, HubSpot, Xero, QuickBooks, Sage — connected and in sync automatically.</p></div>
-      </div>
-      <div class="feature-item">
-        <div class="feature-icon">✦</div>
-        <div><strong>Custom API Connections</strong><p>If it has an API, we can connect it. Custom integrations for niche tools and internal systems too.</p></div>
-      </div>
-      <div class="feature-item">
-        <div class="feature-icon">✦</div>
-        <div><strong>One Source of Truth</strong><p>Data entered once flows to every system it needs to — no duplication, no manual syncing.</p></div>
-      </div>
-    </div>
-    <a href="consultancy.html#contact" class="service-link">Book a free consultation →</a>
-  </div>
-  <div class="visual-card">
-    <div class="visual-card-inner">
-      <div style="text-align:center;margin-bottom:16px">
-        <div style="display:inline-flex;align-items:center;gap:10px;background:rgba(234,88,12,0.1);border:1px solid rgba(234,88,12,0.2);border-radius:8px;padding:10px 16px">
-          <span style="font-size:16px">📋</span>
-          <span style="font-size:0.8rem;font-weight:700">Your Forms / Website</span>
-        </div>
-        <div style="font-family:var(--font-mono);font-size:0.62rem;color:var(--muted);margin-top:6px">central trigger — Jotform, Google Forms, or any site</div>
-      </div>
-      <div class="int-grid">
-        <div class="int-chip"><div class="int-chip-icon">🏢</div><div class="int-chip-name">Salesforce</div></div>
-        <div class="int-chip"><div class="int-chip-icon">💚</div><div class="int-chip-name">Xero</div></div>
-        <div class="int-chip"><div class="int-chip-icon">💬</div><div class="int-chip-name">Slack</div></div>
-        <div class="int-chip"><div class="int-chip-icon">📊</div><div class="int-chip-name">HubSpot</div></div>
-        <div class="int-chip"><div class="int-chip-icon">🤖</div><div class="int-chip-name">Claude AI</div></div>
-        <div class="int-chip"><div class="int-chip-icon">🗄️</div><div class="int-chip-name">PostgreSQL</div></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<hr class="divider"/>
-
-<!-- SERVICE 6: Monitoring -->
-<div class="service-block reverse reveal" id="monitoring">
-  <div>
-    <div class="service-block-label">Service 06</div>
-    <h2>Monitoring<br/><span>&amp; Maintenance</span></h2>
-    <p class="lead">We don't just build and disappear. We monitor your website and workflows proactively — catching issues before they affect your business and keeping everything reliable as you scale.</p>
-    <p class="works-with"><span>✓ Works with</span> — any setup we've built or integrated with</p>
-    <div class="feature-list">
-      <div class="feature-item">
-        <div class="feature-icon">✦</div>
-        <div><strong>Uptime Monitoring</strong><p>Your website and automation endpoints are monitored around the clock with instant alerting.</p></div>
-      </div>
-      <div class="feature-item">
-        <div class="feature-icon">✦</div>
-        <div><strong>Error Alerting</strong><p>Workflow failures trigger immediate alerts so we can diagnose and fix issues fast — often before you notice.</p></div>
-      </div>
-      <div class="feature-item">
-        <div class="feature-icon">✦</div>
-        <div><strong>Ongoing Optimisation</strong><p>As your tools and processes evolve, we update your workflows to match — keeping everything in sync.</p></div>
-      </div>
-    </div>
-    <a href="consultancy.html#contact" class="service-link">Book a free consultation →</a>
-  </div>
-  <div class="visual-card">
-    <div class="visual-card-inner">
-      <div class="monitor-visual">
-        <div class="monitor-stat-row">
-          <div class="monitor-stat">
-            <div class="monitor-stat-val" style="color:var(--node-green)">99.9<span style="font-size:1rem">%</span></div>
-            <div class="monitor-stat-label">UPTIME SLA</div>
-          </div>
-          <div class="monitor-stat">
-            <div class="monitor-stat-val" style="color:var(--accent)">&lt;2<span style="font-size:1rem">min</span></div>
-            <div class="monitor-stat-label">AVG ALERT TIME</div>
-          </div>
-        </div>
-        <div class="monitor-log">
-          <div class="log-line"><div class="log-dot" style="background:var(--node-green)"></div><span style="color:var(--muted)">09:14:02</span>&nbsp; Jotform trigger received</div>
-          <div class="log-line"><div class="log-dot" style="background:var(--node-green)"></div><span style="color:var(--muted)">09:14:03</span>&nbsp; CRM contact created</div>
-          <div class="log-line"><div class="log-dot" style="background:var(--node-green)"></div><span style="color:var(--muted)">09:14:04</span>&nbsp; Invoice generated · Xero</div>
-          <div class="log-line"><div class="log-dot" style="background:var(--node-yellow)"></div><span style="color:var(--muted)">09:15:11</span>&nbsp; Retry triggered · attempt 2/3</div>
-          <div class="log-line"><div class="log-dot" style="background:var(--node-green)"></div><span style="color:var(--muted)">09:15:12</span>&nbsp; Resolved · confirmation sent</div>
-        </div>
-      </div>
-    </div>
+  <div class="service-media portrait">
+    <video autoplay loop muted playsinline preload="metadata" poster="services-media/before-after-01-poster.jpg" aria-label="Before-and-after visual transformation video">
+      <source src="services-media/before-after-01.mp4" type="video/mp4"/>
+    </video>
   </div>
 </div>
 

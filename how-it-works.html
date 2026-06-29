@@ -173,7 +173,7 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 /* ── PROGRESSIVE VIDEO HERO ── */
 .prog-hero { position: relative; z-index: 1; width: 100%; min-height: 100vh; overflow: hidden; display: flex; align-items: center; justify-content: center; }
 .prog-hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
-.prog-hero-dim { position: absolute; inset: 0; background: rgba(0,0,0,0.8); z-index: 1; }
+.prog-hero-dim { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.72)); z-index: 1; }
 .prog-hero-content { position: relative; z-index: 2; text-align: center; max-width: 720px; padding: 0 24px; }
 .prog-hero-content h1 { font-size: clamp(2.8rem, 7vw, 5rem); font-weight: 800; line-height: 1.05; letter-spacing: -0.03em; color: var(--accent); margin-bottom: 20px; }
 .prog-hero-content h1 .cycle-wrap { position: relative; display: block; height: 1.15em; overflow: hidden; }
@@ -233,26 +233,17 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
   <a href="tel:+447718155997" class="mobile-cta" style="display:inline-flex;align-items:center;gap:10px"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.35-.11-.74-.03-1.02.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.21c.28-.27.36-.66.25-1.01-.37-1.12-.57-2.32-.57-3.57 0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.49c0-.55-.45-1-1-1z"/></svg>07718 155997</a>
 </div>
 
-<!-- Progressive Video Hero -->
+<!-- Driveway image hero -->
 <div class="prog-hero">
-  <video class="prog-hero-video" autoplay loop muted playsinline>
-    <source src="https://videos.pexels.com/video-files/18526841/uhd_30fps.mp4" type="video/mp4"/>
-  </video>
+  <img class="prog-hero-video" src="driveway-hero.webp" alt="A branded local business website built by Innov8 Workflows"/>
   <div class="prog-hero-dim"></div>
 
   <div class="prog-hero-content">
     <div class="prog-badge hero-word" style="animation-delay:0.2s">The Process</div>
-    <h1>
-      <span class="hero-word" style="animation-delay:0.4s">Your workflows.</span>
-      <span class="cycle-wrap" id="cycleWrap">
-        <span class="cycle-word active" data-idx="0">automated.</span>
-        <span class="cycle-word below" data-idx="1">intelligent.</span>
-        <span class="cycle-word below" data-idx="2">seamless.</span>
-      </span>
-    </h1>
-    <p class="hero-word" style="animation-delay:1.0s">Whether you're starting from scratch or already have a website — our process is clear, transparent, and fast. Here's exactly what working with us looks like.</p>
-    <div class="prog-hero-actions hero-word" style="animation-delay:1.3s">
-      <a href="consultancy.html#contact" class="btn-primary">Book Free Consultation →</a>
+    <h1 class="hero-word" style="animation-delay:0.4s;color:#fff">From free demo to <span style="color:var(--accent2)">live and growing</span>.</h1>
+    <p class="hero-word" style="animation-delay:0.8s">A clear, transparent process from start to finish. You see the value upfront with a free branded demo, then we build, launch and grow your online presence with you.</p>
+    <div class="prog-hero-actions hero-word" style="animation-delay:1.1s">
+      <a href="consultancy.html#contact" class="btn-primary">Book Free Consultation</a>
       <a href="case-studies.html" class="btn-ghost">View Case Studies</a>
     </div>
   </div>
@@ -264,267 +255,127 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
   <span style="color:var(--text)">How It Works</span>
 </div>
 
-<!-- PHASE 1 -->
+<!-- THE 7 PHASES -->
 <div class="phases">
 
   <div class="phase reveal">
     <div class="phase-left">
       <div class="phase-num">Phase 01</div>
-      <div class="phase-title">Discovery<br/><span>&amp; Planning</span></div>
-      <p class="phase-desc">Before we write a single line of code, we understand your business inside out — your goals, your tools, and your biggest pain points.</p>
+      <div class="phase-title">Free Branded<br/><span>Demo Website</span></div>
+      <p class="phase-desc">You see the value upfront, before you spend a penny.</p>
       <div class="phase-tag" style="background:rgba(234,88,12,0.1);border:1px solid rgba(234,88,12,0.2);color:var(--accent2)">Always free</div>
     </div>
     <div class="phase-right">
       <div class="step-card">
-        <div class="step-card-header">
-          <div class="step-card-icon" style="background:rgba(234,88,12,0.12)">💬</div>
-          <div>
-            <div class="step-card-num">Step 1.1</div>
-            <div class="step-card-name">Free Discovery Call</div>
-          </div>
-        </div>
-        <p>We start with a relaxed conversation — no pitch, no pressure. We ask about your business, your current processes, and where you feel you're losing the most time or missing opportunities.</p>
-        <div class="step-card-footer"><span>✓</span> No commitment required</div>
-      </div>
-      <div class="connector"><div class="connector-line"></div><div class="connector-dot"></div><div class="connector-line"></div></div>
-      <div class="step-card">
-        <div class="step-card-header">
-          <div class="step-card-icon" style="background:rgba(59,130,246,0.12)">🗺️</div>
-          <div>
-            <div class="step-card-num">Step 1.2</div>
-            <div class="step-card-name">Process Mapping</div>
-          </div>
-        </div>
-        <p>We map out your current workflows end-to-end — identifying bottlenecks, manual handoffs, and the highest-impact automation opportunities specific to your business.</p>
-        <div class="step-card-footer"><span>✓</span> Included in discovery</div>
-      </div>
-      <div class="connector"><div class="connector-line"></div><div class="connector-dot"></div><div class="connector-line"></div></div>
-      <div class="step-card">
-        <div class="step-card-header">
-          <div class="step-card-icon" style="background:rgba(168,85,247,0.12)">🎯</div>
-          <div>
-            <div class="step-card-num">Step 1.3</div>
-            <div class="step-card-name">Scope &amp; Recommendation</div>
-          </div>
-        </div>
-        <p>Based on what we learn, we recommend the right combination of services — website build, automations, AI chatbot, or integrations — and explain clearly why each one will help.</p>
-        <div class="step-card-footer"><span>✓</span> Tailored to your situation</div>
+        <div class="step-card-name" style="margin-bottom:10px">Built from your brand</div>
+        <p>We design a free demo website using your logo, your colours and photos of your real jobs, so you can see exactly what your new online presence could look like.</p>
+        <div class="step-card-footer"><span>✓</span> No cost, no commitment</div>
       </div>
     </div>
   </div>
 
-  <!-- PHASE 2 -->
   <div class="phase reveal">
     <div class="phase-left">
       <div class="phase-num">Phase 02</div>
-      <div class="phase-title">Proposal<br/><span>&amp; Agreement</span></div>
-      <p class="phase-desc">You'll know exactly what we're building, what it costs, and when it'll be done — before we start anything.</p>
-      <div class="phase-tag" style="background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.2);color:var(--node-blue)">Fully transparent</div>
+      <div class="phase-title">Discussion<br/><span>&amp; Pricing</span></div>
+      <p class="phase-desc">We talk it through and share clear, upfront pricing.</p>
+      <div class="phase-tag" style="background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.2);color:var(--node-blue)">Transparent</div>
     </div>
     <div class="phase-right">
       <div class="step-card">
-        <div class="step-card-header">
-          <div class="step-card-icon" style="background:rgba(234,179,8,0.12)">📋</div>
-          <div>
-            <div class="step-card-num">Step 2.1</div>
-            <div class="step-card-name">Clear Scope of Work</div>
-          </div>
-        </div>
-        <p>We produce a detailed proposal covering exactly what we'll build, which systems we'll connect, and the full workflow architecture. No vague promises — just a clear plan.</p>
-        <div class="step-card-footer"><span>✓</span> Written confirmation of everything</div>
-      </div>
-      <div class="connector"><div class="connector-line"></div><div class="connector-dot"></div><div class="connector-line"></div></div>
-      <div class="step-card">
-        <div class="step-card-header">
-          <div class="step-card-icon" style="background:rgba(34,197,94,0.12)">💷</div>
-          <div>
-            <div class="step-card-num">Step 2.2</div>
-            <div class="step-card-name">Transparent Pricing</div>
-          </div>
-        </div>
-        <p>All implementation costs and any ongoing platform licensing fees are confirmed in writing before we begin. No hidden extras, no surprises when the invoice arrives.</p>
-        <div class="step-card-footer"><span>✓</span> No hidden charges — ever</div>
-      </div>
-      <div class="connector"><div class="connector-line"></div><div class="connector-dot"></div><div class="connector-line"></div></div>
-      <div class="step-card">
-        <div class="step-card-header">
-          <div class="step-card-icon" style="background:rgba(234,88,12,0.12)">⏱️</div>
-          <div>
-            <div class="step-card-num">Step 2.3</div>
-            <div class="step-card-name">Realistic Timeline</div>
-          </div>
-        </div>
-        <p>We give you a realistic delivery timeline based on the project scope — not an optimistic guess. Simple automations can be live within 48 hours. Larger builds are planned properly.</p>
-        <div class="step-card-footer"><span>✓</span> Avg. first prototype in 48h</div>
+        <div class="step-card-name" style="margin-bottom:10px">A proper conversation</div>
+        <p>We discuss what you have seen, share straightforward pricing, and send over a short about video on how Innov8 Workflows helps you grow and win more customers.</p>
+        <div class="step-card-footer"><span>✓</span> Pricing shared upfront</div>
       </div>
     </div>
   </div>
 
-  <!-- PHASE 3 -->
   <div class="phase reveal">
     <div class="phase-left">
       <div class="phase-num">Phase 03</div>
-      <div class="phase-title">Build<br/><span>&amp; Test</span></div>
-      <p class="phase-desc">We build everything to your agreed spec, test it thoroughly across real data, and keep you in the loop throughout.</p>
-      <div class="phase-tag" style="background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.2);color:var(--node-purple)">Where the magic happens</div>
+      <div class="phase-title">Google Meet<br/><span>or Zoom Call</span></div>
+      <p class="phase-desc">A scheduled call to go deeper and answer your questions.</p>
+      <div class="phase-tag" style="background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.2);color:var(--node-purple)">No pressure</div>
     </div>
     <div class="phase-right">
       <div class="step-card">
-        <div class="step-card-header">
-          <div class="step-card-icon" style="background:rgba(234,88,12,0.12)">🎨</div>
-          <div>
-            <div class="step-card-num">Step 3.1</div>
-            <div class="step-card-name">Website Build <em style="font-weight:400;color:var(--muted);font-style:normal">or</em> Existing Site Connect</div>
-          </div>
-        </div>
-        <p>If you need a new site, we design and build it first — your branded foundation. If you already have a site, we connect straight to it. Either way, this is where your digital presence takes shape.</p>
-        <div class="step-card-footer"><span>✓</span> Works with any existing website</div>
-      </div>
-      <div class="connector"><div class="connector-line"></div><div class="connector-dot"></div><div class="connector-line"></div></div>
-      <div class="step-card">
-        <div class="step-card-header">
-          <div class="step-card-icon" style="background:rgba(59,130,246,0.12)">⚡</div>
-          <div>
-            <div class="step-card-num">Step 3.2</div>
-            <div class="step-card-name">Automation &amp; AI Layer</div>
-          </div>
-        </div>
-        <p>We build your workflow automations, AI chatbot, and system integrations — connecting your forms, website, CRM, finance tools, and communication platforms into one seamless pipeline.</p>
-        <div class="step-card-footer"><span>✓</span> Jotform, Google Forms, webhooks &amp; more</div>
-      </div>
-      <div class="connector"><div class="connector-line"></div><div class="connector-dot"></div><div class="connector-line"></div></div>
-      <div class="step-card">
-        <div class="step-card-header">
-          <div class="step-card-icon" style="background:rgba(34,197,94,0.12)">🧪</div>
-          <div>
-            <div class="step-card-num">Step 3.3</div>
-            <div class="step-card-name">Thorough Testing</div>
-          </div>
-        </div>
-        <p>Every workflow is tested across real data scenarios including edge cases and error conditions. We don't hand you something that only works when everything goes right.</p>
-        <div class="step-card-footer"><span>✓</span> Error handling built into every flow</div>
+        <div class="step-card-name" style="margin-bottom:10px">Go through it in depth</div>
+        <p>We book a Google Meet or Zoom call to walk through everything in more detail, talk about your goals, and answer any questions you have.</p>
+        <div class="step-card-footer"><span>✓</span> Booked at a time that suits you</div>
       </div>
     </div>
   </div>
 
-  <!-- PHASE 4 -->
   <div class="phase reveal">
     <div class="phase-left">
       <div class="phase-num">Phase 04</div>
-      <div class="phase-title">Deploy<br/><span>&amp; Handover</span></div>
-      <p class="phase-desc">We go live, walk you through everything, and hand over full documentation so you're never left in the dark.</p>
-      <div class="phase-tag" style="background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.2);color:var(--node-green)">You're in control</div>
+      <div class="phase-title">Subscribe<br/><span>&amp; Secure</span></div>
+      <p class="phase-desc">You sign up and we lock in your domain.</p>
+      <div class="phase-tag" style="background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.2);color:var(--node-green)">You're in</div>
     </div>
     <div class="phase-right">
       <div class="step-card">
-        <div class="step-card-header">
-          <div class="step-card-icon" style="background:rgba(234,88,12,0.12)">🚀</div>
-          <div>
-            <div class="step-card-num">Step 4.1</div>
-            <div class="step-card-name">Go Live</div>
-          </div>
-        </div>
-        <p>We deploy everything to production and confirm all systems are running correctly. For websites, this includes DNS setup and performance checks. For automations, we run live trigger tests.</p>
-        <div class="step-card-footer"><span>✓</span> Supervised launch every time</div>
+        <div class="step-card-name" style="margin-bottom:10px">Subscribe and secure your domain</div>
+        <p>When you are ready to go ahead, you subscribe and we secure your domain so it is reserved and ready for the build.</p>
+        <div class="step-card-footer"><span>✓</span> Domain secured for you</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="phase reveal">
+    <div class="phase-left">
+      <div class="phase-num">Phase 05</div>
+      <div class="phase-title">Onboarding<br/><span>&amp; Build</span></div>
+      <p class="phase-desc">A 7 business day lead time to build everything out.</p>
+      <div class="phase-tag" style="background:rgba(234,88,12,0.1);border:1px solid rgba(234,88,12,0.2);color:var(--accent2)">7 business days</div>
+    </div>
+    <div class="phase-right">
+      <div class="step-card">
+        <div class="step-card-name" style="margin-bottom:10px">We build it all out</div>
+        <p>Within a 7 business day lead time we build all your relevant SEO pages and functionality, and produce 3 to 4 transformation videos and 2 to 3 orbital hero videos.</p>
+        <div class="step-card-footer"><span>✓</span> SEO pages, functionality and video</div>
       </div>
       <div class="connector"><div class="connector-line"></div><div class="connector-dot"></div><div class="connector-line"></div></div>
       <div class="step-card">
-        <div class="step-card-header">
-          <div class="step-card-icon" style="background:rgba(59,130,246,0.12)">📖</div>
-          <div>
-            <div class="step-card-num">Step 4.2</div>
-            <div class="step-card-name">Full Documentation</div>
-          </div>
-        </div>
-        <p>You receive complete documentation of everything we've built — how it works, how to update it, and what to do if something needs changing. You'll never be dependent on us to understand your own systems.</p>
-        <div class="step-card-footer"><span>✓</span> Plain English, not technical jargon</div>
+        <div class="step-card-name" style="margin-bottom:10px">Onboarding form</div>
+        <p>We send you a simple onboarding form to fill in, so we have all the details and context we need to make the website truly yours.</p>
+        <div class="step-card-footer"><span>✓</span> Everything we need in one place</div>
       </div>
-      <div class="connector"><div class="connector-line"></div><div class="connector-dot"></div><div class="connector-line"></div></div>
+    </div>
+  </div>
+
+  <div class="phase reveal">
+    <div class="phase-left">
+      <div class="phase-num">Phase 06</div>
+      <div class="phase-title">Review<br/><span>&amp; Go Live</span></div>
+      <p class="phase-desc">You review the finished site, then we launch it.</p>
+      <div class="phase-tag" style="background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.2);color:var(--node-green)">Launch</div>
+    </div>
+    <div class="phase-right">
       <div class="step-card">
-        <div class="step-card-header">
-          <div class="step-card-icon" style="background:rgba(234,179,8,0.12)">🛡️</div>
-          <div>
-            <div class="step-card-num">Step 4.3</div>
-            <div class="step-card-name">Ongoing Monitoring</div>
-          </div>
-        </div>
-        <p>We set up proactive monitoring across your website and automation endpoints. If anything fails, we're alerted immediately and get to work before you even notice. 99.9% uptime SLA.</p>
-        <div class="step-card-footer"><span>✓</span> Average alert response under 2 minutes</div>
+        <div class="step-card-name" style="margin-bottom:10px">Your sign off, then live</div>
+        <p>Once you have reviewed the finished website and you are happy with it, we take it live for the world to see.</p>
+        <div class="step-card-footer"><span>✓</span> Live once you approve it</div>
       </div>
     </div>
   </div>
 
-</div>
-
-<!-- FLEXIBLE ROUTES -->
-<section style="background:var(--surface);border-top:1px solid var(--border)">
-  <div class="routes">
-    <div class="routes-header reveal">
-      <div class="section-label">Your Starting Point</div>
-      <h2 class="section-title">We adapt to<br/>where you are.</h2>
-      <p class="section-desc">The process is the same — but your starting point changes everything. Here's how it works depending on your situation.</p>
+  <div class="phase reveal">
+    <div class="phase-left">
+      <div class="phase-num">Phase 07</div>
+      <div class="phase-title">Support<br/><span>&amp; Growth</span></div>
+      <p class="phase-desc">We help with Google Business and stay on as your partner.</p>
+      <div class="phase-tag" style="background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.2);color:var(--node-blue)">Ongoing</div>
     </div>
-    <div class="route-grid reveal">
-      <div class="route-card featured">
-        <span class="route-icon">🆕</span>
-        <h3>Starting from <span>scratch</span></h3>
-        <p>You don't have a website yet, or your current one needs replacing. We build everything from the ground up — site first, automation second.</p>
-        <div class="route-steps">
-          <div class="route-step">Free discovery &amp; brand mapping</div>
-          <div class="route-step">Custom website designed &amp; built</div>
-          <div class="route-step">Automation &amp; AI layered on top</div>
-          <div class="route-step">All systems connected &amp; tested</div>
-          <div class="route-step">Live, monitored, documented</div>
-        </div>
-      </div>
-      <div class="route-card">
-        <span class="route-icon">⚡</span>
-        <h3>Already have a <span>website</span></h3>
-        <p>Your site is fine — you just need smarter workflows, integrations, or an AI chatbot on top. No rebuild needed, we connect straight in.</p>
-        <div class="route-steps">
-          <div class="route-step">Free discovery &amp; process mapping</div>
-          <div class="route-step">Connect to your existing website</div>
-          <div class="route-step">Automation &amp; AI built on top</div>
-          <div class="route-step">Systems integrated &amp; tested</div>
-          <div class="route-step">Live, monitored, documented</div>
-        </div>
+    <div class="phase-right">
+      <div class="step-card">
+        <div class="step-card-name" style="margin-bottom:10px">Google Business and beyond</div>
+        <p>We help you set up and optimise your Google Business Profile, and stay on as your ongoing partner to help your business keep growing.</p>
+        <div class="step-card-footer"><span>✓</span> A lasting relationship</div>
       </div>
     </div>
   </div>
-</section>
 
-<!-- FAQ -->
-<div class="faq-section">
-  <div class="faq-inner">
-    <div class="section-label reveal">Common Questions</div>
-    <h2 class="section-title reveal">Things people<br/>ask us.</h2>
-    <div class="faq-grid reveal">
-      <div class="faq-card">
-        <div class="faq-q">How long does a typical project take?</div>
-        <div class="faq-a">Simple automations can be live within 48 hours. A full website build plus automation layer typically takes 1–3 weeks depending on complexity. We give you a precise timeline during scoping.</div>
-      </div>
-      <div class="faq-card">
-        <div class="faq-q">Do I need to be technical to work with you?</div>
-        <div class="faq-a">Not at all. We handle everything technical. You describe what you want your business to do — we figure out how to build it. Most clients have no technical background whatsoever.</div>
-      </div>
-      <div class="faq-card">
-        <div class="faq-q">What if I only need one thing — like just a chatbot?</div>
-        <div class="faq-a">Absolutely fine. Every service can be taken as a standalone. You don't need a full build to work with us — we scope exactly what you need and nothing more.</div>
-      </div>
-      <div class="faq-card">
-        <div class="faq-q">What happens if something breaks after you've built it?</div>
-        <div class="faq-a">We monitor everything proactively. If a workflow fails, we're alerted instantly and fix it fast — often before you've even noticed. That's what the 99.9% uptime SLA is for.</div>
-      </div>
-      <div class="faq-card">
-        <div class="faq-q">Can I start small and add more later?</div>
-        <div class="faq-a">Yes — and many clients do. Start with one automation or a chatbot, see the impact, and expand from there. Everything we build is designed to grow with you.</div>
-      </div>
-      <div class="faq-card">
-        <div class="faq-q">Will I be locked in to using you for updates?</div>
-        <div class="faq-a">No. We hand over full documentation so you understand everything we've built. You're never dependent on us — though many clients choose to stay with us for ongoing maintenance because it's easier.</div>
-      </div>
-    </div>
-  </div>
 </div>
 
 <!-- CTA -->
@@ -532,7 +383,7 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
   <div class="cta-band-inner reveal">
     <div>
       <h2>Ready to get<br/><span>started?</span></h2>
-      <p>The first step is always a free conversation. No commitment, no obligation — just a chat about what you need.</p>
+      <p>The first step is always a free branded demo. No commitment, no obligation, just a chance to see the value for yourself.</p>
     </div>
     <div class="cta-band-actions">
       <a href="consultancy.html" class="btn-primary">Book Free Consultation</a>

@@ -41,13 +41,10 @@
     localStorage.setItem(CONSENT_KEY, JSON.stringify({ value, expires }));
   }
 
-  // ── Load Jotform chatbot ──
+  // ── AI chatbot removed site-wide ──
   function loadChatbot() {
-    if (document.querySelector('script[src*="jotfor.ms/agent"]')) return;
-    const s = document.createElement('script');
-    s.src = 'https://cdn.jotfor.ms/agent/embedjs/' + JOTFORM_AGENT_ID + '/embed.js';
-    s.async = true;
-    document.body.appendChild(s);
+    // The Jotform AI chatbot has been removed. Do not load it; clean up any stray instance.
+    removeChatbot();
   }
 
   // ── Remove any chatbot already injected (on decline) ──
@@ -185,7 +182,7 @@
         <div class="i8-cb-title">We use cookies</div>
       </div>
       <p class="i8-cb-body">
-        We use essential cookies to keep the site working, and third-party cookies (including our AI chatbot) to improve your experience. Read our <a href="privacy-policy.html">Privacy Policy</a> for full details.
+        We use essential cookies to keep the site working and analytics cookies to understand how it's used. Read our <a href="privacy-policy.html">Privacy Policy</a> for full details.
       </p>
       <div class="i8-cb-actions">
         <button class="i8-cb-accept" id="i8-accept-btn">Accept cookies</button>

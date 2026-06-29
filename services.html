@@ -104,6 +104,10 @@ section { position: relative; z-index: 1; }
 .service-media { border-radius: 16px; overflow: hidden; border: 1px solid var(--border); background: var(--surface2); line-height: 0; box-shadow: 0 24px 60px rgba(0,0,0,0.4); }
 .service-media img, .service-media video { display: block; width: 100%; height: auto; }
 .service-media.portrait { max-width: 430px; margin: 0 auto; }
+/* Email Hosting block: stacked layout with a large (~3x) image so the inbox is readable */
+.service-block.service-stacked { display: block; }
+.service-block.service-stacked > div:first-child { max-width: 760px; margin: 0 auto; }
+.service-block.service-stacked .service-media { position: relative; left: 50%; transform: translateX(-50%); width: min(1380px, 94vw); margin-top: 44px; }
 
 /* Review-platform badges (Google / Facebook) */
 .review-platforms { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 28px; }
@@ -538,7 +542,7 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 <hr class="divider"/>
 
 <!-- SERVICE 5: Email Hosting & Setup — media LEFT -->
-<div class="service-block reverse reveal" id="email-hosting">
+<div class="service-block service-stacked reveal" id="email-hosting">
   <div>
     <div class="service-block-label">Professional Email</div>
     <h2>Email Hosting<br/><span>&amp; Setup</span></h2>
@@ -561,7 +565,7 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
     <a href="consultancy.html#contact" class="service-link">Book a free consultation →</a>
   </div>
   <div class="service-media">
-    <img src="services-media/email-hosting-laptop.webp" width="1320" height="770" loading="lazy" alt="Professional branded email hosting set up by Innov8 Workflows"/>
+    <img src="services-media/email-hosting-laptop.webp" width="1536" height="1024" loading="lazy" alt="Professional branded email hosting set up by Innov8 Workflows"/>
   </div>
 </div>
 

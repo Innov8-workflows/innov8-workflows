@@ -117,6 +117,40 @@ section { position: relative; z-index: 1; }
 .platform-badge svg { width: 17px; height: 17px; flex-shrink: 0; }
 .platform-badge .stars { color: #FBBC04; font-size: 0.7rem; letter-spacing: 1.5px; }
 
+/* ── Magic Live Google Review Slider widget ── */
+.gr-widget { background:#fff; border-radius:16px; padding:22px 22px 20px; color:#202124; box-shadow:0 24px 60px rgba(0,0,0,0.45); border:1px solid rgba(0,0,0,0.08); font-family:'Bricolage Grotesque','Segoe UI',Roboto,Arial,sans-serif; line-height:1.4; }
+.gr-head { display:flex; align-items:center; gap:12px; padding-bottom:16px; border-bottom:1px solid #ececec; }
+.gr-glogo { width:30px; height:30px; flex-shrink:0; }
+.gr-head-text { flex:1; min-width:0; }
+.gr-head-title { font-size:0.95rem; font-weight:700; color:#202124; letter-spacing:-0.01em; }
+.gr-head-sub { display:flex; align-items:center; gap:6px; font-size:0.8rem; margin-top:1px; }
+.gr-rating { font-weight:700; color:#202124; }
+.gr-head .gr-stars { color:#FBBC04; letter-spacing:1px; font-size:0.82rem; }
+.gr-count { color:#5f6368; }
+.gr-live { display:inline-flex; align-items:center; gap:6px; font-size:0.66rem; font-weight:700; color:#1a7f37; background:#e6f4ea; border-radius:100px; padding:4px 10px; flex-shrink:0; text-transform:uppercase; letter-spacing:0.04em; }
+.gr-live-dot { width:7px; height:7px; border-radius:50%; background:#1a7f37; animation:gr-pulse 1.8s infinite; }
+@keyframes gr-pulse { 0%,100%{ opacity:1; } 50%{ opacity:0.25; } }
+.gr-slider { position:relative; min-height:172px; margin-top:16px; }
+.gr-review { position:absolute; inset:0; opacity:0; transform:translateY(8px); transition:opacity 0.5s ease, transform 0.5s ease; pointer-events:none; }
+.gr-review.active { opacity:1; transform:translateY(0); pointer-events:auto; position:relative; }
+.gr-review-top { display:flex; align-items:center; gap:10px; margin-bottom:10px; }
+.gr-avatar { width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:700; font-size:1rem; flex-shrink:0; }
+.gr-review-meta { flex:1; min-width:0; }
+.gr-name { font-weight:600; font-size:0.9rem; color:#202124; }
+.gr-date { font-size:0.72rem; color:#5f6368; margin-top:1px; }
+.gr-g-mark { width:18px; height:18px; flex-shrink:0; }
+.gr-stars-row { font-size:0.92rem; letter-spacing:1.5px; margin-bottom:8px; color:#FBBC04; }
+.gr-text { font-size:0.86rem; color:#3c4043; line-height:1.55; }
+.gr-dots { display:flex; gap:6px; justify-content:center; margin-top:14px; }
+.gr-dot { width:7px; height:7px; border-radius:50%; border:none; background:#dadce0; padding:0; cursor:pointer; transition:background 0.25s, width 0.25s; }
+.gr-dot.active { background:#1a73e8; width:18px; border-radius:4px; }
+.gr-hidden { margin-top:18px; padding-top:16px; border-top:1px dashed #d2d5d9; }
+.gr-hidden-label { display:flex; align-items:center; gap:7px; font-size:0.7rem; font-weight:700; color:#c5221f; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:10px; }
+.gr-hidden-label svg { width:15px; height:15px; flex-shrink:0; }
+.gr-hidden .gr-review { position:relative; opacity:0.5; filter:grayscale(1); }
+.gr-hidden-note { font-size:0.74rem; color:#5f6368; line-height:1.5; margin-top:10px; font-style:italic; }
+
+
 /* Included-features checklist (Essential website block) */
 .included-head { font-family: var(--font-mono); font-size: 0.66rem; color: var(--node-green); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 16px; }
 .included-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 11px 20px; margin-bottom: 24px; }
@@ -610,6 +644,134 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
     </video>
   </div>
 </div>
+
+<hr class="divider"/>
+
+<!-- SERVICE 7: Magic Live Google Review Slider — media RIGHT -->
+<div class="service-block reveal" id="review-slider">
+  <div>
+    <div class="service-block-label">Live Reviews</div>
+    <h2>Magic Live Google<br/><span>Review Slider</span></h2>
+    <p class="lead">A live, self-updating slider that pulls your real Google reviews straight onto your website and shows them off automatically. The magic? It spotlights your best five-star reviews and quietly filters out the occasional negative one, so visitors only ever see you at your best.</p>
+    <p class="works-with"><span>✓ Works with</span> any website, live from your Google Business Profile</p>
+    <div class="feature-list">
+      <div class="feature-item">
+        <div class="feature-icon">✦</div>
+        <div><strong>Live From Google</strong><p>Pulls real reviews straight from your Google Business Profile and refreshes automatically as new ones land.</p></div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">✦</div>
+        <div><strong>Shows Your Best, Hides The Rest</strong><p>Set a minimum rating and the slider only displays your strongest reviews. The odd one or two star is filtered out, so your wall of praise stays spotless.</p></div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">✦</div>
+        <div><strong>Builds Trust And Local SEO</strong><p>A rotating wall of five-star reviews builds instant trust, and embedding fresh Google reviews reinforces your local search ranking.</p></div>
+      </div>
+    </div>
+    <a href="consultancy.html#contact" class="service-link">Book a free consultation →</a>
+  </div>
+  <div class="gr-widget reveal" id="gr-slider-widget">
+    <div class="gr-head">
+      <svg class="gr-glogo" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/><path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/><path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/><path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/></svg>
+      <div class="gr-head-text">
+        <div class="gr-head-title">Google Reviews</div>
+        <div class="gr-head-sub"><span class="gr-rating">5.0</span> <span class="gr-stars">★★★★★</span> <span class="gr-count">· 48 reviews</span></div>
+      </div>
+      <span class="gr-live"><span class="gr-live-dot"></span> Live</span>
+    </div>
+    <div class="gr-slider">
+        <div class="gr-review active">
+          <div class="gr-review-top">
+            <div class="gr-avatar" style="background:#1a73e8">J</div>
+            <div class="gr-review-meta">
+              <div class="gr-name">James Whitfield</div>
+              <div class="gr-date">2 weeks ago</div>
+            </div>
+            <svg class="gr-g-mark" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/><path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/><path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/><path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/></svg>
+          </div>
+          <div class="gr-stars-row">★★★★★</div>
+          <div class="gr-text">Absolutely first class from start to finish. Tidy, professional, and the finish is spot on. Could not recommend them highly enough.</div>
+        </div>
+        <div class="gr-review">
+          <div class="gr-review-top">
+            <div class="gr-avatar" style="background:#d93025">S</div>
+            <div class="gr-review-meta">
+              <div class="gr-name">Sarah Thompson</div>
+              <div class="gr-date">1 month ago</div>
+            </div>
+            <svg class="gr-g-mark" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/><path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/><path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/><path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/></svg>
+          </div>
+          <div class="gr-stars-row">★★★★★</div>
+          <div class="gr-text">Brilliant service from start to finish. Turned up on time, kept everything clean, and the work is faultless. Would use again in a heartbeat.</div>
+        </div>
+        <div class="gr-review">
+          <div class="gr-review-top">
+            <div class="gr-avatar" style="background:#1e8e3e">M</div>
+            <div class="gr-review-meta">
+              <div class="gr-name">Mark Davies</div>
+              <div class="gr-date">3 weeks ago</div>
+            </div>
+            <svg class="gr-g-mark" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/><path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/><path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/><path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/></svg>
+          </div>
+          <div class="gr-stars-row">★★★★★</div>
+          <div class="gr-text">Top quality work at a fair price. Really pleased with how it turned out and the team were a genuine pleasure to deal with.</div>
+        </div>
+        <div class="gr-review">
+          <div class="gr-review-top">
+            <div class="gr-avatar" style="background:#e37400">E</div>
+            <div class="gr-review-meta">
+              <div class="gr-name">Emma Roberts</div>
+              <div class="gr-date">5 days ago</div>
+            </div>
+            <svg class="gr-g-mark" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/><path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/><path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/><path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/></svg>
+          </div>
+          <div class="gr-stars-row">★★★★★</div>
+          <div class="gr-text">Could not be happier with the result. Great communication the whole way through and a fantastic finish. Highly recommended.</div>
+        </div>
+    </div>
+    <div class="gr-dots">
+      <button class="gr-dot active" aria-label="Show review 1"></button><button class="gr-dot" aria-label="Show review 2"></button><button class="gr-dot" aria-label="Show review 3"></button><button class="gr-dot" aria-label="Show review 4"></button>
+    </div>
+    <div class="gr-hidden">
+      <div class="gr-hidden-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg> Automatically hidden from your site</div>
+      <div class="gr-review">
+          <div class="gr-review-top">
+            <div class="gr-avatar" style="background:#9aa0a6">D</div>
+            <div class="gr-review-meta">
+              <div class="gr-name">D. Mason</div>
+              <div class="gr-date">1 month ago</div>
+            </div>
+            <svg class="gr-g-mark" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/><path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/><path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/><path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/></svg>
+          </div>
+          <div class="gr-stars-row">★☆☆☆☆</div>
+          <div class="gr-text">Took a while to get back to me and the quote came in higher than I hoped, so I decided to go elsewhere.</div>
+        </div>
+      <div class="gr-hidden-note">Reviews below your chosen rating threshold are filtered out, so visitors only ever see your best.</div>
+    </div>
+  </div>
+</div>
+<script>
+  (function(){
+    var widget = document.getElementById('gr-slider-widget');
+    if (!widget) return;
+    var reviews = widget.querySelectorAll('.gr-slider .gr-review');
+    var dots = widget.querySelectorAll('.gr-dot');
+    if (!reviews.length) return;
+    var i = 0, timer = null;
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function show(n){
+      reviews[i].classList.remove('active'); if (dots[i]) dots[i].classList.remove('active');
+      i = (n + reviews.length) % reviews.length;
+      reviews[i].classList.add('active'); if (dots[i]) dots[i].classList.add('active');
+    }
+    function start(){ if (reduce) return; stop(); timer = setInterval(function(){ show(i + 1); }, 3800); }
+    function stop(){ if (timer) { clearInterval(timer); timer = null; } }
+    dots.forEach(function(d, idx){ d.addEventListener('click', function(){ show(idx); start(); }); });
+    widget.addEventListener('mouseenter', stop);
+    widget.addEventListener('mouseleave', start);
+    start();
+  })();
+</script>
 
 <hr class="divider"/>
 

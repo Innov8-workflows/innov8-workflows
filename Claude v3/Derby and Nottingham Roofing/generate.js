@@ -309,7 +309,7 @@ ${finalCta(`Looking for trusted roofers in ${t.town}? Get a free, no-obligation 
 /* ---------- homepage ---------- */
 function buildHome() {
   const p = {
-    slug: "index.html", active: "home", ogImg: "g1.jpg",
+    slug: "index.html", active: "home", ogImg: "og-home.jpg",
     title: `${SITE.name} | Roofers in Derby & Nottingham | Free Quotes`,
     desc: "Trusted roofing contractors covering Derby & Nottingham. New roofs, roof repairs, flat roofing, chimneys, guttering & free roof surveys. Fully insured. Free, no-obligation quotes.",
     schema: [localBusinessLD(),
@@ -633,6 +633,18 @@ function buildReview() {
 <title>Leave a Review · ${esc(SITE.name)}</title>
 <meta name="description" content="Thank you for choosing ${esc(SITE.name)}. Leave us a quick Google or Facebook review — it only takes 30 seconds.">
 <meta name="theme-color" content="#0C0E13">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="${esc(SITE.name)}">
+<meta property="og:title" content="Leave ${esc(SITE.name)} a 5-Star Review">
+<meta property="og:description" content="Happy with your new roof? A quick 5-star review helps other local homeowners find us - it only takes 30 seconds.">
+<meta property="og:url" content="${SITE.url}/review.html">
+<meta property="og:image" content="${SITE.url}/assets/img/og-review.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Leave ${esc(SITE.name)} a 5-Star Review">
+<meta name="twitter:description" content="A quick 5-star Google review helps other local homeowners find us - it takes 30 seconds.">
+<meta name="twitter:image" content="${SITE.url}/assets/img/og-review.jpg">
 <link rel="icon" href="assets/img/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">

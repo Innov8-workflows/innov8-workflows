@@ -149,6 +149,10 @@ function head(p) {
 <meta property="og:description" content="${esc(p.desc)}">
 <meta property="og:url" content="${canon}">
 <meta property="og:image" content="${ogImg}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${esc(p.title)}">
+<meta name="twitter:description" content="${esc(p.desc)}">
+<meta name="twitter:image" content="${ogImg}">
 <meta name="theme-color" content="#0C0E13">
 <link rel="icon" href="assets/img/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png">

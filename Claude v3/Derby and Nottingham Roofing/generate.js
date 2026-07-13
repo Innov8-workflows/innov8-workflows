@@ -611,6 +611,93 @@ ${finalCta()}`;
 }
 
 /* ---------- review-request card (private link for happy customers; noindex) ---------- */
+function buildThankYou() {
+  return `<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-T879LP6WTQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-T879LP6WTQ');
+</script>
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; img-src 'self' data: https://www.google-analytics.com; media-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com">
+<meta name="robots" content="noindex">
+<title>Thank You &middot; ${esc(SITE.name)}</title>
+<meta name="description" content="Thanks for your enquiry - we've opened WhatsApp with your details and we'll get straight back to you.">
+<meta name="theme-color" content="#0C0E13">
+<link rel="icon" href="assets/img/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0C0E13;--orange-bright:#FF8A2B;--orange-deep:#E25E08;--wa:#25D366;--cream:#F3F6FA;--text:#1B2330;--muted:#5C6675;--line:#E9EEF4}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'Inter',system-ui,-apple-system,sans-serif;color:var(--text);line-height:1.6;background:linear-gradient(rgba(12,14,19,.85),rgba(12,14,19,.92)),url('assets/img/hero-poster.jpg') center/cover fixed no-repeat;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:32px 16px}
+.card{width:100%;max-width:560px;background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 24px 60px -20px rgba(12,14,19,.5),0 4px 12px rgba(12,14,19,.08)}
+.card-head{position:relative;padding:50px 28px 34px;text-align:center;color:#fff;overflow:hidden;background:var(--ink)}
+.head-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:.45}
+.head-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(12,14,19,.45) 0%,rgba(12,14,19,.7) 60%,rgba(12,14,19,.95) 100%)}
+.logo-badge{position:relative;z-index:2;display:block;margin:0 auto 22px}
+.logo-badge img{height:56px;width:auto;filter:drop-shadow(0 8px 20px rgba(0,0,0,.6))}
+.tick{position:relative;z-index:2;width:76px;height:76px;margin:0 auto;border-radius:50%;background:linear-gradient(135deg,var(--orange-bright),var(--orange-deep));display:flex;align-items:center;justify-content:center;box-shadow:0 12px 28px -8px rgba(226,94,8,.7)}
+.tick svg{width:40px;height:40px}
+.card-body{padding:34px 30px 8px;text-align:center}
+h1{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:2.35rem;line-height:1.05;text-transform:uppercase;color:var(--ink);margin-bottom:12px}
+.lead{font-size:1.05rem;color:var(--text);max-width:42ch;margin:0 auto}
+.sub{font-size:.92rem;color:var(--muted);margin:14px auto 0}
+.btns{margin:26px 0 4px;display:flex;flex-direction:column;gap:12px}
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:16px 22px;font-family:'Barlow',sans-serif;font-weight:700;font-size:1.05rem;border-radius:12px;text-decoration:none;transition:transform .15s}
+.btn:active{transform:translateY(1px)}
+.btn-home{background:linear-gradient(135deg,var(--orange-bright),var(--orange-deep));color:#fff;box-shadow:0 12px 26px -10px rgba(226,94,8,.7)}
+.btn-wa{background:var(--wa);color:#fff}
+.btn-wa svg{width:22px;height:22px}
+.call{margin:20px 0 26px;font-size:.95rem;color:var(--muted)}
+.call a{color:var(--orange-deep);font-weight:700;text-decoration:none}
+.card-foot{padding:16px 28px;text-align:center;font-size:.78rem;color:var(--muted);background:var(--cream);border-top:1px solid var(--line)}
+</style>
+</head>
+<body>
+  <main class="card">
+    <div class="card-head">
+      <img class="head-bg" src="assets/img/work-1.jpg" alt="" aria-hidden="true">
+      <div class="head-overlay"></div>
+      <span class="logo-badge"><img src="assets/img/logo.png" alt="${esc(SITE.name)}"></span>
+      <div class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+    </div>
+    <div class="card-body">
+      <h1>Thanks - we've got it!</h1>
+      <p class="lead">We've opened WhatsApp with your details ready to send. Just hit send and we'll get straight back to you, usually the same day.</p>
+      <p class="sub">WhatsApp didn't open? Tap the button below.</p>
+      <div class="btns">
+        <a class="btn btn-home" href="/">Return to home</a>
+        <a class="btn btn-wa" id="waFallback" href="https://wa.me/${SITE.phoneIntl}" target="_blank" rel="noopener">${I.wa}Open WhatsApp</a>
+      </div>
+      <p class="call">Prefer to talk? Call <a href="tel:+${SITE.phoneIntl}">${SITE.phone}</a></p>
+    </div>
+    <footer class="card-foot">&copy; <span id="yr"></span> ${esc(SITE.name)} &middot; Derby &amp; Nottingham, UK</footer>
+  </main>
+<script>
+  (function(){
+    try{
+      var q = new URLSearchParams(location.search);
+      gtag('event','generate_lead',{ method:'whatsapp', link_location:'contact_form', service:q.get('service')||'', area:q.get('area')||'' });
+    }catch(e){}
+    try{ var u = sessionStorage.getItem('dnrWaUrl'); if(u){ document.getElementById('waFallback').href = u; } }catch(e){}
+    document.getElementById('yr').textContent = new Date().getFullYear();
+  })();
+</script>
+</body>
+</html>`;
+}
+
 function buildReview() {
   const G_SVG = '<svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 12.955 4 4 12.955 4 24s8.955 20 20 20 20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z"/><path fill="#FF3D00" d="M6.306 14.691l6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 16.318 4 9.656 8.337 6.306 14.691z"/><path fill="#4CAF50" d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238C29.211 35.091 26.715 36 24 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z"/><path fill="#1976D2" d="M43.611 20.083H42V20H24v8h11.303c-.792 2.237-2.231 4.166-4.087 5.571l.003-.002 6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917z"/></svg>';
   const F_SVG = '<svg viewBox="0 0 24 24" fill="#1877F2" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>';
@@ -802,6 +889,7 @@ ${finalCta()}`;
 }
 fs.writeFileSync("review.html", buildReview());
 fs.writeFileSync("404.html", build404());
+fs.writeFileSync("thank-you.html", buildThankYou());
 
 console.log("Generated " + count + " HTML pages + review.html + sitemap.xml + robots.txt + CNAME");
 console.log(Object.keys(OUT).join("  "));

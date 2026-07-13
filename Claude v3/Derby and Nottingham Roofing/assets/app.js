@@ -194,13 +194,14 @@
       var name = ($("fName") && $("fName").value.trim()) || "";
       var phone = ($("fPhone") && $("fPhone").value.trim()) || "";
       if (!name || !phone) { alert("Please add your name and phone number so we can get back to you."); return; }
-      track("generate_lead", {
-        method: "whatsapp",
-        link_location: "contact_form",
-        service: ($("fService") && $("fService").value) || "",
-        area: ($("fArea") && $("fArea").value.trim()) || ""
-      });
-      window.open(buildWa(), "_blank");
+      var url = buildWa();
+      try { sessionStorage.setItem("dnrWaUrl", url); } catch (e) {}
+      window.open(url, "_blank"); // open WhatsApp (new tab on desktop / app on mobile)
+      // send this tab to the thank-you page - the GA4 generate_lead conversion fires there
+      var svc = ($("fService") && $("fService").value) || "";
+      var area = ($("fArea") && $("fArea").value.trim()) || "";
+      var dest = "thank-you.html?service=" + encodeURIComponent(svc) + "&area=" + encodeURIComponent(area);
+      setTimeout(function () { window.location.href = dest; }, 150);
     };
   }
   var waFloat = $("waFloat");

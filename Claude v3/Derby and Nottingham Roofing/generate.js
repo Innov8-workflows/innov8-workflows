@@ -291,6 +291,20 @@ function landingCase(slug) {
 `;
 }
 
+/* ---------- reviews slider (shared: homepage + ad landing pages) ---------- */
+function reviewsSection() {
+  return `<section class="section reviews" id="reviews"><div class="wrap">
+  <div class="section-head center"><span class="eyebrow">Reviews</span><h2>What our customers say</h2><p>Rated by homeowners across Derby &amp; Nottingham.</p></div>
+  <div class="rev-stage"><div class="rev-track"><div class="rev-row" id="revRow"></div></div>
+    <div class="rev-nav">
+      <button class="rev-arrow" id="revPrev" aria-label="Previous review"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+      <div class="rev-dots" id="revDots"></div>
+      <button class="rev-arrow" id="revNext" aria-label="Next review"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+    </div>
+    <div class="center" style="margin-top:24px"><a class="btn btn-dark" href="reviews.html">Read more reviews ${I.arrow}</a></div>
+  </div></div></section>`;
+}
+
 /* ---------- service page ---------- */
 function buildService(s) {
   const c = SVC[s.slug];
@@ -299,24 +313,17 @@ function buildService(s) {
   const p = {
     slug: s.slug + ".html", active: "services", title: `${s.nav} in Derby & Nottingham | ${SITE.name}`,
     desc: c.desc, ogImg: s.img,
-    schema: [localBusinessLD(), serviceLD(s.nav, c.desc), faqLD(c.faqs),
-      breadcrumbLD([{ name: "Home", slug: "" }, { name: s.short, slug: s.slug + ".html" }])]
+    // landing pages have no visible FAQ block, so no FAQ schema either
+    schema: landing
+      ? [localBusinessLD(), serviceLD(s.nav, c.desc),
+         breadcrumbLD([{ name: "Home", slug: "" }, { name: s.short, slug: s.slug + ".html" }])]
+      : [localBusinessLD(), serviceLD(s.nav, c.desc), faqLD(c.faqs),
+         breadcrumbLD([{ name: "Home", slug: "" }, { name: s.short, slug: s.slug + ".html" }])]
   };
   const hero = landing ? videoHero(c) : pageHero({ heroImg: s.img, eyebrow: c.eyebrow, h1: c.h1, lead: c.lead,
     crumbs: [{ name: "Home", slug: "index.html" }, { name: s.short }] });
   const proseSections = c.sections.map(sec => `<h2>${sec.h}</h2>${sec.body}`).join("\n");
-  const tail = landing
-    ? `${landingCase(s.slug)}${faqSection(c.faqs)}
-${contactSection()}
-${finalCta(`Free quotes on all ${s.nav.toLowerCase()} across Derby, Nottingham and the East Midlands.`, quoteHref)}`
-    : `${faqSection(c.faqs)}
-${relatedServices(s.slug)}
-${areasSection()}
-${finalCta(`Free quotes on all ${s.nav.toLowerCase()} across Derby, Nottingham and the East Midlands.`)}`;
-  const body = `
-${hero}
-${trustStrip()}
-<section class="section content"><div class="wrap"><div class="content-layout">
+  const contentSection = `<section class="section content"><div class="wrap"><div class="content-layout">
   <div class="prose">
     ${c.intro.map(x => `<p>${x}</p>`).join("\n    ")}
     <img class="feature-img" src="assets/img/${s.img}" alt="${s.nav} by ${SITE.name} in Derby and Nottingham" loading="lazy">
@@ -326,8 +333,25 @@ ${trustStrip()}
     <div class="callout"><p>Covering <strong>Derby, Nottingham</strong> and the towns around them — from Long Eaton and Beeston to Belper, Ilkeston and West Bridgford. <a href="${quoteHref}">Get your free quote</a> or call <a href="${TEL}">${SITE.phone}</a>.</p></div>
   </div>
   ${sidebar(s.slug, quoteHref)}
-</div></div></section>
-${tail}`;
+</div></div></section>`;
+  const cta = `Free quotes on all ${s.nav.toLowerCase()} across Derby, Nottingham and the East Midlands.`;
+  /* Landing order (conversion-first): hero > trust > proof video > reviews > detail+sidebar > form > final CTA.
+     Standard order (SEO pages): hero > trust > detail > FAQs > related > areas > final CTA. */
+  const body = landing ? `
+${hero}
+${trustStrip()}
+${landingCase(s.slug)}${reviewsSection()}
+${contentSection}
+${contactSection()}
+${finalCta(cta, quoteHref)}`
+    : `
+${hero}
+${trustStrip()}
+${contentSection}
+${faqSection(c.faqs)}
+${relatedServices(s.slug)}
+${areasSection()}
+${finalCta(cta)}`;
   OUT[p.slug] = head(p) + navbar(p.active) + body + footer();
 }
 
@@ -502,16 +526,7 @@ ${trustStrip()}
     </div>
   </div>
 </div></div></section>
-<section class="section reviews" id="reviews"><div class="wrap">
-  <div class="section-head center"><span class="eyebrow">Reviews</span><h2>What our customers say</h2><p>Rated by homeowners across Derby &amp; Nottingham.</p></div>
-  <div class="rev-stage"><div class="rev-track"><div class="rev-row" id="revRow"></div></div>
-    <div class="rev-nav">
-      <button class="rev-arrow" id="revPrev" aria-label="Previous review"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
-      <div class="rev-dots" id="revDots"></div>
-      <button class="rev-arrow" id="revNext" aria-label="Next review"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
-    </div>
-    <div class="center" style="margin-top:24px"><a class="btn btn-dark" href="reviews.html">Read more reviews ${I.arrow}</a></div>
-  </div></div></section>
+${reviewsSection()}
 <section class="section about" id="about"><div class="wrap about-grid">
   <div class="about-photo"><img src="assets/img/truck.jpg" alt="${esc(SITE.name)} van loaded with materials" loading="lazy"></div>
   <div class="about-body">

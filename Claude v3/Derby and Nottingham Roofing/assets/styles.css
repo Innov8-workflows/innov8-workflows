@@ -312,6 +312,7 @@ header.nav.solid{background:var(--ink)}
   font-family:'Barlow',sans-serif;font-weight:600;font-size:.95rem;color:var(--text);transition:background .15s,color .15s}
 .side-nav a:hover,.side-nav a.active{background:#fff;color:var(--orange-deep);box-shadow:var(--shadow-card)}
 .side-nav a.active{border-left:3px solid var(--orange)}
+.side-nav a svg{width:15px;height:15px;flex-shrink:0}
 .sticky{position:sticky;top:96px}
 
 /* process steps */

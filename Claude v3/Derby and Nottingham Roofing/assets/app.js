@@ -207,7 +207,10 @@
       window.open(url, "_blank"); // open WhatsApp (new tab on desktop / app on mobile)
       // send this tab to the thank-you page - the GA4 generate_lead conversion fires there
       var dest = "thank-you.html?service=" + encodeURIComponent(svc) + "&area=" + encodeURIComponent(area);
-      setTimeout(function () { window.location.href = dest; }, 250);
+      // 1.2s pause before the redirect: gives the GTM conversion tag + its debug
+      // reporting time to complete before this page unloads (user is looking at
+      // the WhatsApp tab by now, so the wait is invisible).
+      setTimeout(function () { window.location.href = dest; }, 1200);
     };
   }
   var waFloat = $("waFloat");

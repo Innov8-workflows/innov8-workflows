@@ -250,12 +250,12 @@ function areasSection(currentSlug) {
   return html;
 }
 
-function finalCta(text) {
+function finalCta(text, quoteHref) {
   return `<section class="final"><div class="final-bg" style="background-image:url(assets/img/roof1.jpg)"></div><div class="final-overlay"></div><div class="final-content">
     <h2>Need a roofer you can rely on?</h2>
     <p>${text || "Get a free, no-obligation quote from your local Derby &amp; Nottingham roofing team today."}</p>
     <div class="final-btns">
-      <a class="btn btn-dark" href="contact.html" style="background:#fff;color:var(--ink)">Get my free quote</a>
+      <a class="btn btn-dark" href="${quoteHref || "contact.html"}" style="background:#fff;color:var(--ink)">Get my free quote</a>
       <a class="btn btn-ghost" href="${TEL}">${I.phone}${SITE.phone}</a>
     </div></div></section>`;
 }
@@ -313,13 +313,13 @@ function pageHero(p) {
 </section>`;
 }
 
-function sidebar(activeSlug) {
+function sidebar(activeSlug, quoteHref) {
   const nav = SERVICES.map(s => `<a href="${s.slug}.html"${s.slug === activeSlug ? ' class="active"' : ""}>${s.nav}${s.slug === activeSlug ? "" : " " + I.arrow}</a>`).join("");
   return `<aside>
     <div class="side-card sticky">
       <h3>Free, no-obligation quote</h3>
       <p>Tell us about your roof and we'll get straight back to you — usually the same day.</p>
-      <a class="btn btn-primary" href="contact.html">${I.quote}Request a quote</a>
+      <a class="btn btn-primary" href="${quoteHref || "contact.html"}">${I.quote}Request a quote</a>
       <a class="btn btn-ghost" href="${TEL}" style="border-color:rgba(255,255,255,.4)">${I.phone}${SITE.phone}</a>
       <span class="callnum" style="margin-top:6px">${SITE.hours}</span>
     </div>

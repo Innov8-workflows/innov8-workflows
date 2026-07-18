@@ -222,18 +222,97 @@ const SVC = {
   }
 };
 
+/* ---------- ad landing pages: video hero + on-page form ----------
+   These service slugs double as Google Ads landing pages (one per ad group).
+   They get the homepage's crossfading video hero, a before/after proof video
+   where a relevant one exists, and the contact form ON the page so a lead
+   never needs a second click (the form's whatsapp_lead conversion event
+   works on any page). */
+const LANDING = {
+  "roof-repairs": { caze: {
+    src: "before-after.mp4", poster: "assets/img/g1.jpg", eyebrow: "Full Roof Strip &amp; Re-Slate",
+    h: "A worn slate roof made watertight again", loc: "Derby",
+    p: "An old, weathered slate roof stripped right back and re-covered with brand-new natural slate over a breathable membrane and fresh battens — finished with new guttering and a crisp, clean line across the eaves." } },
+  "new-roofs": { caze: {
+    src: "before-after-02.mp4", poster: "assets/img/ba2-poster.jpg", eyebrow: "Full Re-Roof",
+    h: "Stripped back and built to last", loc: "Nottingham",
+    p: "Taken right back and rebuilt properly — new timbers, breathable felt, treated battens and a fresh tile covering throughout, with new ridge and leadwork. A complete re-roof built to keep the home dry and solid for decades." } },
+  "flat-roofing": {}
+};
+
+function videoHero(c) {
+  return `<section class="hero" id="top">
+  <div class="hero-slides">
+    <video class="hero-video active" muted playsinline preload="auto" poster="assets/img/hero-03-poster.jpg" disablepictureinpicture>
+      <source src="assets/orbital-03.mp4" type="video/mp4">
+    </video>
+    <video class="hero-video" muted playsinline preload="metadata" poster="assets/img/hero-poster.jpg" disablepictureinpicture>
+      <source src="assets/hero.mp4" type="video/mp4">
+    </video>
+    <video class="hero-video" muted playsinline preload="metadata" poster="assets/img/hero-02-poster.jpg" disablepictureinpicture>
+      <source src="assets/orbital-02.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <img class="hero-logo hero-logo--sm" src="assets/img/logo.png" alt="${esc(SITE.name)}" width="560" height="373">
+    <h1>${c.h1}</h1>
+    <p class="sub">${c.lead}</p>
+    <div class="hero-btns">
+      <a class="btn btn-primary" href="#contact">${I.quote}Get my free quote</a>
+      <a class="btn btn-ghost" href="${TEL}">${I.phone}${SITE.phone}</a>
+    </div>
+  </div>
+</section>`;
+}
+
+function landingCase(slug) {
+  const z = (LANDING[slug] || {}).caze;
+  if (!z) return "";
+  return `<section class="section ba"><div class="wrap">
+  <div class="section-head center"><span class="eyebrow">See the difference</span><h2>Before &amp; after</h2>
+    <p>Real jobs, real results — watch a recent project go from tired and worn to a fresh, watertight finish.</p></div>
+  <div class="cases">
+    <article class="case">
+      <div class="case-media"><div class="case-frame">
+        <div class="ba-corner"><span class="dot"></span>Before &rarr; After</div>
+        <video class="ba-video" muted loop playsinline preload="none" poster="${z.poster}" disablepictureinpicture><source src="assets/${z.src}" type="video/mp4"></video>
+      </div></div>
+      <div class="case-body">
+        <span class="eyebrow">${z.eyebrow}</span>
+        <h3>${z.h}</h3>
+        <p>${z.p}</p>
+        <span class="case-loc">${I.pin}${z.loc}</span>
+      </div>
+    </article>
+  </div>
+  <div class="center" style="margin-top:46px"><a class="btn btn-primary" href="#contact">${I.quote}Get a quote like this</a></div>
+</div></section>
+`;
+}
+
 /* ---------- service page ---------- */
 function buildService(s) {
   const c = SVC[s.slug];
+  const landing = Object.prototype.hasOwnProperty.call(LANDING, s.slug);
+  const quoteHref = landing ? "#contact" : "contact.html";
   const p = {
     slug: s.slug + ".html", active: "services", title: `${s.nav} in Derby & Nottingham | ${SITE.name}`,
     desc: c.desc, ogImg: s.img,
     schema: [localBusinessLD(), serviceLD(s.nav, c.desc), faqLD(c.faqs),
       breadcrumbLD([{ name: "Home", slug: "" }, { name: s.short, slug: s.slug + ".html" }])]
   };
-  const hero = pageHero({ heroImg: s.img, eyebrow: c.eyebrow, h1: c.h1, lead: c.lead,
+  const hero = landing ? videoHero(c) : pageHero({ heroImg: s.img, eyebrow: c.eyebrow, h1: c.h1, lead: c.lead,
     crumbs: [{ name: "Home", slug: "index.html" }, { name: s.short }] });
   const proseSections = c.sections.map(sec => `<h2>${sec.h}</h2>${sec.body}`).join("\n");
+  const tail = landing
+    ? `${landingCase(s.slug)}${faqSection(c.faqs)}
+${contactSection()}
+${finalCta(`Free quotes on all ${s.nav.toLowerCase()} across Derby, Nottingham and the East Midlands.`, quoteHref)}`
+    : `${faqSection(c.faqs)}
+${relatedServices(s.slug)}
+${areasSection()}
+${finalCta(`Free quotes on all ${s.nav.toLowerCase()} across Derby, Nottingham and the East Midlands.`)}`;
   const body = `
 ${hero}
 ${trustStrip()}
@@ -244,14 +323,11 @@ ${trustStrip()}
     <h2>${c.includesH}</h2>
     ${ticks(c.includes)}
     ${proseSections}
-    <div class="callout"><p>Covering <strong>Derby, Nottingham</strong> and the towns around them — from Long Eaton and Beeston to Belper, Ilkeston and West Bridgford. <a href="contact.html">Get your free quote</a> or call <a href="${TEL}">${SITE.phone}</a>.</p></div>
+    <div class="callout"><p>Covering <strong>Derby, Nottingham</strong> and the towns around them — from Long Eaton and Beeston to Belper, Ilkeston and West Bridgford. <a href="${quoteHref}">Get your free quote</a> or call <a href="${TEL}">${SITE.phone}</a>.</p></div>
   </div>
-  ${sidebar(s.slug)}
+  ${sidebar(s.slug, quoteHref)}
 </div></div></section>
-${faqSection(c.faqs)}
-${relatedServices(s.slug)}
-${areasSection()}
-${finalCta(`Free quotes on all ${s.nav.toLowerCase()} across Derby, Nottingham and the East Midlands.`)}`;
+${tail}`;
   OUT[p.slug] = head(p) + navbar(p.active) + body + footer();
 }
 

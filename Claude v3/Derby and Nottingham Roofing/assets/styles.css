@@ -218,9 +218,24 @@ header.nav.solid{background:var(--ink)}
 /* ---------- reviews ---------- */
 .reviews{background:var(--paper-2)}
 .rev-stage{max-width:720px;margin:0 auto;position:relative}
-.rev-track{overflow:hidden;border-radius:var(--r)}
+.rev-track{overflow:hidden;border-radius:var(--r);padding:10px;margin:-10px}
 .rev-row{display:flex;transition:transform .5s ease;touch-action:pan-y}
-.rev-card{flex:0 0 100%;background:#fff;border-radius:var(--r);box-shadow:var(--shadow-card);padding:34px 32px;text-align:left}
+.rev-slide{flex:0 0 100%;padding:0 9px;box-sizing:border-box;display:flex}
+.rev-card{width:100%;background:#fff;border-radius:var(--r);box-shadow:var(--shadow-card);padding:34px 32px;text-align:left}
+@media(min-width:900px){.rev-stage{max-width:1120px}.rev-slide{flex-basis:33.3333%}}
+.rev-badge-wrap{display:flex;justify-content:center;margin:0 0 36px}
+.rev-badge{display:inline-flex;align-items:center;gap:14px;background:#fff;border:1px solid var(--paper-3);border-radius:14px;padding:13px 22px;box-shadow:var(--shadow-card);text-decoration:none;transition:transform .2s,box-shadow .2s}
+.rev-badge:hover{transform:translateY(-2px)}
+.rev-badge>svg{width:34px;height:34px;flex-shrink:0}
+.rb-mid{display:flex;flex-direction:column;line-height:1}
+.rb-score{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.9rem;color:var(--text)}
+.rb-stars{display:flex;gap:2px;margin-top:4px}
+.rb-stars svg{width:13px;height:13px;color:#FBBC04}
+.rb-label{color:var(--muted);font-size:.92rem;font-family:'Barlow',sans-serif;font-weight:600;margin-left:4px}
+.rev-top .rev-g{margin-left:auto;display:flex;align-items:center}
+.rev-g svg{width:22px;height:22px}
+.rev-loc{display:inline-flex;align-items:center;gap:7px;color:var(--muted);font-family:'Barlow',sans-serif;font-weight:600;font-size:.85rem}
+.rev-loc svg{width:15px;height:15px;color:var(--orange-deep)}
 .rev-top{display:flex;align-items:center;gap:14px;margin-bottom:14px}
 .rev-avatar{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--blue-light),var(--blue));
   color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.3rem;flex:none}

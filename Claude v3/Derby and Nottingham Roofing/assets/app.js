@@ -123,37 +123,53 @@
     { name: "Karen S.", area: "Lichfield", time: "4 months ago", text: "Chimney was leaking and the flashing had gone. Sorted it properly, repointed the stack and it's been bone dry since. Polite, punctual and tidy." },
     { name: "Paul G.", area: "Shepshed", time: "5 months ago", text: "Full re-roof on a 1930s semi. Scaffolding up when promised, great communication and a beautiful finish. Couldn't fault them. Highly recommended." }
   ];
+  var GOOGLE_REVIEWS_URL = "https://g.page/r/CeIJ2bFhP2mrEBM";
+  var G_LOGO = '<svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 12.955 4 4 12.955 4 24s8.955 20 20 20 20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z"/><path fill="#FF3D00" d="M6.306 14.691l6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 16.318 4 9.656 8.337 6.306 14.691z"/><path fill="#4CAF50" d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238C29.211 35.091 26.715 36 24 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z"/><path fill="#1976D2" d="M43.611 20.083H42V20H24v8h11.303c-.792 2.237-2.231 4.166-4.087 5.571l.003-.002 6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917z"/></svg>';
+  var PIN_ICO = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>';
   function star() { return '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.6-5.2 4.6 1.6 6.8L12 17.3 5.8 20.9l1.6-6.8L2.2 8.9l6.9-.6z"/></svg>'; }
   function revCard(r) {
     return '<div class="rev-top"><div class="rev-avatar">' + r.name[0] + '</div>' +
-      '<div><div class="rev-name">' + r.name + '</div><div class="rev-meta">' + r.area + ' &middot; ' + r.time + '</div></div></div>' +
+      '<div><div class="rev-name">' + r.name + '</div><div class="rev-meta">' + r.time + '</div></div>' +
+      '<a class="rev-g" href="' + GOOGLE_REVIEWS_URL + '" target="_blank" rel="noopener" aria-label="See our Google reviews">' + G_LOGO + '</a></div>' +
       '<div class="rev-stars">' + star().repeat(5) + '</div>' +
-      '<p class="rev-text">' + r.text + '</p>' +
-      '<div class="rev-src"><span class="g"><b>G</b><i>o</i>ogle</span> Review</div>';
+      '<p class="rev-text">&ldquo;' + r.text + '&rdquo;</p>' +
+      '<div class="rev-loc">' + PIN_ICO + r.area + '</div>';
   }
 
-  /* ---------- reviews carousel (home) ---------- */
+  /* ---------- reviews carousel (home + landing pages): 3-up desktop, 1-up mobile ---------- */
   var row = $("revRow"), dotsWrap = $("revDots");
   if (row && dotsWrap) {
-    var subset = REVIEWS.slice(0, 5);
-    subset.forEach(function (r, idx) {
-      var c = document.createElement("div"); c.className = "rev-card"; c.innerHTML = revCard(r); row.appendChild(c);
-      var b = document.createElement("button"); b.setAttribute("aria-label", "Review " + (idx + 1)); b.onclick = function () { go(idx); }; dotsWrap.appendChild(b);
+    var subset = REVIEWS.slice(0, 6);
+    subset.forEach(function (r) {
+      var s = document.createElement("div"); s.className = "rev-slide";
+      var c = document.createElement("div"); c.className = "rev-card"; c.innerHTML = revCard(r);
+      s.appendChild(c); row.appendChild(s);
     });
-    var dots = [].slice.call(dotsWrap.children), i = 0, timer;
+    var mq = window.matchMedia("(min-width: 900px)");
+    var i = 0, timer, dots = [];
+    var pages = function () { return Math.ceil(subset.length / (mq.matches ? 3 : 1)); };
     var go = function (n) {
-      i = (n + subset.length) % subset.length;
+      var P = pages(); i = (n + P) % P;
       row.style.transform = "translateX(-" + (i * 100) + "%)";
       dots.forEach(function (d, k) { d.classList.toggle("on", k === i); });
       reset();
     };
     var reset = function () { clearInterval(timer); timer = setInterval(function () { go(i + 1); }, 5000); };
+    var buildDots = function () {
+      dotsWrap.innerHTML = ""; dots = [];
+      for (var n = 0; n < pages(); n++) (function (n) {
+        var b = document.createElement("button"); b.setAttribute("aria-label", "Reviews page " + (n + 1));
+        b.onclick = function () { go(n); }; dotsWrap.appendChild(b); dots.push(b);
+      })(n);
+    };
     if ($("revPrev")) $("revPrev").onclick = function () { go(i - 1); };
     if ($("revNext")) $("revNext").onclick = function () { go(i + 1); };
     var sx = 0;
     row.addEventListener("touchstart", function (e) { sx = e.touches[0].clientX; }, { passive: true });
     row.addEventListener("touchend", function (e) { var dx = e.changedTouches[0].clientX - sx; if (Math.abs(dx) > 40) go(dx < 0 ? i + 1 : i - 1); });
-    go(0);
+    var onMq = function () { buildDots(); go(0); };
+    if (mq.addEventListener) mq.addEventListener("change", onMq); else if (mq.addListener) mq.addListener(onMq);
+    buildDots(); go(0);
   }
 
   /* ---------- reviews static grid (reviews page) ---------- */

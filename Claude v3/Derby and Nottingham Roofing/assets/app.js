@@ -196,12 +196,18 @@
       if (!name || !phone) { alert("Please add your name and phone number so we can get back to you."); return; }
       var url = buildWa();
       try { sessionStorage.setItem("dnrWaUrl", url); } catch (e) {}
-      window.open(url, "_blank"); // open WhatsApp (new tab on desktop / app on mobile)
-      // send this tab to the thank-you page - the GA4 generate_lead conversion fires there
       var svc = ($("fService") && $("fService").value) || "";
       var area = ($("fArea") && $("fArea").value.trim()) || "";
+      // Ad-conversion signal fires HERE at the moment of submit (GTM custom-event
+      // trigger "whatsapp_lead") - the beacon survives the redirect, and it also
+      // catches mobile users whose browser jumps to the WhatsApp app before the
+      // thank-you page finishes loading.
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: "whatsapp_lead", service: svc, area: area });
+      window.open(url, "_blank"); // open WhatsApp (new tab on desktop / app on mobile)
+      // send this tab to the thank-you page - the GA4 generate_lead conversion fires there
       var dest = "thank-you.html?service=" + encodeURIComponent(svc) + "&area=" + encodeURIComponent(area);
-      setTimeout(function () { window.location.href = dest; }, 150);
+      setTimeout(function () { window.location.href = dest; }, 250);
     };
   }
   var waFloat = $("waFloat");

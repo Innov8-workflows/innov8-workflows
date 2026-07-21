@@ -256,6 +256,7 @@
     waFloat.onclick = function (e) {
       e.preventDefault();
       track("click_whatsapp", { link_location: "float" });
+      sendLead({ type: "whatsapp_click", msg: "location: float" });
       window.open(WA_BASE + "Hi%20Derby%20%26%20Nottingham%20Roofing%2C%20I%20found%20your%20website%20and%20I%27d%20like%20a%20free%20roofing%20quote.%0A%0ASource%3A%20website%20enquiry", "_blank");
     };
   }
@@ -267,8 +268,10 @@
     var href = a.getAttribute("href") || "";
     if (href.indexOf("tel:") === 0) {
       track("click_to_call", { link_location: locOf(a) });
+      sendLead({ type: "call_click", msg: "location: " + locOf(a) });
     } else if (href.indexOf("wa.me") !== -1 && a.id !== "waFloat") {
       track("click_whatsapp", { link_location: locOf(a) });
+      sendLead({ type: "whatsapp_click", msg: "location: " + locOf(a) });
     }
   }, true);
 })();

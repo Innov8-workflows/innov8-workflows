@@ -5,6 +5,26 @@
   var WA_BASE = "https://wa.me/" + PHONE_INTL + "?text=";
   var $ = function (id) { return document.getElementById(id); };
 
+  /* ---------- lead logger (Google Sheet via Apps Script) ---------- */
+  var LEAD_URL = "https://script.google.com/macros/s/AKfycbxUP8I0sZZfsyqTeqfyueO0arjcqR0Ge4-ZTfekfSgBz-vu1h99hf-sut5KQxzTLd0B/exec";
+  // Keep the Ads click id across page navigation so the lead row can be tied
+  // back to the click even when the form is filled on a later page.
+  try {
+    var gclid = new URLSearchParams(window.location.search).get("gclid");
+    if (gclid) sessionStorage.setItem("dnrGclid", gclid);
+  } catch (e) {}
+  function sendLead(data) {
+    data.page = window.location.pathname;
+    try { data.gclid = sessionStorage.getItem("dnrGclid") || ""; } catch (e) { data.gclid = ""; }
+    var body = JSON.stringify(data);
+    // sendBeacon survives the WhatsApp app-switch and the thank-you redirect;
+    // text/plain avoids a CORS preflight Apps Script can't answer.
+    try {
+      if (navigator.sendBeacon && navigator.sendBeacon(LEAD_URL, new Blob([body], { type: "text/plain;charset=UTF-8" }))) return;
+    } catch (e) {}
+    try { fetch(LEAD_URL, { method: "POST", mode: "no-cors", keepalive: true, headers: { "Content-Type": "text/plain;charset=UTF-8" }, body: body }); } catch (e2) {}
+  }
+
   /* ---------- GA4 event helper ---------- */
   function track(name, params) {
     try { if (typeof window.gtag === "function") window.gtag("event", name, params || {}); } catch (e) {}
@@ -220,6 +240,8 @@
       // thank-you page finishes loading.
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({ event: "whatsapp_lead", service: svc, area: area });
+      // Log the lead to the Google Sheet at the same moment the conversion fires.
+      sendLead({ name: name, phone: phone, area: area, service: svc, msg: ($("fMsg") && $("fMsg").value.trim()) || "", type: "form" });
       window.open(url, "_blank"); // open WhatsApp (new tab on desktop / app on mobile)
       // send this tab to the thank-you page - the GA4 generate_lead conversion fires there
       var dest = "thank-you.html?service=" + encodeURIComponent(svc) + "&area=" + encodeURIComponent(area);

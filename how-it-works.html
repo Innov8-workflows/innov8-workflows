@@ -187,6 +187,10 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 .prog-hero-actions .btn-ghost { padding: 14px 24px; border-radius: 100px; font-size: 0.95rem; background: rgba(234,88,12,0.08); border-color: rgba(234,88,12,0.3); }
 .prog-hero .hero-word { display: inline-block; opacity: 0; animation: fadeUp 0.6s ease forwards; }
 .prog-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(234,88,12,0.1); border: 1px solid rgba(234,88,12,0.3); border-radius: 100px; padding: 8px 18px; font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent2); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 28px; backdrop-filter: blur(8px); }
+
+/* 6-link nav: collapse to hamburger a little earlier so links never crowd */
+@media (max-width: 1150px) { .nav-links { gap: 20px; } }
+@media (max-width: 1045px) { .nav-links { display: none; } .nav-hamburger { display: block; } }
 </style>
 <style>
 /* Floating WhatsApp widget (replaces the AI chatbot) */
@@ -211,6 +215,7 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
   <ul class="nav-links">
     <li><a href="about.html">About</a></li>
     <li><a href="services.html">Services</a></li>
+    <li><a href="bespoke-systems.html">Bespoke Systems</a></li>
     <li><a href="how-it-works.html" class="active">How It Works</a></li>
     <li><a href="case-studies.html">Case Studies</a></li>
     <li><a href="consultancy.html">Consultancy</a></li>
@@ -227,6 +232,7 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 <div id="mobileMenu" class="mobile-menu" onclick="this.classList.remove('open')">
   <a href="about.html">About</a>
   <a href="services.html">Services</a>
+  <a href="bespoke-systems.html">Bespoke Systems</a>
   <a href="how-it-works.html">How It Works</a>
   <a href="case-studies.html">Case Studies</a>
   <a href="consultancy.html">Consultancy</a>

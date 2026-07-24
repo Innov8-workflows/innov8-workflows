@@ -483,6 +483,10 @@ footer { border-top: 1px solid var(--border); padding: 48px 48px 32px; position:
   .spotlight-quote { font-size: 1.2rem; }
   .spotlight-quotemark { font-size: 3.6rem; }
 }
+
+/* 6-link nav: collapse to hamburger a little earlier so links never crowd */
+@media (max-width: 1150px) { .nav-links { gap: 20px; } }
+@media (max-width: 1045px) { .nav-links { display: none; } .nav-hamburger { display: block; } }
 </style>
 <style>
 /* Floating WhatsApp widget (replaces the AI chatbot) */
@@ -508,6 +512,7 @@ footer { border-top: 1px solid var(--border); padding: 48px 48px 32px; position:
   <ul class="nav-links">
     <li><a href="about.html">About</a></li>
     <li><a href="services.html">Services</a></li>
+    <li><a href="bespoke-systems.html">Bespoke Systems</a></li>
     <li><a href="how-it-works.html">How It Works</a></li>
     <li><a href="case-studies.html">Case Studies</a></li>
     <li><a href="consultancy.html">Consultancy</a></li>
@@ -525,6 +530,7 @@ footer { border-top: 1px solid var(--border); padding: 48px 48px 32px; position:
 <div id="mobileMenu" class="mobile-menu" onclick="this.classList.remove('open')">
   <a href="about.html">About</a>
   <a href="services.html">Services</a>
+  <a href="bespoke-systems.html">Bespoke Systems</a>
   <a href="how-it-works.html">How It Works</a>
   <a href="case-studies.html">Case Studies</a>
   <a href="consultancy.html">Consultancy</a>

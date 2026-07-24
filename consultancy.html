@@ -250,6 +250,10 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 .matter-hero-content h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700; line-height: 1.15; color: #fff; margin-bottom: 20px; }
 .matter-hero-content p { font-size: 1rem; color: var(--muted2); max-width: 520px; margin: 0 auto; line-height: 1.7; }
 .matter-hero .hero-word { display: inline-block; opacity: 0; animation: fadeUp 0.6s ease forwards; }
+
+/* 6-link nav: collapse to hamburger a little earlier so links never crowd */
+@media (max-width: 1150px) { .nav-links { gap: 20px; } }
+@media (max-width: 1045px) { .nav-links { display: none; } .nav-hamburger { display: block; } }
 </style>
 <style>
 /* Floating WhatsApp widget (replaces the AI chatbot) */
@@ -274,6 +278,7 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
   <ul class="nav-links">
     <li><a href="about.html">About</a></li>
     <li><a href="services.html">Services</a></li>
+    <li><a href="bespoke-systems.html">Bespoke Systems</a></li>
     <li><a href="how-it-works.html">How It Works</a></li>
     <li><a href="case-studies.html">Case Studies</a></li>
     <li><a href="consultancy.html" class="active">Consultancy</a></li>
@@ -290,6 +295,7 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 <div id="mobileMenu" class="mobile-menu" onclick="this.classList.remove('open')">
   <a href="about.html">About</a>
   <a href="services.html">Services</a>
+  <a href="bespoke-systems.html">Bespoke Systems</a>
   <a href="how-it-works.html">How It Works</a>
   <a href="case-studies.html">Case Studies</a>
   <a href="consultancy.html">Consultancy</a>

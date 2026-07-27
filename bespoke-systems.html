@@ -123,11 +123,6 @@ section { position: relative; z-index: 1; }
 
 /* ── Why strip ── */
 .bs-why-section { border-top: 1px solid var(--border); background: var(--surface); }
-.bs-proof { position: relative; margin-top: 44px; border-radius: 16px; overflow: hidden; border: 1px solid var(--border); background: var(--bg); box-shadow: 0 30px 70px rgba(0,0,0,0.45); line-height: 0; }
-.bs-proof img { width: 100%; height: auto; display: block; }
-.bs-proof-badge { position: absolute; top: 14px; right: 14px; z-index: 2; display: flex; align-items: center; gap: 7px; background: rgba(15,15,15,0.82); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.14); border-radius: 100px; padding: 7px 14px; font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.09em; text-transform: uppercase; color: #fff; line-height: 1; }
-.bs-proof-badge .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--node-green); box-shadow: 0 0 8px var(--node-green); }
-.bs-proof-caption { margin-top: 14px; font-family: var(--font-mono); font-size: 0.68rem; color: var(--muted); letter-spacing: 0.05em; line-height: 1.6; }
 .bs-why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 44px; }
 .bs-why-card { background: var(--bg); border: 1px solid var(--border); border-radius: 16px; padding: 28px 26px; transition: border-color 0.2s, transform 0.2s; }
 .bs-why-card:hover { border-color: rgba(234,88,12,0.3); transform: translateY(-3px); }
@@ -391,14 +386,6 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
     <div class="section-label reveal">Why Innov8</div>
     <h2 class="section-title reveal">We run on the systems<br/><span>we sell.</span></h2>
     <p class="section-desc reveal">This is not theory. Our own business runs on bespoke software and automation we built ourselves.</p>
-
-    <figure class="reveal" style="margin:0">
-      <div class="bs-proof">
-        <img src="bespoke-01.webp" alt="The bespoke Innov8 CRM we built and run our own business on, showing the live prospect pipeline and revenue dashboard" loading="lazy" width="1600" height="796"/>
-        <div class="bs-proof-badge"><span class="dot"></span>Live &middot; Our own CRM</div>
-      </div>
-      <figcaption class="bs-proof-caption">The bespoke CRM we built for ourselves and run every day: pipeline, revenue tracking, follow ups and client management in one system.</figcaption>
-    </figure>
 
     <div class="bs-why-grid reveal">
       <div class="bs-why-card">

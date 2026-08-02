@@ -55,7 +55,7 @@ const SVC = {
     ],
     faqs: [
       { q: "How much does a new roof cost in Derby or Nottingham?", a: "Every roof is different — size, pitch, access, the covering you choose and whether the timbers or guttering need work all affect the price. That's exactly why our surveys and quotes are free: we'll measure up, talk through the options and give you a clear written price with no obligation." },
-      { q: "Do you offer a guarantee on a new roof?", a: "Yes — we back every re-roof with up to a 25-year guarantee, and the tiles, slates and membranes we fit carry their own manufacturer warranties on top. We'll confirm the details in writing with your quote." },
+      { q: "Do you offer a guarantee on a new roof?", a: "Yes — we back every re-roof with up to a 10-year guarantee, and the tiles, slates and membranes we fit carry their own manufacturer warranties on top. We'll confirm the details in writing with your quote." },
       { q: "Will I need to move out during the work?", a: "No. A re-roof is all external work, so you can stay in the property throughout. We protect the area around the house, keep things tidy and clear away all waste when we're finished." },
       { q: "Can you re-roof just one section or a single pitch?", a: "Yes — if only one slope or section has failed we can re-cover that part rather than the whole roof. We'll always recommend the most sensible option for your roof and budget rather than over-selling the job." }
     ]
@@ -452,7 +452,7 @@ function buildHome() {
   <div class="hero-content">
     <img class="hero-logo" src="assets/img/logo.png" alt="${esc(SITE.name)}" width="560" height="373">
     <h1>Roofing Specialists Across <span class="hl">Derby &amp; Nottingham</span></h1>
-    <p class="sub">New roofs, repairs, flat roofing, chimneys &amp; guttering — carried out by a fully insured local team with over 23 years' experience. Free surveys, honest quotes, work that lasts.</p>
+    <p class="sub">New roofs, repairs, flat roofing, chimneys &amp; guttering — carried out by a fully insured local team with over 40 years' experience. Free surveys, honest quotes, work that lasts.</p>
     <div class="hero-btns">
       <a class="btn btn-primary" href="contact.html">${I.quote}Get my free quote</a>
       <a class="btn btn-ghost" href="${TEL}">${I.phone}Call the team</a>
@@ -517,8 +517,8 @@ ${trustStrip()}
   <div>
     <div class="section-head" style="margin-bottom:30px"><span class="eyebrow">Why choose us</span><h2>Local roofers you can actually trust</h2></div>
     <div class="why-list">
-      <div class="why-item"><div class="why-num">1</div><div><h3>23 Years Established</h3><p>Over two decades roofing across Derby, Nottingham and the wider Midlands — we know the houses, the weather and the right way to do the job.</p></div></div>
-      <div class="why-item"><div class="why-num">2</div><div><h3>Insured &amp; Guaranteed</h3><p>£5 million public liability cover and up to a 25-year guarantee on our work. Total peace of mind, every job.</p></div></div>
+      <div class="why-item"><div class="why-num">1</div><div><h3>40 Years’ Experience</h3><p>Four decades of roofing across Derby, Nottingham and the wider Midlands — we know the houses, the weather and the right way to do the job.</p></div></div>
+      <div class="why-item"><div class="why-num">2</div><div><h3>Insured &amp; Guaranteed</h3><p>£5 million public liability cover and up to a 10-year guarantee on our work. Total peace of mind, every job.</p></div></div>
       <div class="why-item"><div class="why-num">3</div><div><h3>Honest, Upfront Quotes</h3><p>A clear written price before we start. No hidden extras, no pushy sales — just a fair job at a fair price.</p></div></div>
       <div class="why-item"><div class="why-num">4</div><div><h3>Tidy &amp; Reliable</h3><p>We turn up when we say we will, protect your property and leave the site clean when we're done.</p></div></div>
     </div>
@@ -537,7 +537,7 @@ ${reviewsSection()}
   <div class="about-photo"><img src="assets/img/truck.jpg" alt="${esc(SITE.name)} van loaded with materials" loading="lazy"></div>
   <div class="about-body">
     <span class="eyebrow">Meet the team</span><h2>The roofers behind the work</h2>
-    <p>${SITE.name} is a family-run roofing company with over 23 years' experience and a team of 15. We've grown by word of mouth — one happy customer at a time — and we treat every roof like it's our own.</p>
+    <p>${SITE.name} is a family-run roofing company with over 40 years' experience and a team of 15. We've grown by word of mouth — one happy customer at a time — and we treat every roof like it's our own.</p>
     <p>Whether it's a quick repair or a full re-roof, you'll deal with the same friendly team from the first survey to the final clean-up. No call centres, no middlemen, no nonsense.</p>
     <div class="center" style="text-align:left;margin-top:22px"><a class="btn btn-dark" href="about.html">More about us ${I.arrow}</a></div>
   </div>
@@ -590,7 +590,7 @@ ${trustStrip()}
   <div class="about-photo"><img src="assets/img/truck.jpg" alt="${esc(SITE.name)} van and team" loading="lazy"></div>
   <div class="about-body">
     <span class="eyebrow">Who we are</span><h2>Local roofers doing things properly</h2>
-    <p>${SITE.name} is a family-run roofing company with over 23 years' experience and a team of 15. We've built the business the slow, honest way — by word of mouth, one happy customer at a time — and that reputation is something we protect on every single job.</p>
+    <p>${SITE.name} is a family-run roofing company with over 40 years' experience and a team of 15. We've built the business the slow, honest way — by word of mouth, one happy customer at a time — and that reputation is something we protect on every single job.</p>
     <p>From a single slipped tile to a complete re-roof, you'll deal with the same friendly team from the first survey through to the final clean-up. No call centres, no middlemen, no pushy sales — just roofers who know their trade and take pride in it.</p>
     <p>We cover Derby, Nottingham and the towns around them, we're fully insured, and we back our work with a workmanship guarantee.</p>
     <div class="owner-line"><div class="why-num" style="border-radius:50%">J</div><div><div class="sig">Joe</div><div class="role">Owner &amp; Lead Roofer</div></div></div>
@@ -603,8 +603,8 @@ ${trustStrip()}
     <div class="feat">${I.check}<div><h3>£5m insured</h3><p>£5 million public liability cover and proper safety practice on every job, large or small.</p></div></div>
     <div class="feat">${I.check}<div><h3>Clear written quotes</h3><p>A fixed, itemised price before we start. The quote is the price — no surprise extras.</p></div></div>
     <div class="feat">${I.check}<div><h3>Tidy &amp; reliable</h3><p>We turn up when we say, protect your property and leave the site spotless.</p></div></div>
-    <div class="feat">${I.check}<div><h3>25-year guarantee</h3><p>We back our work with up to a 25-year guarantee, and the materials we fit carry their own manufacturer warranties.</p></div></div>
-    <div class="feat">${I.check}<div><h3>Experienced local team</h3><p>A team of 15 with over 23 years behind us, based in the East Midlands — close by if you ever need us again.</p></div></div>
+    <div class="feat">${I.check}<div><h3>10-year guarantee</h3><p>We back our work with up to a 10-year guarantee, and the materials we fit carry their own manufacturer warranties.</p></div></div>
+    <div class="feat">${I.check}<div><h3>Experienced local team</h3><p>A team of 15 with over 40 years behind us, based in the East Midlands — close by if you ever need us again.</p></div></div>
   </div>
 </div></section>
 ${areasSection()}
@@ -682,11 +682,11 @@ ${finalCta()}`;
 function buildFaqs() {
   const faqs = [
     { q: "What areas do you cover?", a: "We cover Derby, Nottingham and Long Eaton, then south across Leicestershire — Loughborough, Shepshed, Coalville and Ashby-de-la-Zouch — and into Staffordshire at Lichfield and Tamworth." },
-    { q: "How long have you been roofing?", a: "Over 23 years. We're an established, family-run team of 15, and a lot of our work comes from repeat customers and recommendations across the East Midlands." },
+    { q: "How long have you been roofing?", a: "Over 40 years. We're an established, family-run team of 15, and a lot of our work comes from repeat customers and recommendations across the East Midlands." },
     { q: "Are you insured?", a: "Yes — we carry £5 million public liability insurance and work to proper safety standards on every job, large or small." },
     { q: "Do you charge for quotes or surveys?", a: "No. All our roof surveys and quotes are completely free and with no obligation. We'll inspect the roof, explain what we find and give you a clear written price." },
     { q: "How quickly can you come out?", a: "For leaks and storm damage we prioritise getting out fast — often the same or next day to make the roof safe. For planned work we'll arrange a survey within a few days." },
-    { q: "Do you offer a guarantee?", a: "Yes — we back our work with up to a 25-year guarantee, and the tiles, slates, membranes and flat-roof systems we fit carry their own manufacturer warranties." },
+    { q: "Do you offer a guarantee?", a: "Yes — we back our work with up to a 10-year guarantee, and the tiles, slates, membranes and flat-roof systems we fit carry their own manufacturer warranties." },
     { q: "Do you do emergency roof repairs?", a: "Yes — we carry out emergency make-safe and temporary covering for leaks and storm damage, then return to complete a permanent repair." },
     { q: "What types of roof do you work on?", a: "Both pitched and flat. That includes concrete, clay and natural slate pitched roofs, and EPDM rubber and GRP fibreglass flat roofs on extensions, garages and dormers." },
     { q: "How do I get a quote?", a: "Call or text us on " + SITE.phone + ", or send the contact form and it'll open in WhatsApp with your details ready to go. We'll arrange a free survey and get a written quote to you quickly." }

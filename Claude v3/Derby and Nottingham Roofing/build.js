@@ -15,10 +15,10 @@ const SITE = {
   email: "info@derbyandnottinghamroofing.co.uk",
   hours: "Mon–Sat, 7am–6pm",
   area: "Derby & Nottingham",
-  years: 23,
+  years: 40,
   founded: "2003",
   liability: "£5 million",
-  guarantee: "25-year",
+  guarantee: "10-year",
   team: 15,
 };
 const TEL = "tel:+" + SITE.phoneIntl;
@@ -227,8 +227,8 @@ function navbar(active) {
 function trustStrip() {
   const items = [
     ['<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/>', "&pound;5m Public Liability"],
-    ['<circle cx="12" cy="8" r="6"/><path d="M8.21 13.89 7 22l5-3 5 3-1.21-8.11"/>', "25-Year Guarantee"],
-    ['<circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/>', "23 Years’ Experience"],
+    ['<circle cx="12" cy="8" r="6"/><path d="M8.21 13.89 7 22l5-3 5 3-1.21-8.11"/>', "10-Year Guarantee"],
+    ['<circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/>', "40 Years’ Experience"],
     ['<path d="M3 9l9-6 9 6v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>', "Free Roof Surveys"],
     ['<path d="M12 2l2.9 6.3 6.9.6-5.2 4.6 1.6 6.8L12 17.3 5.8 20.9l1.6-6.8L2.2 8.9l6.9-.6z"/>', "5&#9733; Rated"],
   ];

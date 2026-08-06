@@ -526,9 +526,9 @@ ${trustStrip()}
   <div>
     <div class="why-photo"><img src="assets/img/roof1.jpg" alt="Tiled roof completed by ${SITE.name}" loading="lazy"></div>
     <div class="why-stats">
-      <div class="why-stat"><div class="n">23</div><div class="l">Years in business</div></div>
+      <div class="why-stat"><div class="n">40</div><div class="l">Years&rsquo; experience</div></div>
       <div class="why-stat"><div class="n">£5m</div><div class="l">Insured</div></div>
-      <div class="why-stat"><div class="n">25yr</div><div class="l">Guarantee</div></div>
+      <div class="why-stat"><div class="n">10yr</div><div class="l">Guarantee</div></div>
     </div>
   </div>
 </div></div></section>

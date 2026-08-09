@@ -73,10 +73,12 @@ section { position: relative; z-index: 1; }
 
 /* FREE CONSULT HERO BAND */
 .consult-hero { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 0 48px 80px; }
-.consult-hero-card { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 56px 64px; display: grid; grid-template-columns: 1fr auto; gap: 64px; align-items: center; position: relative; overflow: hidden; }
+.consult-hero-card { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 56px 64px; display: grid; grid-template-columns: auto 1fr auto; gap: 48px; align-items: center; position: relative; overflow: hidden; }
 .consult-hero-card::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle, #2a2a2a 1px, transparent 1px); background-size: 24px 24px; opacity: 0.4; }
 .consult-hero-card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--accent), var(--accent2)); }
 .consult-hero-text { position: relative; z-index: 1; }
+.consult-hero-photo { position: relative; z-index: 1; width: 210px; border-radius: 14px; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 16px 40px rgba(0,0,0,0.4); line-height: 0; }
+.consult-hero-photo img { width: 100%; height: auto; display: block; }
 .consult-free-tag { display: inline-flex; align-items: center; gap: 8px; background: rgba(34,197,94,0.12); border: 1px solid rgba(34,197,94,0.25); border-radius: 100px; padding: 6px 16px; font-family: var(--font-mono); font-size: 0.68rem; color: var(--node-green); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 20px; }
 .consult-hero-text h2 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 16px; }
 .consult-hero-text h2 span { color: var(--accent); }
@@ -202,6 +204,7 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
   .nav-cta svg { width: 15px; height: 15px; }
   .breadcrumb, .page-hero, .consult-hero, .expect-section, .pricing-section, .contact-section { padding-left: 24px; padding-right: 24px; }
   .consult-hero-card { grid-template-columns: 1fr; gap: 32px; padding: 36px 28px; }
+  .consult-hero-photo { width: 180px; }
   .expect-grid, .trust-grid, .pricing-grid { grid-template-columns: 1fr; }
   .cover-inner, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
   footer { flex-direction: column; gap: 16px; text-align: center; padding: 32px 24px; }
@@ -325,6 +328,9 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 <!-- FREE CONSULT HERO -->
 <div class="consult-hero reveal" id="contact">
   <div class="consult-hero-card">
+    <div class="consult-hero-photo">
+      <img src="consult-visit.webp" alt="Jamie Barlow of Innov8 Workflows on an in person site visit at Mitech Joinery" loading="lazy" width="680" height="907"/>
+    </div>
     <div class="consult-hero-text">
       <div class="consult-free-tag">✓ Always free · No obligation</div>
       <h2>Book your free<br/><span>discovery call.</span></h2>

@@ -224,6 +224,16 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 /* 6-link nav: collapse to hamburger a little earlier so links never crowd */
 @media (max-width: 1150px) { .nav-links { gap: 20px; } }
 @media (max-width: 1045px) { .nav-links { display: none; } .nav-hamburger { display: block; } }
+
+/* ── On-site wide photo ── */
+.onsite-strip { max-width: 1100px; margin: 0 auto; padding: 0 48px 80px; position: relative; z-index: 1; }
+.onsite-frame { position: relative; border-radius: 18px; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 30px 70px rgba(0,0,0,0.45); line-height: 0; }
+.onsite-frame img { width: 100%; height: auto; display: block; }
+.onsite-badge { position: absolute; top: 14px; left: 14px; display: flex; align-items: center; gap: 7px; background: rgba(15,15,15,0.82); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.14); border-radius: 100px; padding: 7px 14px; font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.09em; text-transform: uppercase; color: #fff; line-height: 1; }
+.onsite-badge .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--node-green); box-shadow: 0 0 8px var(--node-green); }
+.onsite-wide { margin: 0; }
+.onsite-wide figcaption { margin-top: 14px; font-family: var(--font-mono); font-size: 0.68rem; color: var(--muted); letter-spacing: 0.05em; line-height: 1.6; }
+@media (max-width: 900px) { .onsite-strip { padding-left: 24px; padding-right: 24px; } }
 </style>
 <style>
 /* Floating WhatsApp widget (replaces the AI chatbot) */
@@ -305,6 +315,17 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
     </div>
   </div>
 </section>
+
+<!-- ON SITE (Mitech visit) -->
+<div class="onsite-strip">
+  <figure class="onsite-wide reveal">
+    <div class="onsite-frame">
+      <img src="about-mitech-wide.webp" alt="Jamie Barlow of Innov8 Workflows out on site visiting Mitech Joinery in Derbyshire" loading="lazy" width="1400" height="788"/>
+      <div class="onsite-badge"><span class="dot"></span>On Site &middot; Mitech Joinery</div>
+    </div>
+    <figcaption>We turn up in person. Getting to know the business face to face is how every build starts.</figcaption>
+  </figure>
+</div>
 
 <!-- CTA -->
 <div class="cta-band">

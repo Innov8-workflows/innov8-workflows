@@ -181,9 +181,15 @@ section { padding: 52px 0; }
 .areas p { font-size: 0.95rem; color: var(--muted2); line-height: 1.9; }
 
 /* ── 10. FINAL CTA ── */
-.final { border-top: 1px solid var(--border); background: var(--surface); padding-bottom: 120px; }
-.final h2 { margin-bottom: 10px; }
-.final .sub { margin-bottom: 26px; }
+.final { border-top: 1px solid var(--border); padding-bottom: 120px; padding-top: 52px; }
+.final-hero { position: relative; border-radius: 18px; overflow: hidden; border: 1px solid var(--border); min-height: 430px; display: flex; align-items: center; justify-content: center; text-align: center; box-shadow: 0 30px 70px rgba(0,0,0,0.5); }
+.final-hero > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.final-hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(15,15,15,0.9), rgba(15,15,15,0.42)); }
+.final-hero-inner { position: relative; z-index: 1; padding: 46px 22px; max-width: 600px; }
+.final-hero-inner h2 { margin-bottom: 10px; }
+.final-hero-inner p { color: var(--muted2); font-size: 0.98rem; margin-bottom: 26px; }
+.final-hero-inner .btn { width: 100%; }
+@media (min-width: 900px) { .final-hero { min-height: 500px; } .final-hero-inner { padding: 60px 40px; } .final-hero-inner .btn { width: auto; display: inline-flex; } }
 
 footer.page-foot { padding: 26px 0 110px; text-align: center; font-size: 0.75rem; color: var(--muted); }
 footer.page-foot a { color: var(--muted); }
@@ -425,52 +431,19 @@ footer.page-foot a { color: var(--muted); }
 </section>
 
 <!-- 10. FINAL CTA -->
-<section class="final">
+<section class="final" aria-label="Get started">
   <div class="wrap">
-    <h2>See your business with a <span>proper website.</span></h2>
-    <p class="sub">Free branded demo, built from your real jobs, before you pay a penny. Fill this in and Jamie will get started.</p>
-    <form class="lead-form" id="leadForm2" novalidate>
-      <div class="field">
-        <label for="f2-name">Your name <em>*</em></label>
-        <input id="f2-name" name="name" type="text" autocomplete="name" required/>
-        <span class="err">Please add your name.</span>
+    <div class="final-hero">
+      <img src="final-cta.webp" alt="" width="1100" height="620" loading="lazy"/>
+      <div class="final-hero-inner">
+        <h2>Ready to see yours? <span>It costs nothing to look.</span></h2>
+        <p>A free branded demo website, built from your real jobs, before you pay a penny. Fill in the quick form and Jamie will get started.</p>
+        <a class="btn" href="#get-started">
+          Get My Free Demo Website
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>
+        </a>
       </div>
-      <div class="field">
-        <label for="f2-phone">Phone number <em>*</em></label>
-        <input id="f2-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required/>
-        <span class="err">Please add a phone number we can reach you on.</span>
-      </div>
-      <div class="field">
-        <label for="f2-business">Business name <em>*</em></label>
-        <input id="f2-business" name="business" type="text" autocomplete="organization" required/>
-        <span class="err">Please add your business name.</span>
-      </div>
-      <div class="field">
-        <label for="f2-trade">What do you do? <em>*</em></label>
-        <select id="f2-trade" name="trade" required>
-          <option value="">Choose your trade...</option>
-          <option>Roofing</option>
-          <option>Driveways and Paving</option>
-          <option>Building and Construction</option>
-          <option>Joinery and Carpentry</option>
-          <option>Electrical</option>
-          <option>Plumbing and Heating</option>
-          <option>Landscaping</option>
-          <option>Other local business</option>
-        </select>
-        <span class="err">Please choose the closest match.</span>
-      </div>
-      <div class="field">
-        <label for="f2-msg">Anything else? (optional)</label>
-        <textarea id="f2-msg" name="message" rows="3"></textarea>
-      </div>
-      <input type="hidden" name="fbclid" class="fbclid-field" value=""/>
-      <button class="btn" type="submit">Get My Free Demo Website</button>
-      <p class="form-note">Sends to Jamie on WhatsApp. Same day reply during working hours. Prefer to talk? <a href="tel:+447718155997" style="color:var(--accent2);font-weight:700">Call 07718 155997</a></p>
-      <div class="form-success" role="status">
-        <strong>Thanks, opening WhatsApp now.</strong> Your details are pre-filled, just press send. If WhatsApp did not open, <a href="https://wa.me/447718155997" target="_blank" rel="noopener">tap here</a> or call <a href="tel:+447718155997">07718 155997</a>.
-      </div>
-    </form>
+    </div>
   </div>
 </section>
 
@@ -577,7 +550,6 @@ footer.page-foot a { color: var(--muted); }
     });
   }
   wireForm(document.getElementById('leadForm'));
-  wireForm(document.getElementById('leadForm2'));
 })();
 </script>
 <script defer src="https://crm.innov8workflows.co.uk/track.js" data-id="proj_f5d3ac1edd12"></script>

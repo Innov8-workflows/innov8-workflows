@@ -7,22 +7,36 @@
 
   /* ---------- lead logger (Google Sheet via Apps Script) ---------- */
   var LEAD_URL = "https://script.google.com/macros/s/AKfycbxUP8I0sZZfsyqTeqfyueO0arjcqR0Ge4-ZTfekfSgBz-vu1h99hf-sut5KQxzTLd0B/exec";
-  // Keep the Ads click id across page navigation so the lead row can be tied
-  // back to the click even when the form is filled on a later page.
+  // Attribution: the ad click ids and utm tags only exist on the URL of the
+  // click that arrives from the ad, so stash them for the rest of the session.
+  // The Apps Script routes each lead to a Google Ads / Meta / Organic tab from
+  // these values, so losing them means losing the channel.
+  var ATTR = ["gclid", "fbclid", "utm_source", "utm_medium", "utm_campaign"];
   try {
-    var gclid = new URLSearchParams(window.location.search).get("gclid");
-    if (gclid) sessionStorage.setItem("dnrGclid", gclid);
+    var qs = new URLSearchParams(window.location.search);
+    ATTR.forEach(function (k) {
+      var v = qs.get(k);
+      if (v) sessionStorage.setItem("dnr_" + k, v);
+    });
   } catch (e) {}
+  function attr(k) {
+    try { return sessionStorage.getItem("dnr_" + k) || ""; } catch (e) { return ""; }
+  }
   function sendLead(data) {
     data.page = window.location.pathname;
-    try { data.gclid = sessionStorage.getItem("dnrGclid") || ""; } catch (e) { data.gclid = ""; }
-    var body = JSON.stringify(data);
-    // sendBeacon survives the WhatsApp app-switch and the thank-you redirect;
-    // text/plain avoids a CORS preflight Apps Script can't answer.
+    ATTR.forEach(function (k) { data[k] = attr(k); });
+    // ?leadtest=1 routes the row to the sheet's Test tab and suppresses the
+    // email alert, so the live site can be verified without spamming the client.
+    try { if (/[?&]leadtest=1(&|$)/.test(location.search)) data.test = 1; } catch (e) {}
+    // NEVER navigator.sendBeacon: it silently drops the Apps Script /exec
+    // cross-origin 302 while returning true, so the lead vanishes with no error
+    // and the fallback below never runs. fetch + no-cors + keepalive is the only
+    // combination that survives the redirect and the page unload; text/plain
+    // avoids a preflight Apps Script cannot answer.
     try {
-      if (navigator.sendBeacon && navigator.sendBeacon(LEAD_URL, new Blob([body], { type: "text/plain;charset=UTF-8" }))) return;
+      fetch(LEAD_URL, { method: "POST", mode: "no-cors", keepalive: true,
+        headers: { "Content-Type": "text/plain;charset=UTF-8" }, body: JSON.stringify(data) });
     } catch (e) {}
-    try { fetch(LEAD_URL, { method: "POST", mode: "no-cors", keepalive: true, headers: { "Content-Type": "text/plain;charset=UTF-8" }, body: body }); } catch (e2) {}
   }
 
   /* ---------- GA4 event helper ---------- */

@@ -1,5 +1,5 @@
 /* ============================================================
-   Derby & Nottingham Roofing — page generation
+   Derby & Nottingham Roofing, page generation
    Run:  node generate.js   (writes all .html + sitemap + robots)
    ============================================================ */
 const fs = require("fs");
@@ -26,10 +26,10 @@ const SVC = {
   "new-roofs": {
     eyebrow: "New roofs & re-roofing",
     h1: 'New Roofs & Re-Roofing in <span class="hl">Derby & Nottingham</span>',
-    lead: "Complete re-roofs and new roofs built to last — quality tiles and slates, modern breathable membranes and a tidy, fully-insured finish across Derby, Nottingham and the East Midlands.",
-    desc: "New roofs & re-roofing in Derby & Nottingham. Full roof replacements in concrete tile, clay or natural slate — breathable membrane, new flashings, scaffold and a workmanship guarantee. Free quotes.",
+    lead: "Complete re-roofs and new roofs built to last: quality tiles and slates, modern breathable membranes and a tidy, fully-insured finish across Derby, Nottingham and the East Midlands.",
+    desc: "New roofs & re-roofing in Derby & Nottingham. Full roof replacements in concrete tile, clay or natural slate: breathable membrane, new flashings, scaffold and a workmanship guarantee. Free quotes.",
     intro: [
-      "When repairs are no longer keeping the water out, a full re-roof is the job that finally puts it to bed. Most pitched roofs across Derby and Nottingham last somewhere between 40 and 70 years depending on the covering — so if yours is reaching that age, sagging between the rafters, shedding tiles or letting damp into the loft, it's usually more cost-effective to replace it than to keep patching.",
+      "When repairs are no longer keeping the water out, a full re-roof is the job that finally puts it to bed. Most pitched roofs across Derby and Nottingham last somewhere between 40 and 70 years depending on the covering, so if yours is reaching that age, sagging between the rafters, shedding tiles or letting damp into the loft, it's usually more cost-effective to replace it than to keep patching.",
       "We strip the old covering right back, check and treat the timbers, and rebuild the roof properly from the membrane up. You get a clear written quote before we start, a fixed price with no surprises, and a roof that's good for decades."
     ],
     includesH: "What a re-roof with us includes",
@@ -37,37 +37,37 @@ const SVC = {
       "Full strip and responsible disposal of the old covering",
       "New breathable felt membrane and treated, graded battens",
       "Your choice of concrete tile, clay tile or natural slate",
-      "New ridge, hip and verge — dry-fix (mortar-free) ridge and verge available",
+      "New ridge, hip and verge, dry-fix (mortar-free) ridge and verge available",
       "New lead flashings to chimneys, abutments and valleys",
       "New fascias, soffits and guttering if needed",
       "Full scaffold for a safe, tidy job",
       "Building-control sign-off arranged where required",
-      "Site left clean — all waste taken away"
+      "Site left clean: all waste taken away"
     ],
     sections: [
       { h: "Signs you might need a new roof", body:
         `<p>It's not always obvious from the ground. The clearest signs are persistent leaks that come back after repairs, several slipped or cracked tiles at once, a roofline that's started to dip or sag, daylight or damp visible in the loft, and crumbling mortar along the ridge. If you're seeing two or three of these, it's worth a free survey before the next big storm.</p>` },
       { h: "Tiles, slates & materials", body:
         `<p>We fit concrete interlocking tiles (the most cost-effective and very durable), traditional clay tiles for period and conservation-area properties, and natural or fibre-cement slate where a slate look is wanted. On older Derbyshire and Nottinghamshire homes we'll match the existing covering as closely as possible so the new roof looks right for the property.</p>
-         <p>Every re-roof goes on over a modern breathable membrane, which lets the roof space ventilate and helps prevent condensation — a common cause of "leaks" that aren't actually coming through the tiles at all.</p>` },
+         <p>Every re-roof goes on over a modern breathable membrane, which lets the roof space ventilate and helps prevent condensation, a common cause of "leaks" that aren't actually coming through the tiles at all.</p>` },
       { h: "How long does a re-roof take?", body:
         `<p>A typical semi-detached or terraced house takes around 3–5 working days once the scaffold is up, weather permitting. Larger or more complex roofs take longer. We'll give you a realistic timescale with your quote and keep you updated as the job progresses.</p>` }
     ],
     faqs: [
-      { q: "How much does a new roof cost in Derby or Nottingham?", a: "Every roof is different — size, pitch, access, the covering you choose and whether the timbers or guttering need work all affect the price. That's exactly why our surveys and quotes are free: we'll measure up, talk through the options and give you a clear written price with no obligation." },
-      { q: "Do you offer a guarantee on a new roof?", a: "Yes — we back every re-roof with up to a 10-year guarantee, and the tiles, slates and membranes we fit carry their own manufacturer warranties on top. We'll confirm the details in writing with your quote." },
+      { q: "How much does a new roof cost in Derby or Nottingham?", a: "Every roof is different: size, pitch, access, the covering you choose and whether the timbers or guttering need work all affect the price. That's exactly why our surveys and quotes are free: we'll measure up, talk through the options and give you a clear written price with no obligation." },
+      { q: "Do you offer a guarantee on a new roof?", a: "Yes. We back every re-roof with up to a 10-year guarantee, and the tiles, slates and membranes we fit carry their own manufacturer warranties on top. We'll confirm the details in writing with your quote." },
       { q: "Will I need to move out during the work?", a: "No. A re-roof is all external work, so you can stay in the property throughout. We protect the area around the house, keep things tidy and clear away all waste when we're finished." },
-      { q: "Can you re-roof just one section or a single pitch?", a: "Yes — if only one slope or section has failed we can re-cover that part rather than the whole roof. We'll always recommend the most sensible option for your roof and budget rather than over-selling the job." }
+      { q: "Can you re-roof just one section or a single pitch?", a: "Yes, if only one slope or section has failed we can re-cover that part rather than the whole roof. We'll always recommend the most sensible option for your roof and budget rather than over-selling the job." }
     ]
   },
   "roof-repairs": {
     eyebrow: "Roof repairs",
     h1: 'Roof Repairs in <span class="hl">Derby & Nottingham</span>',
-    lead: "Fast, tidy roof repairs across Derby and Nottingham — slipped tiles, leaks, storm damage, ridge and flashing work. We find the problem, fix it properly and stop it coming back.",
+    lead: "Fast, tidy roof repairs across Derby and Nottingham, slipped tiles, leaks, storm damage, ridge and flashing work. We find the problem, fix it properly and stop it coming back.",
     desc: "Roof repairs in Derby & Nottingham. Slipped & broken tiles, leaks, storm damage, ridge re-bedding, lead flashing and emergency make-safe. Fast response, fair prices, free quotes.",
     intro: [
-      "Most roofs don't fail all at once — it starts with a slipped tile, a bit of cracked mortar or a tired flashing, and the first you know about it is a damp patch on the ceiling. The sooner it's looked at, the smaller (and cheaper) the fix.",
-      "We track leaks back to their real source rather than just patching where the water shows up, carry out the repair properly, and leave you with a roof that's watertight again. No call-out games, no scare tactics — just an honest fix at a fair price."
+      "Most roofs don't fail all at once. It starts with a slipped tile, a bit of cracked mortar or a tired flashing, and the first you know about it is a damp patch on the ceiling. The sooner it's looked at, the smaller (and cheaper) the fix.",
+      "We track leaks back to their real source rather than just patching where the water shows up, carry out the repair properly, and leave you with a roof that's watertight again. No call-out games, no scare tactics, just an honest fix at a fair price."
     ],
     includesH: "Roof repairs we carry out",
     includes: [
@@ -82,24 +82,24 @@ const SVC = {
     ],
     sections: [
       { h: "Common roofing problems we fix", body:
-        `<p>The jobs we're called out for most are slipped tiles after high winds, leaks around chimneys and flashings, cracked or hollow-sounding ridge mortar, blocked or overflowing valleys, and damp coming in around rooflights and abutments. All of these are very fixable — and far cheaper to deal with early than to leave until the ceiling or timbers are affected.</p>` },
+        `<p>The jobs we're called out for most are slipped tiles after high winds, leaks around chimneys and flashings, cracked or hollow-sounding ridge mortar, blocked or overflowing valleys, and damp coming in around rooflights and abutments. All of these are very fixable, and far cheaper to deal with early than to leave until the ceiling or timbers are affected.</p>` },
       { h: "Emergency & storm-damage repairs", body:
-        `<p>When the weather strips tiles or lifts a section of flashing, water gets in fast. We can get out to make the roof safe — sheeting it over or carrying out a temporary repair — and then come back to put it right properly. If you've had storm damage across Derby or Nottingham, call us as early as you can so we can stop it getting worse.</p>` }
+        `<p>When the weather strips tiles or lifts a section of flashing, water gets in fast. We can get out to make the roof safe, sheeting it over or carrying out a temporary repair, and then come back to put it right properly. If you've had storm damage across Derby or Nottingham, call us as early as you can so we can stop it getting worse.</p>` }
     ],
     faqs: [
-      { q: "How quickly can you come out for a roof repair?", a: "For leaks and storm damage we prioritise getting out to you as soon as possible — often the same or next day to make the roof safe. Call us and we'll give you a realistic time based on where you are and how urgent it is." },
+      { q: "How quickly can you come out for a roof repair?", a: "For leaks and storm damage we prioritise getting out to you as soon as possible, often the same or next day to make the roof safe. Call us and we'll give you a realistic time based on where you are and how urgent it is." },
       { q: "Do you charge a call-out fee?", a: "No. We'll come and take a look, find the cause and give you a clear price before any work starts. Our quotes are free and there's no obligation." },
-      { q: "My ceiling is leaking — what should I do first?", a: "If it's safe, put a bucket under the drip and move anything valuable out of the way. If water is near light fittings, switch that circuit off at the consumer unit. Then call us — the sooner we trace the leak, the less damage it does." },
+      { q: "My ceiling is leaking, what should I do first?", a: "If it's safe, put a bucket under the drip and move anything valuable out of the way. If water is near light fittings, switch that circuit off at the consumer unit. Then call us. The sooner we trace the leak, the less damage it does." },
       { q: "Is it worth repairing an old roof or should I replace it?", a: "If the covering is generally sound and only a few areas have failed, a repair is the sensible, cost-effective choice. If you're getting repeated leaks across the whole roof, we'll give you an honest view on whether a re-roof would actually save you money long-term." }
     ]
   },
   "flat-roofing": {
     eyebrow: "Flat roofing",
     h1: 'Flat Roofing in <span class="hl">Derby & Nottingham</span>',
-    lead: "Long-life flat roofs across Derby and Nottingham — EPDM rubber and GRP fibreglass for extensions, garages, dormers and porches. Seamless, watertight finishes that don't blister or split.",
-    desc: "Flat roofing in Derby & Nottingham. EPDM rubber and GRP fibreglass flat roofs for extensions, garages, dormers & porches — seamless, durable and watertight. Free quotes.",
+    lead: "Long-life flat roofs across Derby and Nottingham: EPDM rubber and GRP fibreglass for extensions, garages, dormers and porches. Seamless, watertight finishes that don't blister or split.",
+    desc: "Flat roofing in Derby & Nottingham. EPDM rubber and GRP fibreglass flat roofs for extensions, garages, dormers & porches: seamless, durable and watertight. Free quotes.",
     intro: [
-      "The old days of bubbling, cracking felt flat roofs are well behind us. Modern EPDM rubber and GRP fibreglass systems are seamless, UV-stable and routinely last 25–30 years or more — so a flat roof no longer means a roof that's forever leaking.",
+      "The old days of bubbling, cracking felt flat roofs are well behind us. Modern EPDM rubber and GRP fibreglass systems are seamless, UV-stable and routinely last 25–30 years or more, so a flat roof no longer means a roof that's forever leaking.",
       "Whether it's a flat-roofed extension, a garage, a dormer or a porch, we'll strip the failed covering, check and re-deck if needed, and lay a new system that's genuinely watertight."
     ],
     includesH: "Our flat roofing work",
@@ -115,24 +115,24 @@ const SVC = {
     ],
     sections: [
       { h: "EPDM rubber vs GRP fibreglass", body:
-        `<p><strong>EPDM rubber</strong> is laid as a single sheet with no seams or joints to fail, flexes with temperature changes and is ideal for garages, extensions and larger flat areas. <strong>GRP fibreglass</strong> is a glass-reinforced resin laid in layers and cured to a hard, seamless shell — excellent where the roof might take foot traffic or where a neat, painted finish is wanted. We'll recommend the right one for your roof and how it's used.</p>` },
+        `<p><strong>EPDM rubber</strong> is laid as a single sheet with no seams or joints to fail, flexes with temperature changes and is ideal for garages, extensions and larger flat areas. <strong>GRP fibreglass</strong> is a glass-reinforced resin laid in layers and cured to a hard, seamless shell, excellent where the roof might take foot traffic or where a neat, painted finish is wanted. We'll recommend the right one for your roof and how it's used.</p>` },
       { h: "Why modern flat roofs last", body:
-        `<p>Both systems are fully bonded and seamless, so there are no laps for water to creep under — the usual failure point on old felt roofs. Done properly, with the decking sound and the edges detailed correctly, a modern flat roof is a fit-and-forget job for decades.</p>` }
+        `<p>Both systems are fully bonded and seamless, so there are no laps for water to creep under, the usual failure point on old felt roofs. Done properly, with the decking sound and the edges detailed correctly, a modern flat roof is a fit-and-forget job for decades.</p>` }
     ],
     faqs: [
-      { q: "How long does an EPDM or fibreglass flat roof last?", a: "A correctly installed EPDM rubber or GRP fibreglass roof typically lasts 25–30 years or more, and both come with manufacturer guarantees. The key is sound decking and proper edge detailing — which is exactly what we focus on." },
-      { q: "Can you replace an old felt flat roof?", a: "Yes — that's one of our most common flat-roofing jobs. We strip the old felt, check and replace any soft decking, then lay a new EPDM or fibreglass system that won't blister or split like felt does." },
+      { q: "How long does an EPDM or fibreglass flat roof last?", a: "A correctly installed EPDM rubber or GRP fibreglass roof typically lasts 25–30 years or more, and both come with manufacturer guarantees. The key is sound decking and proper edge detailing, which is exactly what we focus on." },
+      { q: "Can you replace an old felt flat roof?", a: "Yes. That's one of our most common flat-roofing jobs. We strip the old felt, check and replace any soft decking, then lay a new EPDM or fibreglass system that won't blister or split like felt does." },
       { q: "Can a flat roof be walked on?", a: "GRP fibreglass copes well with occasional foot traffic for maintenance, and we can specify a walk-on grade if you need access. For balconies or roof terraces, let us know at the survey and we'll design it accordingly." },
-      { q: "Do you do flat roofs on garages and extensions?", a: "Absolutely — garages, single-storey extensions, dormers and porches are the bread and butter of flat roofing. We'll give you a free quote with the right system for the job." }
+      { q: "Do you do flat roofs on garages and extensions?", a: "Absolutely: garages, single-storey extensions, dormers and porches are the bread and butter of flat roofing. We'll give you a free quote with the right system for the job." }
     ]
   },
   "chimney-repairs": {
     eyebrow: "Chimneys & repointing",
     h1: 'Chimney Repairs & Repointing in <span class="hl">Derby & Nottingham</span>',
-    lead: "Chimney repairs, repointing, rebuilds, flashing and lead work across Derby and Nottingham. The chimney is one of the most common sources of leaks — we'll make yours watertight again.",
-    desc: "Chimney repairs & repointing in Derby & Nottingham. Repointing, rebuilds, lead flashing, flaunching, cowls and removals — stop chimney leaks for good. Free quotes.",
+    lead: "Chimney repairs, repointing, rebuilds, flashing and lead work across Derby and Nottingham. The chimney is one of the most common sources of leaks. We'll make yours watertight again.",
+    desc: "Chimney repairs & repointing in Derby & Nottingham. Repointing, rebuilds, lead flashing, flaunching, cowls and removals, stop chimney leaks for good. Free quotes.",
     intro: [
-      "The chimney takes more weather than any other part of the roof, so it's no surprise it's behind so many leaks. Failed flashing, eroded pointing, cracked flaunching at the top or a leaning stack all let water in — often showing up as damp in an upstairs room or a stain on the chimney breast.",
+      "The chimney takes more weather than any other part of the roof, so it's no surprise it's behind so many leaks. Failed flashing, eroded pointing, cracked flaunching at the top or a leaning stack all let water in, often showing up as damp in an upstairs room or a stain on the chimney breast.",
       "We deal with the lot: repointing, re-flashing in lead, re-bedding pots, rebuilds and full removals. If your chimney is letting water in, we'll find out exactly where and put it right."
     ],
     includesH: "Chimney work we carry out",
@@ -148,24 +148,24 @@ const SVC = {
     ],
     sections: [
       { h: "Why chimneys leak", body:
-        `<p>The usual culprits are the lead flashing where the stack meets the roof (it lifts, splits or was never dressed in properly), the mortar pointing between the bricks (which erodes over decades of rain and frost), and the flaunching — the mortar bed the pots sit in — which cracks and lets water track straight down inside the stack. We check all three and fix whatever's failed.</p>` },
+        `<p>The usual culprits are the lead flashing where the stack meets the roof (it lifts, splits or was never dressed in properly), the mortar pointing between the bricks (which erodes over decades of rain and frost), and the flaunching, the mortar bed the pots sit in, which cracks and lets water track straight down inside the stack. We check all three and fix whatever's failed.</p>` },
       { h: "Repointing & rebuilds", body:
-        `<p>Where the pointing has gone but the stack is sound, repointing in a matching mortar restores it and keeps water out. Where brickwork has spalled or the stack is leaning, a partial or full rebuild is the proper fix. If a chimney is redundant, removing it and tiling over can be the most cost-effective option of all — we'll talk you through it.</p>` }
+        `<p>Where the pointing has gone but the stack is sound, repointing in a matching mortar restores it and keeps water out. Where brickwork has spalled or the stack is leaning, a partial or full rebuild is the proper fix. If a chimney is redundant, removing it and tiling over can be the most cost-effective option of all. We'll talk you through it.</p>` }
     ],
     faqs: [
       { q: "How do I know if my chimney needs repointing?", a: "Look for gaps or crumbling mortar between the bricks, sandy mortar dropping into the gutter, or damp appearing on the chimney breast inside. If you can see daylight through the joints or the pointing is visibly receded, it's time. A free survey will confirm it." },
-      { q: "Can you remove a chimney we don't use?", a: "Yes. If a chimney is redundant we can take it down — either to roof level or fully — and tile over neatly so it blends with the rest of the roof. It removes a long-term maintenance liability and a common leak point." },
-      { q: "Is the leak definitely the chimney?", a: "Not always — chimneys are a common source but so are valleys and flashings nearby. We trace the leak to its actual origin before quoting, so you're not paying to fix something that wasn't the problem." },
-      { q: "Do you replace lead flashing around chimneys?", a: "Yes — proper code-rated lead, dressed and pointed in correctly, is the right material for chimney flashing and soakers. We renew failed flashing rather than relying on sealant bodges that don't last." }
+      { q: "Can you remove a chimney we don't use?", a: "Yes. If a chimney is redundant we can take it down, either to roof level or fully, and tile over neatly so it blends with the rest of the roof. It removes a long-term maintenance liability and a common leak point." },
+      { q: "Is the leak definitely the chimney?", a: "Not always, chimneys are a common source but so are valleys and flashings nearby. We trace the leak to its actual origin before quoting, so you're not paying to fix something that wasn't the problem." },
+      { q: "Do you replace lead flashing around chimneys?", a: "Yes: proper code-rated lead, dressed and pointed in correctly, is the right material for chimney flashing and soakers. We renew failed flashing rather than relying on sealant bodges that don't last." }
     ]
   },
   "guttering": {
     eyebrow: "Guttering, fascias & soffits",
     h1: 'Guttering, Fascias & Soffits in <span class="hl">Derby & Nottingham</span>',
     lead: "New and replacement uPVC guttering, fascias and soffits across Derby and Nottingham. Proper drainage and clean, maintenance-free roofline trim that protects your home from damp.",
-    desc: "Guttering, fascias & soffits in Derby & Nottingham. New & replacement uPVC gutters, fascias, soffits and downpipes — proper drainage that protects your walls. Free quotes.",
+    desc: "Guttering, fascias & soffits in Derby & Nottingham. New & replacement uPVC gutters, fascias, soffits and downpipes, proper drainage that protects your walls. Free quotes.",
     intro: [
-      "Guttering doesn't get much thought until it's overflowing down the wall — but failed gutters and rotten fascias are a leading cause of damp, stained brickwork and even roof-timber decay. Getting the roofline right protects everything below it.",
+      "Guttering doesn't get much thought until it's overflowing down the wall, but failed gutters and rotten fascias are a leading cause of damp, stained brickwork and even roof-timber decay. Getting the roofline right protects everything below it.",
       "We replace tired timber and cast-iron systems with modern uPVC that won't rot, rust or need painting, set the falls correctly so water actually runs to the downpipe, and leave the front of your house looking sharp."
     ],
     includesH: "Roofline & guttering work",
@@ -181,25 +181,25 @@ const SVC = {
     ],
     sections: [
       { h: "Why guttering matters", body:
-        `<p>When water can't get away cleanly it runs down the wall instead — saturating the brickwork, finding its way into the cavity and showing up as internal damp. Overflowing gutters also rot fascias and soffits, which then let water and birds into the roof space. Sorting the roofline is one of the cheapest jobs that prevents some of the most expensive damage.</p>` },
+        `<p>When water can't get away cleanly it runs down the wall instead, saturating the brickwork, finding its way into the cavity and showing up as internal damp. Overflowing gutters also rot fascias and soffits, which then let water and birds into the roof space. Sorting the roofline is one of the cheapest jobs that prevents some of the most expensive damage.</p>` },
       { h: "uPVC fascias & soffits", body:
-        `<p>Modern uPVC roofline is the sensible replacement for old painted timber — it doesn't rot, never needs repainting and comes in a range of colours and woodgrain finishes. We can cap over sound timber or fully replace where the boards have gone, and add continuous soffit ventilation to keep the roof breathing.</p>` }
+        `<p>Modern uPVC roofline is the sensible replacement for old painted timber. It doesn't rot, never needs repainting and comes in a range of colours and woodgrain finishes. We can cap over sound timber or fully replace where the boards have gone, and add continuous soffit ventilation to keep the roof breathing.</p>` }
     ],
     faqs: [
-      { q: "Can you just replace the guttering, or does it all have to be done?", a: "Either. If the fascias and soffits are sound we can simply renew the guttering. If the boards behind have rotted, it's worth doing them together while the access is there — we'll give you honest options at the survey." },
+      { q: "Can you just replace the guttering, or does it all have to be done?", a: "Either. If the fascias and soffits are sound we can simply renew the guttering. If the boards behind have rotted, it's worth doing them together while the access is there. We'll give you honest options at the survey." },
       { q: "What colours of guttering and fascia do you fit?", a: "uPVC comes in black, white, brown, anthracite grey and woodgrain finishes. We'll match it to your windows and the rest of the street so it looks right." },
-      { q: "Do you clear blocked gutters?", a: "Yes — we clean, re-align and unblock gutters as well as replace them. If yours are overflowing, often a clean and a small adjustment to the falls is all that's needed." },
-      { q: "My fascias are rotten and birds are getting in — can you help?", a: "Yes. Rotten fascias and gaps at the eaves are a classic way for birds and water to get into the roof. We renew the boards, close the gaps and fit ventilation so the roof stays dry and pest-free." }
+      { q: "Do you clear blocked gutters?", a: "Yes. We clean, re-align and unblock gutters as well as replace them. If yours are overflowing, often a clean and a small adjustment to the falls is all that's needed." },
+      { q: "My fascias are rotten and birds are getting in, can you help?", a: "Yes. Rotten fascias and gaps at the eaves are a classic way for birds and water to get into the roof. We renew the boards, close the gaps and fit ventilation so the roof stays dry and pest-free." }
     ]
   },
   "roof-surveys": {
     eyebrow: "Free roof surveys",
     h1: 'Free Roof Surveys in <span class="hl">Derby & Nottingham</span>',
-    lead: "A free, honest roof inspection and a clear written quote across Derby and Nottingham. No pressure, no obligation, no scare tactics — just a straight answer about the state of your roof.",
-    desc: "Free roof surveys in Derby & Nottingham. Honest roof inspections, written quotes and pre-purchase roof checks — no obligation, no pressure. Book your free survey today.",
+    lead: "A free, honest roof inspection and a clear written quote across Derby and Nottingham. No pressure, no obligation, no scare tactics, just a straight answer about the state of your roof.",
+    desc: "Free roof surveys in Derby & Nottingham. Honest roof inspections, written quotes and pre-purchase roof checks, no obligation, no pressure. Book your free survey today.",
     intro: [
       "Not sure whether your roof needs a repair, a section re-covered or a full replacement? A free survey takes the guesswork out of it. We'll inspect the roof, tell you honestly what we find, and put it in writing so you know exactly where you stand.",
-      "We'd rather give you a straight answer than sell you a job you don't need — a lot of our work comes from being honest with people, and that starts at the survey."
+      "We'd rather give you a straight answer than sell you a job you don't need, a lot of our work comes from being honest with people, and that starts at the survey."
     ],
     includesH: "What our free survey covers",
     includes: [
@@ -214,12 +214,12 @@ const SVC = {
     ],
     sections: [
       { h: "Buying a house? Get the roof checked", body:
-        `<p>A homebuyer's survey often flags the roof with a vague "further investigation recommended". We carry out pre-purchase roof inspections across Derby and Nottingham so you know what you're taking on — and what it's likely to cost — before you commit. It can be a useful card at the negotiating table too.</p>` },
+        `<p>A homebuyer's survey often flags the roof with a vague "further investigation recommended". We carry out pre-purchase roof inspections across Derby and Nottingham so you know what you're taking on, and what it's likely to cost, before you commit. It can be a useful card at the negotiating table too.</p>` },
       { h: "No pressure, ever", body:
-        `<p>You won't get a hard sell from us. We'll show you what we've found, answer your questions and leave you with a written quote to think over. If it's a small repair, we'll tell you — and if the roof is fine, we'll tell you that too.</p>` }
+        `<p>You won't get a hard sell from us. We'll show you what we've found, answer your questions and leave you with a written quote to think over. If it's a small repair, we'll tell you, and if the roof is fine, we'll tell you that too.</p>` }
     ],
     faqs: [
-      { q: "Is the survey really free?", a: "Yes — completely free and with no obligation. We'll inspect the roof, explain what we find and give you a written quote. Whether you go ahead is entirely up to you." },
+      { q: "Is the survey really free?", a: "Yes, completely free and with no obligation. We'll inspect the roof, explain what we find and give you a written quote. Whether you go ahead is entirely up to you." },
       { q: "What happens during a roof survey?", a: "We inspect the covering, ridges, flashings, valleys, chimney and guttering from the outside, and check the loft for signs of leaks or damp where we can access it. Then we talk you through what we've found and follow up with a written quote." },
       { q: "Do you do pre-purchase roof inspections?", a: "Yes. If you're buying a property and want to know the true condition of the roof before exchanging, we'll inspect it and give you a clear written report and likely costs for any work." },
       { q: "How soon can you survey my roof?", a: "Usually within a few days, and sooner if it's urgent. Give us a call or send the form and we'll arrange a time that suits you." }
@@ -237,11 +237,11 @@ const LANDING = {
   "roof-repairs": { caze: {
     src: "before-after.mp4", poster: "assets/img/g1.jpg", eyebrow: "Full Roof Strip &amp; Re-Slate",
     h: "A worn slate roof made watertight again", loc: "Derby",
-    p: "An old, weathered slate roof stripped right back and re-covered with brand-new natural slate over a breathable membrane and fresh battens — finished with new guttering and a crisp, clean line across the eaves." } },
+    p: "An old, weathered slate roof stripped right back and re-covered with brand-new natural slate over a breathable membrane and fresh battens, finished with new guttering and a crisp, clean line across the eaves." } },
   "new-roofs": { caze: {
     src: "before-after-02.mp4", poster: "assets/img/ba2-poster.jpg", eyebrow: "Full Re-Roof",
     h: "Stripped back and built to last", loc: "Nottingham",
-    p: "Taken right back and rebuilt properly — new timbers, breathable felt, treated battens and a fresh tile covering throughout, with new ridge and leadwork. A complete re-roof built to keep the home dry and solid for decades." } },
+    p: "Taken right back and rebuilt properly: new timbers, breathable felt, treated battens and a fresh tile covering throughout, with new ridge and leadwork. A complete re-roof built to keep the home dry and solid for decades." } },
   "flat-roofing": {}
 };
 
@@ -276,7 +276,7 @@ function landingCase(slug) {
   if (!z) return "";
   return `<section class="section ba"><div class="wrap">
   <div class="section-head center"><span class="eyebrow">See the difference</span><h2>Before &amp; after</h2>
-    <p>Real jobs, real results — watch a recent project go from tired and worn to a fresh, watertight finish.</p></div>
+    <p>Real jobs, real results, watch a recent project go from tired and worn to a fresh, watertight finish.</p></div>
   <div class="cases">
     <article class="case">
       <div class="case-media"><div class="case-frame">
@@ -336,7 +336,7 @@ function buildService(s) {
     <h2>${c.includesH}</h2>
     ${ticks(c.includes)}
     ${proseSections}
-    <div class="callout"><p>Covering <strong>Derby, Nottingham</strong> and the towns around them — from Long Eaton and Beeston to Belper, Ilkeston and West Bridgford. <a href="${quoteHref}">Get your free quote</a> or call <a href="${TEL}">${SITE.phone}</a>.</p></div>
+    <div class="callout"><p>Covering <strong>Derby, Nottingham</strong> and the towns around them: from Long Eaton and Beeston to Belper, Ilkeston and West Bridgford. <a href="${quoteHref}">Get your free quote</a> or call <a href="${TEL}">${SITE.phone}</a>.</p></div>
   </div>
   ${sidebar(s.slug, quoteHref)}
 </div></div></section>`;
@@ -365,8 +365,8 @@ ${finalCta(cta)}`;
 function buildTown(t) {
   const c = TOWN_COPY[t.slug];
   const faqs = [
-    { q: `Do you cover ${t.town}?`, a: `Yes — ${t.town} is right in our patch. We're local roofers covering ${t.town} and the surrounding ${t.county} area for repairs, re-roofs, flat roofing, chimneys and guttering.` },
-    { q: `How quickly can you get to ${t.town}?`, a: `We're usually only a short drive from ${t.town}, so for leaks and storm damage we aim to get out fast — often the same or next day to make things safe. Call us and we'll give you a realistic time.` },
+    { q: `Do you cover ${t.town}?`, a: `Yes, ${t.town} is right in our patch. We're local roofers covering ${t.town} and the surrounding ${t.county} area for repairs, re-roofs, flat roofing, chimneys and guttering.` },
+    { q: `How quickly can you get to ${t.town}?`, a: `We're usually only a short drive from ${t.town}, so for leaks and storm damage we aim to get out fast, often the same or next day to make things safe. Call us and we'll give you a realistic time.` },
     { q: `Do you charge for a quote in ${t.town}?`, a: `No. Our roof surveys and quotes in ${t.town} are completely free and with no obligation. We'll take a look, explain what we find and put a clear price in writing.` }
   ];
   const p = {
@@ -377,10 +377,10 @@ function buildTown(t) {
       breadcrumbLD([{ name: "Home", slug: "" }, { name: `Roofers in ${t.town}`, slug: t.slug + ".html" }])]
   };
   const hero = pageHero({ heroImg: "g3.jpg", eyebrow: `Roofers in ${t.town}`, h1: `Roofers in <span class="hl">${t.town}</span>`,
-    lead: `Your local, fully-insured roofing team for ${t.town} and the surrounding ${t.county} area. Repairs, re-roofs, flat roofing, chimneys and guttering — honest quotes and tidy work.`,
+    lead: `Your local, fully-insured roofing team for ${t.town} and the surrounding ${t.county} area. Repairs, re-roofs, flat roofing, chimneys and guttering, honest quotes and tidy work.`,
     crumbs: [{ name: "Home", slug: "index.html" }, { name: `Roofers in ${t.town}` }] });
 
-  const svcMini = SERVICES.map(s => `<li><a href="${s.slug}.html">${s.nav}</a> — ${s.blurb}</li>`).join("\n      ");
+  const svcMini = SERVICES.map(s => `<li><a href="${s.slug}.html">${s.nav}</a>: ${s.blurb}</li>`).join("\n      ");
   const nearby = (c.nearby || []).map(n => esc(n)).join(", ");
   const body = `
 ${hero}
@@ -389,14 +389,14 @@ ${trustStrip()}
   <div class="prose">
     <h2>Your local roofers in ${t.town}</h2>
     <p>${c.intro}</p>
-    <p>From a single slipped tile to a full re-roof, we carry out the whole range of roofing work ${c.landmarks}. Every job comes with a free survey, a clear written quote and a workmanship guarantee — and we leave your property clean and tidy when we're done.</p>
+    <p>From a single slipped tile to a full re-roof, we carry out the whole range of roofing work ${c.landmarks}. Every job comes with a free survey, a clear written quote and a workmanship guarantee, and we leave your property clean and tidy when we're done.</p>
     <img class="feature-img" src="assets/img/g5.jpg" alt="Roofing work by ${SITE.name} near ${t.town}, ${t.county}" loading="lazy">
     <h2>Roofing services in ${t.town}</h2>
     <ul class="ticks">
       ${svcMini}
     </ul>
     <h2>Why choose a local ${t.town} roofer?</h2>
-    <p>Using a roofer who knows ${t.town} means we understand the local housing stock, we're close by if anything needs a second look, and we're staking our local reputation on every job. We're fully insured, we turn up when we say we will, and our prices are honest — the quote we give you is the price you pay.</p>
+    <p>Using a roofer who knows ${t.town} means we understand the local housing stock, we're close by if anything needs a second look, and we're staking our local reputation on every job. We're fully insured, we turn up when we say we will, and our prices are honest, the quote we give you is the price you pay.</p>
     <div class="callout"><p>Also covering nearby ${nearby}. <a href="contact.html">Get your free quote in ${t.town}</a> or call <a href="${TEL}">${SITE.phone}</a>.</p></div>
   </div>
   ${sidebar()}
@@ -455,7 +455,7 @@ function buildHome() {
   <div class="hero-content">
     <img class="hero-logo" src="assets/img/logo.png" alt="${esc(SITE.name)}" width="560" height="373">
     <h1>Roofing Specialists Across <span class="hl">Derby &amp; Nottingham</span></h1>
-    <p class="sub">New roofs, repairs, flat roofing, chimneys &amp; guttering — carried out by a fully insured local team with over 40 years' experience. Free surveys, honest quotes, work that lasts.</p>
+    <p class="sub">New roofs, repairs, flat roofing, chimneys &amp; guttering, carried out by a fully insured local team with over 40 years' experience. Free surveys, honest quotes, work that lasts.</p>
     <div class="hero-btns">
       <a class="btn btn-primary" href="contact.html">${I.quote}Get my free quote</a>
       <a class="btn btn-ghost" href="${TEL}">${I.phone}Call the team</a>
@@ -465,11 +465,11 @@ function buildHome() {
 ${trustStrip()}
 <section class="section services" id="services"><div class="wrap">
   <div class="section-head center"><span class="eyebrow">What we do</span><h2>Roofing services, done properly</h2>
-    <p>From a single slipped tile to a complete re-roof, we cover every job across Derby &amp; Nottingham — pitched and flat.</p></div>
+    <p>From a single slipped tile to a complete re-roof, we cover every job across Derby &amp; Nottingham, pitched and flat.</p></div>
   <div class="svc-grid">${svcCards}</div></div></section>
 <section class="section ba" id="ba"><div class="wrap">
   <div class="section-head center"><span class="eyebrow">See the difference</span><h2>Before &amp; after</h2>
-    <p>Watch recent jobs go from tired and worn to a fresh, watertight finish — real roofs, real results across Derby &amp; Nottingham.</p></div>
+    <p>Watch recent jobs go from tired and worn to a fresh, watertight finish: real roofs, real results across Derby &amp; Nottingham.</p></div>
   <div class="cases">
     <article class="case">
       <div class="case-media"><div class="case-frame">
@@ -479,7 +479,7 @@ ${trustStrip()}
       <div class="case-body">
         <span class="eyebrow">Full Roof Strip &amp; Re-Slate</span>
         <h3>A worn slate roof made watertight again</h3>
-        <p>An old, weathered slate roof stripped right back and re-covered with brand-new natural slate over a breathable membrane and fresh battens — finished with new guttering and a crisp, clean line across the eaves.</p>
+        <p>An old, weathered slate roof stripped right back and re-covered with brand-new natural slate over a breathable membrane and fresh battens, finished with new guttering and a crisp, clean line across the eaves.</p>
         <span class="case-loc">${I.pin}Derby</span>
       </div>
     </article>
@@ -491,7 +491,7 @@ ${trustStrip()}
       <div class="case-body">
         <span class="eyebrow">Full Re-Roof</span>
         <h3>Stripped back and built to last</h3>
-        <p>Taken right back and rebuilt properly — new timbers, breathable felt, treated battens and a fresh tile covering throughout, with new ridge and leadwork. A complete re-roof built to keep the home dry and solid for decades.</p>
+        <p>Taken right back and rebuilt properly: new timbers, breathable felt, treated battens and a fresh tile covering throughout, with new ridge and leadwork. A complete re-roof built to keep the home dry and solid for decades.</p>
         <span class="case-loc">${I.pin}Nottingham</span>
       </div>
     </article>
@@ -503,7 +503,7 @@ ${trustStrip()}
       <div class="case-body">
         <span class="eyebrow">Chimney Rebuild &amp; Repoint</span>
         <h3>A tired chimney made solid again</h3>
-        <p>A weathered chimney stack rebuilt and repointed from the flashing up — fresh lead, a new cap and crisp mortar joints throughout, so the wet stays out and the stack stands straight for years to come.</p>
+        <p>A weathered chimney stack rebuilt and repointed from the flashing up: fresh lead, a new cap and crisp mortar joints throughout, so the wet stays out and the stack stands straight for years to come.</p>
         <span class="case-loc">${I.pin}Loughborough</span>
       </div>
     </article>
@@ -520,9 +520,9 @@ ${trustStrip()}
   <div>
     <div class="section-head" style="margin-bottom:30px"><span class="eyebrow">Why choose us</span><h2>Local roofers you can actually trust</h2></div>
     <div class="why-list">
-      <div class="why-item"><div class="why-num">1</div><div><h3>40 Years’ Experience</h3><p>Four decades of roofing across Derby, Nottingham and the wider Midlands — we know the houses, the weather and the right way to do the job.</p></div></div>
+      <div class="why-item"><div class="why-num">1</div><div><h3>40 Years’ Experience</h3><p>Four decades of roofing across Derby, Nottingham and the wider Midlands. We know the houses, the weather and the right way to do the job.</p></div></div>
       <div class="why-item"><div class="why-num">2</div><div><h3>Insured &amp; Guaranteed</h3><p>£5 million public liability cover and up to a 10-year guarantee on our work. Total peace of mind, every job.</p></div></div>
-      <div class="why-item"><div class="why-num">3</div><div><h3>Honest, Upfront Quotes</h3><p>A clear written price before we start. No hidden extras, no pushy sales — just a fair job at a fair price.</p></div></div>
+      <div class="why-item"><div class="why-num">3</div><div><h3>Honest, Upfront Quotes</h3><p>A clear written price before we start. No hidden extras, no pushy sales, just a fair job at a fair price.</p></div></div>
       <div class="why-item"><div class="why-num">4</div><div><h3>Tidy &amp; Reliable</h3><p>We turn up when we say we will, protect your property and leave the site clean when we're done.</p></div></div>
     </div>
   </div>
@@ -540,7 +540,7 @@ ${reviewsSection()}
   <div class="about-photo"><img src="assets/img/team.jpg" alt="The ${esc(SITE.name)} team on site during a full re-roof" loading="lazy"><div class="photo-inset"><img src="assets/img/guarantee-2.jpg" alt="A customer receiving her written workmanship guarantee from ${esc(SITE.name)}" loading="lazy"></div></div>
   <div class="about-body">
     <span class="eyebrow">Meet the team</span><h2>The roofers behind the work</h2>
-    <p>${SITE.name} is a family-run roofing company with over 40 years' experience and a team of 15. We've grown by word of mouth — one happy customer at a time — and we treat every roof like it's our own.</p>
+    <p>${SITE.name} is a family-run roofing company with over 40 years' experience and a team of 15. We've grown by word of mouth, one happy customer at a time, and we treat every roof like it's our own.</p>
     <p>Whether it's a quick repair or a full re-roof, you'll deal with the same friendly team from the first survey to the final clean-up. No call centres, no middlemen, no nonsense.</p>
     <div class="center" style="text-align:left;margin-top:22px"><a class="btn btn-dark" href="about.html">More about us ${I.arrow}</a></div>
   </div>
@@ -556,7 +556,7 @@ function contactSection() {
   return `<section class="section contact" id="contact"><div class="wrap contact-grid">
     <div class="contact-info">
       <div class="section-head" style="margin-bottom:0"><span class="eyebrow">Get in touch</span><h2>Free quote, no obligation</h2></div>
-      <p>Tell us about your roof and we'll come back to you fast — usually the same day. Send the form and it'll open straight in WhatsApp, or call us now.</p>
+      <p>Tell us about your roof and we'll come back to you fast, usually the same day. Send the form and it'll open straight in WhatsApp, or call us now.</p>
       <div class="ci-item"><div class="ic">${I.phone}</div><div class="t"><small>Call or text</small><a href="${TEL}">${SITE.phone}</a></div></div>
       <div class="ci-item"><div class="ic">${I.phone}</div><div class="t"><small>Derby office</small><a href="tel:+${SITE.phoneDerbyIntl}">${SITE.phoneDerby}</a></div></div>
       <div class="ci-item"><div class="ic">${I.phone}</div><div class="t"><small>Nottingham office</small><a href="tel:+${SITE.phoneNottsIntl}">${SITE.phoneNotts}</a></div></div>
@@ -584,19 +584,19 @@ function contactSection() {
 function buildAbout() {
   const p = { slug: "about.html", active: "about", ogImg: "team.jpg",
     title: `About Us | ${SITE.name} | Local Roofers Derby & Nottingham`,
-    desc: `Meet ${SITE.name} — a local, family-run, fully-insured roofing team covering Derby, Nottingham and the East Midlands. Honest quotes, tidy work and a workmanship guarantee.`,
+    desc: `Meet ${SITE.name}: a local, family-run, fully-insured roofing team covering Derby, Nottingham and the East Midlands. Honest quotes, tidy work and a workmanship guarantee.`,
     schema: [localBusinessLD(), breadcrumbLD([{ name: "Home", slug: "" }, { name: "About", slug: "about.html" }])] };
   const body = `
 ${pageHero({ heroImg: "work-2.jpg", eyebrow: "About us", h1: 'The roofers behind <span class="hl">the work</span>',
-    lead: "A local, family-run roofing company covering Derby, Nottingham and the surrounding East Midlands — built on honest advice and proper workmanship.",
+    lead: "A local, family-run roofing company covering Derby, Nottingham and the surrounding East Midlands, built on honest advice and proper workmanship.",
     crumbs: [{ name: "Home", slug: "index.html" }, { name: "About" }] })}
 ${trustStrip()}
 <section class="section about"><div class="wrap about-grid">
   <div class="about-photo"><img src="assets/img/handshake.jpg" alt="A ${esc(SITE.name)} roofer shaking hands with a happy customer after a completed re-roof" loading="lazy"></div>
   <div class="about-body">
     <span class="eyebrow">Who we are</span><h2>Local roofers doing things properly</h2>
-    <p>${SITE.name} is a family-run roofing company with over 40 years' experience and a team of 15. We've built the business the slow, honest way — by word of mouth, one happy customer at a time — and that reputation is something we protect on every single job.</p>
-    <p>From a single slipped tile to a complete re-roof, you'll deal with the same friendly team from the first survey through to the final clean-up. No call centres, no middlemen, no pushy sales — just roofers who know their trade and take pride in it.</p>
+    <p>${SITE.name} is a family-run roofing company with over 40 years' experience and a team of 15. We've built the business the slow, honest way: by word of mouth, one happy customer at a time, and that reputation is something we protect on every single job.</p>
+    <p>From a single slipped tile to a complete re-roof, you'll deal with the same friendly team from the first survey through to the final clean-up. No call centres, no middlemen, no pushy sales, just roofers who know their trade and take pride in it.</p>
     <p>We cover Derby, Nottingham and the towns around them, we're fully insured, and we back our work with a workmanship guarantee.</p>
     <div class="owner-line"><div class="why-num" style="border-radius:50%">J</div><div><div class="sig">Joe</div><div class="role">Owner &amp; Lead Roofer</div></div></div>
   </div>
@@ -604,12 +604,12 @@ ${trustStrip()}
 <section class="section feat-band feat"><div class="wrap">
   <div class="section-head center" style="margin-left:auto;margin-right:auto"><span class="eyebrow">What you can expect</span><h2 style="color:#fff">Every job, the same standard</h2></div>
   <div class="feat-grid">
-    <div class="feat">${I.check}<div><h3>Honest advice</h3><p>We'll tell you what your roof actually needs — repair or replace — not what makes us the most money.</p></div></div>
+    <div class="feat">${I.check}<div><h3>Honest advice</h3><p>We'll tell you what your roof actually needs, repair or replace, not what makes us the most money.</p></div></div>
     <div class="feat">${I.check}<div><h3>£5m insured</h3><p>£5 million public liability cover and proper safety practice on every job, large or small.</p></div></div>
-    <div class="feat">${I.check}<div><h3>Clear written quotes</h3><p>A fixed, itemised price before we start. The quote is the price — no surprise extras.</p></div></div>
+    <div class="feat">${I.check}<div><h3>Clear written quotes</h3><p>A fixed, itemised price before we start. The quote is the price, no surprise extras.</p></div></div>
     <div class="feat">${I.check}<div><h3>Tidy &amp; reliable</h3><p>We turn up when we say, protect your property and leave the site spotless.</p></div></div>
     <div class="feat">${I.check}<div><h3>10-year guarantee</h3><p>We back our work with up to a 10-year guarantee, and the materials we fit carry their own manufacturer warranties.</p></div></div>
-    <div class="feat">${I.check}<div><h3>Experienced local team</h3><p>A team of 15 with over 40 years behind us, based in the East Midlands — close by if you ever need us again.</p></div></div>
+    <div class="feat">${I.check}<div><h3>Experienced local team</h3><p>A team of 15 with over 40 years behind us, based in the East Midlands, close by if you ever need us again.</p></div></div>
   </div>
 </div></section>
 ${areasSection()}
@@ -622,11 +622,11 @@ ${finalCta()}`;
 function buildContact() {
   const p = { slug: "contact.html", active: "contact", ogImg: "g2.jpg",
     title: `Contact Us | Free Roofing Quote | ${SITE.name}`,
-    desc: `Contact ${SITE.name} for a free, no-obligation roofing quote in Derby, Nottingham or the surrounding area. Call ${SITE.phone} or send the form — we'll get straight back to you.`,
+    desc: `Contact ${SITE.name} for a free, no-obligation roofing quote in Derby, Nottingham or the surrounding area. Call ${SITE.phone} or send the form. We'll get straight back to you.`,
     schema: [localBusinessLD(), breadcrumbLD([{ name: "Home", slug: "" }, { name: "Contact", slug: "contact.html" }])] };
   const body = `
 ${pageHero({ heroImg: "g2.jpg", eyebrow: "Get in touch", h1: 'Get your <span class="hl">free quote</span>',
-    lead: "Tell us about your roof and we'll come back to you fast — usually the same day. Call, text or send the form below.",
+    lead: "Tell us about your roof and we'll come back to you fast, usually the same day. Call, text or send the form below.",
     crumbs: [{ name: "Home", slug: "index.html" }, { name: "Contact" }] })}
 ${trustStrip()}
 ${contactSection()}
@@ -639,7 +639,7 @@ ${finalCta()}`;
 function buildGallery() {
   const p = { slug: "gallery.html", active: "gallery", ogImg: "g1.jpg",
     title: `Our Work | Roofing Gallery | ${SITE.name}`,
-    desc: `Recent roofing projects by ${SITE.name} across Derby & Nottingham — re-roofs, slate and tile work, chimneys, flat roofs and guttering. See the quality for yourself.`,
+    desc: `Recent roofing projects by ${SITE.name} across Derby & Nottingham: re-roofs, slate and tile work, chimneys, flat roofs and guttering. See the quality for yourself.`,
     schema: [localBusinessLD(), breadcrumbLD([{ name: "Home", slug: "" }, { name: "Gallery", slug: "gallery.html" }])] };
   const shots = [
     ["roof1.jpg", "Full re-roof &middot; Concrete tile"],
@@ -673,7 +673,7 @@ ${finalCta("Like what you see? Get a free, no-obligation quote for your own roof
 function buildReviews() {
   const p = { slug: "reviews.html", active: "reviews", ogImg: "g3.jpg",
     title: `Reviews | What Our Customers Say | ${SITE.name}`,
-    desc: `Read reviews for ${SITE.name} from homeowners across Derby, Nottingham and the East Midlands. Honest, tidy, reliable roofing — see what local customers say.`,
+    desc: `Read reviews for ${SITE.name} from homeowners across Derby, Nottingham and the East Midlands. Honest, tidy, reliable roofing, see what local customers say.`,
     schema: [localBusinessLD(), breadcrumbLD([{ name: "Home", slug: "" }, { name: "Reviews", slug: "reviews.html" }])] };
   const body = `
 ${pageHero({ heroImg: "g3.jpg", eyebrow: "Reviews", h1: 'What our <span class="hl">customers say</span>',
@@ -692,19 +692,19 @@ ${finalCta()}`;
 /* ---------- FAQs page ---------- */
 function buildFaqs() {
   const faqs = [
-    { q: "What areas do you cover?", a: "We cover Derby, Nottingham and Long Eaton, then south across Leicestershire — Loughborough, Shepshed, Coalville and Ashby-de-la-Zouch — and into Staffordshire at Lichfield and Tamworth." },
+    { q: "What areas do you cover?", a: "We cover Derby, Nottingham and Long Eaton, then south across Leicestershire: Loughborough, Shepshed, Coalville and Ashby-de-la-Zouch, and into Staffordshire at Lichfield and Tamworth." },
     { q: "How long have you been roofing?", a: "Over 40 years. We're an established, family-run team of 15, and a lot of our work comes from repeat customers and recommendations across the East Midlands." },
-    { q: "Are you insured?", a: "Yes — we carry £5 million public liability insurance and work to proper safety standards on every job, large or small." },
+    { q: "Are you insured?", a: "Yes. We carry £5 million public liability insurance and work to proper safety standards on every job, large or small." },
     { q: "Do you charge for quotes or surveys?", a: "No. All our roof surveys and quotes are completely free and with no obligation. We'll inspect the roof, explain what we find and give you a clear written price." },
-    { q: "How quickly can you come out?", a: "For leaks and storm damage we prioritise getting out fast — often the same or next day to make the roof safe. For planned work we'll arrange a survey within a few days." },
-    { q: "Do you offer a guarantee?", a: "Yes — we back our work with up to a 10-year guarantee, and the tiles, slates, membranes and flat-roof systems we fit carry their own manufacturer warranties." },
-    { q: "Do you do emergency roof repairs?", a: "Yes — we carry out emergency make-safe and temporary covering for leaks and storm damage, then return to complete a permanent repair." },
+    { q: "How quickly can you come out?", a: "For leaks and storm damage we prioritise getting out fast, often the same or next day to make the roof safe. For planned work we'll arrange a survey within a few days." },
+    { q: "Do you offer a guarantee?", a: "Yes. We back our work with up to a 10-year guarantee, and the tiles, slates, membranes and flat-roof systems we fit carry their own manufacturer warranties." },
+    { q: "Do you do emergency roof repairs?", a: "Yes. We carry out emergency make-safe and temporary covering for leaks and storm damage, then return to complete a permanent repair." },
     { q: "What types of roof do you work on?", a: "Both pitched and flat. That includes concrete, clay and natural slate pitched roofs, and EPDM rubber and GRP fibreglass flat roofs on extensions, garages and dormers." },
     { q: "How do I get a quote?", a: "Call or text us on " + SITE.phone + ", or send the contact form and it'll open in WhatsApp with your details ready to go. We'll arrange a free survey and get a written quote to you quickly." }
   ];
   const p = { slug: "faqs.html", active: "faqs", ogImg: "g1.jpg",
     title: `Roofing FAQs | ${SITE.name} | Derby & Nottingham`,
-    desc: `Answers to common roofing questions — areas covered, insurance, quotes, guarantees, emergency repairs and more — from ${SITE.name}, your local Derby & Nottingham roofers.`,
+    desc: `Answers to common roofing questions: areas covered, insurance, quotes, guarantees, emergency repairs and more, from ${SITE.name}, your local Derby & Nottingham roofers.`,
     schema: [localBusinessLD(), faqLD(faqs), breadcrumbLD([{ name: "Home", slug: "" }, { name: "FAQs", slug: "faqs.html" }])] };
   const body = `
 ${pageHero({ heroImg: "g5.jpg", eyebrow: "FAQs", h1: 'Roofing <span class="hl">questions answered</span>',
@@ -844,7 +844,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; form-action 'self'; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com https://www.googletagmanager.com https://www.google.com https://www.google.co.uk https://googleads.g.doubleclick.net https://www.googleadservices.com; media-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://tagassistant.google.com https://www.google-analytics.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://www.google.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://region1.google-analytics.com https://www.googletagmanager.com https://tagassistant.google.com https://googleads.g.doubleclick.net https://www.google.com; frame-src https://www.googletagmanager.com https://tagassistant.google.com https://td.doubleclick.net https://www.google.com">
 <meta name="robots" content="noindex">
 <title>Leave a Review · ${esc(SITE.name)}</title>
-<meta name="description" content="Thank you for choosing ${esc(SITE.name)}. Leave us a quick Google or Facebook review — it only takes 30 seconds.">
+<meta name="description" content="Thank you for choosing ${esc(SITE.name)}. Leave us a quick Google or Facebook review. It only takes 30 seconds.">
 <meta name="theme-color" content="#0C0E13">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="${esc(SITE.name)}">
@@ -933,17 +933,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h2>A quick favour?</h2>
         <p>We're a local, family-run team, and honest reviews are the number-one way new homeowners decide to trust us. If you've got 30 seconds, a Google review would mean the world.</p>
         <a id="googleBtn" class="btn btn-google" href="#" target="_blank" rel="noopener"><span class="btn-icon">${G_SVG}</span>Leave a Google Review</a>
-        <p class="btn-sub">Opens Google — takes about 30 seconds</p>
+        <p class="btn-sub">Opens Google, takes about 30 seconds</p>
       </div>
       <ol class="steps">
-        <li><span class="num">1</span><span>Tap the button above — it opens our Google page.</span></li>
+        <li><span class="num">1</span><span>Tap the button above. It opens our Google page.</span></li>
         <li><span class="num">2</span><span>Sign in with your Google account if it asks.</span></li>
         <li><span class="num">3</span><span>Pick 5 stars, add a few words, and hit post. Done!</span></li>
       </ol>
       <div class="divider">No Google account?</div>
-      <p class="alt-note">No problem — you can leave us a review on Facebook instead. It helps just as much.</p>
+      <p class="alt-note">No problem. You can leave us a review on Facebook instead. It helps just as much.</p>
       <a id="fbBtn" class="btn btn-facebook" href="#" target="_blank" rel="noopener"><span class="btn-icon">${F_SVG}</span>Review us on Facebook</a>
-      <p class="reassure">Not quite 100% happy? Please give us the chance to put it right first — call <a href="tel:+${SITE.phoneIntl}">${SITE.phone}</a> or <a href="https://wa.me/${SITE.phoneIntl}" target="_blank" rel="noopener">WhatsApp us</a>.</p>
+      <p class="reassure">Not quite 100% happy? Please give us the chance to put it right first, call <a href="tel:+${SITE.phoneIntl}">${SITE.phone}</a> or <a href="https://wa.me/${SITE.phoneIntl}" target="_blank" rel="noopener">WhatsApp us</a>.</p>
     </div>
     <footer class="card-foot">
       &copy; <span id="year"></span> ${esc(SITE.name)} &middot; Derby &amp; Nottingham, UK
@@ -996,10 +996,10 @@ fs.writeFileSync("sitemap.xml", `<?xml version="1.0" encoding="UTF-8"?>\n<urlset
 /* robots.txt */
 fs.writeFileSync("robots.txt", `User-agent: *\nAllow: /\n\nSitemap: ${SITE.url}/sitemap.xml\n`);
 
-/* CNAME — custom domain for GitHub Pages (keeps the domain on every deploy) */
+/* CNAME, custom domain for GitHub Pages (keeps the domain on every deploy) */
 fs.writeFileSync("CNAME", new URL(SITE.url).host + "\n");
 
-/* review.html — private review-request card (noindex; deliberately NOT in OUT/sitemap) */
+/* review.html, private review-request card (noindex; deliberately NOT in OUT/sitemap) */
 function build404() {
   const p = { slug: "404.html", active: "", noindex: true, ogImg: "g1.jpg",
     title: `Page Not Found | ${SITE.name}`,
@@ -1007,7 +1007,7 @@ function build404() {
     schema: [localBusinessLD()] };
   const svcLinks = SERVICES.map(s => `<a class="area-link" href="${s.slug}.html">${I.arrow}${s.nav}</a>`).join("");
   const body = `
-${pageHero({ heroImg: "g3.jpg", eyebrow: "Error 404", h1: 'Page <span class="hl">not found</span>', lead: "Sorry — the page you were after doesn't exist or has moved. Let's get you back on track.", crumbs: [{ name: "Home", slug: "index.html" }, { name: "Not found" }] })}
+${pageHero({ heroImg: "g3.jpg", eyebrow: "Error 404", h1: 'Page <span class="hl">not found</span>', lead: "Sorry, the page you were after doesn't exist or has moved. Let's get you back on track.", crumbs: [{ name: "Home", slug: "index.html" }, { name: "Not found" }] })}
 ${trustStrip()}
 <section class="section content"><div class="wrap center" style="max-width:780px;text-align:center">
   <span class="eyebrow">Our services</span>
@@ -1019,7 +1019,7 @@ ${finalCta()}`;
   return head(p) + navbar(p.active) + body + footer();
 }
 /* ---------- PPC landing pages ----------
-   Written here, AFTER the sitemap block, and never added to OUT — same pattern
+   Written here, AFTER the sitemap block, and never added to OUT, same pattern
    as review.html / 404.html, so they stay out of sitemap.xml. Each is noindex.
    Do NOT add Disallow: /lp/ to robots.txt: blocking the crawl stops Google ever
    seeing the noindex, and AdsBot needs to fetch the page to score it. */

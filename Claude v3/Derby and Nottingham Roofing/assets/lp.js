@@ -1,6 +1,6 @@
-/* Derby & Nottingham Roofing — landing-page quiz + lead beacon.
+/* Derby & Nottingham Roofing, landing-page quiz + lead beacon.
    Generic: every client value comes from window.LP_CFG, emitted by build-lp.js.
-   app.js is deliberately NOT loaded on these pages — its nav/drawer/hero
+   app.js is deliberately NOT loaded on these pages, its nav/drawer/hero
    selectors don't exist here and its click logger would double-log. */
 (function () {
   "use strict";
@@ -108,11 +108,11 @@
       ga("generate_lead", { lp: CFG.lp, service: CFG.service, area: lead.area || "" });
       try { if (window.fbq) window.fbq("track", "Lead"); } catch (e) {}
 
-      // Inline success panel, NOT a redirect — a redirect throws away the dwell
+      // Inline success panel, NOT a redirect, a redirect throws away the dwell
       // time and the remarketing/pixel view we just paid for.
       var first = name.split(" ")[0];
       var head = $("[data-q-head]", quiz), sub = $("[data-q-sub]", quiz), wa = $("[data-q-wa]", quiz);
-      if (head) head.textContent = "Thanks " + first + " — we've got your details";
+      if (head) head.textContent = "Thanks " + first + ". We've got your details";
       if (sub) sub.textContent = "We'll call you on " + phone + " shortly to arrange your free survey.";
       if (wa) {
         var lines = ["Hi " + (CFG.biz || "") + ", I've just filled in your form for a free quote.", "",

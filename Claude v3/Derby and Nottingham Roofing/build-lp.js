@@ -12,7 +12,7 @@ const STAR = '<svg class="st" viewBox="0 0 24 24" fill="currentColor"><path d="M
 const WA = t => "https://wa.me/" + SITE.phoneIntl + "?text=" + encodeURIComponent(t);
 const WA_HELLO = () => WA("Hi " + SITE.name + ", I would like a free roofing quote please.");
 
-/* Sticky header: logo + call button ONLY. No nav — a landing page should have
+/* Sticky header: logo + call button ONLY. No nav, a landing page should have
    no way off it except converting. */
 function lpHeader(C) {
   return `<header class="lp-head" id="top"><div class="lp-head-in">
@@ -38,7 +38,7 @@ function lpQuiz(lp, C) {
   ${step(1, lp.q1.ask, `<div class="q-opts">${lp.q1.opts.map(o => opt(lp.q1.field, o)).join("")}</div>`)}
   ${step(2, lp.q2.ask, `<div class="q-opts">${lp.q2.opts.map(o => opt(lp.q2.field, o)).join("")}</div>`)}
   ${step(3, "Where&rsquo;s the property?", `<div class="q-opts">${C.areas.map(a => opt("area", a)).join("")}</div>`)}
-  ${step(4, "Last step &mdash; how should we reach you?", `
+  ${step(4, "Last step, how should we reach you?", `
     <div class="q-field"><label for="lpName">Your name</label>
       <input id="lpName" type="text" autocomplete="name" enterkeyhint="next" placeholder="First name is fine"></div>
     <div class="q-field"><label for="lpPhone">Phone number</label>
@@ -48,7 +48,7 @@ function lpQuiz(lp, C) {
     <p class="q-note">No spam, ever. Your details are only used to arrange your quote.</p>`)}
   <div class="q-step q-done" data-step="done">
     <div class="q-tick">${I.check}</div>
-    <p class="q-ask" data-q-head>Thanks &mdash; we&rsquo;ve got your details</p>
+    <p class="q-ask" data-q-head>Thanks. We&rsquo;ve got your details</p>
     <p class="q-done-sub" data-q-sub></p>
     <div class="q-done-btns">
       <a class="q-wa" data-q-wa data-noleadlog href="#" target="_blank" rel="noopener">${I.wa}Send it on WhatsApp too</a>
@@ -76,7 +76,7 @@ function lpHero(lp, C) {
 </section>`;
 }
 
-/* Transformation video — sits directly after the hero. Anyone who scrolls past
+/* Transformation video, sits directly after the hero. Anyone who scrolls past
    the quiz is not ready to act; they are asking "can these people actually do
    this?". A transformation answers that with no reading required.
    Footage is portrait (720x960), so it is a card beside the copy, not full-bleed.
@@ -116,7 +116,7 @@ function lpTeam(lp, C) {
   <div>
     <span class="lp-eyebrow">Meet the team</span>
     <h2>${SITE.years} years on roofs across ${SITE.area}</h2>
-    <p>${esc(SITE.name)} is a family-run team of ${SITE.team}. We have grown by word of mouth &mdash; one happy customer at a time &mdash; and you deal with the same faces from the first survey to the final clean-up.</p>
+    <p>${esc(SITE.name)} is a family-run team of ${SITE.team}. We have grown by word of mouth, one happy customer at a time, and you deal with the same faces from the first survey to the final clean-up.</p>
     <p>Fully insured with ${SITE.liability} public liability, and every job backed by our written ${SITE.guarantee} guarantee.</p>
     <a class="lp-btn" href="#quiz">${lp.cta} ${I.arrow}</a>
   </div>
@@ -143,7 +143,7 @@ function lpCta(lp, C) {
   <div class="lp-cta-in">
     <div class="lp-rating lp-rating-c">${STAR.repeat(5)}</div>
     <h2>Ready for your free, no-obligation quote?</h2>
-    <p>Four quick questions &mdash; most people are done in under a minute.</p>
+    <p>Four quick questions. Most people are done in under a minute.</p>
     <div class="lp-cta-btns"><a class="lp-btn lp-btn-lg" href="#quiz">${lp.cta} ${I.arrow}</a>
       <a class="lp-btn lp-btn-ghost" href="${TEL}">${I.phone}${SITE.phone}</a></div>
   </div></section>`;
@@ -152,7 +152,7 @@ function lpCta(lp, C) {
 function lpFooter(C) {
   return `<footer class="lp-foot"><div class="lp-wrap">
   <img src="${C.base}assets/img/logo.png" alt="${esc(SITE.name)}" width="110" height="73" loading="lazy">
-  <p>${esc(SITE.name)} &mdash; roofing across ${SITE.area} and the East Midlands.<br>
+  <p>${esc(SITE.name)}, roofing across ${SITE.area} and the East Midlands.<br>
      <a href="${TEL}">${SITE.phone}</a> &middot; <a href="tel:+${SITE.phoneDerbyIntl}">${SITE.phoneDerby}</a> &middot; <a href="tel:+${SITE.phoneNottsIntl}">${SITE.phoneNotts}</a></p>
   <p class="lp-foot-sm"><a class="lp-foot-link" href="${C.base}index.html">Visit our main website</a></p>
   <p class="lp-foot-sm">&copy; <span id="lpYr"></span> ${esc(SITE.name)}. ${SITE.liability} public liability &middot; ${SITE.guarantee} workmanship guarantee.</p>
@@ -164,7 +164,7 @@ function lpFooter(C) {
 </div></footer>`;
 }
 
-/* One switch, two orderings — this is what stops pages 2/3/4 being copies.
+/* One switch, two orderings. This is what stops pages 2/3/4 being copies.
    "search" traffic is already looking for a roofer, so the quiz IS the hero.
    "meta" traffic was not, so it has to be persuaded before being asked. */
 function buildLandingPage(lp, C) {

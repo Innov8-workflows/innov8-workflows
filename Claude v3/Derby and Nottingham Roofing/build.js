@@ -1,5 +1,5 @@
 /* ============================================================
-   Derby & Nottingham Roofing — static site generator
+   Derby & Nottingham Roofing, static site generator
    Generates all pages from shared chrome + per-page content.
    Run:  node build.js
    ============================================================ */
@@ -36,7 +36,7 @@ const SERVICES = [
     blurb: "Full roof replacements and new builds using quality tiles and felt, built to last for decades." },
   { slug: "roof-repairs", short: "Roof Repairs", nav: "Roof Repairs", img: "g3.jpg",
     icon: '<path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2-2 2.5-2.5z"/>',
-    blurb: "Slipped tiles, leaks, storm damage and ridge work — fast, tidy repairs that stop the problem." },
+    blurb: "Slipped tiles, leaks, storm damage and ridge work: fast, tidy repairs that stop the problem." },
   { slug: "flat-roofing", short: "Flat Roofing", nav: "Flat Roofing", img: "flat-roof.jpg",
     icon: '<path d="M3 7h18"/><path d="M3 12h18"/><path d="M3 17h18"/><path d="M3 7v10"/><path d="M21 7v10"/>',
     blurb: "Long-life EPDM rubber and GRP fibreglass flat roofs for extensions, garages and dormers." },
@@ -45,10 +45,10 @@ const SERVICES = [
     blurb: "Chimney repairs, rebuilds, flashing and lead work to keep water where it belongs." },
   { slug: "guttering", short: "Guttering", nav: "Guttering, Fascias & Soffits", img: "g5.jpg",
     icon: '<path d="M3 8h18l-2 5H5z"/><path d="M5 13v5"/><path d="M19 13v5"/><path d="M9 18h6"/>',
-    blurb: "New and replacement uPVC guttering, fascias and soffits — clean lines and proper drainage." },
+    blurb: "New and replacement uPVC guttering, fascias and soffits: clean lines and proper drainage." },
   { slug: "roof-surveys", short: "Roof Surveys", nav: "Free Roof Surveys", img: "work-3.jpg",
     icon: '<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 3v3h6V3"/><path d="M9 11h6"/><path d="M9 15h4"/>',
-    blurb: "An honest inspection and a clear written quote — no pressure, no obligation, no surprises." },
+    blurb: "An honest inspection and a clear written quote, no pressure, no obligation, no surprises." },
 ];
 const svcBySlug = Object.fromEntries(SERVICES.map(s => [s.slug, s]));
 
@@ -67,10 +67,10 @@ const TOWNS = [
 
 /* unique local context per town (keeps location pages from being duplicate content) */
 const TOWN_COPY = {
-  "roofers-derby": { intro: "From the Victorian terraces of Normanton and Peartree to the 1930s semis of Littleover, Mickleover and Allestree, Derby's housing stock is as varied as it gets — and every roof type needs a slightly different approach. As local Derby roofers we work right across the city and its suburbs, on everything from a single slipped tile to a full re-roof.", nearby: ["Mickleover", "Allestree", "Spondon", "Borrowash"], landmarks: "across Derby, from the city centre and Normanton to Mickleover, Allestree, Chaddesden and Sinfin" },
+  "roofers-derby": { intro: "From the Victorian terraces of Normanton and Peartree to the 1930s semis of Littleover, Mickleover and Allestree, Derby's housing stock is as varied as it gets, and every roof type needs a slightly different approach. As local Derby roofers we work right across the city and its suburbs, on everything from a single slipped tile to a full re-roof.", nearby: ["Mickleover", "Allestree", "Spondon", "Borrowash"], landmarks: "across Derby, from the city centre and Normanton to Mickleover, Allestree, Chaddesden and Sinfin" },
   "roofers-nottingham": { intro: "Nottingham's rooftops range from the red-brick Victorian terraces of Forest Fields, Sneinton and Lenton to the bay-fronted semis of Wollaton and Mapperley. We're local Nottingham roofers covering the whole city, and we know how the city's older slate and clay-tiled roofs behave when the weather turns.", nearby: ["West Bridgford", "Beeston", "Arnold", "Carlton"], landmarks: "throughout Nottingham, including Wollaton, Mapperley, Sneinton, Bulwell and the city centre" },
-  "roofers-long-eaton": { intro: "Sitting right on the Derby–Nottingham border, Long Eaton is packed with Victorian and Edwardian terraces from its lace-making days — many still on their original slate. We cover Long Eaton and the wider Erewash area constantly, so we're rarely more than a short drive away when a roof needs sorting.", nearby: ["Sandiacre", "Sawley", "Breaston", "Beeston"], landmarks: "across Long Eaton, Sawley, Sandiacre and Breaston" },
-  "roofers-loughborough": { intro: "Loughborough is a busy Leicestershire market and university town with a real spread of property — Victorian terraces near the centre, large student lets, and inter-war and modern semis across Charnwood. We cover Loughborough and the surrounding villages for everything from a slipped tile to a full re-roof.", nearby: ["Shepshed", "Quorn", "Barrow upon Soar", "Mountsorrel"], landmarks: "across Loughborough, Quorn, Barrow upon Soar and Shepshed" },
+  "roofers-long-eaton": { intro: "Sitting right on the Derby–Nottingham border, Long Eaton is packed with Victorian and Edwardian terraces from its lace-making days, many still on their original slate. We cover Long Eaton and the wider Erewash area constantly, so we're rarely more than a short drive away when a roof needs sorting.", nearby: ["Sandiacre", "Sawley", "Breaston", "Beeston"], landmarks: "across Long Eaton, Sawley, Sandiacre and Breaston" },
+  "roofers-loughborough": { intro: "Loughborough is a busy Leicestershire market and university town with a real spread of property: Victorian terraces near the centre, large student lets, and inter-war and modern semis across Charnwood. We cover Loughborough and the surrounding villages for everything from a slipped tile to a full re-roof.", nearby: ["Shepshed", "Quorn", "Barrow upon Soar", "Mountsorrel"], landmarks: "across Loughborough, Quorn, Barrow upon Soar and Shepshed" },
   "roofers-shepshed": { intro: "Shepshed sits just west of Loughborough on the edge of the National Forest, with a mix of older brick cottages, post-war housing and newer estates. We're regularly in Shepshed handling repairs, re-roofs, flat roofing, chimneys and guttering.", nearby: ["Loughborough", "Hathern", "Belton", "Hoton"], landmarks: "across Shepshed, Hathern, Belton and the surrounding villages" },
   "roofers-coalville": { intro: "Coalville grew up around the Leicestershire coalfield, so it's packed with solid Victorian and Edwardian terraces alongside large modern estates. We cover Coalville and the surrounding National Forest towns for pitched and flat roofing, repairs and complete re-roofs.", nearby: ["Whitwick", "Ibstock", "Hugglescote", "Bardon"], landmarks: "throughout Coalville, Whitwick, Ibstock and Hugglescote" },
   "roofers-ashby": { intro: "Ashby-de-la-Zouch is a handsome Leicestershire market town with period properties, a conservation core and plenty of newer development around the edges. We work right across Ashby and the National Forest villages, matching materials so repairs and re-roofs suit the property.", nearby: ["Measham", "Moira", "Coalville", "Smisby"], landmarks: "across Ashby-de-la-Zouch, Measham, Moira and Smisby" },
@@ -263,7 +263,7 @@ function trustStrip() {
 function areasSection(currentSlug) {
   const groups = ["Derby & Nottingham", "Leicestershire", "Staffordshire"];
   const labels = { "Derby & Nottingham": "Derby &amp; Nottingham", "Leicestershire": "Leicestershire", "Staffordshire": "Staffordshire" };
-  let html = `<section class="section areas" id="areas"><div class="wrap"><div class="section-head center"><span class="eyebrow">Areas we cover</span><h2>Roofers across the East Midlands</h2><p>From Derby and Nottingham down through Leicestershire and the surrounding towns — find your area below.</p></div>`;
+  let html = `<section class="section areas" id="areas"><div class="wrap"><div class="section-head center"><span class="eyebrow">Areas we cover</span><h2>Roofers across the East Midlands</h2><p>From Derby and Nottingham down through Leicestershire and the surrounding towns, find your area below.</p></div>`;
   groups.forEach(g => {
     const list = TOWNS.filter(t => t.group === g);
     html += `<div style="margin-bottom:22px"><div class="eyebrow" style="margin-bottom:12px">${labels[g]}</div><div class="area-grid">` +
@@ -344,7 +344,7 @@ function sidebar(activeSlug, quoteHref) {
   return `<aside>
     <div class="side-card sticky">
       <h3>Free, no-obligation quote</h3>
-      <p>Tell us about your roof and we'll get straight back to you — usually the same day.</p>
+      <p>Tell us about your roof and we'll get straight back to you, usually the same day.</p>
       <a class="btn btn-primary" href="${quoteHref || "contact.html"}">${I.quote}Request a quote</a>
       <a class="btn btn-ghost" href="${TEL}" style="border-color:rgba(255,255,255,.4)">${I.phone}${SITE.phone}</a>
       <span class="callnum" style="margin-top:6px">${SITE.hours}</span>

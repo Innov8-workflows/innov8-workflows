@@ -1,4 +1,4 @@
-/* Derby & Nottingham Roofing — shared site script */
+/* Derby & Nottingham Roofing, shared site script */
 (function () {
   "use strict";
   var PHONE_INTL = "447944635771";
@@ -88,7 +88,7 @@
   }
   document.querySelectorAll(".ba-video").forEach(autoplay);
 
-  /* ---------- hero: sequential bg videos — 1st starts 1s in, crossfade as each clip ends, then loop ---------- */
+  /* ---------- hero: sequential bg videos: 1st starts 1s in, crossfade as each clip ends, then loop ---------- */
   (function () {
     var hv = [].slice.call(document.querySelectorAll(".hero-video"));
     if (!hv.length) return;

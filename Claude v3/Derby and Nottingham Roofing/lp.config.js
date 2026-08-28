@@ -1,5 +1,5 @@
 /* ============================================================
-   Landing-page client config — Derby & Nottingham Roofing
+   Landing-page client config, Derby & Nottingham Roofing
    The ONLY per-client file besides lp.data.js. build-lp.js contains
    no client strings, so a new client is: copy build-lp/lp.css/lp.js,
    write these two files, drop media in, run generate.js.

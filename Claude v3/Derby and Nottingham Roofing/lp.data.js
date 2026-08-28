@@ -18,6 +18,11 @@ module.exports = [
     cta: "Get my free quote",
     proof: { h: "A worn roof, stripped and rebuilt properly",
              p: "Taken right back to the rafters, new membrane and battens throughout, then re-covered and left watertight for decades." },
+    // Real transformation footage. flat-roofing has none, so it omits the
+    // section rather than showing a pitched roof on a flat-roof page.
+    ba: { src: "assets/before-after.mp4", poster: "assets/img/g1.jpg",
+          tag: "Before &rarr; After", h: "Watch a tired roof become a new one",
+          p: "Stripped back, new membrane and battens, then re-covered in natural slate with new guttering. This is the standard every re-roof gets." },
     q1: { field: "q1", label: "Job", ask: "What are you looking at?",
           opts: ["Full re-roof", "New roof on an extension or garage", "Roof's past it — need advice", "New build"] },
     q2: { field: "q2", label: "Property", ask: "What sort of property is it?",
@@ -34,6 +39,9 @@ module.exports = [
     cta: "Get my free quote",
     proof: { h: "Found the leak two others missed",
              p: "A proper inspection, the actual cause fixed rather than patched, and the roof left watertight." },
+    ba: { src: "assets/before-after-03.mp4", poster: "assets/img/ba3-poster.jpg",
+          tag: "Before &rarr; After", h: "See a leaking chimney put right",
+          p: "Stack repointed, new lead flashing dressed in properly and the surrounding tiles reset. Fixed at the cause, not patched over." },
     q1: { field: "q1", label: "Problem", ask: "What's happening with the roof?",
           opts: ["Leak / water coming in", "Slipped or missing tiles", "Storm damage", "Ridge, flashing or chimney", "Not sure — needs a look"] },
     q2: { field: "q2", label: "Urgency", ask: "How soon do you need someone?",

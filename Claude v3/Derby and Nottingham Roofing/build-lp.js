@@ -74,9 +74,29 @@ function lpHero(lp, C) {
 </section>`;
 }
 
+/* Transformation video — sits directly after the hero. Anyone who scrolls past
+   the quiz is not ready to act; they are asking "can these people actually do
+   this?". A transformation answers that with no reading required.
+   Footage is portrait (720x960), so it is a card beside the copy, not full-bleed.
+   Returns "" for a page with no genuine footage. */
+function lpBeforeAfter(lp, C) {
+  if (!lp.ba) return "";
+  return `<section class="lp-sec"><div class="lp-wrap lp-2col">
+  <div class="lp-ba">
+    <span class="lp-ba-tag">${lp.ba.tag}</span>
+    <video poster="${C.base}${lp.ba.poster}" muted playsinline loop preload="none" data-src="${C.base}${lp.ba.src}"></video>
+  </div>
+  <div>
+    <span class="lp-eyebrow">Real job, real result</span>
+    <h2>${lp.ba.h}</h2>
+    <p>${lp.ba.p}</p>
+    <a class="lp-btn" href="#quiz">${lp.cta} ${I.arrow}</a>
+  </div>
+</div></section>`;
+}
+
 function lpProof(lp, C) {
   return `<section class="lp-sec"><div class="lp-wrap lp-2col">
-  <div class="lp-shot"><img src="${C.base}${C.media.guarantee}" alt="A customer being handed their written workmanship guarantee" loading="lazy"></div>
   <div>
     <span class="lp-eyebrow">No obligation, no pressure</span>
     <h2>${lp.proof.h}</h2>
@@ -84,11 +104,13 @@ function lpProof(lp, C) {
     <ol class="lp-steps">${C.steps.map(([h, p]) => `<li><b>${h}</b><span>${p}</span></li>`).join("")}</ol>
     <a class="lp-btn" href="#quiz">${lp.cta} ${I.arrow}</a>
   </div>
+  <div class="lp-shot"><img src="${C.base}${C.media.guarantee}" alt="A customer being handed their written workmanship guarantee" loading="lazy"></div>
 </div></section>`;
 }
 
 function lpTeam(lp, C) {
   return `<section class="lp-sec lp-alt"><div class="lp-wrap lp-2col">
+  <div class="lp-shot"><img src="${C.base}${C.media.team}" alt="The ${esc(SITE.name)} team on site" loading="lazy"></div>
   <div>
     <span class="lp-eyebrow">Meet the team</span>
     <h2>${SITE.years} years on roofs across ${SITE.area}</h2>
@@ -96,7 +118,6 @@ function lpTeam(lp, C) {
     <p>Fully insured with ${SITE.liability} public liability, and every job backed by our written ${SITE.guarantee} guarantee.</p>
     <a class="lp-btn" href="#quiz">${lp.cta} ${I.arrow}</a>
   </div>
-  <div class="lp-shot"><img src="${C.base}${C.media.team}" alt="The ${esc(SITE.name)} team on site" loading="lazy"></div>
 </div></section>`;
 }
 
@@ -154,8 +175,8 @@ function buildLandingPage(lp, C) {
     schema: [localBusinessLD()],
   };
   const body = lp.layout === "meta"
-    ? [lpHeader(C), lpHero(lp, C), lpProof(lp, C), lpTeam(lp, C), lpGallery(C), lpReviews(), lpCta(lp, C), lpFooter(C)]
-    : [lpHeader(C), lpHero(lp, C), lpProof(lp, C), lpTeam(lp, C), lpGallery(C), lpReviews(), lpCta(lp, C), lpFooter(C)];
+    ? [lpHeader(C), lpHero(lp, C), lpBeforeAfter(lp, C), lpProof(lp, C), lpTeam(lp, C), lpGallery(C), lpReviews(), lpCta(lp, C), lpFooter(C)]
+    : [lpHeader(C), lpHero(lp, C), lpBeforeAfter(lp, C), lpProof(lp, C), lpTeam(lp, C), lpGallery(C), lpReviews(), lpCta(lp, C), lpFooter(C)];
 
   const cfg = JSON.stringify({
     lp: lp.slug, service: lp.service, wa: SITE.phoneIntl, biz: SITE.name,
@@ -171,4 +192,4 @@ function buildLandingPage(lp, C) {
   return { file: "lp/" + lp.slug + "/index.html", html: B.head(p) + body.join("\n") + tail };
 }
 
-module.exports = { buildLandingPage, lpHeader, lpHero, lpQuiz, lpProof, lpTeam, lpGallery, lpReviews, lpCta, lpFooter };
+module.exports = { buildLandingPage, lpHeader, lpHero, lpQuiz, lpBeforeAfter, lpProof, lpTeam, lpGallery, lpReviews, lpCta, lpFooter };

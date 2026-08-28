@@ -145,7 +145,7 @@
   }, true);
 
   /* ---------- hero video: lazy, muted, paused off-screen ---------- */
-  var v = $(".lp-hero-bg");
+  $$(".lp-hero-bg, .lp-ba video").forEach(function (v) {
   if (v && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
     var kick = function () {
       if (!v.src) v.src = v.getAttribute("data-src");
@@ -158,6 +158,7 @@
     } else { kick(); }
     document.addEventListener("touchstart", kick, { once: true, passive: true });
   }
+  });
 
   /* ---------- reviews ---------- */
   var rw = $("#lpRevs"), R = window.DNR_REVIEWS || [];

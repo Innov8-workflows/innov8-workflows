@@ -113,12 +113,6 @@ body.lp .lp-head-c { text-align: center; margin-bottom: 30px; }
 body.lp .lp-ba { position: relative; border-radius: var(--r); overflow: hidden;
   box-shadow: var(--shadow); background: var(--ink); max-width: 400px; width: 100%; margin: 0 auto; }
 body.lp .lp-ba video { display: block; width: 100%; aspect-ratio: 3/4; object-fit: cover; }
-body.lp .lp-ba { cursor: pointer; }
-body.lp .lp-ba::after { content: ""; position: absolute; inset: 0; margin: auto;
-  width: 68px; height: 68px; border-radius: 50%; background: rgba(255,255,255,.92)
-  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230C0E13'%3E%3Cpath d='M8 5v14l11-7z'/%3E%3C/svg%3E") center/30px no-repeat;
-  box-shadow: 0 6px 22px rgba(0,0,0,.32); opacity: 0; transition: opacity .2s; pointer-events: none; }
-body.lp .lp-ba.is-paused::after { opacity: 1; }
 body.lp .lp-ba-tag { position: absolute; top: 13px; left: 13px; z-index: 2;
   background: rgba(10,12,18,.82); color: #fff; padding: 7px 14px; border-radius: 999px;
   font-family: 'Barlow', sans-serif; font-weight: 700; font-size: .74rem;

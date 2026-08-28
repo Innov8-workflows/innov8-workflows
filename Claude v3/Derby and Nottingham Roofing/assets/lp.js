@@ -145,49 +145,30 @@
   }, true);
 
   /* ---------- videos ----------
-     Two different jobs, so two different rules:
-
-     .lp-hero-bg is DECORATIVE background motion, so prefers-reduced-motion
-     suppresses it and the poster stands in. Fine.
-
-     .lp-ba video is CONTENT — the transformation the section exists to show.
-     It must ALWAYS load, whatever the motion preference, or the visitor gets a
-     frozen image and concludes the video is broken. Under reduced motion, or
-     when the browser refuses autoplay (Brave and iOS low-power both do), we
-     surface a play button instead of silently showing nothing. */
-  function lazyVideo(v, opts) {
-    var reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
-    var wrap = v.closest(".lp-ba");
+     Autoplay, muted, looping, paused off-screen. Deliberately does NOT check
+     prefers-reduced-motion: these clips are the proof the page is built on and
+     Jay wants them running for everyone. No play button by request - if a
+     browser refuses the autoplay outright we retry silently on the visitor's
+     first interaction rather than showing a control. */
+  function lazyVideo(v) {
     var load = function () { if (!v.src && v.getAttribute("data-src")) v.src = v.getAttribute("data-src"); };
-    var mark = function () { if (wrap) wrap.classList.toggle("is-paused", v.paused); };
     var kick = function () {
-      load();
-      if (opts.decorative && reduced) return;      // background motion: honour the preference
-      v.muted = true;
+      load(); v.muted = true;
       var p = v.play();
-      if (p && p.then) p.then(mark).catch(mark);   // blocked autoplay -> show the play button
-      else mark();
+      if (p && p.catch) p.catch(function () { retry = true; });
     };
-    if (opts.decorative && reduced) return;        // never even fetch a decorative clip
+    var retry = false;
     if ("IntersectionObserver" in window) {
       new IntersectionObserver(function (es) {
-        es.forEach(function (x) {
-          if (x.isIntersecting) { reduced && !opts.decorative ? (load(), mark()) : kick(); }
-          else if (!v.paused) { v.pause(); mark(); }
-        });
+        es.forEach(function (x) { x.isIntersecting ? kick() : v.pause(); });
       }, { threshold: 0.05 }).observe(v);
     } else { kick(); }
-    v.addEventListener("play", mark);
-    v.addEventListener("pause", mark);
-    document.addEventListener("touchstart", function () { if (!opts.decorative || !reduced) kick(); }, { once: true, passive: true });
-    if (wrap) wrap.addEventListener("click", function () {   // tap anywhere on the card to play/pause
-      load();
-      if (v.paused) { v.muted = true; var q = v.play(); if (q && q.catch) q.catch(function () {}); }
-      else v.pause();
+    // Invisible safety net: some browsers only release autoplay after a gesture.
+    ["touchstart", "click", "scroll"].forEach(function (ev) {
+      document.addEventListener(ev, function () { if (retry && v.paused) kick(); }, { once: true, passive: true });
     });
   }
-  $$(".lp-hero-bg").forEach(function (v) { lazyVideo(v, { decorative: true }); });
-  $$(".lp-ba video").forEach(function (v) { lazyVideo(v, { decorative: false }); });
+  $$(".lp-hero-bg, .lp-ba video").forEach(lazyVideo);
 
   /* ---------- reviews ---------- */
   var rw = $("#lpRevs"), R = window.DNR_REVIEWS || [];

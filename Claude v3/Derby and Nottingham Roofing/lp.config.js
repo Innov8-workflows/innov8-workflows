@@ -12,8 +12,8 @@ module.exports = {
   // Shown under the quiz. Only claims we can evidence.
   badges: ["£5m Public Liability", "10-Year Guarantee", "40 Years' Experience", "Free Roof Surveys"],
   media: {
-    heroVideo: "assets/hero.mp4",
-    heroPoster: "assets/img/hero-poster.jpg",
+    heroVideo: "assets/orbital-03.mp4",
+    heroPoster: "assets/img/hero-orbital-poster.jpg",
     team: "assets/img/team.jpg",
     guarantee: "assets/img/guarantee.jpg",
     handshake: "assets/img/handshake.jpg",

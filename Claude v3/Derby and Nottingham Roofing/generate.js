@@ -1018,6 +1018,22 @@ ${areasSection()}
 ${finalCta()}`;
   return head(p) + navbar(p.active) + body + footer();
 }
+/* ---------- PPC landing pages ----------
+   Written here, AFTER the sitemap block, and never added to OUT — same pattern
+   as review.html / 404.html, so they stay out of sitemap.xml. Each is noindex.
+   Do NOT add Disallow: /lp/ to robots.txt: blocking the crawl stops Google ever
+   seeing the noindex, and AdsBot needs to fetch the page to score it. */
+const path = require("path");
+const LP = require("./build-lp.js");
+const LP_CFG = require("./lp.config.js");
+const LP_PAGES = require("./lp.data.js");
+LP_PAGES.forEach(lp => {
+  const { file, html } = LP.buildLandingPage(lp, LP_CFG);
+  fs.mkdirSync(path.dirname(file), { recursive: true });
+  fs.writeFileSync(file, html);
+});
+console.log("Landing pages: " + LP_PAGES.map(l => "/lp/" + l.slug + "/").join("  "));
+
 fs.writeFileSync("review.html", buildReview());
 fs.writeFileSync("404.html", build404());
 fs.writeFileSync("thank-you.html", buildThankYou());

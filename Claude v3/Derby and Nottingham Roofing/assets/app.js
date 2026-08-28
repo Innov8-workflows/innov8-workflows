@@ -147,16 +147,7 @@
   })();
 
   /* ---------- reviews data ---------- */
-  var REVIEWS = [
-    { name: "Sarah M.", area: "Derby", time: "2 weeks ago", text: "Brilliant from start to finish. Came out the same day for a quote, turned up when they said and left everything spotless. Roof looks fantastic — couldn't recommend them more." },
-    { name: "James P.", area: "Nottingham", time: "1 month ago", text: "Had a leak that two other roofers couldn't sort. These guys found the problem straight away and fixed it properly. Fair price and a proper job. Top marks." },
-    { name: "Linda H.", area: "Loughborough", time: "1 month ago", text: "Lovely, polite lads. Re-roofed our extension and you can tell they take pride in their work. Kept us updated the whole way through. Would 100% use again." },
-    { name: "Mark T.", area: "Long Eaton", time: "2 months ago", text: "Replaced our guttering and fascias. Quick, tidy and a great finish. Honest quote with no surprises at the end. Really pleased with it." },
-    { name: "Emma W.", area: "Coalville", time: "3 months ago", text: "Storm took some tiles off and they were out fast to make it safe, then back to do the full repair. Friendly, reliable and reasonably priced. Highly recommend." },
-    { name: "David R.", area: "Ashby-de-la-Zouch", time: "3 months ago", text: "New flat roof on our garage in EPDM rubber. Spotless job, fair price and done in a day. You can tell they know what they're doing. Cheers lads." },
-    { name: "Karen S.", area: "Lichfield", time: "4 months ago", text: "Chimney was leaking and the flashing had gone. Sorted it properly, repointed the stack and it's been bone dry since. Polite, punctual and tidy." },
-    { name: "Paul G.", area: "Shepshed", time: "5 months ago", text: "Full re-roof on a 1930s semi. Scaffolding up when promised, great communication and a beautiful finish. Couldn't fault them. Highly recommended." }
-  ];
+  var REVIEWS = window.DNR_REVIEWS || [];
   var GOOGLE_REVIEWS_URL = "https://g.page/r/CeIJ2bFhP2mrEBM";
   var G_LOGO = '<svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 12.955 4 4 12.955 4 24s8.955 20 20 20 20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z"/><path fill="#FF3D00" d="M6.306 14.691l6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 16.318 4 9.656 8.337 6.306 14.691z"/><path fill="#4CAF50" d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238C29.211 35.091 26.715 36 24 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z"/><path fill="#1976D2" d="M43.611 20.083H42V20H24v8h11.303c-.792 2.237-2.231 4.166-4.087 5.571l.003-.002 6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917z"/></svg>';
   var PIN_ICO = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>';

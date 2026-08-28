@@ -50,8 +50,14 @@ body.lp .q-back:hover { color: var(--orange-deep); }
 body.lp .q-bar { height: 6px; border-radius: 999px; background: var(--paper-3, #E9EDF3); overflow: hidden; margin-bottom: 18px; }
 body.lp .q-bar i { display: block; height: 100%; width: 25%; border-radius: 999px;
   background: linear-gradient(90deg, var(--orange), var(--orange-bright)); transition: width .35s ease; }
-body.lp .q-step { display: none; }
-body.lp .q-step.on { display: block; animation: lpUp .28s ease both; }
+/* All steps share one grid cell, so the card is always as tall as its tallest
+   step and switching step cannot resize the hero around it. visibility rather
+   than display keeps the cell sized; it also removes hidden inputs from the
+   tab order, which display:none did for free. */
+body.lp .q-body { display: grid; }
+body.lp .q-step { grid-area: 1 / 1; visibility: hidden; opacity: 0; pointer-events: none; }
+body.lp .q-step.on { visibility: visible; opacity: 1; pointer-events: auto; animation: lpUp .28s ease both; }
+body.lp .q-done { align-self: center; }
 @keyframes lpUp { from { opacity: 0; transform: translateY(7px); } to { opacity: 1; transform: none; } }
 body.lp .q-ask { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; text-transform: uppercase;
   font-size: 1.5rem; line-height: 1.12; color: var(--ink); margin: 0 0 14px; }

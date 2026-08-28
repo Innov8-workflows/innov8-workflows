@@ -34,6 +34,7 @@ function lpQuiz(lp, C) {
     <button type="button" class="q-back" data-q-back hidden>&#8249; Back</button>
   </div>
   <div class="q-bar"><i data-q-fill></i></div>
+  <div class="q-body">
   ${step(1, lp.q1.ask, `<div class="q-opts">${lp.q1.opts.map(o => opt(lp.q1.field, o)).join("")}</div>`)}
   ${step(2, lp.q2.ask, `<div class="q-opts">${lp.q2.opts.map(o => opt(lp.q2.field, o)).join("")}</div>`)}
   ${step(3, "Where&rsquo;s the property?", `<div class="q-opts">${C.areas.map(a => opt("area", a)).join("")}</div>`)}
@@ -53,6 +54,7 @@ function lpQuiz(lp, C) {
       <a class="q-wa" data-q-wa data-noleadlog href="#" target="_blank" rel="noopener">${I.wa}Send it on WhatsApp too</a>
       <a class="q-tel" data-noleadlog href="${TEL}">${I.phone}Or call us now</a>
     </div>
+  </div>
   </div>
 </div>`;
 }

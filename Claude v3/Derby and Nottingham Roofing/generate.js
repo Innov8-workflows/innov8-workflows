@@ -537,7 +537,7 @@ ${trustStrip()}
 </div></div></section>
 ${reviewsSection()}
 <section class="section about" id="about"><div class="wrap about-grid">
-  <div class="about-photo"><img src="assets/img/team.jpg" alt="The ${esc(SITE.name)} team on site during a full re-roof" loading="lazy"></div>
+  <div class="about-photo"><img src="assets/img/team.jpg" alt="The ${esc(SITE.name)} team on site during a full re-roof" loading="lazy"><div class="photo-inset"><img src="assets/img/guarantee-2.jpg" alt="A customer receiving her written workmanship guarantee from ${esc(SITE.name)}" loading="lazy"></div></div>
   <div class="about-body">
     <span class="eyebrow">Meet the team</span><h2>The roofers behind the work</h2>
     <p>${SITE.name} is a family-run roofing company with over 40 years' experience and a team of 15. We've grown by word of mouth — one happy customer at a time — and we treat every roof like it's our own.</p>

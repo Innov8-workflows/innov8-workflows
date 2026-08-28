@@ -126,9 +126,26 @@ function serviceLD(name, desc) {
     areaServed: TOWNS.map(t => t.town) };
 }
 
+/* ---------- content security policy ----------
+   Single source of truth. This string was previously duplicated verbatim in
+   three places (here, thank-you and review), so a change had to be made three
+   times or the pages silently diverged. Landing pages extend it via cspWith(). */
+const CSP = "default-src 'self'; base-uri 'self'; form-action 'self'; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com https://www.googletagmanager.com https://www.google.com https://www.google.co.uk https://googleads.g.doubleclick.net https://www.googleadservices.com https://ad.doubleclick.net; media-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://tagassistant.google.com https://www.google-analytics.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://www.google.com https://crm.innov8workflows.co.uk; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://region1.google-analytics.com https://www.googletagmanager.com https://tagassistant.google.com https://googleads.g.doubleclick.net https://www.google.com https://script.google.com https://script.googleusercontent.com https://crm.innov8workflows.co.uk https://ad.doubleclick.net; frame-src https://www.googletagmanager.com https://tagassistant.google.com https://td.doubleclick.net https://www.google.com";
+/* Returns the CSP with extra hosts appended to the named directives, e.g.
+   cspWith({ "script-src": ["https://connect.facebook.net"] }) for the Meta pixel. */
+function cspWith(extra) {
+  return CSP.split(";").map(part => {
+    const name = part.trim().split(/s+/)[0];
+    return extra[name] ? part + " " + extra[name].join(" ") : part;
+  }).join(";");
+}
+
 /* ---------- chrome ---------- */
 function head(p) {
-  const canon = SITE.url + "/" + (p.slug === "index.html" ? "" : p.slug);
+  // base: asset prefix for pages in a subdirectory (landing pages pass "../../").
+  // url:  canonical path override, so lp/new-roof/index.html canonicalises to /lp/new-roof/.
+  const B = p.base || "";
+  const canon = SITE.url + "/" + (p.url !== undefined ? p.url : (p.slug === "index.html" ? "" : p.slug));
   const ogImg = SITE.url + "/assets/img/" + (p.ogImg || "g1.jpg");
   return `<!DOCTYPE html>
 <html lang="en-GB">
@@ -151,7 +168,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   gtag('config', 'G-T879LP6WTQ');
 </script>
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; form-action 'self'; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com https://www.googletagmanager.com https://www.google.com https://www.google.co.uk https://googleads.g.doubleclick.net https://www.googleadservices.com; media-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://tagassistant.google.com https://www.google-analytics.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://www.google.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://region1.google-analytics.com https://www.googletagmanager.com https://tagassistant.google.com https://googleads.g.doubleclick.net https://www.google.com https://script.google.com https://script.googleusercontent.com; frame-src https://www.googletagmanager.com https://tagassistant.google.com https://td.doubleclick.net https://www.google.com">
+<meta http-equiv="Content-Security-Policy" content="${p.csp || CSP}">
 <title>${esc(p.title)}</title>
 <meta name="description" content="${esc(p.desc)}">
 <link rel="canonical" href="${canon}">
@@ -167,17 +184,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:description" content="${esc(p.desc)}">
 <meta name="twitter:image" content="${ogImg}">
 <meta name="theme-color" content="#0C0E13">
-<link rel="icon" href="assets/img/favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16x16.png">
-<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="icon" href="${B}assets/img/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="${B}assets/img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="${B}assets/img/favicon-16x16.png">
+<link rel="apple-touch-icon" href="${B}assets/img/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css">
-${ld(p.schema)}
+<link rel="stylesheet" href="${B}assets/styles.css">
+${(p.css || []).map(h => `
+<link rel="stylesheet" href="${B}${h}">`).join("")}${p.headExtra || ""}${ld(p.schema)}
 </head>
-<body>
+<body${p.bodyClass ? ` class="${p.bodyClass}"` : ""}>
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MN5RZ2R4"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>

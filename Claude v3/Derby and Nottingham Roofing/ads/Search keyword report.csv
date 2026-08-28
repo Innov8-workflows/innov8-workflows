@@ -1,0 +1,35 @@
+Search keyword report
+"July 12, 2026 - August 12, 2026"
+Keyword status,Keyword,Match type,Status,Status reasons,Final URL,Impr.,CTR,Currency code,Cost,Clicks,Conv. rate,Conversions,Avg. CPC,Cost / conv.
+Enabled,"""roof replacement long eaton""",Phrase match,Not eligible,rarely served,,0, --,GBP,0.00,0,0.00%,0.00,0,0.00
+Enabled,"""new roof nottingham""",Phrase match,Eligible,,,0, --,GBP,0.00,0,0.00%,0.00,0,0.00
+Enabled,[new roof nottingham],Exact match,Eligible,,,1,0.00%,GBP,0.00,0,0.00%,0.00,0,0.00
+Enabled,"""roof replacement derby""",Phrase match,Eligible,,,5,0.00%,GBP,0.00,0,0.00%,0.00,0,0.00
+Enabled,"""roof replacement""",Phrase match,Eligible,,,360,7.22%,GBP,48.07,26,0.00%,0.00,1.85,0.00
+Enabled,"""roof replacement near me""",Phrase match,Eligible,,,0, --,GBP,0.00,0,0.00%,0.00,0,0.00
+Enabled,"""new roof derbyshire""",Phrase match,Not eligible,rarely served,,0, --,GBP,0.00,0,0.00%,0.00,0,0.00
+Enabled,[new roof derby],Exact match,Eligible,,,2,0.00%,GBP,0.00,0,0.00%,0.00,0,0.00
+Enabled,"""new roof long eaton""",Phrase match,Not eligible,rarely served,,0, --,GBP,0.00,0,0.00%,0.00,0,0.00
+Enabled,[roof replacement],Exact match,Eligible,,,2,50.00%,GBP,2.78,1,0.00%,0.00,2.78,0.00
+Enabled,[roof replacement derby],Exact match,Eligible,,,0, --,GBP,0.00,0,0.00%,0.00,0,0.00
+Enabled,"""new tiled roof""",Phrase match,Eligible,,,827,2.06%,GBP,32.42,17,0.00%,0.00,1.91,0.00
+Enabled,[new roof],Exact match,Eligible,,,0, --,GBP,0.00,0,0.00%,0.00,0,0.00
+Enabled,"""new roof nottinghamshire""",Phrase match,Not eligible,rarely served,,0, --,GBP,0.00,0,0.00%,0.00,0,0.00
+Enabled,"""roof beyond repair""",Phrase match,Eligible,,,0, --,GBP,0.00,0,0.00%,0.00,0,0.00
+Enabled,"""reroofing""",Phrase match,Eligible,,,37,0.00%,GBP,0.00,0,0.00%,0.00,0,0.00
+Enabled,"""re roof""",Phrase match,Eligible,,,1,0.00%,GBP,0.00,0,0.00%,0.00,0,0.00
+Enabled,[roof replacement nottingham],Exact match,Eligible,,,0, --,GBP,0.00,0,0.00%,0.00,0,0.00
+Enabled,"""roof installation""",Phrase match,Eligible,,,363,3.86%,GBP,32.52,14,0.00%,0.00,2.32,0.00
+Enabled,"""new roof derby""",Phrase match,Eligible,,,2,0.00%,GBP,0.00,0,0.00%,0.00,0,0.00
+Enabled,"""new roof near me""",Phrase match,Eligible,,,0, --,GBP,0.00,0,0.00%,0.00,0,0.00
+Enabled,"""new slate roof""",Phrase match,Eligible,,,214,2.80%,GBP,12.28,6,0.00%,0.00,2.05,0.00
+Enabled,"""new roof ilkeston""",Phrase match,Not eligible,rarely served,,0, --,GBP,0.00,0,0.00%,0.00,0,0.00
+Enabled,"""roof replacement nottingham""",Phrase match,Eligible,,,6,0.00%,GBP,0.00,0,0.00%,0.00,0,0.00
+Enabled,"""new roof""",Phrase match,Eligible,,,33,3.03%,GBP,2.37,1,0.00%,0.00,2.37,0.00
+ --,,Total: All but removed keywords, --,,,"1,853",3.51%,GBP,130.44,65,0.00%,0.00,2.01,0.00
+,,Total: Keywords in your ad group,,,,"1,853",3.51%,GBP,130.44,65,0.00%,0.00,2.01,0.00
+,,Total: Your keywords,,,,"1,853",3.51%,GBP,130.44,65,0.00%,0.00,2.01,0.00
+,,Total: AI Max expanded matches,,,,0, --,GBP,0.00,0,0.00%,0.00,0,0.00
+,,Total: AI Max landing page matches,,,,0, --,GBP,0.00,0,0.00%,0.00,0,0.00
+,,Total: URL inclusions in your ad group,,,,0, --,GBP,0.00,0,0.00%,0.00,0,0.00
+,,Total: Ad group,,,,"1,853",3.51%,GBP,130.44,65,0.00%,0.00,2.01,0.00

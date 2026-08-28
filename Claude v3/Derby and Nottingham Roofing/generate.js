@@ -433,6 +433,9 @@ function buildHome() {
     ["g2.jpg", "Chimney works &middot; New lead flashing"],
     ["g3.jpg", "Hip roof &middot; Ridge re-bed"],
     ["g4.jpg", "Slate roof &middot; Dormer detail"],
+    ["crew-at-work.jpg", "Natural slate &middot; Our team on site"],
+    ["craftsmanship.jpg", "New battens &amp; membrane &middot; Full strip"],
+    ["guarantee-2.jpg", "Job complete &middot; Written guarantee handed over"],
   ].map(([img, cap]) => `<div class="gal-item"><img src="assets/img/${img}" alt="${cap.replace(/&middot;/g, "-").replace(/&amp;/g, "&")} by ${SITE.name}" loading="lazy"><div class="cap">${cap}</div></div>`).join("");
 
   const body = `
@@ -524,7 +527,7 @@ ${trustStrip()}
     </div>
   </div>
   <div>
-    <div class="why-photo"><img src="assets/img/roof1.jpg" alt="Tiled roof completed by ${SITE.name}" loading="lazy"></div>
+    <div class="why-photo"><img src="assets/img/guarantee.jpg" alt="A ${SITE.name} customer being handed their written workmanship guarantee" loading="lazy"></div>
     <div class="why-stats">
       <div class="why-stat"><div class="n">40</div><div class="l">Years&rsquo; experience</div></div>
       <div class="why-stat"><div class="n">£5m</div><div class="l">Insured</div></div>
@@ -534,7 +537,7 @@ ${trustStrip()}
 </div></div></section>
 ${reviewsSection()}
 <section class="section about" id="about"><div class="wrap about-grid">
-  <div class="about-photo"><img src="assets/img/truck.jpg" alt="${esc(SITE.name)} van loaded with materials" loading="lazy"></div>
+  <div class="about-photo"><img src="assets/img/team.jpg" alt="The ${esc(SITE.name)} team on site during a full re-roof" loading="lazy"></div>
   <div class="about-body">
     <span class="eyebrow">Meet the team</span><h2>The roofers behind the work</h2>
     <p>${SITE.name} is a family-run roofing company with over 40 years' experience and a team of 15. We've grown by word of mouth — one happy customer at a time — and we treat every roof like it's our own.</p>
@@ -555,6 +558,8 @@ function contactSection() {
       <div class="section-head" style="margin-bottom:0"><span class="eyebrow">Get in touch</span><h2>Free quote, no obligation</h2></div>
       <p>Tell us about your roof and we'll come back to you fast — usually the same day. Send the form and it'll open straight in WhatsApp, or call us now.</p>
       <div class="ci-item"><div class="ic">${I.phone}</div><div class="t"><small>Call or text</small><a href="${TEL}">${SITE.phone}</a></div></div>
+      <div class="ci-item"><div class="ic">${I.phone}</div><div class="t"><small>Derby office</small><a href="tel:+${SITE.phoneDerbyIntl}">${SITE.phoneDerby}</a></div></div>
+      <div class="ci-item"><div class="ic">${I.phone}</div><div class="t"><small>Nottingham office</small><a href="tel:+${SITE.phoneNottsIntl}">${SITE.phoneNotts}</a></div></div>
       <div class="ci-item"><div class="ic">${I.mail}</div><div class="t"><small>Email</small><a href="mailto:${SITE.email}">${SITE.email}</a></div></div>
       <div class="ci-item"><div class="ic">${I.pin}</div><div class="t"><small>Areas covered</small><span>Derby &amp; Nottingham</span></div></div>
       <div class="ci-item"><div class="ic">${I.clock}</div><div class="t"><small>Hours</small><span>${SITE.hours}</span></div></div>
@@ -577,7 +582,7 @@ function contactSection() {
 
 /* ---------- about page ---------- */
 function buildAbout() {
-  const p = { slug: "about.html", active: "about", ogImg: "truck.jpg",
+  const p = { slug: "about.html", active: "about", ogImg: "team.jpg",
     title: `About Us | ${SITE.name} | Local Roofers Derby & Nottingham`,
     desc: `Meet ${SITE.name} — a local, family-run, fully-insured roofing team covering Derby, Nottingham and the East Midlands. Honest quotes, tidy work and a workmanship guarantee.`,
     schema: [localBusinessLD(), breadcrumbLD([{ name: "Home", slug: "" }, { name: "About", slug: "about.html" }])] };
@@ -587,7 +592,7 @@ ${pageHero({ heroImg: "work-2.jpg", eyebrow: "About us", h1: 'The roofers behind
     crumbs: [{ name: "Home", slug: "index.html" }, { name: "About" }] })}
 ${trustStrip()}
 <section class="section about"><div class="wrap about-grid">
-  <div class="about-photo"><img src="assets/img/truck.jpg" alt="${esc(SITE.name)} van and team" loading="lazy"></div>
+  <div class="about-photo"><img src="assets/img/handshake.jpg" alt="A ${esc(SITE.name)} roofer shaking hands with a happy customer after a completed re-roof" loading="lazy"></div>
   <div class="about-body">
     <span class="eyebrow">Who we are</span><h2>Local roofers doing things properly</h2>
     <p>${SITE.name} is a family-run roofing company with over 40 years' experience and a team of 15. We've built the business the slow, honest way — by word of mouth, one happy customer at a time — and that reputation is something we protect on every single job.</p>
@@ -646,6 +651,12 @@ function buildGallery() {
     ["work-1.jpg", "New slate roof &middot; Eaves &amp; valley"],
     ["work-2.jpg", "Roof strip &middot; Work in progress"],
     ["work-3.jpg", "Slate roof &middot; Chimney &amp; ridge"],
+    ["crew-at-work.jpg", "Natural slate &middot; Our team on site"],
+    ["craftsmanship.jpg", "New battens &amp; membrane &middot; Full strip"],
+    ["guarantee-2.jpg", "Job complete &middot; Written guarantee handed over"],
+    ["guarantee.jpg", "Every job backed by a written guarantee"],
+    ["handshake.jpg", "Happy customer &middot; Full re-roof completed"],
+    ["team.jpg", "The team on site &middot; Full re-roof"],
   ].map(([img, cap]) => `<div class="gal-item"><img src="assets/img/${img}" alt="${cap.replace(/&middot;/g, "-").replace(/&amp;/g, "&")} by ${SITE.name}" loading="lazy"><div class="cap">${cap}</div></div>`).join("");
   const body = `
 ${pageHero({ heroImg: "g1.jpg", eyebrow: "Our work", h1: 'Recent <span class="hl">roofing projects</span>',
@@ -802,6 +813,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     document.getElementById('yr').textContent = new Date().getFullYear();
   })();
 </script>
+<script defer src="https://crm.innov8workflows.co.uk/track.js" data-id="proj_645b482be6bf"></script>
 </body>
 </html>`;
 }
@@ -949,6 +961,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   set('fbBtn', FACEBOOK_REVIEW_URL, "https://www.facebook.com/search/top?q=" + encodeURIComponent("${SITE.name}"));
   document.getElementById('year').textContent = new Date().getFullYear();
 </script>
+<script defer src="https://crm.innov8workflows.co.uk/track.js" data-id="proj_645b482be6bf"></script>
 </body>
 </html>`;
 }

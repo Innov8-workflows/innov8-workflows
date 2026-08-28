@@ -12,6 +12,12 @@ const SITE = {
   url: "https://derbyandnottinghamroofing.co.uk",
   phone: "07944 635771",
   phoneIntl: "447944635771",
+  // Landlines taken from the vehicle livery / A-boards. Shown alongside the
+  // mobile: a local landline reads as an established firm, not a man with a van.
+  phoneDerby: "01332 214110",
+  phoneDerbyIntl: "441332214110",
+  phoneNotts: "0115 8556422",
+  phoneNottsIntl: "441158556422",
   email: "info@derbyandnottinghamroofing.co.uk",
   hours: "Mon–Sat, 7am–6pm",
   area: "Derby & Nottingham",
@@ -96,7 +102,7 @@ function ld(objs) {
 function localBusinessLD() {
   return {
     "@context": "https://schema.org", "@type": "RoofingContractor",
-    name: SITE.name, url: SITE.url, telephone: "+" + SITE.phoneIntl, email: SITE.email,
+    name: SITE.name, url: SITE.url, telephone: ["+" + SITE.phoneIntl, "+" + SITE.phoneDerbyIntl, "+" + SITE.phoneNottsIntl], email: SITE.email,
     image: SITE.url + "/assets/img/logo.png",
     foundingDate: SITE.founded,
     numberOfEmployees: SITE.team,
@@ -270,7 +276,7 @@ function footer() {
       <div class="foot-brand">
         <img src="assets/img/logo.png" alt="${esc(SITE.name)}" width="150" height="100">
         <p>Trusted local roofing contractors covering Derby, Nottingham and the surrounding East Midlands. Pitched roofs, flat roofs, repairs, chimneys and guttering.</p>
-        <p style="margin-top:14px"><a href="${TEL}" style="color:#fff;font-weight:700;font-size:1.15rem">${SITE.phone}</a><br><a href="mailto:${SITE.email}" style="color:#fff;font-size:.92rem">${SITE.email}</a><br><span style="font-size:.82rem">${SITE.hours}</span></p>
+        <p style="margin-top:14px"><a href="${TEL}" style="color:#fff;font-weight:700;font-size:1.15rem">${SITE.phone}</a><br><a href="tel:+${SITE.phoneDerbyIntl}" style="color:#fff;font-size:.92rem">${SITE.phoneDerby}</a> &middot; <a href="tel:+${SITE.phoneNottsIntl}" style="color:#fff;font-size:.92rem">${SITE.phoneNotts}</a><br><a href="mailto:${SITE.email}" style="color:#fff;font-size:.92rem">${SITE.email}</a><br><span style="font-size:.82rem">${SITE.hours}</span></p>
       </div>
       <div><h4>Services</h4><ul>${svc}</ul></div>
       <div><h4>Areas</h4><ul>${area}</ul></div>
@@ -290,6 +296,7 @@ function footer() {
 </footer>
 <a class="wa-float" id="waFloat" href="https://wa.me/${SITE.phoneIntl}" target="_blank" rel="noopener" aria-label="Chat to us on WhatsApp"><span class="wa-txt">Chat with us</span><span class="wa-ico">${I.wa}</span></a>
 <script src="assets/app.js"></script>
+<script defer src="https://crm.innov8workflows.co.uk/track.js" data-id="proj_645b482be6bf"></script>
 </body>
 </html>`;
 }

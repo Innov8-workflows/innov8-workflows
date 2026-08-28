@@ -168,7 +168,7 @@
       document.addEventListener(ev, function () { if (retry && v.paused) kick(); }, { once: true, passive: true });
     });
   }
-  $$(".lp-hero-bg, .lp-ba video").forEach(lazyVideo);
+  $$(".lp-hero-bg, .lp-ba video, .q-vid video").forEach(lazyVideo);
 
   /* ---------- reviews ---------- */
   var rw = $("#lpRevs"), R = window.DNR_REVIEWS || [];

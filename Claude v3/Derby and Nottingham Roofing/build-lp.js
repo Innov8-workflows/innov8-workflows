@@ -28,7 +28,12 @@ function lpQuiz(lp, C) {
   const opt = (f, v) => `<button type="button" class="opt" data-field="${f}" data-val="${esc(v)}">${v}</button>`;
   const step = (n, ask, body) => `<div class="q-step${n === 1 ? " on" : ""}" data-step="${n}">
     <p class="q-ask">${ask}</p>${body}</div>`;
+  var vid = lp.quizVideo ? `<div class="q-vid">
+    <span class="q-vid-tag"><i></i>Real transformation</span>
+    <video poster="${C.base}${lp.quizVideo.poster}" muted playsinline loop preload="none" data-src="${C.base}${lp.quizVideo.src}"></video>
+  </div>` : "";
   return `<div class="quiz" id="quiz">
+  ${vid}
   <div class="q-top">
     <span class="q-count">Step <b data-q-now>1</b> of 4</span>
     <button type="button" class="q-back" data-q-back hidden>&#8249; Back</button>
@@ -45,7 +50,8 @@ function lpQuiz(lp, C) {
       <input id="lpPhone" type="tel" inputmode="tel" autocomplete="tel" enterkeyhint="done" placeholder="So we can call you back"></div>
     <p class="q-err" data-q-err hidden></p>
     <button type="button" class="q-go" id="lpGo">${lp.cta} ${I.arrow}</button>
-    <p class="q-note">No spam, ever. Your details are only used to arrange your quote.</p>`)}
+    <p class="q-note">No spam, ever. Your details are only used to arrange your quote.</p>
+    <p class="q-call">Prefer to talk? Call us on <a href="${TEL}">${SITE.phone}</a></p>`)}
   <div class="q-step q-done" data-step="done">
     <div class="q-tick">${I.check}</div>
     <p class="q-ask" data-q-head>Thanks. We&rsquo;ve got your details</p>
@@ -57,6 +63,19 @@ function lpQuiz(lp, C) {
   </div>
   </div>
 </div>`;
+}
+
+function lpBadges(C) {
+  return `<div class="lp-badges"><div class="lp-wrap">${C.badges.map(t => `<span>${I.check}${t}</span>`).join("")}</div></div>`;
+}
+
+function lpAreas(lp, C) {
+  return `<section class="lp-sec lp-alt"><div class="lp-wrap">
+  <div class="lp-head-c"><span class="lp-eyebrow">Where we work</span><h2>Covering ${SITE.area} and beyond</h2></div>
+  <div class="lp-areas">${C.areas.filter(a => !/somewhere/i.test(a)).map(a => `<span>${I.pin || ""}${a}</span>`).join("")}</div>
+  <p class="lp-areas-note">Not sure if we reach you? Ask anyway, we travel across the East Midlands.</p>
+  <div class="lp-head-c" style="margin:26px 0 0"><a class="lp-btn" href="#quiz">${lp.cta} ${I.arrow}</a></div>
+</div></section>`;
 }
 
 function lpHero(lp, C) {
@@ -177,7 +196,7 @@ function buildLandingPage(lp, C) {
     schema: [localBusinessLD()],
   };
   const body = lp.layout === "meta"
-    ? [lpHeader(C), lpHero(lp, C), lpBeforeAfter(lp, C), lpProof(lp, C), lpTeam(lp, C), lpGallery(C), lpReviews(), lpCta(lp, C), lpFooter(C)]
+    ? [lpHeader(C), lpBadges(C), lpHero(lp, C), lpProof(lp, C), lpGallery(C), lpTeam(lp, C), lpReviews(), lpAreas(lp, C), lpCta(lp, C), lpFooter(C)]
     : [lpHeader(C), lpHero(lp, C), lpBeforeAfter(lp, C), lpProof(lp, C), lpTeam(lp, C), lpGallery(C), lpReviews(), lpCta(lp, C), lpFooter(C)];
 
   const cfg = JSON.stringify({
@@ -194,4 +213,4 @@ function buildLandingPage(lp, C) {
   return { file: "lp/" + lp.slug + "/index.html", html: B.head(p) + body.join("\n") + tail };
 }
 
-module.exports = { buildLandingPage, lpHeader, lpHero, lpQuiz, lpBeforeAfter, lpProof, lpTeam, lpGallery, lpReviews, lpCta, lpFooter };
+module.exports = { buildLandingPage, lpHeader, lpHero, lpQuiz, lpBeforeAfter, lpBadges, lpAreas, lpProof, lpTeam, lpGallery, lpReviews, lpCta, lpFooter };

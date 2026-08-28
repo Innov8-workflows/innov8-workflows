@@ -63,4 +63,27 @@ module.exports = [
     q2: { field: "q2", label: "Need", ask: "What do you need doing?",
           opts: ["Brand-new flat roof", "Replace an old felt roof", "Fix a leak", "Not sure, need advice"] },
   },
+  {
+    /* META ADS. Cold interruption traffic: nobody was thinking about their roof
+       five seconds ago. Modelled on asaproofingnorthwest.co.uk, which converts
+       for this client, so the quiz stays IN the hero rather than below the fold,
+       and the transformation clip sits inside the card where it is seen first.
+       Step 1 IS the service question here: unlike the Google pages, no ad group
+       has told us what they want. */
+    slug: "roof-check", layout: "meta", adGroup: "Meta",
+    service: "Roofing (from Meta)",
+    title: "Free Roof Check & Quote | Derby & Nottingham Roofing",
+    desc: "Free, no-obligation roof check across Derby, Nottingham and the East Midlands. 40 years' experience, GBP5m insured, 10-year guarantee. Four quick questions.",
+    h1: "Roof Seen Better Days? <em>Find Out What It Needs</em>",
+    sub: "Four quick questions and we will come out, take a proper look and give you an honest price. No obligation, no hard sell.",
+    pill: "Free roof check &amp; written quote",
+    cta: "Book my free roof check",
+    quizVideo: { src: "assets/before-after.mp4", poster: "assets/img/ba1-before.jpg" },
+    proof: { h: "See what a proper job looks like",
+             p: "This roof was stripped right back, re-felted and re-battened, then re-covered in natural slate with new guttering. Same standard on every job, big or small." },
+    q1: { field: "q1", label: "Needs", ask: "What does your roof need?",
+          opts: ["A new roof / re-roof", "Repairs or a leak", "Flat roofing", "Gutters, fascias &amp; soffits", "Not sure, just want it checked"] },
+    q2: { field: "q2", label: "Last checked", ask: "When was the roof last looked at?",
+          opts: ["Never, or I cannot remember", "Over 10 years ago", "In the last few years", "There is a problem right now"] },
+  },
 ];

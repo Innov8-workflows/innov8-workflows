@@ -82,7 +82,12 @@ header.nav.solid{background:var(--ink)}
 .has-drop{position:relative}
 .drop{position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(8px);min-width:230px;background:#fff;border-radius:12px;
   box-shadow:var(--shadow);padding:8px;opacity:0;visibility:hidden;transition:opacity .18s,transform .18s;z-index:5}
-.has-drop:hover .drop{opacity:1;visibility:visible;transform:translateX(-50%) translateY(2px)}
+.has-drop:hover .drop,.has-drop:focus-within .drop{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+/* Invisible bridge over the gap the open-state transform leaves between the nav
+   item and the panel. Without it the pointer leaves .has-drop on the way down,
+   :hover goes false and the menu shuts before it can be reached. The bridge is
+   part of .drop, so hovering it keeps the ancestor hovered. */
+.drop::before{content:"";position:absolute;left:0;right:0;top:-4px;height:4px}
 .drop a{display:block;padding:10px 14px;border-radius:8px;color:var(--text);font-family:'Barlow',sans-serif;font-weight:600;font-size:.92rem}
 .drop a:hover{background:var(--paper-2);color:var(--orange-deep)}
 

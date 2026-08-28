@@ -88,7 +88,7 @@ function lpProof(lp, C) {
 }
 
 function lpTeam(lp, C) {
-  return `<section class="lp-sec lp-alt"><div class="lp-wrap lp-2col lp-rev">
+  return `<section class="lp-sec lp-alt"><div class="lp-wrap lp-2col">
   <div>
     <span class="lp-eyebrow">Meet the team</span>
     <h2>${SITE.years} years on roofs across ${SITE.area}</h2>
@@ -131,6 +131,7 @@ function lpFooter(C) {
   <img src="${C.base}assets/img/logo.png" alt="${esc(SITE.name)}" width="110" height="73" loading="lazy">
   <p>${esc(SITE.name)} &mdash; roofing across ${SITE.area} and the East Midlands.<br>
      <a href="${TEL}">${SITE.phone}</a> &middot; <a href="tel:+${SITE.phoneDerbyIntl}">${SITE.phoneDerby}</a> &middot; <a href="tel:+${SITE.phoneNottsIntl}">${SITE.phoneNotts}</a></p>
+  <p class="lp-foot-sm"><a class="lp-foot-link" href="${C.base}index.html">Visit our main website</a></p>
   <p class="lp-foot-sm">&copy; <span id="lpYr"></span> ${esc(SITE.name)}. ${SITE.liability} public liability &middot; ${SITE.guarantee} workmanship guarantee.</p>
 </div>
 <a class="lp-fab" data-noleadlog href="${WA_HELLO()}" target="_blank" rel="noopener" aria-label="WhatsApp us">${I.wa}</a>

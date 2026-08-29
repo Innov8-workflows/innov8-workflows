@@ -126,11 +126,15 @@ function migrate() {
   var ss = SpreadsheetApp.openById(id);
   var log = [];
 
-  // 1. "Leads" becomes the Google Ads tab, keeping all existing history.
-  var old = ss.getSheetByName('Leads');
-  if (old && !ss.getSheetByName('Google Ads')) {
-    old.setName('Google Ads');
-    log.push('Renamed "Leads" -> "Google Ads"');
+  // 1. Whatever tab currently holds the history becomes the Google Ads tab.
+  //    Do NOT assume the name: this sheet's tab is "PPC Leads", and an exact
+  //    match on "Leads" would silently create an empty tab and strand the data.
+  if (!ss.getSheetByName('Google Ads')) {
+    var CHANNELS = ['Google Ads', 'Organic', 'Meta', 'Test', 'Dashboard'];
+    var old = ss.getSheets().filter(function (sh) {
+      return CHANNELS.indexOf(sh.getName()) === -1 && sh.getLastRow() > 0;
+    })[0];
+    if (old) { log.push('Renamed "' + old.getName() + '" -> "Google Ads"'); old.setName('Google Ads'); }
   }
 
   // 2. Every channel tab exists, with the full 11-column header.
@@ -146,7 +150,9 @@ function migrate() {
   var rows = ads.getDataRange().getValues();
   for (var i = rows.length - 1; i >= 1; i--) {
     var name = String(rows[i][1] || '').trim();
-    var junk = /^(TEST|DEBUG)\b/i.test(name) || name.toLowerCase() === 'shapon';
+    var page = String(rows[i][6] || '');
+    var junk = /^(TEST|DEBUG)/i.test(name) || /(test|pixel)/i.test(name)
+               || name.toLowerCase() === 'shapon' || page.indexOf('/K:/') === 0;
     if (junk) { ads.deleteRow(i + 1); log.push('Deleted row ' + (i + 1) + ': ' + name); }
   }
 

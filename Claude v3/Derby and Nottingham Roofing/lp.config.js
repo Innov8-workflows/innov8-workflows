@@ -25,10 +25,10 @@ module.exports = {
   },
   gallery: [
     ["crew-at-work.jpg", "Natural slate · our team on site"],
-    ["craftsmanship.jpg", "New battens &amp; membrane · full strip"],
-    ["guarantee-2.jpg", "Job complete · written guarantee handed over"],
+    ["work-hip.jpg", "Hipped roof · grey tiles &amp; new ridge"],
+    ["work-drone.jpg", "Completed re-roof · new clay tiles"],
     ["g1.jpg", "Full re-roof · natural slate"],
-    ["g5.jpg", "Clay tile · new ridge &amp; hips"],
+    ["work-ridge.jpg", "Full re-roof · new tiles &amp; ridge system"],
     ["work-1.jpg", "New slate roof · eaves &amp; valley"],
   ],
   // Step 3 is a tap-list, not a typed postcode: steps 1-3 stay keyboard-free.

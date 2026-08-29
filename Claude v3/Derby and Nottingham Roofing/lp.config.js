@@ -6,7 +6,11 @@
    Core facts (name, phone, guarantee, years) come from SITE in build.js.
    ============================================================ */
 module.exports = {
-  base: "../../",                     // lp/<slug>/index.html -> repo root
+  base: "../../",
+  // Meta dataset ("pixel") id. Public by design: it appears in the page
+  // source of every site running one, so it is safe in the repo. The
+  // Conversions API ACCESS TOKEN is not, and must never be put on a static site.
+  metaPixelId: "942900628147069",                     // lp/<slug>/index.html -> repo root
   owner: { name: "Joe", role: "Owner" },
   rating: { score: "5.0", label: "Google rating" },
   // Shown under the quiz. Only claims we can evidence.

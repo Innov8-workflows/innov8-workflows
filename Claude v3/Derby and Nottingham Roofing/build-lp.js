@@ -186,12 +186,29 @@ function lpFooter(C) {
 /* One switch, two orderings. This is what stops pages 2/3/4 being copies.
    "search" traffic is already looking for a roofer, so the quiz IS the hero.
    "meta" traffic was not, so it has to be persuaded before being asked. */
+/* Meta pixel base code. lp.js already fires fbq("track","Lead") on quiz
+   completion, guarded by if (window.fbq), so Lead events start working the
+   moment this is present and no page markup changes. */
+function metaPixel(C) {
+  if (!C.metaPixelId) return "";
+  return `
+<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','${C.metaPixelId}');fbq('track','PageView');</script>
+<noscript><img height="1" width="1" style="display:none" alt=""
+src="https://www.facebook.com/tr?id=${C.metaPixelId}&ev=PageView&noscript=1"></noscript>`;
+}
+
 function buildLandingPage(lp, C) {
   const p = {
     slug: "lp/" + lp.slug + "/index.html",
     url: "lp/" + lp.slug + "/",
     title: lp.title, desc: lp.desc, ogImg: "og-home.jpg",
     noindex: true, base: C.base, bodyClass: "lp",
+    headExtra: metaPixel(C),
     css: ["assets/lp.css"],
     schema: [localBusinessLD()],
   };

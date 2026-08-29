@@ -131,7 +131,8 @@ function lpProof(lp, C) {
 
 function lpTeam(lp, C) {
   return `<section class="lp-sec lp-alt"><div class="lp-wrap lp-2col">
-  <div class="lp-shot"><img src="${C.base}${C.media.team}" alt="The ${esc(SITE.name)} team on site" loading="lazy"></div>
+  <div class="lp-shot"><img src="${C.base}${C.media.team}" alt="The ${esc(SITE.name)} team on site" loading="lazy">${C.media.teamInset ? `
+    <div class="lp-inset"><img src="${C.base}${C.media.teamInset}" alt="${esc(C.media.teamInsetAlt || "")}" loading="lazy"></div>` : ""}</div>
   <div>
     <span class="lp-eyebrow">Meet the team</span>
     <h2>${SITE.years} years on roofs across ${SITE.area}</h2>

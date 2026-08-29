@@ -19,6 +19,10 @@ module.exports = {
     heroVideo: "assets/orbital-03.mp4",
     heroPoster: "assets/img/hero-orbital-poster.jpg",
     team: "assets/img/team.jpg",
+    // Optional. Sits bottom-right of the team photo, same as the main site's
+    // .photo-inset. Omit both keys and the team photo renders on its own.
+    teamInset: "assets/img/team-inset.jpg",
+    teamInsetAlt: "A customer receiving her written workmanship guarantee",
     guarantee: "assets/img/guarantee.jpg",
     handshake: "assets/img/handshake.jpg",
     ctaPoster: "assets/img/hero-02-poster.jpg",

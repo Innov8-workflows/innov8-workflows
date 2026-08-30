@@ -95,17 +95,22 @@ function lpHero(lp, C) {
 </section>`;
 }
 
-/* Transformation video, sits directly after the hero. Anyone who scrolls past
+/* Proof of a real job, sits directly after the hero. Anyone who scrolls past
    the quiz is not ready to act; they are asking "can these people actually do
-   this?". A transformation answers that with no reading required.
-   Footage is portrait (720x960), so it is a card beside the copy, not full-bleed.
-   Returns "" for a page with no genuine footage. */
+   this?". Seeing the work answers that with no reading required.
+   Takes ba.src for a transformation clip, or ba.img for a still where no
+   footage exists, so a service without video is not left with a blank page.
+   Media is portrait (clips are 720x960), so it is a card beside the copy,
+   not full-bleed. Returns "" for a page with neither. */
 function lpBeforeAfter(lp, C) {
-  if (!lp.ba) return "";
+  if (!lp.ba || !(lp.ba.src || lp.ba.img)) return "";
+  const media = lp.ba.img
+    ? `<img src="${C.base}${lp.ba.img}" alt="${esc(lp.ba.alt || "")}" loading="lazy">`
+    : `<video poster="${C.base}${lp.ba.poster}" muted playsinline loop preload="none" data-src="${C.base}${lp.ba.src}"></video>`;
   return `<section class="lp-sec"><div class="lp-wrap lp-2col">
   <div class="lp-ba">
     <span class="lp-ba-tag">${lp.ba.tag}</span>
-    <video poster="${C.base}${lp.ba.poster}" muted playsinline loop preload="none" data-src="${C.base}${lp.ba.src}"></video>
+    ${media}
   </div>
   <div>
     <span class="lp-eyebrow">Real job, real result</span>

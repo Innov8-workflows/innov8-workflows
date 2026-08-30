@@ -18,8 +18,9 @@ module.exports = [
     cta: "Get my free quote",
     proof: { h: "A worn roof, stripped and rebuilt properly",
              p: "Taken right back to the rafters, new membrane and battens throughout, then re-covered and left watertight for decades." },
-    // Real transformation footage. flat-roofing has none, so it omits the
-    // section rather than showing a pitched roof on a flat-roof page.
+    // Real transformation footage. flat-roofing has none, so it runs the same
+    // section on a still of a finished job instead: never a pitched roof on a
+    // flat-roof page.
     ba: { src: "assets/before-after.mp4", poster: "assets/img/ba1-before.jpg",
           tag: "Before &rarr; After", h: "Watch a tired roof become a new one",
           p: "Stripped back, new membrane and battens, then re-covered in natural slate with new guttering. This is the standard every re-roof gets." },
@@ -56,6 +57,13 @@ module.exports = [
     sub: "EPDM rubber and GRP fibreglass flat roofs built to last. Four quick questions for a free, no-obligation quote.",
     pill: "Free survey &amp; written quote, no obligation",
     cta: "Get my free quote",
+    // No flat-roof footage exists, so this one runs on a still of a finished
+    // job (ba.img) rather than a clip. Deliberately not tagged Before / After:
+    // there is no "before" shot, and inventing one would be a lie on an ad page.
+    ba: { img: "assets/img/flat-roof.jpg", tag: "EPDM rubber",
+          alt: "A finished EPDM rubber flat roof over a porch, dressed up the brick wall and finished with a black edge trim",
+          h: "A rubber flat roof with no seams to fail",
+          p: "Taken back to sound decking and finished in one continuous sheet of EPDM rubber, dressed up the wall and trimmed with powder-coated edging. No felt joints to open up in a couple of winters, and nothing for the wind to get under." },
     proof: { h: "Old felt off, rubber on, done in a day",
              p: "Stripped back to sound decking, new insulation where needed and a single-piece EPDM membrane with proper edge detailing." },
     q1: { field: "q1", label: "Roof", ask: "What's the flat roof on?",

@@ -87,6 +87,12 @@ module.exports = [
     pill: "Free roof check &amp; written quote",
     cta: "Book my free roof check",
     quizVideo: { src: "assets/before-after.mp4", poster: "assets/img/ba1-before.jpg" },
+    // A different job from the quiz-card clip, so the two are not the same roof
+    // twice. Tagged for what the poster actually shows (bare rafters) rather
+    // than "Before / After": the "before" here is the carcass, not a tired roof.
+    ba: { src: "assets/before-after-02.mp4", poster: "assets/img/ba2-poster.jpg",
+          tag: "Rafters to finished roof", h: "A full re-roof, from bare rafters to finished tiles",
+          p: "New timbers, breathable felt and treated battens throughout, then re-covered in clay tiles with new ridge and leadwork. This is what a roof looks like when it is rebuilt properly rather than patched." },
     proof: { h: "See what a proper job looks like",
              p: "This roof was stripped right back, re-felted and re-battened, then re-covered in natural slate with new guttering. Same standard on every job, big or small." },
     q1: { field: "q1", label: "Needs", ask: "What does your roof need?",

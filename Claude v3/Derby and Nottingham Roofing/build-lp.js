@@ -219,7 +219,7 @@ function buildLandingPage(lp, C) {
     schema: [localBusinessLD()],
   };
   const body = lp.layout === "meta"
-    ? [lpHeader(C), lpBadges(C), lpHero(lp, C), lpProof(lp, C), lpGallery(C), lpTeam(lp, C), lpReviews(), lpAreas(lp, C), lpCta(lp, C), lpFooter(C)]
+    ? [lpHeader(C), lpBadges(C), lpHero(lp, C), lpBeforeAfter(lp, C), lpProof(lp, C), lpGallery(C), lpTeam(lp, C), lpReviews(), lpAreas(lp, C), lpCta(lp, C), lpFooter(C)]
     : [lpHeader(C), lpHero(lp, C), lpBeforeAfter(lp, C), lpProof(lp, C), lpTeam(lp, C), lpGallery(C), lpReviews(), lpCta(lp, C), lpFooter(C)];
 
   const cfg = JSON.stringify({

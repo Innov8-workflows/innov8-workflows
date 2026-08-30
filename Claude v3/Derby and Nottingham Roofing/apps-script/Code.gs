@@ -11,9 +11,31 @@
  * -> Deploy. That keeps the /exec URL the website already points at.
  */
 
-var PROP_KEY     = 'LEAD_SHEET_ID';
-var NOTIFY_EMAIL = 'jamie@innov8workflows.co.uk';
-var HEADERS = ['Timestamp','Name','Phone','Area','Service','Message','Page','GCLID','Type','FBCLID','Campaign'];
+var PROP_KEY  = 'LEAD_SHEET_ID';
+
+/* Who gets told about a new lead.
+ * The client is on this list so a completed quiz reaches the person who can
+ * actually ring the customer back: the quiz says "we've got your details"
+ * whether or not they then tap WhatsApp, so without this nobody would.
+ * Each address is mailed SEPARATELY in notify(), so a bad or full mailbox
+ * cannot stop the others being told. Jay stays on the list deliberately:
+ * if info@ silently fails, the leads are still visibly arriving somewhere. */
+var NOTIFY = [
+  'jamie@innov8workflows.co.uk',
+  'info@derbyandnottinghamroofing.co.uk',
+];
+/* MailApp always sends as the script owner (wicked.jay540@gmail.com), which is
+ * not an address the client should be replying to. */
+var REPLY_TO = 'jamie@innov8workflows.co.uk';
+
+/* A form lead nobody has marked off within this many hours gets chased.
+ * See chaseUnactioned(): it is inert until a time-driven trigger is added. */
+var CHASE_AFTER_HOURS = 2;
+
+/* Columns L and M are the follow-up trail: Status is typed by a human
+ * ("called", "quoted", "no answer"), Chased is stamped by the script. */
+var HEADERS = ['Timestamp','Name','Phone','Area','Service','Message','Page','GCLID','Type','FBCLID','Campaign','Status','Chased'];
+var COL_STATUS = 12, COL_CHASED = 13;   // 1-based sheet columns
 
 /* ---------- channel routing ----------
  * Order matters. Meta is tested BEFORE the generic /lp/ rule, or the Meta
@@ -99,22 +121,101 @@ function doPost(e) {
 }
 
 function notify(data, channel) {
-  var subject = 'New ' + channel + ' lead' + (data.name ? ' - ' + data.name : '')
-              + ' | Derby & Nottingham Roofing';
-  MailApp.sendEmail(NOTIFY_EMAIL, subject, [
-    'Channel: ' + channel,
+  /* The name and number go in the SUBJECT so the lead is actionable straight
+   * off a phone's lock screen, without opening anything. The old subject
+   * ended in the business name, which is the least useful thing in it. */
+  var phone = String(data.phone || '').trim();
+  var subject = 'New lead: ' + (data.name || 'no name')
+              + (phone ? ', ' + phone : '')
+              + (data.area ? ', ' + data.area : '')
+              + (data.service ? ', ' + data.service : '');
+
+  var body = [
+    'CALL THEM BACK: ' + (phone || '(no number given)'),
     '',
     'Name:     ' + (data.name || '-'),
-    'Phone:    ' + (data.phone || '-'),
+    'Phone:    ' + (phone || '-'),
     'Area:     ' + (data.area || '-'),
     'Service:  ' + (data.service || '-'),
     'Message:  ' + (data.msg || '-'),
+    '',
+    'They filled the form on the website and were told we would call them back,',
+    'so they are expecting to hear from us. The quicker the better.',
+    '',
+    'Channel:  ' + channel,
     'Page:     ' + (data.page || '-'),
     'Campaign: ' + (data.utm_campaign || '-'),
     'Click ID: ' + (data.gclid || data.fbclid || '(none - organic/direct)'),
     '',
-    'Sheet: https://docs.google.com/spreadsheets/d/1wIUpK2HfI-kMPwJWcTrLiKTehSHoUzDg6XFvulKcYys/edit'
-  ].join('\n'));
+    'All leads: https://docs.google.com/spreadsheets/d/1wIUpK2HfI-kMPwJWcTrLiKTehSHoUzDg6XFvulKcYys/edit'
+  ].join('\n');
+
+  /* One address at a time. A single sendEmail to a comma list is all-or-nothing:
+   * one rejected recipient and NOBODY is told about the lead. */
+  NOTIFY.forEach(function (to) {
+    try {
+      MailApp.sendEmail({ to: to, subject: subject, body: body,
+                          name: 'Derby & Nottingham Roofing website', replyTo: REPLY_TO });
+    } catch (err) {
+      Logger.log('Lead alert to ' + to + ' FAILED: ' + err);
+    }
+  });
+}
+
+/* ============================================================
+   Safety net. An alert that is missed, filtered or spam-foldered still loses
+   the customer, so any form lead with an empty Status after CHASE_AFTER_HOURS
+   is re-sent as a digest. Marking column L stops the chase.
+
+   INERT until a trigger exists. To enable: Apps Script editor -> Triggers ->
+   Add trigger -> chaseUnactioned -> Time-driven -> Hour timer -> Every hour.
+   ============================================================ */
+function chaseUnactioned() {
+  var id = PropertiesService.getScriptProperties().getProperty(PROP_KEY);
+  if (!id) return;
+  var ss = SpreadsheetApp.openById(id);
+  var now = new Date().getTime();
+  var due = [];
+
+  ['Google Ads', 'Organic', 'Meta'].forEach(function (name) {
+    var sh = ss.getSheetByName(name);
+    if (!sh || sh.getLastRow() < 2) return;
+    var rows = sh.getRange(2, 1, sh.getLastRow() - 1, HEADERS.length).getValues();
+    for (var i = 0; i < rows.length; i++) {
+      var r = rows[i];
+      if (String(r[8] || 'form') !== 'form') continue;          // clicks are not chaseable
+      if (String(r[COL_STATUS - 1] || '').trim()) continue;     // someone has actioned it
+      if (String(r[COL_CHASED - 1] || '').trim()) continue;     // already chased once
+      // Not `instanceof Date`: that skips the row outright if the timestamp cell
+      // is ever text rather than a real date, and a row silently skipped forever
+      // is the exact failure this safety net exists to catch. new Date() handles
+      // both; anything unparseable is logged, not swallowed.
+      var ts = r[0] ? new Date(r[0]).getTime() : 0;
+      if (!ts || isNaN(ts)) { Logger.log('Row ' + (i + 2) + ' of ' + name + ': unreadable timestamp, skipped'); continue; }
+      if ((now - ts) / 3600000 < CHASE_AFTER_HOURS) continue;
+      due.push({ sheet: sh, row: i + 2, channel: name, name: r[1], phone: r[2],
+                 area: r[3], service: r[4], hours: Math.floor((now - ts) / 3600000) });
+    }
+  });
+  if (!due.length) return;
+
+  var body = ['These leads have had no response yet. Column L in the sheet is empty.', ''];
+  due.forEach(function (d) {
+    body.push(d.hours + 'h ago  ' + (d.name || '-') + '  ' + (d.phone || '-') +
+              '   (' + d.channel + ', ' + (d.area || '-') + ', ' + (d.service || '-') + ')');
+  });
+  body.push('', 'Put anything in the Status column to stop the reminder.',
+            'https://docs.google.com/spreadsheets/d/1wIUpK2HfI-kMPwJWcTrLiKTehSHoUzDg6XFvulKcYys/edit');
+
+  var subject = due.length + ' lead' + (due.length > 1 ? 's' : '') + ' still waiting for a callback';
+  NOTIFY.forEach(function (to) {
+    try {
+      MailApp.sendEmail({ to: to, subject: subject, body: body.join('\n'),
+                          name: 'Derby & Nottingham Roofing website', replyTo: REPLY_TO });
+    } catch (err) { Logger.log('Chase to ' + to + ' FAILED: ' + err); }
+  });
+  // Stamp AFTER sending, so a send failure does not silently retire the chase.
+  due.forEach(function (d) { d.sheet.getRange(d.row, COL_CHASED).setValue(new Date()); });
 }
 
 /* ============================================================

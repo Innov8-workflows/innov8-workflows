@@ -31,6 +31,11 @@ var REPLY_TO = 'jamie@innov8workflows.co.uk';
 /* A form lead nobody has marked off within this many hours gets chased.
  * See chaseUnactioned(): it is inert until a time-driven trigger is added. */
 var CHASE_AFTER_HOURS = 2;
+/* ...but never chase ancient history. Every lead already in the sheet predates
+ * the Status column, so without this ceiling the very first run would mail the
+ * client a digest of every enquiry they have ever had, including the review
+ * spam. A two-day-old lead is not a callback any more, it is noise. */
+var CHASE_MAX_HOURS = 48;
 
 /* Columns L and M are the follow-up trail: Status is typed by a human
  * ("called", "quoted", "no answer"), Chased is stamped by the script. */
@@ -192,9 +197,10 @@ function chaseUnactioned() {
       // both; anything unparseable is logged, not swallowed.
       var ts = r[0] ? new Date(r[0]).getTime() : 0;
       if (!ts || isNaN(ts)) { Logger.log('Row ' + (i + 2) + ' of ' + name + ': unreadable timestamp, skipped'); continue; }
-      if ((now - ts) / 3600000 < CHASE_AFTER_HOURS) continue;
+      var ageH = (now - ts) / 3600000;
+      if (ageH < CHASE_AFTER_HOURS || ageH > CHASE_MAX_HOURS) continue;
       due.push({ sheet: sh, row: i + 2, channel: name, name: r[1], phone: r[2],
-                 area: r[3], service: r[4], hours: Math.floor((now - ts) / 3600000) });
+                 area: r[3], service: r[4], hours: Math.floor(ageH) });
     }
   });
   if (!due.length) return;

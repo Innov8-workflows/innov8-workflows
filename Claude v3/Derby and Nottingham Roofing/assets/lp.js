@@ -142,6 +142,16 @@
     if (!once(type + "|" + where, 30000)) return;
     logLead({ type: type, msg: "location: " + where, service: CFG.service || "" });
     ga(type === "call_click" ? "click_to_call" : "click_whatsapp", { lead_source: where, lp: CFG.lp });
+
+    /* Meta's standard event for "customer started contacting the business".
+       Deliberately NOT "Lead": the campaign optimises on Lead, and a tap is not
+       a lead, it is an intent. Firing Lead here would teach the algorithm that
+       a button press is the goal and quietly wreck the optimisation. Contact
+       gives Meta the signal without touching what it bids on. */
+    try {
+      if (window.fbq) window.fbq("track", "Contact",
+        { method: type === "call_click" ? "phone" : "whatsapp", lp: CFG.lp || "" });
+    } catch (e) {}
   }, true);
 
   /* ---------- videos ----------

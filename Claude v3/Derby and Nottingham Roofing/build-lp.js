@@ -182,10 +182,15 @@ function lpFooter(C) {
   <p class="lp-foot-sm"><a class="lp-foot-link" href="${C.base}index.html">Visit our main website</a></p>
   <p class="lp-foot-sm">&copy; <span id="lpYr"></span> ${esc(SITE.name)}. ${SITE.liability} public liability &middot; ${SITE.guarantee} workmanship guarantee.</p>
 </div>
-<a class="lp-fab" data-noleadlog href="${WA_HELLO()}" target="_blank" rel="noopener" aria-label="WhatsApp us">${I.wa}</a>
+${/* NO data-noleadlog on these two. That attribute exists for the success-panel
+     buttons, where the lead is already banked and logging again would count it
+     twice. Copied here it made every WhatsApp tap invisible, while all three
+     phone routes logged fine. A WhatsApp tap is the likeliest contact route of
+     the lot for this audience. */ ""}
+<a class="lp-fab" href="${WA_HELLO()}" target="_blank" rel="noopener" aria-label="WhatsApp us">${I.wa}</a>
 <div class="lp-mobar">
   <a href="${TEL}">${I.phone}Call</a>
-  <a class="w" data-noleadlog href="${WA_HELLO()}" target="_blank" rel="noopener">${I.wa}WhatsApp</a>
+  <a class="w" href="${WA_HELLO()}" target="_blank" rel="noopener">${I.wa}WhatsApp</a>
 </div></footer>`;
 }
 

@@ -354,6 +354,69 @@ function landingCase(slug) {
 `;
 }
 
+/* ============================================================
+   Trust sections for the Google Ads service pages.
+
+   These mirror the /lp/ landing pages section for section, and reuse the LP's
+   own copy (lp.data.js proof, lp.config.js steps and gallery) so the two never
+   drift. They are rendered with MAIN-SITE classes (.why-grid, .about-grid,
+   .gal-grid), which already have styles in styles.css, rather than the lp-*
+   classes, which are scoped to body.lp and would need that class on the body.
+
+   Deliberately separate from the near-identical blocks inside buildHome():
+   the copy differs (service-specific here, general there) and touching
+   buildHome would change index.html, which this work must not do.
+   ============================================================ */
+
+/* The /lp/ proof block: what happens after they get in touch. Uses the numbered
+   .why-list, which is the closest main-site equivalent of the LP's ol.lp-steps. */
+function proofSection(lpData) {
+  const steps = LP_CFG.steps.map(([h, p], i) => `
+      <div class="why-item"><div class="why-num">${i + 1}</div><div><h3>${h}</h3><p>${p}</p></div></div>`).join("");
+  return `<section class="section why"><div class="wrap"><div class="why-grid">
+  <div>
+    <div class="section-head" style="margin-bottom:30px"><span class="eyebrow">No obligation, no pressure</span><h2>${lpData.proof.h}</h2>
+      <p>${lpData.proof.p}</p></div>
+    <div class="why-list">${steps}</div>
+    <div class="center" style="text-align:left;margin-top:26px"><a class="btn btn-primary" href="#quiz">${I.quote}${lpData.cta}</a></div>
+  </div>
+  <div>
+    <div class="why-photo"><img src="assets/img/guarantee.jpg" alt="A ${esc(SITE.name)} customer being handed their written workmanship guarantee" loading="lazy"></div>
+    <div class="why-stats">
+      <div class="why-stat"><div class="n">${SITE.years}</div><div class="l">Years&rsquo; experience</div></div>
+      <div class="why-stat"><div class="n">£5m</div><div class="l">Insured</div></div>
+      <div class="why-stat"><div class="n">10yr</div><div class="l">Guarantee</div></div>
+    </div>
+  </div>
+</div></div></section>`;
+}
+
+/* The /lp/ team block, including the guarantee-handover inset. */
+function teamSection(lpData) {
+  return `<section class="section about"><div class="wrap about-grid">
+  <div class="about-photo"><img src="assets/img/team.jpg" alt="The ${esc(SITE.name)} team on site during a full re-roof" loading="lazy"><div class="photo-inset"><img src="assets/img/guarantee-2.jpg" alt="A customer receiving her written workmanship guarantee from ${esc(SITE.name)}" loading="lazy"></div></div>
+  <div class="about-body">
+    <span class="eyebrow">Meet the team</span><h2>${SITE.years} years on roofs across ${SITE.area}</h2>
+    <p>${esc(SITE.name)} is a family-run team of ${SITE.team}. We have grown by word of mouth, one happy customer at a time, and you deal with the same faces from the first survey to the final clean-up.</p>
+    <p>Fully insured with ${SITE.liability} public liability, and every job backed by our written ${SITE.guarantee} guarantee.</p>
+    <div class="center" style="text-align:left;margin-top:22px"><a class="btn btn-primary" href="#quiz">${I.quote}${lpData.cta}</a></div>
+  </div>
+</div></section>`;
+}
+
+/* The /lp/ "Recent roofs" grid. Same six photos as the landing pages, straight
+   from lp.config.js, so a change there updates both. */
+function workGallery() {
+  const items = LP_CFG.gallery.map(([img, cap]) =>
+    `<div class="gal-item"><img src="assets/img/${img}" alt="${cap.replace(/&middot;|·/g, "-").replace(/&amp;/g, "and")} by ${esc(SITE.name)}" loading="lazy"><div class="cap">${cap}</div></div>`).join("");
+  return `<section class="section gallery" id="work"><div class="wrap">
+  <div class="section-head center"><span class="eyebrow">Our work</span><h2>Recent roofs</h2>
+    <p>A few of the roofs we have finished for homeowners across ${SITE.area} and the East Midlands.</p></div>
+  <div class="gal-grid">${items}</div>
+  <div class="center" style="margin-top:30px"><a class="btn btn-dark" href="gallery.html">View the full gallery ${I.arrow}</a></div>
+</div></section>`;
+}
+
 /* ---------- reviews slider (shared: homepage + ad landing pages) ---------- */
 function reviewsSection() {
   return `<section class="section reviews" id="reviews"><div class="wrap">
@@ -415,12 +478,20 @@ function buildService(s) {
   ${sidebar(s.slug, quoteHref)}
 </div></div></section>`;
   const cta = `Free quotes on all ${s.nav.toLowerCase()} across Derby, Nottingham and the East Midlands.`;
-  /* Landing order (conversion-first): hero > trust > proof video > reviews > detail+sidebar > form > final CTA.
+  /* Landing order mirrors the /lp/ pages exactly:
+       hero+quiz > trust > transformation video > proof steps > team > our work >
+       reviews > SEO detail > form > final CTA.
+     The visitor answers "can these people actually do this?" in the same order
+     the landing pages ask it, and the trust assets we already own (the clip,
+     the guarantee handover, the team shot, the six job photos, the reviews) all
+     do work here instead of sitting unused. The SEO prose keeps its place below
+     that sequence: these pages still have to rank.
      Standard order (SEO pages): hero > trust > detail > FAQs > related > areas > final CTA. */
   const body = landing ? `
 ${hero}
 ${trustStrip()}
-${landingCase(s.slug)}${reviewsSection()}
+${landingCase(s.slug)}${lpData ? proofSection(lpData) + teamSection(lpData) + workGallery() : ""}
+${reviewsSection()}
 ${contentSection}
 ${contactSection()}
 ${finalCta(cta, quoteHref)}`

@@ -3,10 +3,18 @@
    Run:  node generate.js   (writes all .html + sitemap + robots)
    ============================================================ */
 const fs = require("fs");
+const path = require("path");
 const B = require("./build.js");
 const { SITE, SERVICES, TOWNS, TOWN_COPY, svcBySlug, townBySlug, I, esc, TEL,
   localBusinessLD, breadcrumbLD, faqLD, serviceLD,
   navbar, trustStrip, areasSection, finalCta, footer, head, pageHero, sidebar, faqSection, relatedServices } = B;
+
+/* Required up here rather than beside the landing-page block at the foot of the
+   file, because buildService() now reuses lpQuiz() and runs long before it.
+   `require` is a statement, not a hoisted declaration. */
+const LP = require("./build-lp.js");
+const LP_CFG = require("./lp.config.js");
+const LP_PAGES = require("./lp.data.js");
 
 const OUT = {};
 const HOME = { name: "Home", slug: "index.html" };
@@ -233,21 +241,44 @@ const SVC = {
    where a relevant one exists, and the contact form ON the page so a lead
    never needs a second click (the form's whatsapp_lead conversion event
    works on any page). */
+/* The three Google Ads destinations. `lp` names the matching entry in
+   lp.data.js, which supplies the quiz questions: the page slug and the landing
+   page slug differ (new-roofs vs new-roof), and sourcing the questions from one
+   place stops a service page and its ad twin drifting apart. */
 const LANDING = {
-  "roof-repairs": { caze: {
+  "roof-repairs": { lp: "roof-repairs", caze: {
     src: "before-after.mp4", poster: "assets/img/g1.jpg", eyebrow: "Full Roof Strip &amp; Re-Slate",
     h: "A worn slate roof made watertight again", loc: "Derby",
     p: "An old, weathered slate roof stripped right back and re-covered with brand-new natural slate over a breathable membrane and fresh battens, finished with new guttering and a crisp, clean line across the eaves." } },
-  "new-roofs": { caze: {
+  "new-roofs": { lp: "new-roof", caze: {
     src: "before-after-02.mp4", poster: "assets/img/ba2-poster.jpg", eyebrow: "Full Re-Roof",
     h: "Stripped back and built to last", loc: "Nottingham",
     p: "Taken right back and rebuilt properly: new timbers, breathable felt, treated battens and a fresh tile covering throughout, with new ridge and leadwork. A complete re-roof built to keep the home dry and solid for decades." } },
-  "flat-roofing": {}
+  "flat-roofing": { lp: "flat-roofing" }
 };
+const LP_BY_SLUG = Object.fromEntries(LP_PAGES.map(l => [l.slug, l]));
+function lpFor(slug) {
+  const key = (LANDING[slug] || {}).lp;
+  return key ? LP_BY_SLUG[key] || null : null;
+}
 
-function videoHero(c) {
-  return `<section class="hero" id="top">
-  <div class="hero-slides">
+/* Reuses lpQuiz() from build-lp.js verbatim, so the markup, the field names and
+   the four-step lead schema are identical to the /lp/ pages and lp.js and
+   app.js can share one contract. base is "" because these pages sit at the repo
+   root, not under /lp/<slug>/. quizVideo is stripped: the hero already plays
+   video behind the card, and a clip inside a clip on top of it is noise. */
+function quizCard(lpData) {
+  const C = Object.assign({}, LP_CFG, { base: "" });
+  const data = Object.assign({}, lpData);
+  delete data.quizVideo;
+  return `<div class="hero-quiz">${LP.lpQuiz(data, C)}</div>`;
+}
+
+/* Pass quizHtml to get the split hero used by the Google Ads pages. Called only
+   from buildService(); the homepage builds its own hero, so the blast radius of
+   anything in here is exactly those pages. */
+function videoHero(c, quizHtml) {
+  const slides = `<div class="hero-slides">
     <video class="hero-video active" muted playsinline preload="auto" poster="assets/img/hero-03-poster.jpg" disablepictureinpicture>
       <source src="assets/orbital-03.mp4" type="video/mp4">
     </video>
@@ -258,14 +289,41 @@ function videoHero(c) {
       <source src="assets/orbital-02.mp4" type="video/mp4">
     </video>
   </div>
-  <div class="hero-overlay"></div>
+  <div class="hero-overlay"></div>`;
+  const logo = `<img class="hero-logo hero-logo--sm" src="assets/img/logo.png" alt="${esc(SITE.name)}" width="560" height="373">`;
+
+  if (!quizHtml) {
+    return `<section class="hero" id="top">
+  ${slides}
   <div class="hero-content">
-    <img class="hero-logo hero-logo--sm" src="assets/img/logo.png" alt="${esc(SITE.name)}" width="560" height="373">
+    ${logo}
     <h1>${c.h1}</h1>
     <p class="sub">${c.lead}</p>
     <div class="hero-btns">
       <a class="btn btn-primary" href="#contact">${I.quote}Get my free quote</a>
       <a class="btn btn-ghost" href="${TEL}">${I.phone}${SITE.phone}</a>
+    </div>
+  </div>
+</section>`;
+  }
+
+  /* Three flow items rather than two, so mobile can put the card BETWEEN the
+     headline and the trust ticks. The h1 stays above the quiz on purpose: it is
+     the message match for the ad that was just clicked, and burying it costs
+     comprehension. The ticks below the card cost nothing.
+     No "get my free quote" button here: the quiz IS that button. */
+  return `<section class="hero hero--split" id="top">
+  ${slides}
+  <div class="hero-content">
+    <div class="hero-copy">
+      ${logo}
+      <h1>${c.h1}</h1>
+      <p class="sub">${c.lead}</p>
+    </div>
+    ${quizHtml}
+    <div class="hero-extra">
+      <ul class="hero-ticks">${LP_CFG.badges.map(b => `<li>${I.check}${b}</li>`).join("")}</ul>
+      <div class="hero-btns"><a class="btn btn-ghost" href="${TEL}">${I.phone}${SITE.phone}</a></div>
     </div>
   </div>
 </section>`;
@@ -315,10 +373,26 @@ function reviewsSection() {
 function buildService(s) {
   const c = SVC[s.slug];
   const landing = Object.prototype.hasOwnProperty.call(LANDING, s.slug);
-  const quoteHref = landing ? "#contact" : "contact.html";
+  const lpData = landing ? lpFor(s.slug) : null;
+  const quiz = lpData ? quizCard(lpData) : "";
+  /* One conversion path per page. Every in-page "free quote" link now points at
+     the quiz, which is the instrumented, deduped, four-tap one, instead of the
+     five-field form 8,000px down the page. */
+  const quoteHref = lpData ? "#quiz" : (landing ? "#contact" : "contact.html");
   const p = {
     slug: s.slug + ".html", active: "services", title: `${s.nav} in Derby & Nottingham | ${SITE.name}`,
     desc: c.desc, ogImg: s.img,
+    /* Quiz card styles. Deliberately NOT bodyClass:"lp": body.lp h2 in lp.css
+       outranks .final h2 and .prose h2, which would turn the final CTA heading
+       near-black on a dark background and collapse the prose spacing. */
+    css: lpData ? ["assets/quiz.css"] : undefined,
+    /* In <head>, so window.LP_CFG is defined long before app.js runs at the end
+       of <body>. Inline script is permitted by the shared CSP. */
+    headExtra: lpData ? `
+<script>window.LP_CFG=${JSON.stringify({
+      lp: "svc-" + s.slug, service: lpData.service, wa: SITE.phoneIntl, biz: SITE.name,
+      labels: { q1: lpData.q1.label, q2: lpData.q2.label }
+    })};</script>` : undefined,
     // landing pages have no visible FAQ block, so no FAQ schema either
     schema: landing
       ? [localBusinessLD(), serviceLD(s.nav, c.desc),
@@ -326,7 +400,7 @@ function buildService(s) {
       : [localBusinessLD(), serviceLD(s.nav, c.desc), faqLD(c.faqs),
          breadcrumbLD([{ name: "Home", slug: "" }, { name: s.short, slug: s.slug + ".html" }])]
   };
-  const hero = landing ? videoHero(c) : pageHero({ heroImg: s.img, eyebrow: c.eyebrow, h1: c.h1, lead: c.lead,
+  const hero = landing ? videoHero(c, quiz) : pageHero({ heroImg: s.img, eyebrow: c.eyebrow, h1: c.h1, lead: c.lead,
     crumbs: [{ name: "Home", slug: "index.html" }, { name: s.short }] });
   const proseSections = c.sections.map(sec => `<h2>${sec.h}</h2>${sec.body}`).join("\n");
   const contentSection = `<section class="section content"><div class="wrap"><div class="content-layout">
@@ -1022,11 +1096,8 @@ ${finalCta()}`;
    Written here, AFTER the sitemap block, and never added to OUT, same pattern
    as review.html / 404.html, so they stay out of sitemap.xml. Each is noindex.
    Do NOT add Disallow: /lp/ to robots.txt: blocking the crawl stops Google ever
-   seeing the noindex, and AdsBot needs to fetch the page to score it. */
-const path = require("path");
-const LP = require("./build-lp.js");
-const LP_CFG = require("./lp.config.js");
-const LP_PAGES = require("./lp.data.js");
+   seeing the noindex, and AdsBot needs to fetch the page to score it.
+   LP, LP_CFG, LP_PAGES and path are required at the top of this file. */
 LP_PAGES.forEach(lp => {
   const { file, html } = LP.buildLandingPage(lp, LP_CFG);
   fs.mkdirSync(path.dirname(file), { recursive: true });

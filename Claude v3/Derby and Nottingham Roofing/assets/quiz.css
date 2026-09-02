@@ -1,0 +1,136 @@
+/* ============================================================
+   Quiz card + split hero. MAIN-SITE service pages only, loaded per page via
+   p.css on new-roofs / roof-repairs / flat-roofing (the Google Ads
+   destinations). Not loaded anywhere else on the site.
+
+   WHY THIS DUPLICATES assets/lp.css LINES 57-124:
+   lp.css scopes every rule to `body.lp`, and body.lp also restyles h2
+   (body.lp h2 outranks both .final h2 and .prose h2), so that class cannot go
+   on a service page without turning the final-CTA heading near-black on a dark
+   background. Re-scoping lp.css itself would mean editing a file that three
+   live, spending landing pages depend on. Copy now, unify in its own commit.
+   KEEP IN SYNC WITH assets/lp.css.
+
+   All custom properties used here are defined in styles.css :root, which loads
+   first on every page. --line is undefined everywhere, hence the inline
+   fallback at each use site (that is how lp.css does it too).
+   ============================================================ */
+
+/* ---------- split hero ----------
+   The stock .hero is one centred column, max-width 920px, min-height 100svh.
+   That cannot host a card beside the copy, and on mobile it puts a whole
+   screen between the ad click and the first question. */
+.hero--split .hero-content {
+  width: 100%; max-width: var(--maxw); padding: 118px 22px 70px; text-align: left;
+  display: grid; grid-template-columns: minmax(0, 1fr) 440px; gap: 22px 46px; align-items: start;
+}
+.hero--split .hero-copy  { grid-column: 1; grid-row: 1; }
+.hero--split .hero-extra { grid-column: 1; grid-row: 2; }
+/* Spans both copy rows and centres against them, so a short headline does not
+   leave the card hanging off the top of the hero. */
+.hero--split .hero-quiz  { grid-column: 2; grid-row: 1 / span 2; align-self: center; }
+
+/* Each of these beats its styles.css counterpart on specificity rather than on
+   source order, so the cascade holds even if the sheets are ever reordered. */
+.hero--split .hero-copy .hero-logo { margin: 0 0 18px; width: min(26vw, 210px); }
+.hero--split .hero-copy h1         { font-size: clamp(2rem, 3.6vw, 3.1rem); }
+.hero--split .hero-copy p.sub      { margin: 16px 0 0; max-width: 34ch; }
+.hero--split .hero-extra .hero-btns { justify-content: flex-start; margin-top: 18px; }
+
+.hero-ticks { list-style: none; padding: 0; margin: 18px 0 0;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px 18px; }
+.hero-ticks li { display: flex; align-items: center; gap: 9px; color: #E7ECF3;
+  font-family: 'Barlow', sans-serif; font-weight: 600; font-size: .92rem; }
+.hero-ticks svg { width: 17px; height: 17px; flex: none; color: var(--orange-bright); }
+
+@media (max-width: 940px) {
+  /* Shrink-wrap the hero. 100svh here would push the first question down a
+     whole screen on the device carrying most of the ad spend. */
+  .hero--split { min-height: 0; align-items: flex-start; }
+  .hero--split .hero-content {
+    grid-template-columns: minmax(0, 1fr); max-width: 620px; padding: 96px 18px 34px; gap: 0;
+  }
+  /* Reset the explicit desktop placement, or it survives into one column and
+     the card lands back on top of the copy. */
+  .hero--split .hero-copy,
+  .hero--split .hero-quiz,
+  .hero--split .hero-extra { grid-column: 1; grid-row: auto; }
+  .hero--split .hero-quiz  { margin-top: 20px; }
+  .hero--split .hero-extra { margin-top: 20px; }
+  /* The fixed navbar already carries the logo. A second one costs ~120px of
+     fold on the one device where the fold is the whole battle. */
+  .hero--split .hero-copy .hero-logo { display: none; }
+  .hero--split .hero-copy h1    { font-size: clamp(1.75rem, 6.2vw, 2.3rem); }
+  .hero--split .hero-copy p.sub { font-size: 1rem; max-width: none; }
+  .hero-ticks { font-size: .86rem; }
+}
+@media (max-width: 420px) { .hero-ticks { grid-template-columns: 1fr; } }
+
+/* ---------- quiz card (re-scoped copy of lp.css 57-124) ----------
+   text-align is explicit because .hero sets center and it inherits: .q-field
+   label, .q-count and .q-err set none of their own, so without this the card
+   renders centred. scroll-margin clears the fixed navbar both for #quiz
+   anchors and for the card's own scrollIntoView between steps. */
+.quiz { background: #fff; border-radius: 20px; box-shadow: 0 26px 60px rgba(0,0,0,.35);
+  padding: 22px 22px 20px; text-align: left; scroll-margin-top: 96px; }
+.quiz .q-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.quiz .q-count { font-family: 'Barlow', sans-serif; font-size: .78rem; font-weight: 700;
+  letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.quiz .q-back { background: none; border: 0; cursor: pointer; color: var(--muted);
+  font-family: 'Barlow', sans-serif; font-weight: 600; font-size: .85rem; padding: 4px 6px; }
+.quiz .q-back:hover { color: var(--orange-deep); }
+.quiz .q-bar { height: 6px; border-radius: 999px; background: var(--paper-3, #E9EDF3);
+  overflow: hidden; margin-bottom: 18px; }
+.quiz .q-bar i { display: block; height: 100%; width: 25%; border-radius: 999px;
+  background: linear-gradient(90deg, var(--orange), var(--orange-bright)); transition: width .35s ease; }
+/* Every step shares one grid cell, so the card is always as tall as its
+   tallest step and advancing cannot resize the hero around it. */
+.quiz .q-body { display: grid; }
+.quiz .q-step { grid-area: 1 / 1; visibility: hidden; opacity: 0; pointer-events: none; }
+.quiz .q-step.on { visibility: visible; opacity: 1; pointer-events: auto; animation: quizUp .28s ease both; }
+/* Renamed from lp.css's lpUp: @keyframes names are global, not scoped. */
+@keyframes quizUp { from { opacity: 0; transform: translateY(7px); } to { opacity: 1; transform: none; } }
+.quiz .q-ask { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; text-transform: uppercase;
+  font-size: 1.5rem; line-height: 1.12; color: var(--ink); margin: 0 0 14px; }
+.quiz .q-opts { display: grid; gap: 9px; }
+.quiz .opt { text-align: left; cursor: pointer; background: #fff; border: 2px solid var(--line, #E6EBF2);
+  border-radius: 12px; padding: 14px 16px; font-family: 'Barlow', sans-serif; font-weight: 600;
+  font-size: .98rem; color: var(--ink); transition: border-color .15s, background .15s, transform .1s; }
+.quiz .opt:hover { border-color: var(--orange); background: #FFF7F1; }
+.quiz .opt:active { transform: translateY(1px); }
+.quiz .opt.sel { border-color: var(--orange); background: #FFF1E6; }
+.quiz .q-field { margin-bottom: 12px; }
+.quiz .q-field label { display: block; font-family: 'Barlow', sans-serif; font-weight: 700;
+  font-size: .82rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin-bottom: 6px; }
+.quiz .q-field input { width: 100%; border: 2px solid var(--line, #E6EBF2); border-radius: 12px;
+  padding: 14px 15px; font-family: 'Barlow', sans-serif; font-size: 1rem; color: var(--ink); background: #fff; }
+.quiz .q-field input:focus { outline: none; border-color: var(--orange); }
+.quiz .q-field input.err { border-color: #D93025; background: #FFF6F5; }
+.quiz .q-err { color: #D93025; font-family: 'Barlow', sans-serif; font-weight: 600; font-size: .88rem; margin: 0 0 10px; }
+.quiz .q-go { width: 100%; cursor: pointer; border: 0; border-radius: 12px; padding: 17px 20px;
+  background: linear-gradient(90deg, var(--orange), var(--orange-bright)); color: #fff;
+  font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 1.05rem;
+  display: flex; align-items: center; justify-content: center; gap: 10px; }
+.quiz .q-go svg { width: 19px; height: 19px; }
+.quiz .q-go:active { transform: translateY(1px); }
+.quiz .q-go[disabled] { opacity: .6; cursor: default; }
+.quiz .q-note { font-size: .8rem; color: var(--muted); text-align: center; margin: 11px 0 0; }
+.quiz .q-call { text-align: center; font-family: 'Barlow', sans-serif; font-size: .92rem;
+  color: var(--muted); margin: 12px 0 0; }
+.quiz .q-call a { color: var(--orange-deep); font-weight: 700; text-decoration: none; }
+.quiz .q-tick { width: 54px; height: 54px; margin: 4px auto 12px; border-radius: 50%;
+  background: #E8F5EC; color: #1E8E3E; display: flex; align-items: center; justify-content: center; }
+.quiz .q-tick svg { width: 28px; height: 28px; }
+.quiz .q-done { text-align: center; align-self: center; }
+.quiz .q-done-sub { color: var(--muted); font-size: .95rem; margin: 0 0 18px; }
+.quiz .q-done-btns { display: grid; gap: 9px; }
+.quiz .q-wa, .quiz .q-tel { display: flex; align-items: center; justify-content: center; gap: 9px;
+  padding: 14px 18px; border-radius: 12px; text-decoration: none;
+  font-family: 'Barlow', sans-serif; font-weight: 700; font-size: .98rem; }
+.quiz .q-wa  { background: var(--wa, #25D366); color: #fff; }
+.quiz .q-tel { background: var(--paper-2, #F3F6FA); color: var(--ink); }
+.quiz .q-wa svg, .quiz .q-tel svg { width: 19px; height: 19px; }
+
+/* styles.css already kills all animation under reduced motion; only the
+   progress bar's transition needs re-stating. */
+@media (prefers-reduced-motion: reduce) { .quiz .q-bar i { transition: none; } }

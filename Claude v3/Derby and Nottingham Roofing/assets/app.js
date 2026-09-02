@@ -39,12 +39,33 @@
     } catch (e) {}
   }
 
+  /* ---------- ad conversion, once per page load ----------
+     GTM-MN5RZ2R4 fires the Google Ads conversion off this exact custom event
+     name. The hero quiz and the bottom contact form can BOTH be completed in
+     one visit (the quiz deliberately does not redirect away), and two pushes
+     would report one customer as two conversions: it halves the apparent cost
+     per lead and feeds Smart Bidding a number that is not real. First push
+     wins for the life of the page. */
+  var leadFired = false;
+  function pushConversion(extra) {
+    if (leadFired) return false;
+    leadFired = true;
+    window.dataLayer = window.dataLayer || [];
+    var d = { event: "whatsapp_lead" };
+    for (var k in extra) if (Object.prototype.hasOwnProperty.call(extra, k)) d[k] = extra[k];
+    window.dataLayer.push(d);
+    return true;
+  }
+
   /* ---------- GA4 event helper ---------- */
   function track(name, params) {
     try { if (typeof window.gtag === "function") window.gtag("event", name, params || {}); } catch (e) {}
   }
   function locOf(el) {
     if (!el || !el.closest) return "page";
+    // Must precede the .hero test: on the ad landing pages the quiz card sits
+    // inside the hero, so .hero would otherwise swallow every quiz click.
+    if (el.closest("#quiz")) return "quiz";
     if (el.closest("#drawer")) return "mobile_menu";
     if (el.closest("#nav") || el.closest("header.nav")) return "nav";
     if (el.closest(".hero")) return "hero";
@@ -216,6 +237,112 @@
     });
   });
 
+  /* ---------- hero quiz (the Google Ads service pages only) ----------
+     Ported from assets/lp.js rather than loading that file alongside this one:
+     both attach a document-level capture-phase click logger to the SAME Apps
+     Script endpoint, and app.js's does not honour data-noleadlog, so the pair
+     would write two rows for every tel: tap and a third for the success-panel
+     buttons on a lead that is already banked.
+     KEEP IN SYNC with the quiz block in assets/lp.js. */
+  var quizEl = document.getElementById("quiz");
+  var goEl = quizEl ? quizEl.querySelector("#lpGo") : null;
+  // Both must exist before anything runs. app.js also owns the navbar, the
+  // drawer, the hero video crossfade, the reviews carousel and the contact
+  // form; an exception thrown in here would take every one of them down with
+  // it, silently, on a page taking paid traffic.
+  if (quizEl && goEl) (function () {
+    var CFG = window.LP_CFG || {};
+    // Deliberately not app.js's $, which is getElementById.
+    var qs = function (s) { return quizEl.querySelector(s); };
+    var qsa = function (s) { return [].slice.call(quizEl.querySelectorAll(s)); };
+
+    var lead = {}, idx = 1, started = false, sent = false;
+    var steps = qsa(".q-step"), fill = qs("[data-q-fill]"),
+        now = qs("[data-q-now]"), back = qs("[data-q-back]");
+
+    function show(n) {
+      idx = n;
+      steps.forEach(function (s) { s.classList.toggle("on", s.getAttribute("data-step") === String(n)); });
+      var done = n === "done";
+      if (fill) fill.style.width = (done ? 100 : (n / 4) * 100) + "%";
+      if (now) now.textContent = done ? 4 : n;
+      if (back) back.hidden = done || n === 1;
+      qsa(".q-count").forEach(function (e) { e.hidden = done; });
+      // Keep the card in view as it changes height, but never on first paint.
+      if (started) { var t = quizEl.getBoundingClientRect(); if (t.top < 0) quizEl.scrollIntoView({ behavior: "smooth", block: "start" }); }
+    }
+
+    // Steps 1-3 are tap-only, so the keyboard never appears until step 4.
+    quizEl.addEventListener("click", function (e) {
+      var b = e.target && e.target.closest ? e.target.closest("[data-field][data-val]") : null;
+      if (!b || !quizEl.contains(b)) return;
+      if (!started) { started = true; track("quiz_start", { lp: CFG.lp }); }
+      lead[b.getAttribute("data-field")] = b.getAttribute("data-val");
+      qsa('[data-field="' + b.getAttribute("data-field") + '"]').forEach(function (x) { x.classList.remove("sel"); });
+      b.classList.add("sel");
+      track("quiz_step", { lp: CFG.lp, step: idx });
+      setTimeout(function () { show(Math.min(idx + 1, 4)); }, 160);   // brief beat so the choice registers
+    });
+    if (back) back.addEventListener("click", function () { show(Math.max(1, idx - 1)); });
+
+    function summary() {
+      var bits = [];
+      if (CFG.service) bits.push("Job: " + CFG.service);
+      if (lead.q1) bits.push((CFG.labels && CFG.labels.q1 ? CFG.labels.q1 : "Detail") + ": " + lead.q1);
+      if (lead.q2) bits.push((CFG.labels && CFG.labels.q2 ? CFG.labels.q2 : "Detail") + ": " + lead.q2);
+      if (lead.area) bits.push("Area: " + lead.area);
+      return bits;
+    }
+
+    goEl.addEventListener("click", function () {
+      var nameEl = qs("#lpName"), phoneEl = qs("#lpPhone"), err = qs("[data-q-err]");
+      if (!nameEl || !phoneEl) return;
+      var name = (nameEl.value || "").trim(), phone = (phoneEl.value || "").trim();
+      var digits = phone.replace(/[^\d]/g, "");
+      // Permissive on purpose: rejecting one real number costs more than
+      // accepting one junk row.
+      var bad = !name || name.length < 2 ? nameEl : (digits.length < 10 || digits.length > 13) ? phoneEl : null;
+      [nameEl, phoneEl].forEach(function (f) { f.classList.remove("err"); });
+      if (bad) {
+        bad.classList.add("err"); bad.focus();
+        if (err) {
+          err.textContent = bad === nameEl ? "Please add your name." : "Please check your phone number.";
+          err.hidden = false;
+        }
+        return;
+      }
+      if (err) err.hidden = true;
+      if (sent) return;
+      sent = true; goEl.disabled = true;                  // double-tap guard
+      lead.name = name; lead.phone = phone;
+
+      /* Order matters. The lead is banked BEFORE any handoff, so every completed
+         quiz is a chaseable phone number even if WhatsApp is never opened. */
+      sendLead({ name: name, phone: phone, area: lead.area || "", service: CFG.service || "",
+                 msg: summary().join(" | "), type: "form", source: "quiz_" + (CFG.lp || "") });
+
+      pushConversion({ service: CFG.service || "", area: lead.area || "", lp: CFG.lp || "" });
+      track("generate_lead", { lp: CFG.lp, service: CFG.service, area: lead.area || "" });
+
+      // Inline success panel, NOT a redirect: a redirect throws away the dwell
+      // time and the remarketing view we have just paid for.
+      var first = name.split(" ")[0];
+      var head = qs("[data-q-head]"), sub = qs("[data-q-sub]"), wa = qs("[data-q-wa]");
+      if (head) head.textContent = "Thanks " + first + ". We've got your details";
+      if (sub) sub.textContent = "We'll call you on " + phone + " shortly to arrange your free survey.";
+      if (wa) {
+        var lines = ["Hi " + (CFG.biz || "Derby & Nottingham Roofing") + ", I've just filled in your form for a free quote.", "",
+                     "Name: " + name, "Phone: " + phone].concat(summary(), ["", "Source: " + location.pathname]);
+        // lp.js leaves CFG.wa unguarded and yields wa.me/undefined if it is ever
+        // dropped from the config. This file already knows the number.
+        wa.href = "https://wa.me/" + (CFG.wa || PHONE_INTL) + "?text=" + encodeURIComponent(lines.join("\n"));
+      }
+      show("done");
+    });
+
+    show(1);
+  })();
+
   /* ---------- contact form -> WhatsApp ---------- */
   function buildWa() {
     var v = function (id) { var el = $(id); return el ? (el.value || "").trim() : ""; };
@@ -229,12 +356,17 @@
     lines.push("", "Source: website enquiry");
     return WA_BASE + encodeURIComponent(lines.join("\n"));
   }
-  var sendWa = $("sendWa");
+  var sendWa = $("sendWa"), formSent = false;
   if (sendWa) {
     sendWa.onclick = function () {
       var name = ($("fName") && $("fName").value.trim()) || "";
       var phone = ($("fPhone") && $("fPhone").value.trim()) || "";
       if (!name || !phone) { alert("Please add your name and phone number so we can get back to you."); return; }
+      // Guard set AFTER the blank-field bail, or someone who submits an empty
+      // form once could never submit at all. A double tap inside the 1.2s
+      // before the redirect used to mean two rows, two conversions, two tabs.
+      if (formSent) return;
+      formSent = true; sendWa.disabled = true;
       var url = buildWa();
       try { sessionStorage.setItem("dnrWaUrl", url); } catch (e) {}
       var svc = ($("fService") && $("fService").value) || "";
@@ -242,11 +374,11 @@
       // Ad-conversion signal fires HERE at the moment of submit (GTM custom-event
       // trigger "whatsapp_lead") - the beacon survives the redirect, and it also
       // catches mobile users whose browser jumps to the WhatsApp app before the
-      // thank-you page finishes loading.
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({ event: "whatsapp_lead", service: svc, area: area });
+      // thank-you page finishes loading. Routed through pushConversion so that a
+      // visitor who did the hero quiz first is not counted twice.
+      pushConversion({ service: svc, area: area });
       // Log the lead to the Google Sheet at the same moment the conversion fires.
-      sendLead({ name: name, phone: phone, area: area, service: svc, msg: ($("fMsg") && $("fMsg").value.trim()) || "", type: "form" });
+      sendLead({ name: name, phone: phone, area: area, service: svc, msg: ($("fMsg") && $("fMsg").value.trim()) || "", type: "form", source: "site_form" });
       window.open(url, "_blank"); // open WhatsApp (new tab on desktop / app on mobile)
       // send this tab to the thank-you page - the GA4 generate_lead conversion fires there
       var dest = "thank-you.html?service=" + encodeURIComponent(svc) + "&area=" + encodeURIComponent(area);
@@ -266,17 +398,26 @@
     };
   }
 
-  /* ---------- conversion events: clicks to call + inline WhatsApp ---------- */
+  /* ---------- conversion events: clicks to call + inline WhatsApp ----------
+     Capture phase so the row dispatches before a tel:/wa.me navigation tears
+     the page down; keepalive in sendLead is what lets it survive. */
+  var seen = {};
+  function once(k, ms) { var t = Date.now(); if (seen[k] && t - seen[k] < ms) return false; seen[k] = t; return true; }
   document.addEventListener("click", function (e) {
     var a = e.target && e.target.closest ? e.target.closest("a[href]") : null;
-    if (!a) return;
-    var href = a.getAttribute("href") || "";
-    if (href.indexOf("tel:") === 0) {
-      track("click_to_call", { link_location: locOf(a) });
-      sendLead({ type: "call_click", msg: "location: " + locOf(a) });
-    } else if (href.indexOf("wa.me") !== -1 && a.id !== "waFloat") {
-      track("click_whatsapp", { link_location: locOf(a) });
-      sendLead({ type: "whatsapp_click", msg: "location: " + locOf(a) });
-    }
+    // The quiz success-panel buttons carry data-noleadlog: that lead is already
+    // banked, so logging the tap would count one customer twice.
+    if (!a || a.hasAttribute("data-noleadlog")) return;
+    var href = a.getAttribute("href") || "", type = "";
+    if (href.indexOf("tel:") === 0) type = "call_click";
+    else if (href.indexOf("wa.me") !== -1 && a.id !== "waFloat") type = "whatsapp_click";
+    else return;
+    var where = locOf(a);
+    // Same action from the same place inside 30s is a fumbled double-tap, not a
+    // second lead. Keying on location means a genuine second contact from
+    // elsewhere on the page still logs.
+    if (!once(type + "|" + where, 30000)) return;
+    track(type === "call_click" ? "click_to_call" : "click_whatsapp", { link_location: where });
+    sendLead({ type: type, msg: "location: " + where });
   }, true);
 })();

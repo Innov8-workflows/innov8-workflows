@@ -151,6 +151,69 @@ section { position: relative; z-index: 1; }
 .gr-hidden .gr-review { position:relative; opacity:0.5; filter:grayscale(1); }
 .gr-hidden-note { font-size:0.74rem; color:#5f6368; line-height:1.5; margin-top:10px; font-style:italic; }
 
+/* ── Paid advertising mockups (Meta ad system + Google PPC) ── */
+.pa-widget { max-width: 440px; width: 100%; margin: 0 auto; }
+.pa-flow { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 14px 0; }
+.pa-flow-line { width: 2px; height: 20px; background: linear-gradient(to bottom, var(--border), var(--accent)); border-radius: 2px; }
+.pa-flow-label { font-family: var(--font-mono); font-size: 0.62rem; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; }
+
+/* Meta feed ad card */
+.fbad { background: #fff; border-radius: 14px; padding: 14px 16px 16px; color: #050505; font-family: 'Bricolage Grotesque','Segoe UI',Roboto,Arial,sans-serif; line-height: 1.4; box-shadow: 0 24px 60px rgba(0,0,0,0.45); border: 1px solid rgba(0,0,0,0.08); }
+.fbad-top { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.fbad-avatar { width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.78rem; flex-shrink: 0; }
+.fbad-meta { flex: 1; min-width: 0; }
+.fbad-page { font-weight: 700; font-size: 0.88rem; color: #050505; }
+.fbad-sub { font-size: 0.72rem; color: #65676b; margin-top: 1px; }
+.fbad-dots { color: #65676b; font-weight: 700; letter-spacing: 2px; }
+.fbad-text { font-size: 0.84rem; color: #1c1e21; line-height: 1.5; margin-bottom: 12px; }
+.fbad-creative { position: relative; border-radius: 10px 10px 0 0; overflow: hidden; display: grid; grid-template-columns: 1fr 1fr; height: 148px; }
+.fbad-before, .fbad-after { display: flex; align-items: flex-end; padding: 10px 12px; font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; }
+.fbad-before { background: linear-gradient(160deg, #43484f, #23262b); color: rgba(255,255,255,0.6); }
+.fbad-after { background: linear-gradient(160deg, #c2570a, #ea580c); color: #fff; }
+.fbad-play { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 46px; height: 46px; border-radius: 50%; background: rgba(0,0,0,0.55); border: 2px solid rgba(255,255,255,0.9); display: flex; align-items: center; justify-content: center; }
+.fbad-play::after { content: ''; width: 0; height: 0; border-style: solid; border-width: 8px 0 8px 13px; border-color: transparent transparent transparent #fff; margin-left: 4px; }
+.fbad-cta { display: flex; align-items: center; gap: 12px; background: #f0f2f5; border-radius: 0 0 10px 10px; padding: 10px 12px; }
+.fbad-cta-meta { flex: 1; min-width: 0; }
+.fbad-cta-domain { font-size: 0.62rem; color: #65676b; text-transform: uppercase; letter-spacing: 0.03em; }
+.fbad-cta-title { font-size: 0.8rem; font-weight: 700; color: #050505; margin-top: 2px; }
+.fbad-btn { background: #0866ff; color: #fff; font-size: 0.76rem; font-weight: 700; padding: 8px 14px; border-radius: 6px; flex-shrink: 0; }
+
+/* WhatsApp lead notification card */
+.walead { background: var(--surface); border: 1px solid rgba(37,211,102,0.35); border-radius: 14px; padding: 16px; box-shadow: 0 18px 50px rgba(0,0,0,0.4); }
+.walead-top { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.walead-icon { width: 34px; height: 34px; border-radius: 50%; background: #25D366; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.walead-icon svg { width: 19px; height: 19px; fill: #fff; }
+.walead-title { flex: 1; font-size: 0.84rem; font-weight: 700; color: var(--text); }
+.walead-time { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 0.62rem; color: var(--node-green); text-transform: uppercase; letter-spacing: 0.05em; }
+.walead-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--node-green); animation: gr-pulse 1.8s infinite; }
+.walead-bubble { background: var(--surface2); border: 1px solid var(--border); border-radius: 4px 12px 12px 12px; padding: 12px 14px; font-size: 0.82rem; color: var(--muted2); line-height: 1.55; }
+.walead-ref { margin-top: 10px; font-family: var(--font-mono); font-size: 0.62rem; color: var(--muted); letter-spacing: 0.04em; }
+
+/* Google search results mockup */
+.gads { background: #fff; border-radius: 14px; padding: 18px; color: #202124; font-family: 'Bricolage Grotesque','Segoe UI',Roboto,Arial,sans-serif; line-height: 1.4; box-shadow: 0 24px 60px rgba(0,0,0,0.45); border: 1px solid rgba(0,0,0,0.08); }
+.gads-bar { display: flex; align-items: center; gap: 10px; border: 1px solid #dfe1e5; border-radius: 100px; padding: 9px 16px; margin-bottom: 16px; box-shadow: 0 1px 6px rgba(32,33,36,0.12); }
+.gads-bar svg { width: 20px; height: 20px; flex-shrink: 0; }
+.gads-query { font-size: 0.84rem; color: #202124; }
+.gads-tag-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+.gads-tag { font-size: 0.7rem; font-weight: 700; color: #202124; }
+.gads-you { font-size: 0.62rem; font-weight: 700; color: var(--accent); background: rgba(234,88,12,0.08); border: 1px solid rgba(234,88,12,0.35); border-radius: 100px; padding: 3px 10px; }
+.gads-site { display: flex; align-items: center; gap: 8px; margin-bottom: 3px; }
+.gads-favicon { width: 22px; height: 22px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent2)); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 0.55rem; font-weight: 800; flex-shrink: 0; }
+.gads-domain { font-size: 0.76rem; color: #202124; }
+.gads-url { font-size: 0.68rem; color: #5f6368; }
+.gads-headline { font-size: 1rem; color: #1a0dab; font-weight: 500; margin: 3px 0 4px; line-height: 1.35; }
+.gads-desc { font-size: 0.79rem; color: #4d5156; line-height: 1.5; }
+.gads-actions { display: flex; gap: 8px; margin-top: 11px; flex-wrap: wrap; }
+.gads-chip { display: inline-flex; align-items: center; gap: 6px; border: 1px solid #dadce0; border-radius: 100px; padding: 6px 13px; font-size: 0.74rem; color: #1a73e8; font-weight: 600; }
+.gads-chip svg { width: 13px; height: 13px; flex-shrink: 0; }
+.gads-others { margin-top: 16px; padding-top: 12px; border-top: 1px solid #ececec; }
+.gads-skel { opacity: 0.45; padding: 8px 0; }
+.gads-skel-bar { height: 9px; border-radius: 4px; background: #dadce0; margin-bottom: 7px; }
+.gads-skel-bar.w40 { width: 40%; }
+.gads-skel-bar.w85 { width: 85%; }
+.gads-skel-bar.w70 { width: 70%; margin-bottom: 0; }
+.gads-note { font-size: 0.72rem; color: #5f6368; font-style: italic; margin-top: 10px; }
+
 
 /* Included-features checklist (Essential website block) */
 .included-head { font-family: var(--font-mono); font-size: 0.66rem; color: var(--node-green); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 16px; }
@@ -630,6 +693,159 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
     <video autoplay loop muted playsinline preload="metadata" poster="services-media/before-after-03-poster.jpg" aria-label="Quote and ad landing page demo">
       <source src="services-media/before-after-03.mp4" type="video/mp4"/>
     </video>
+  </div>
+</div>
+
+<hr class="divider"/>
+
+<!-- SERVICE 4b: Meta Ad Lead Generation System — media LEFT -->
+<div class="service-block reverse reveal" id="meta-ads">
+  <div>
+    <div class="service-block-label">Paid Advertising &middot; Meta</div>
+    <h2>Meta Ad Lead<br/><span>Generation System</span></h2>
+    <p class="lead">A done for you advertising system on Facebook and Instagram. We build scroll-stopping ads around your real jobs, run them to homeowners in the exact areas you cover, and send every enquiry straight into your WhatsApp as a pre-filled message, ready for you to quote.</p>
+    <p class="works-with"><span>✓ Runs on</span> — Facebook, Instagram &amp; WhatsApp</p>
+    <div class="review-platforms">
+      <span class="review-platforms-label">Platforms we manage for you</span>
+      <span class="platform-badge">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#0467DF" d="M6.915 4.03c-1.968 0-3.683 1.28-4.871 3.113C.704 9.208 0 11.883 0 14.449c0 .706.07 1.369.21 1.973a6.624 6.624 0 0 0 .265.86 5.297 5.297 0 0 0 .371.761c.696 1.159 1.818 1.927 3.593 1.927 1.497 0 2.633-.671 3.965-2.444.76-1.012 1.144-1.626 2.663-4.32l.756-1.339.186-.325c.061.1.121.196.183.3l2.152 3.595c.724 1.21 1.665 2.556 2.47 3.314 1.046.987 1.992 1.22 3.06 1.22 1.075 0 1.876-.355 2.455-.843a3.743 3.743 0 0 0 .81-.973c.542-.939.861-2.127.861-3.745 0-2.72-.681-5.357-2.084-7.45-1.282-1.912-2.957-2.93-4.716-2.93-1.047 0-2.088.467-3.053 1.308-.652.57-1.257 1.29-1.82 2.05-.69-.875-1.335-1.547-1.958-2.056-1.182-.966-2.315-1.303-3.454-1.303zm10.16 2.053c1.147 0 2.188.758 2.992 1.999 1.132 1.748 1.647 4.195 1.647 6.4 0 1.548-.368 2.9-1.839 2.9-.58 0-1.027-.23-1.664-1.004-.496-.601-1.343-1.878-2.832-4.358l-.617-1.028a44.908 44.908 0 0 0-1.255-1.98c.07-.109.141-.224.211-.327 1.12-1.667 2.118-2.602 3.358-2.602zm-10.201.553c1.265 0 2.058.791 2.675 1.446.307.327.737.871 1.234 1.579l-1.02 1.566c-.757 1.163-1.882 3.017-2.837 4.338-1.191 1.649-1.81 1.817-2.486 1.817-.524 0-1.038-.237-1.383-.794-.263-.426-.464-1.13-.464-2.046 0-2.221.63-4.535 1.66-6.088.454-.687.964-1.226 1.533-1.533a2.264 2.264 0 0 1 1.088-.285z"/></svg>
+        Meta Ads
+      </span>
+      <span class="platform-badge">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#25D366" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.464 3.488"/></svg>
+        WhatsApp
+      </span>
+    </div>
+    <div class="feature-list">
+      <div class="feature-item">
+        <div class="feature-icon">✦</div>
+        <div><strong>Ads Built From Your Real Jobs</strong><p>Your before and after shots and transformation videos become the ad creative. Real work stops the scroll far better than stock photos ever will.</p></div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">✦</div>
+        <div><strong>Targeted To Your Exact Patch</strong><p>Your ads are shown only to homeowners in the towns and postcodes you cover, so your budget only reaches people you can actually serve.</p></div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">✦</div>
+        <div><strong>Leads Land In Your WhatsApp</strong><p>Every click opens a pre-filled WhatsApp message tagged with the ad it came from, so you always know which campaign is paying for itself.</p></div>
+      </div>
+    </div>
+    <a href="consultancy.html#contact" class="service-link">Book a free consultation →</a>
+  </div>
+  <div class="pa-widget reveal" aria-hidden="true">
+    <div class="fbad">
+      <div class="fbad-top">
+        <div class="fbad-avatar">YB</div>
+        <div class="fbad-meta">
+          <div class="fbad-page">Your Business Ltd</div>
+          <div class="fbad-sub">Sponsored</div>
+        </div>
+        <div class="fbad-dots">···</div>
+      </div>
+      <div class="fbad-text">Is your driveway letting the house down? Watch a one day transformation, then get your free quote.</div>
+      <div class="fbad-creative">
+        <div class="fbad-before">Before</div>
+        <div class="fbad-after">After</div>
+        <div class="fbad-play"></div>
+      </div>
+      <div class="fbad-cta">
+        <div class="fbad-cta-meta">
+          <div class="fbad-cta-domain">yourbusiness.co.uk</div>
+          <div class="fbad-cta-title">Free Quotes This Week</div>
+        </div>
+        <span class="fbad-btn">Get quote</span>
+      </div>
+    </div>
+    <div class="pa-flow">
+      <div class="pa-flow-line"></div>
+      <div class="pa-flow-label">Every click becomes a lead</div>
+    </div>
+    <div class="walead">
+      <div class="walead-top">
+        <div class="walead-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.464 3.488"/></svg>
+        </div>
+        <div class="walead-title">New WhatsApp lead</div>
+        <span class="walead-time"><span class="walead-dot"></span> Just now</span>
+      </div>
+      <div class="walead-bubble">Hi, I have just seen your ad on Facebook. Please can I get a quote for my front driveway?</div>
+      <div class="walead-ref">Ref: fb-spring-offer &middot; Derby</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider"/>
+
+<!-- SERVICE 4c: Google PPC Lead Generation — media RIGHT -->
+<div class="service-block reveal" id="google-ppc">
+  <div>
+    <div class="service-block-label">Paid Advertising &middot; Google</div>
+    <h2>Google PPC<br/><span>Lead Generation</span></h2>
+    <p class="lead">Google Ads puts your business at the very top of the results page the moment someone searches for your trade in your area. These are the highest intent leads there are, people actively looking to hire right now, and we build, manage and refine the whole campaign for you.</p>
+    <p class="works-with"><span>✓ Runs on</span> — Google Search &amp; Google Maps</p>
+    <div class="review-platforms">
+      <span class="review-platforms-label">Platforms we manage for you</span>
+      <span class="platform-badge">
+        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/><path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/><path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/><path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/></svg>
+        Google Ads
+      </span>
+    </div>
+    <div class="feature-list">
+      <div class="feature-item">
+        <div class="feature-icon">✦</div>
+        <div><strong>Straight To The Top</strong><p>Sponsored placement puts you above the map pack and the organic results from day one, while your SEO builds in the background.</p></div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">✦</div>
+        <div><strong>Only Pay For Real Interest</strong><p>You only pay when someone actually clicks, and negative keywords filter out the searches that were never going to become jobs.</p></div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">✦</div>
+        <div><strong>Tracked To The Penny</strong><p>Every call and quote request is tracked back to the exact search that triggered it, so you can see what each job cost to win.</p></div>
+      </div>
+    </div>
+    <a href="consultancy.html#contact" class="service-link">Book a free consultation →</a>
+  </div>
+  <div class="pa-widget reveal" aria-hidden="true">
+    <div class="gads">
+      <div class="gads-bar">
+        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/><path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/><path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/><path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/></svg>
+        <span class="gads-query">roofer near me</span>
+      </div>
+      <div class="gads-tag-row">
+        <span class="gads-tag">Sponsored</span>
+        <span class="gads-you">Your business</span>
+      </div>
+      <div class="gads-site">
+        <div class="gads-favicon">YB</div>
+        <div>
+          <div class="gads-domain">Your Business Ltd</div>
+          <div class="gads-url">yourbusiness.co.uk</div>
+        </div>
+      </div>
+      <div class="gads-headline">Local Roofing Specialists | Free No Obligation Quotes</div>
+      <div class="gads-desc">Repairs, full replacements and flat roofs across your area. Speak to a local expert today and get your free quote.</div>
+      <div class="gads-actions">
+        <span class="gads-chip">
+          <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.35-.11-.74-.03-1.02.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.21c.28-.27.36-.66.25-1.01-.37-1.12-.57-2.32-.57-3.57 0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.49c0-.55-.45-1-1-1z"/></svg>
+          Call now
+        </span>
+        <span class="gads-chip">Get a free quote</span>
+      </div>
+      <div class="gads-others">
+        <div class="gads-skel">
+          <div class="gads-skel-bar w40"></div>
+          <div class="gads-skel-bar w85"></div>
+          <div class="gads-skel-bar w70"></div>
+        </div>
+        <div class="gads-skel">
+          <div class="gads-skel-bar w40"></div>
+          <div class="gads-skel-bar w85"></div>
+          <div class="gads-skel-bar w70"></div>
+        </div>
+        <div class="gads-note">Everyone else, further down the page.</div>
+      </div>
+    </div>
   </div>
 </div>
 

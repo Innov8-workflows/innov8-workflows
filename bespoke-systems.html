@@ -73,6 +73,60 @@ section { position: relative; z-index: 1; }
 .page-hero p { font-size: 1.1rem; color: var(--muted2); max-width: 640px; line-height: 1.7; font-weight: 400; animation: fadeUp 0.5s 0.2s ease both; }
 .page-hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 34px; animation: fadeUp 0.5s 0.3s ease both; }
 
+/* ── Hero illustration: workflow node diagram ── */
+.page-hero { display: grid; grid-template-columns: minmax(0, 1fr) 400px; gap: 56px; align-items: center; }
+.bs-hero-visual { position: relative; background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 54px 24px 26px; box-shadow: 0 30px 70px rgba(0,0,0,0.45); animation: fadeUp 0.5s 0.25s ease both; }
+.bs-hero-visual::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle, #232323 1px, transparent 1px); background-size: 18px 18px; opacity: 0.5; border-radius: 18px; }
+.bs-live-chip { position: absolute; top: 16px; right: 16px; z-index: 2; display: inline-flex; align-items: center; gap: 7px; background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.35); color: var(--node-green); border-radius: 100px; padding: 5px 12px; font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; }
+.bs-live-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--node-green); animation: bs-pulse 1.8s infinite; }
+@keyframes bs-pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.25; } }
+.bs-flow { position: relative; z-index: 1; display: flex; flex-direction: column; }
+.bs-node { display: flex; align-items: center; gap: 12px; background: var(--surface2); border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; }
+.bs-node-icon { width: 34px; height: 34px; border-radius: 9px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.bs-node-icon svg { width: 17px; height: 17px; }
+.bs-node-icon.green { background: rgba(34,197,94,0.12); border: 1px solid rgba(34,197,94,0.3); color: var(--node-green); }
+.bs-node-icon.orange { background: rgba(234,88,12,0.12); border: 1px solid rgba(234,88,12,0.3); color: var(--accent2); }
+.bs-node-icon.blue { background: rgba(59,130,246,0.12); border: 1px solid rgba(59,130,246,0.3); color: var(--node-blue); }
+.bs-node-icon.purple { background: rgba(168,85,247,0.12); border: 1px solid rgba(168,85,247,0.3); color: var(--node-purple); }
+.bs-node-title { font-size: 0.88rem; font-weight: 700; }
+.bs-node-sub { font-family: var(--font-mono); font-size: 0.62rem; color: var(--muted); margin-top: 2px; letter-spacing: 0.03em; }
+.bs-link { position: relative; width: 2px; height: 26px; margin: 0 auto; background: var(--border); }
+.bs-link::after { content: ''; position: absolute; left: 50%; transform: translateX(-50%); width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: bs-drop 1.7s linear infinite; }
+.bs-link.d2::after { animation-delay: 0.55s; }
+.bs-link.d3::after { animation-delay: 1.1s; }
+@keyframes bs-drop { 0% { top: -3px; opacity: 0; } 20% { opacity: 1; } 85% { opacity: 1; } 100% { top: 23px; opacity: 0; } }
+
+/* ── "We run on the systems we sell": ERP dashboard illustration ── */
+.bs-dash { margin-top: 40px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; box-shadow: 0 30px 70px rgba(0,0,0,0.45); }
+.bs-dash-bar { display: flex; align-items: center; gap: 6px; background: var(--bg); border-bottom: 1px solid var(--border); padding: 10px 14px; }
+.bs-dash-dot { width: 10px; height: 10px; border-radius: 50%; }
+.bs-dash-url { flex: 1; margin-left: 8px; background: var(--surface); border-radius: 5px; padding: 4px 10px; font-family: var(--font-mono); font-size: 0.65rem; color: var(--muted); }
+.bs-dash-body { display: grid; grid-template-columns: 190px 1fr; }
+.bs-dash-side { border-right: 1px solid var(--border); padding: 16px 0; background: rgba(0,0,0,0.18); }
+.bs-dash-brand { display: flex; align-items: center; gap: 9px; padding: 2px 18px 14px; font-size: 0.8rem; font-weight: 700; }
+.bs-dash-brand img { width: 22px; height: 22px; border-radius: 6px; }
+.bs-dash-nav { display: flex; align-items: center; gap: 10px; padding: 9px 18px; font-size: 0.78rem; color: var(--muted2); }
+.bs-dash-nav.active { color: #fff; background: rgba(234,88,12,0.12); border-right: 2px solid var(--accent); }
+.bs-dash-main { padding: 20px 22px; }
+.bs-dash-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.bs-stat { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 13px 15px; }
+.bs-stat-label { font-family: var(--font-mono); font-size: 0.6rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.07em; }
+.bs-stat-value { font-size: 1.35rem; font-weight: 800; margin-top: 4px; letter-spacing: -0.02em; }
+.bs-stat-value span { font-size: 0.72rem; font-weight: 600; margin-left: 6px; color: var(--node-green); }
+.bs-dash-cols { display: grid; grid-template-columns: 1.2fr 1fr; gap: 12px; margin-top: 12px; }
+.bs-panel { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 14px 15px; }
+.bs-panel-title { font-family: var(--font-mono); font-size: 0.6rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 12px; }
+.bs-bars { display: flex; align-items: flex-end; gap: 8px; height: 92px; }
+.bs-bar { flex: 1; border-radius: 4px 4px 0 0; background: linear-gradient(to top, rgba(234,88,12,0.55), var(--accent2)); transform-origin: bottom; animation: bs-grow 0.9s ease both; }
+@keyframes bs-grow { from { transform: scaleY(0); } }
+.bs-feed-row { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px dashed var(--border); font-size: 0.78rem; color: var(--muted2); }
+.bs-feed-row:last-child { border-bottom: none; }
+.bs-feed-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+.bs-feed-time { margin-left: auto; font-family: var(--font-mono); font-size: 0.6rem; color: var(--muted); }
+@media (max-width: 1000px) { .page-hero { grid-template-columns: 1fr; gap: 44px; } .bs-hero-visual { max-width: 430px; width: 100%; } }
+@media (max-width: 760px) { .bs-dash-body { grid-template-columns: 1fr; } .bs-dash-side { display: none; } .bs-dash-stats { gap: 8px; } .bs-dash-cols { grid-template-columns: 1fr; } }
+@media (max-width: 560px) { .bs-stat-value { font-size: 1.05rem; } .bs-dash-main { padding: 14px; } }
+
 .btn-primary { background: var(--accent); color: #fff; padding: 14px 32px; border-radius: 8px; font-weight: 700; font-size: 0.95rem; text-decoration: none; border: none; cursor: pointer; transition: background 0.2s, transform 0.15s, box-shadow 0.2s; display: inline-block; font-family: var(--font-display); }
 .btn-primary:hover { background: var(--accent2); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(234,88,12,0.35); }
 .btn-ghost { color: var(--muted2); padding: 14px 24px; border-radius: 8px; font-weight: 500; font-size: 0.95rem; text-decoration: none; border: 1px solid var(--border); transition: color 0.2s, border-color 0.2s, transform 0.15s; display: inline-block; }
@@ -237,12 +291,50 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 
 <!-- HERO -->
 <div class="page-hero">
-  <div class="page-hero-badge">Bespoke Systems &middot; Automation &middot; AI</div>
-  <h1>Systems built around your business that save hours and <span>grow profit.</span></h1>
-  <p>Bespoke CRMs, ERPs and AI powered automation for businesses that have outgrown spreadsheets and off the shelf software. We map how your business actually works, build the system around it, and automate the repetitive work your team should not be doing by hand.</p>
-  <div class="page-hero-actions">
-    <a href="consultancy.html#contact" class="btn-primary">Book a Discovery Call</a>
-    <a href="case-studies.html" class="btn-ghost">View Case Studies</a>
+  <div class="page-hero-text">
+    <div class="page-hero-badge">Bespoke Systems &middot; Automation &middot; AI</div>
+    <h1>Systems built around your business that save hours and <span>grow profit.</span></h1>
+    <p>Bespoke CRMs, ERPs and AI powered automation for businesses that have outgrown spreadsheets and off the shelf software. We map how your business actually works, build the system around it, and automate the repetitive work your team should not be doing by hand.</p>
+    <div class="page-hero-actions">
+      <a href="consultancy.html#contact" class="btn-primary">Book a Discovery Call</a>
+      <a href="case-studies.html" class="btn-ghost">View Case Studies</a>
+    </div>
+  </div>
+  <div class="bs-hero-visual" aria-hidden="true">
+    <span class="bs-live-chip"><span class="bs-live-dot"></span> Runs 24/7</span>
+    <div class="bs-flow">
+      <div class="bs-node">
+        <div class="bs-node-icon green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+        <div>
+          <div class="bs-node-title">New enquiry</div>
+          <div class="bs-node-sub">WhatsApp &middot; Web form &middot; 02:37</div>
+        </div>
+      </div>
+      <div class="bs-link"></div>
+      <div class="bs-node">
+        <div class="bs-node-icon orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div>
+        <div>
+          <div class="bs-node-title">Bespoke CRM</div>
+          <div class="bs-node-sub">Lead logged &middot; Owner assigned</div>
+        </div>
+      </div>
+      <div class="bs-link d2"></div>
+      <div class="bs-node">
+        <div class="bs-node-icon blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></div>
+        <div>
+          <div class="bs-node-title">Automation runs</div>
+          <div class="bs-node-sub">Quote sent &middot; Follow up booked</div>
+        </div>
+      </div>
+      <div class="bs-link d3"></div>
+      <div class="bs-node">
+        <div class="bs-node-icon purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+        <div>
+          <div class="bs-node-title">Dashboard updated</div>
+          <div class="bs-node-sub">Live numbers &middot; Zero admin</div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -399,6 +491,61 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
       <div class="bs-why-card">
         <h4><span>✓</span> Proven with real businesses</h4>
         <p>From trade firms to SaaS products, our builds are live and earning for real UK businesses today. See them in our case studies.</p>
+      </div>
+    </div>
+
+    <div class="bs-dash reveal" aria-hidden="true">
+      <div class="bs-dash-bar">
+        <div class="bs-dash-dot" style="background:#ff5f57"></div><div class="bs-dash-dot" style="background:#febc2e"></div><div class="bs-dash-dot" style="background:#28c840"></div>
+        <div class="bs-dash-url">erp.yourbusiness.co.uk/dashboard</div>
+      </div>
+      <div class="bs-dash-body">
+        <div class="bs-dash-side">
+          <div class="bs-dash-brand"><img src="innov8-logo-v2.webp" alt="" width="22" height="22"/> Your ERP</div>
+          <div class="bs-dash-nav active">Dashboard</div>
+          <div class="bs-dash-nav">Jobs</div>
+          <div class="bs-dash-nav">Quotes</div>
+          <div class="bs-dash-nav">Invoices</div>
+          <div class="bs-dash-nav">Reports</div>
+        </div>
+        <div class="bs-dash-main">
+          <div class="bs-dash-stats">
+            <div class="bs-stat">
+              <div class="bs-stat-label">Live jobs</div>
+              <div class="bs-stat-value">14<span>+3</span></div>
+            </div>
+            <div class="bs-stat">
+              <div class="bs-stat-label">Quotes awaiting</div>
+              <div class="bs-stat-value">6</div>
+            </div>
+            <div class="bs-stat">
+              <div class="bs-stat-label">Hours saved this week</div>
+              <div class="bs-stat-value">22</div>
+            </div>
+          </div>
+          <div class="bs-dash-cols">
+            <div class="bs-panel">
+              <div class="bs-panel-title">Jobs completed &middot; last 8 weeks</div>
+              <div class="bs-bars">
+                <div class="bs-bar" style="height:38%"></div>
+                <div class="bs-bar" style="height:52%;animation-delay:0.08s"></div>
+                <div class="bs-bar" style="height:46%;animation-delay:0.16s"></div>
+                <div class="bs-bar" style="height:64%;animation-delay:0.24s"></div>
+                <div class="bs-bar" style="height:58%;animation-delay:0.32s"></div>
+                <div class="bs-bar" style="height:78%;animation-delay:0.4s"></div>
+                <div class="bs-bar" style="height:70%;animation-delay:0.48s"></div>
+                <div class="bs-bar" style="height:92%;animation-delay:0.56s"></div>
+              </div>
+            </div>
+            <div class="bs-panel">
+              <div class="bs-panel-title">Automation activity</div>
+              <div class="bs-feed-row"><span class="bs-feed-dot" style="background:var(--node-green)"></span> Invoice INV-0214 paid <span class="bs-feed-time">2m</span></div>
+              <div class="bs-feed-row"><span class="bs-feed-dot" style="background:var(--node-blue)"></span> Quote sent to new enquiry <span class="bs-feed-time">14m</span></div>
+              <div class="bs-feed-row"><span class="bs-feed-dot" style="background:var(--node-purple)"></span> Job booked in for Tuesday <span class="bs-feed-time">26m</span></div>
+              <div class="bs-feed-row"><span class="bs-feed-dot" style="background:var(--accent2)"></span> Follow up scheduled automatically <span class="bs-feed-time">1h</span></div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

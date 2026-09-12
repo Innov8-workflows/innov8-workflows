@@ -440,7 +440,9 @@ footer { border-top: 1px solid var(--border); padding: 48px 48px 32px; position:
 .partners-bar { padding: 40px 0 44px; background: var(--bg); border-bottom: 1px solid var(--border); overflow: hidden; position: relative; z-index: 1; }
 .partners-bar-label { text-align: center; font-family: var(--font-mono); font-size: 0.66rem; color: var(--muted); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 26px; }
 .partners-viewport { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%); mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%); }
-.partners-track { display: flex; align-items: center; width: max-content; animation: partners-scroll 115s linear infinite; }
+.partners-track { display: flex; align-items: center; width: max-content; animation: partners-scroll 105s linear infinite; }
+.partners-track.rev { animation-direction: reverse; }
+.partners-viewport + .partners-viewport { margin-top: 16px; }
 .partners-viewport:hover .partners-track { animation-play-state: paused; }
 .partner-tile { width: 190px; height: 116px; margin-right: 20px; flex-shrink: 0; border-radius: 14px; overflow: hidden; border: 1px solid var(--border); background: #0c0c0c; box-shadow: 0 8px 22px rgba(0,0,0,0.35); }
 .partner-tile img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.92; transition: opacity 0.3s ease, transform 0.4s ease; }
@@ -593,7 +595,6 @@ footer { border-top: 1px solid var(--border); padding: 48px 48px 32px; position:
         <div class="partner-tile"><img src="partners/williams.webp" alt="Williams Electrical" loading="lazy" width="190" height="116"/></div>
         <div class="partner-tile"><img src="partners/ksmithurst.webp" alt="K. Smithurst Building Contractors" loading="lazy" width="190" height="116"/></div>
         <div class="partner-tile"><img src="partners/jgs.webp" alt="JGS Construction" loading="lazy" width="190" height="116"/></div>
-        <div class="partner-tile"><img src="partners/asap-properties.webp" alt="ASAP Property Maintenance" loading="lazy" width="190" height="116"/></div>
         <div class="partner-tile"><img src="partners/yorkshire.webp" alt="Yorkshire Resin Driveways" loading="lazy" width="190" height="116"/></div>
         <div class="partner-tile partner-dup" aria-hidden="true"><img src="partners/derby.webp" alt="" loading="lazy" width="190" height="116"/></div>
         <div class="partner-tile partner-dup" aria-hidden="true"><img src="partners/a2b.webp" alt="" loading="lazy" width="190" height="116"/></div>
@@ -605,8 +606,33 @@ footer { border-top: 1px solid var(--border); padding: 48px 48px 32px; position:
         <div class="partner-tile partner-dup" aria-hidden="true"><img src="partners/williams.webp" alt="" loading="lazy" width="190" height="116"/></div>
         <div class="partner-tile partner-dup" aria-hidden="true"><img src="partners/ksmithurst.webp" alt="" loading="lazy" width="190" height="116"/></div>
         <div class="partner-tile partner-dup" aria-hidden="true"><img src="partners/jgs.webp" alt="" loading="lazy" width="190" height="116"/></div>
-        <div class="partner-tile partner-dup" aria-hidden="true"><img src="partners/asap-properties.webp" alt="" loading="lazy" width="190" height="116"/></div>
         <div class="partner-tile partner-dup" aria-hidden="true"><img src="partners/yorkshire.webp" alt="" loading="lazy" width="190" height="116"/></div>
+    </div>
+  </div>
+  <div class="partners-viewport">
+    <div class="partners-track rev">
+        <div class="partner-tile"><img src="partners/midland.webp" alt="Midland Roof Shield" loading="lazy" width="190" height="116"/></div>
+        <div class="partner-tile"><img src="partners/estewart.webp" alt="E Stewart Roofing" loading="lazy" width="190" height="116"/></div>
+        <div class="partner-tile"><img src="partners/jlambley.webp" alt="J. Lambley Plumbing &amp; Heating" loading="lazy" width="190" height="116"/></div>
+        <div class="partner-tile"><img src="partners/redhart.webp" alt="Redhart Roofing" loading="lazy" width="190" height="116"/></div>
+        <div class="partner-tile"><img src="partners/sparham.webp" alt="S. Sparham Electrical" loading="lazy" width="190" height="116"/></div>
+        <div class="partner-tile"><img src="partners/roofingdr.webp" alt="The Roofing Dr" loading="lazy" width="190" height="116"/></div>
+        <div class="partner-tile"><img src="partners/fairmont.webp" alt="Fairmont Roofing &amp; Stonework" loading="lazy" width="190" height="116"/></div>
+        <div class="partner-tile"><img src="partners/roofersrus.webp" alt="Roofers R Us" loading="lazy" width="190" height="116"/></div>
+        <div class="partner-tile"><img src="partners/roofatech.webp" alt="Roof-A-Tech UK" loading="lazy" width="190" height="116"/></div>
+        <div class="partner-tile"><img src="partners/aaa.webp" alt="Advanced Automated Access" loading="lazy" width="190" height="116"/></div>
+        <div class="partner-tile"><img src="partners/asap-properties.webp" alt="ASAP Property Maintenance" loading="lazy" width="190" height="116"/></div>
+        <div class="partner-tile partner-dup" aria-hidden="true"><img src="partners/midland.webp" alt="" loading="lazy" width="190" height="116"/></div>
+        <div class="partner-tile partner-dup" aria-hidden="true"><img src="partners/estewart.webp" alt="" loading="lazy" width="190" height="116"/></div>
+        <div class="partner-tile partner-dup" aria-hidden="true"><img src="partners/jlambley.webp" alt="" loading="lazy" width="190" height="116"/></div>
+        <div class="partner-tile partner-dup" aria-hidden="true"><img src="partners/redhart.webp" alt="" loading="lazy" width="190" height="116"/></div>
+        <div class="partner-tile partner-dup" aria-hidden="true"><img src="partners/sparham.webp" alt="" loading="lazy" width="190" height="116"/></div>
+        <div class="partner-tile partner-dup" aria-hidden="true"><img src="partners/roofingdr.webp" alt="" loading="lazy" width="190" height="116"/></div>
+        <div class="partner-tile partner-dup" aria-hidden="true"><img src="partners/fairmont.webp" alt="" loading="lazy" width="190" height="116"/></div>
+        <div class="partner-tile partner-dup" aria-hidden="true"><img src="partners/roofersrus.webp" alt="" loading="lazy" width="190" height="116"/></div>
+        <div class="partner-tile partner-dup" aria-hidden="true"><img src="partners/roofatech.webp" alt="" loading="lazy" width="190" height="116"/></div>
+        <div class="partner-tile partner-dup" aria-hidden="true"><img src="partners/aaa.webp" alt="" loading="lazy" width="190" height="116"/></div>
+        <div class="partner-tile partner-dup" aria-hidden="true"><img src="partners/asap-properties.webp" alt="" loading="lazy" width="190" height="116"/></div>
     </div>
   </div>
 </section>

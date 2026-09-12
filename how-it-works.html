@@ -93,6 +93,55 @@ section { position: relative; z-index: 1; }
 
 .phase-right { display: flex; flex-direction: column; gap: 16px; }
 
+/* Phase media shot (onboarding form screenshot) */
+.phase-shot { max-width: 360px; margin: 0 auto; border-radius: 14px; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 18px 50px rgba(0,0,0,0.45); line-height: 0; background: #f7f5f1; }
+.phase-shot img { width: 100%; height: auto; display: block; }
+
+/* Dark vs light theme comparison (review & go-live) */
+.theme-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.tc-mock { border-radius: 12px; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 14px 40px rgba(0,0,0,0.35); }
+.tc-bar { display: flex; gap: 5px; padding: 8px 10px; border-bottom: 1px solid rgba(128,128,128,0.18); }
+.tc-bar i { width: 8px; height: 8px; border-radius: 50%; display: block; }
+.tc-bar i:nth-child(1) { background: #ff5f57; } .tc-bar i:nth-child(2) { background: #febc2e; } .tc-bar i:nth-child(3) { background: #28c840; }
+.tc-body { padding: 14px 14px 18px; }
+.tc-nav { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
+.tc-logo { width: 16px; height: 16px; border-radius: 5px; background: var(--accent); flex-shrink: 0; }
+.tc-links { display: flex; gap: 6px; flex: 1; justify-content: flex-end; }
+.tc-links i { width: 22px; height: 5px; border-radius: 3px; display: block; }
+.tc-cta { width: 34px; height: 12px; border-radius: 100px; background: var(--accent); }
+.tc-h1 { height: 11px; border-radius: 5px; margin-bottom: 7px; }
+.tc-h1.w60 { width: 60%; }
+.tc-sub { height: 6px; border-radius: 3px; width: 82%; margin: 12px 0 16px; }
+.tc-btns { display: flex; gap: 8px; }
+.tc-btn-a { width: 58px; height: 16px; border-radius: 100px; background: var(--accent); display: block; }
+.tc-btn-b { width: 58px; height: 16px; border-radius: 100px; display: block; }
+.tc-dark { background: #141414; }
+.tc-dark .tc-bar { background: #0d0d0d; }
+.tc-dark .tc-links i, .tc-dark .tc-sub { background: #333; }
+.tc-dark .tc-h1 { background: #e8e8e8; }
+.tc-dark .tc-btn-b { border: 1px solid #3a3a3a; }
+.tc-light { background: #f6f4f0; }
+.tc-light .tc-bar { background: #ecebe7; }
+.tc-light .tc-links i, .tc-light .tc-sub { background: #cfcbc3; }
+.tc-light .tc-h1 { background: #23211e; }
+.tc-light .tc-btn-b { border: 1px solid #d8d4cc; }
+.tc-label { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; text-align: center; padding: 9px 0 11px; color: var(--muted); border-top: 1px solid rgba(128,128,128,0.15); }
+.tc-light .tc-label { color: #8a857c; }
+@media (max-width: 520px) { .theme-compare { grid-template-columns: 1fr; } }
+
+/* Final hero CTA (final-CTA-hero.webp) */
+.final-cta { position: relative; overflow: hidden; border-top: 1px solid var(--border); min-height: 640px; display: flex; align-items: flex-end; justify-content: center; text-align: center; padding: 380px 24px 100px; }
+.final-cta-bg { position: absolute; inset: 0; z-index: 0; background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('final-CTA-hero.webp') center top/cover no-repeat; }
+.final-cta-edge { position: absolute; inset: 0; z-index: 1; pointer-events: none; background:
+  linear-gradient(to bottom, rgba(15,15,15,0.55) 0%, rgba(15,15,15,0.05) 14%, transparent 35%, rgba(15,15,15,0.55) 78%, rgba(15,15,15,0.92) 100%);
+}
+.final-cta-inner { position: relative; z-index: 2; max-width: 720px; }
+.final-cta h2 { font-size: clamp(2.4rem, 6vw, 4.6rem); font-weight: 800; letter-spacing: -0.04em; line-height: 1; margin-bottom: 20px; color: #fff; text-shadow: 0 4px 28px rgba(0,0,0,0.9), 0 2px 8px rgba(0,0,0,0.75); }
+.final-cta p { color: rgba(255,255,255,0.95); font-size: 1.05rem; line-height: 1.7; margin-bottom: 40px; max-width: 520px; margin-left: auto; margin-right: auto; text-shadow: 0 2px 14px rgba(0,0,0,0.9); }
+.final-cta .cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.final-cta .btn-ghost { color: #fff; border-color: rgba(255,255,255,0.45); background: rgba(0,0,0,0.3); }
+.final-cta .btn-ghost:hover { border-color: rgba(255,255,255,0.8); background: rgba(0,0,0,0.4); }
+
 .step-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 28px 32px; transition: border-color 0.25s, transform 0.25s; }
 .step-card:hover { border-color: var(--accent); transform: translateX(4px); }
 .step-card-header { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
@@ -279,15 +328,15 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
   <div class="phase reveal">
     <div class="phase-left">
       <div class="phase-num">Phase 01</div>
-      <div class="phase-title">Free Branded<br/><span>Demo Website</span></div>
-      <p class="phase-desc">You see the value upfront, before you spend a penny.</p>
-      <div class="phase-tag" style="background:rgba(234,88,12,0.1);border:1px solid rgba(234,88,12,0.2);color:var(--accent2)">Always free</div>
+      <div class="phase-title">Discovery<br/><span>Call</span></div>
+      <p class="phase-desc">A short call to find out whether we can genuinely help.</p>
+      <div class="phase-tag" style="background:rgba(234,88,12,0.1);border:1px solid rgba(234,88,12,0.2);color:var(--accent2)">No pressure</div>
     </div>
     <div class="phase-right">
       <div class="step-card">
-        <div class="step-card-name" style="margin-bottom:10px">Built from your brand</div>
-        <p>We design a free demo website using your logo, your colours and photos of your real jobs, so you can see exactly what your new online presence could look like.</p>
-        <div class="step-card-footer"><span>✓</span> No cost, no commitment</div>
+        <div class="step-card-name" style="margin-bottom:10px">Are we the right fit?</div>
+        <p>An honest conversation about your business and where you might be losing work online. We work out whether our services would actually benefit you and get clear on the problems worth solving, before anything else happens.</p>
+        <div class="step-card-footer"><span>✓</span> Problem awareness first, not a pitch</div>
       </div>
     </div>
   </div>
@@ -295,15 +344,15 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
   <div class="phase reveal">
     <div class="phase-left">
       <div class="phase-num">Phase 02</div>
-      <div class="phase-title">Discussion<br/><span>&amp; Pricing</span></div>
-      <p class="phase-desc">We talk it through and share clear, upfront pricing.</p>
-      <div class="phase-tag" style="background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.2);color:var(--node-blue)">Transparent</div>
+      <div class="phase-title">Booking Your<br/><span>Branded Demo</span></div>
+      <p class="phase-desc">The right fit? We schedule your 15 minute demo call.</p>
+      <div class="phase-tag" style="background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.2);color:var(--node-blue)">15 minutes</div>
     </div>
     <div class="phase-right">
       <div class="step-card">
-        <div class="step-card-name" style="margin-bottom:10px">A proper conversation</div>
-        <p>We discuss what you have seen, share straightforward pricing, and send over a short about video on how Innov8 Workflows helps you grow and win more customers.</p>
-        <div class="step-card-footer"><span>✓</span> Pricing shared upfront</div>
+        <div class="step-card-name" style="margin-bottom:10px">A short slot, locked in</div>
+        <p>If we are the correct fit for each other, we schedule a 15 minute branded demo video call and exchange the content we will work from, your logo, photos of real jobs and anything else that shows your business at its best.</p>
+        <div class="step-card-footer"><span>✓</span> Content exchanged upfront</div>
       </div>
     </div>
   </div>
@@ -311,15 +360,15 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
   <div class="phase reveal">
     <div class="phase-left">
       <div class="phase-num">Phase 03</div>
-      <div class="phase-title">Google Meet<br/><span>or Zoom Call</span></div>
-      <p class="phase-desc">A scheduled call to go deeper and answer your questions.</p>
-      <div class="phase-tag" style="background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.2);color:var(--node-purple)">No pressure</div>
+      <div class="phase-title">The 15 Minute<br/><span>Demo Call</span></div>
+      <p class="phase-desc">Google Meet or Zoom, built around your premium demo site.</p>
+      <div class="phase-tag" style="background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.2);color:var(--node-purple)">Live showcase</div>
     </div>
     <div class="phase-right">
       <div class="step-card">
-        <div class="step-card-name" style="margin-bottom:10px">Go through it in depth</div>
-        <p>We book a Google Meet or Zoom call to walk through everything in more detail, talk about your goals, and answer any questions you have.</p>
-        <div class="step-card-footer"><span>✓</span> Booked at a time that suits you</div>
+        <div class="step-card-name" style="margin-bottom:10px">See your site before you decide</div>
+        <p>The call takes place on Google Meet or Zoom. We showcase a branded premium demo site built for your business, then go deeper into how it wins you work and what happens next.</p>
+        <div class="step-card-footer"><span>✓</span> Your brand, on screen, live</div>
       </div>
     </div>
   </div>
@@ -328,13 +377,13 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
     <div class="phase-left">
       <div class="phase-num">Phase 04</div>
       <div class="phase-title">Subscribe<br/><span>&amp; Secure</span></div>
-      <p class="phase-desc">You sign up and we lock in your domain.</p>
+      <p class="phase-desc">Happy with what you saw? We make it official.</p>
       <div class="phase-tag" style="background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.2);color:var(--node-green)">You're in</div>
     </div>
     <div class="phase-right">
       <div class="step-card">
-        <div class="step-card-name" style="margin-bottom:10px">Subscribe and secure your domain</div>
-        <p>When you are ready to go ahead, you subscribe and we secure your domain so it is reserved and ready for the build.</p>
+        <div class="step-card-name" style="margin-bottom:10px">Invoice, subscription, domain</div>
+        <p>If the demo is a success, the invoice is sent across, you subscribe, and your domain is secured so it is reserved and ready for the build.</p>
         <div class="step-card-footer"><span>✓</span> Domain secured for you</div>
       </div>
     </div>
@@ -343,21 +392,21 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
   <div class="phase reveal">
     <div class="phase-left">
       <div class="phase-num">Phase 05</div>
-      <div class="phase-title">Onboarding<br/><span>&amp; Build</span></div>
-      <p class="phase-desc">A 7 business day lead time to build everything out.</p>
-      <div class="phase-tag" style="background:rgba(234,88,12,0.1);border:1px solid rgba(234,88,12,0.2);color:var(--accent2)">7 business days</div>
+      <div class="phase-title">Onboarding<br/><span>Submission</span></div>
+      <p class="phase-desc">The context that turns a demo into your business's story.</p>
+      <div class="phase-tag" style="background:rgba(234,88,12,0.1);border:1px solid rgba(234,88,12,0.2);color:var(--accent2)">SEO &middot; GEO &middot; AEO</div>
     </div>
     <div class="phase-right">
       <div class="step-card">
-        <div class="step-card-name" style="margin-bottom:10px">We build it all out</div>
-        <p>Within a 7 business day lead time we build all your relevant SEO pages and functionality, and produce 3 to 4 transformation videos and 2 to 3 orbital hero videos.</p>
-        <div class="step-card-footer"><span>✓</span> SEO pages, functionality and video</div>
+        <div class="step-card-name" style="margin-bottom:10px">The onboarding form</div>
+        <p>We send out a short onboarding submission form. It strengthens the context of your site so nothing feels generic, builds the story of your business, and gathers the trust assets that win customers over: you shaking hands with a happy customer, the team in front of a branded vehicle, before and afters and more. Everything you share is used to strengthen the demo into a full build out.</p>
+        <div class="step-card-footer"><span>✓</span> Real photos and videos build real trust</div>
       </div>
-      <div class="connector"><div class="connector-line"></div><div class="connector-dot"></div><div class="connector-line"></div></div>
+      <div class="phase-shot"><img src="onboarding-form.webp" alt="The Innov8 Workflows website onboarding form" loading="lazy" width="584" height="847"/></div>
       <div class="step-card">
-        <div class="step-card-name" style="margin-bottom:10px">Onboarding form</div>
-        <p>We send you a simple onboarding form to fill in, so we have all the details and context we need to make the website truly yours.</p>
-        <div class="step-card-footer"><span>✓</span> Everything we need in one place</div>
+        <div class="step-card-name" style="margin-bottom:10px">Imperative for SEO, GEO and AEO</div>
+        <p>This step matters for search. Every area you cover and every service you offer goes in, so the full build can rank where your customers actually look: Google results, the map pack and AI search.</p>
+        <div class="step-card-footer"><span>✓</span> All areas, all services, captured once</div>
       </div>
     </div>
   </div>
@@ -365,14 +414,42 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
   <div class="phase reveal">
     <div class="phase-left">
       <div class="phase-num">Phase 06</div>
-      <div class="phase-title">Review<br/><span>&amp; Go Live</span></div>
-      <p class="phase-desc">You review the finished site, then we launch it.</p>
-      <div class="phase-tag" style="background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.2);color:var(--node-green)">Launch</div>
+      <div class="phase-title">Full Build Out<br/><span>&amp; Go Live</span></div>
+      <p class="phase-desc">Everything from onboarding goes in, and you approve the launch.</p>
+      <div class="phase-tag" style="background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.2);color:var(--node-green)">Approval first</div>
     </div>
     <div class="phase-right">
       <div class="step-card">
-        <div class="step-card-name" style="margin-bottom:10px">Your sign off, then live</div>
-        <p>Once you have reviewed the finished website and you are happy with it, we take it live for the world to see.</p>
+        <div class="step-card-name" style="margin-bottom:10px">The full build out</div>
+        <p>Your site goes through a full build out using all the context from your onboarding form and all the content gathered during the demo process. Pages, areas, services and trust assets all go in.</p>
+        <div class="step-card-footer"><span>✓</span> Built from your real business</div>
+      </div>
+      <div class="connector"><div class="connector-line"></div><div class="connector-dot"></div><div class="connector-line"></div></div>
+      <div class="step-card">
+        <div class="step-card-name" style="margin-bottom:10px">Review and go live</div>
+        <p>You check the finished site and approve it before anything goes public. Any changes or tweaks are made at this point, right down to a completely different look if you want one, then we take it live.</p>
+        <div class="theme-compare" aria-hidden="true" style="margin:16px 0 14px">
+          <div class="tc-mock tc-dark">
+            <div class="tc-bar"><i></i><i></i><i></i></div>
+            <div class="tc-body">
+              <div class="tc-nav"><span class="tc-logo"></span><span class="tc-links"><i></i><i></i><i></i></span><span class="tc-cta"></span></div>
+              <div class="tc-h1"></div><div class="tc-h1 w60"></div>
+              <div class="tc-sub"></div>
+              <div class="tc-btns"><span class="tc-btn-a"></span><span class="tc-btn-b"></span></div>
+            </div>
+            <div class="tc-label">Dark theme</div>
+          </div>
+          <div class="tc-mock tc-light">
+            <div class="tc-bar"><i></i><i></i><i></i></div>
+            <div class="tc-body">
+              <div class="tc-nav"><span class="tc-logo"></span><span class="tc-links"><i></i><i></i><i></i></span><span class="tc-cta"></span></div>
+              <div class="tc-h1"></div><div class="tc-h1 w60"></div>
+              <div class="tc-sub"></div>
+              <div class="tc-btns"><span class="tc-btn-a"></span><span class="tc-btn-b"></span></div>
+            </div>
+            <div class="tc-label">Light theme</div>
+          </div>
+        </div>
         <div class="step-card-footer"><span>✓</span> Live once you approve it</div>
       </div>
     </div>
@@ -382,33 +459,33 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
     <div class="phase-left">
       <div class="phase-num">Phase 07</div>
       <div class="phase-title">Support<br/><span>&amp; Growth</span></div>
-      <p class="phase-desc">We help with Google Business and stay on as your partner.</p>
-      <div class="phase-tag" style="background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.2);color:var(--node-blue)">Ongoing</div>
+      <p class="phase-desc">Hosting, maintenance, changes and SEO reports, ongoing.</p>
+      <div class="phase-tag" style="background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.2);color:var(--node-blue)">Growth partner</div>
     </div>
     <div class="phase-right">
       <div class="step-card">
-        <div class="step-card-name" style="margin-bottom:10px">Google Business and beyond</div>
-        <p>We help you set up and optimise your Google Business Profile, and stay on as your ongoing partner to help your business keep growing.</p>
-        <div class="step-card-footer"><span>✓</span> A lasting relationship</div>
+        <div class="step-card-name" style="margin-bottom:10px">Always here after launch</div>
+        <p>We are always here to support you with any further changes, hosting, maintenance and SEO reports. Not a supplier who disappears after launch, but a growth partner who keeps pushing with you.</p>
+        <div class="step-card-footer"><span>✓</span> A growth partner, long term</div>
       </div>
     </div>
   </div>
 
 </div>
 
-<!-- CTA -->
-<div class="cta-band">
-  <div class="cta-band-inner reveal">
-    <div>
-      <h2>Ready to get<br/><span>started?</span></h2>
-      <p>The first step is always a free branded demo. No commitment, no obligation, just a chance to see the value for yourself.</p>
-    </div>
-    <div class="cta-band-actions">
-      <a href="consultancy.html" class="btn-primary">Book Free Consultation</a>
-      <a href="services.html" class="btn-ghost">View Services</a>
+<!-- FINAL HERO CTA -->
+<section class="final-cta" id="ready">
+  <div class="final-cta-bg"></div>
+  <div class="final-cta-edge"></div>
+  <div class="final-cta-inner">
+    <h2>The first step is<br/>a conversation.</h2>
+    <p>Book a free discovery call. If we can genuinely help, you'll see a branded demo of your new site before you spend a penny.</p>
+    <div class="cta-actions">
+      <a href="consultancy.html#contact" class="btn-primary">Book Free Consultation</a>
+      <a href="https://wa.me/447718155997?text=Hi%20Jamie%20%E2%80%94%20I%27d%20like%20to%20chat%20about%20a%20website" target="_blank" rel="noopener" class="btn-ghost">Message on WhatsApp</a>
     </div>
   </div>
-</div>
+</section>
 
 <footer>
   <a href="index.html" class="footer-logo">

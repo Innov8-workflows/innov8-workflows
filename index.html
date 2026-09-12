@@ -257,7 +257,36 @@ section { position: relative; z-index: 1; }
 
 /* ── REVIEWS ── */
 .reviews-section { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-.reviews-featurable { margin-top: 56px; }
+/* ── Custom Google reviews carousel ── */
+.grv-wrap { margin-top: 56px; }
+.grv-viewport { overflow: hidden; }
+.grv-track { display: flex; gap: 20px; transition: transform 0.55s cubic-bezier(0.22, 0.61, 0.36, 1); }
+.grv-card { flex: 0 0 calc((100% - 40px) / 3); min-width: 0; background: #fff; border-radius: 14px; border-top: 3px solid var(--accent); padding: 22px 22px 18px; color: #202124; font-family: 'Bricolage Grotesque', 'Segoe UI', Roboto, Arial, sans-serif; display: flex; flex-direction: column; box-shadow: 0 18px 44px rgba(0,0,0,0.35); }
+.grv-stars { color: #FBBC04; font-size: 1.02rem; letter-spacing: 3px; margin-bottom: 12px; }
+.grv-text { font-size: 0.86rem; color: #3c4043; line-height: 1.62; flex: 1; display: -webkit-box; -webkit-line-clamp: 6; -webkit-box-orient: vertical; overflow: hidden; }
+.grv-foot { display: flex; align-items: center; gap: 10px; margin-top: 16px; padding-top: 14px; border-top: 1px solid #ececec; }
+.grv-avatar { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 0.95rem; flex-shrink: 0; }
+.grv-meta { flex: 1; min-width: 0; }
+.grv-name { font-weight: 700; font-size: 0.88rem; color: #202124; }
+.grv-date { font-size: 0.72rem; color: #5f6368; margin-top: 1px; }
+.grv-gmark { width: 20px; height: 20px; flex-shrink: 0; }
+.grv-nav { display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 24px; }
+.grv-arrow { width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--border); background: var(--surface); color: var(--text); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; transition: border-color 0.2s, transform 0.15s; }
+.grv-arrow:hover { border-color: var(--accent); transform: translateY(-1px); }
+.grv-arrow svg { width: 16px; height: 16px; }
+.grv-dots { display: flex; gap: 6px; }
+.grv-dot { width: 7px; height: 7px; border-radius: 100px; border: none; padding: 0; background: #3a3a3a; cursor: pointer; transition: background 0.25s, width 0.25s; }
+.grv-dot.active { background: var(--accent); width: 18px; }
+.grv-links { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 30px; }
+.grv-pill { display: inline-flex; align-items: center; gap: 9px; border-radius: 100px; padding: 12px 22px; font-size: 0.86rem; font-weight: 700; text-decoration: none; transition: transform 0.15s, box-shadow 0.2s; }
+.grv-pill:hover { transform: translateY(-2px); }
+.grv-pill svg { width: 17px; height: 17px; flex-shrink: 0; }
+.grv-pill.g { background: #fff; color: #202124; }
+.grv-pill.fb { background: #1877F2; color: #fff; }
+.grv-pill.leave { background: transparent; color: var(--accent2); border: 1px solid rgba(234,88,12,0.45); }
+.grv-note { text-align: center; font-size: 0.74rem; color: var(--muted); margin-top: 18px; }
+@media (max-width: 900px) { .grv-card { flex-basis: calc((100% - 20px) / 2); } }
+@media (max-width: 640px) { .grv-card { flex-basis: 100%; } .grv-text { -webkit-line-clamp: 7; } }
 
 /* ── CONTACT FORM (WhatsApp redirect) ── */
 .contact-section { border-top: 1px solid var(--border); }
@@ -994,9 +1023,119 @@ footer { border-top: 1px solid var(--border); padding: 48px 48px 32px; position:
     <h2 class="section-title reveal">Real words from<br/>real businesses.</h2>
     <p class="section-desc reveal">Straight from our clients — no edits, no marketing spin.</p>
 
-    <!-- Live Google reviews via Featurable — auto-syncs from the Google Business Profile -->
-    <div class="reviews-featurable reveal">
-      <div id="featurable-80095f51-5e13-45c1-acf9-b2d14d9f7411" data-featurable-async></div>
+    <!-- Custom Google reviews carousel — every review reproduced word for word from Google -->
+    <div class="grv-wrap reveal" id="grv" role="region" aria-label="Google reviews">
+      <div class="grv-viewport">
+        <div class="grv-track" id="grvTrack">
+          <div class="grv-card">
+            <div class="grv-stars">★★★★★</div>
+            <p class="grv-text">Couldn't recommend enough. If you're wanting to grow your business in a hassle free but professional manner. Get in touch with jamie! Fantastic service</p>
+            <div class="grv-foot">
+              <div class="grv-avatar" style="background:#1a73e8">J</div>
+              <div class="grv-meta"><div class="grv-name">Jack Lambley</div><div class="grv-date">September 2026</div></div>
+              <svg class="grv-gmark" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/><path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/><path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/><path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/></svg>
+            </div>
+          </div>
+          <div class="grv-card">
+            <div class="grv-stars">★★★★★</div>
+            <p class="grv-text">Jamie is a very easy man to work with always keeps you in the loop replies straight away you won't find a better website man</p>
+            <div class="grv-foot">
+              <div class="grv-avatar" style="background:#d93025">B</div>
+              <div class="grv-meta"><div class="grv-name">Byron Doran</div><div class="grv-date">September 2026</div></div>
+              <svg class="grv-gmark" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/><path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/><path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/><path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/></svg>
+            </div>
+          </div>
+          <div class="grv-card">
+            <div class="grv-stars">★★★★★</div>
+            <p class="grv-text">Jamie is professional, and excellent at what he does, the website he has made for me is absolutely amazing and I can't wait to continue working with him.</p>
+            <div class="grv-foot">
+              <div class="grv-avatar" style="background:#1e8e3e">R</div>
+              <div class="grv-meta"><div class="grv-name">Roof A Tech UK Limited</div><div class="grv-date">September 2026</div></div>
+              <svg class="grv-gmark" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/><path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/><path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/><path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/></svg>
+            </div>
+          </div>
+          <div class="grv-card">
+            <div class="grv-stars">★★★★★</div>
+            <p class="grv-text">Jamie designed my website and he did an amazing job from start to finish. Gathering as much information he could and his key to detail was amazing. I felt like Jamie had a genuine interest in trying to benefit my business and he was always quick to respond whenever I had any questions. I'd definitely recommend him !</p>
+            <div class="grv-foot">
+              <div class="grv-avatar" style="background:#e37400">S</div>
+              <div class="grv-meta"><div class="grv-name">Stephen Sparham</div><div class="grv-date">August 2026</div></div>
+              <svg class="grv-gmark" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/><path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/><path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/><path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/></svg>
+            </div>
+          </div>
+          <div class="grv-card">
+            <div class="grv-stars">★★★★★</div>
+            <p class="grv-text">Jamie did an excellent job creating our website. He was professional, easy to work with, and always quick to respond. The website looks fantastic, works perfectly, and was delivered on time. I'd highly recommend Jamie to anyone looking for a high-quality website.</p>
+            <div class="grv-foot">
+              <div class="grv-avatar" style="background:#7b1fa2">K</div>
+              <div class="grv-meta"><div class="grv-name">Kevin Smithurst</div><div class="grv-date">August 2026</div></div>
+              <svg class="grv-gmark" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/><path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/><path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/><path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/></svg>
+            </div>
+          </div>
+          <div class="grv-card">
+            <div class="grv-stars">★★★★★</div>
+            <p class="grv-text">Found jamie on tiktok advertising his work doing websites etc. I contacted him regarding a landing page. Had it up and and goin in no time everything the way I wanted and kept me updated every step of the way would definitely recommend to anyone 👌🏽</p>
+            <div class="grv-foot">
+              <div class="grv-avatar" style="background:#0b8043">A</div>
+              <div class="grv-meta"><div class="grv-name">Asap</div><div class="grv-date">July 2026</div></div>
+              <svg class="grv-gmark" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/><path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/><path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/><path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/></svg>
+            </div>
+          </div>
+          <div class="grv-card">
+            <div class="grv-stars">★★★★★</div>
+            <p class="grv-text">I had a fantastic experience working with Jamie from Innov8 Website Designs. From the very beginning, Jamie was professional, knowledgeable, and genuinely invested in helping bring my vision to life. Communication was excellent throughout the entire process, and every question or request was handled quickly and efficiently. The finished website exceeded my expectations, looking both professional and user-friendly while perfectly representing my business.</p>
+            <div class="grv-foot">
+              <div class="grv-avatar" style="background:#c5221f">L</div>
+              <div class="grv-meta"><div class="grv-name">LEVI Price</div><div class="grv-date">June 2026</div></div>
+              <svg class="grv-gmark" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/><path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/><path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/><path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/></svg>
+            </div>
+          </div>
+          <div class="grv-card">
+            <div class="grv-stars">★★★★★</div>
+            <p class="grv-text">Jamie was fantastic in developing our site and talking me through the various ways he can grow and help reach more clients within our area. Highly recommend and look forward to to seeing what he can do for us in the future</p>
+            <div class="grv-foot">
+              <div class="grv-avatar" style="background:#f9ab00">J</div>
+              <div class="grv-meta"><div class="grv-name">Joe Grace</div><div class="grv-date">June 2026</div></div>
+              <svg class="grv-gmark" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/><path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/><path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/><path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/></svg>
+            </div>
+          </div>
+          <div class="grv-card">
+            <div class="grv-stars">★★★★★</div>
+            <p class="grv-text">Recently set me up with a website and review link for my roofing business very professional and easy to communicate with! Highly recommended</p>
+            <div class="grv-foot">
+              <div class="grv-avatar" style="background:#3949ab">A</div>
+              <div class="grv-meta"><div class="grv-name">Andrew Laxton</div><div class="grv-date">June 2026</div></div>
+              <svg class="grv-gmark" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/><path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/><path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/><path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/></svg>
+            </div>
+          </div>
+          <div class="grv-card">
+            <div class="grv-stars">★★★★★</div>
+            <p class="grv-text">Absolutely outstanding service from start to finish. Jamie is professional, friendly, and always willing to help. I previously had my website hosted with another provider, and Jamie handled the domain transfer seamlessly, liaising directly with the previous provider to ensure a smooth handover with no issues throughout the process. I wouldn't hesitate to recommend Jamie and his services to anyone considering them. A great experience all round.</p>
+            <div class="grv-foot">
+              <div class="grv-avatar" style="background:#00897b">A</div>
+              <div class="grv-meta"><div class="grv-name">Alfie Williams - Fairley</div><div class="grv-date">June 2026</div></div>
+              <svg class="grv-gmark" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/><path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/><path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/><path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="grv-nav">
+        <button class="grv-arrow" id="grvPrev" aria-label="Previous reviews" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+        <div class="grv-dots" id="grvDots"></div>
+        <button class="grv-arrow" id="grvNext" aria-label="Next reviews" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+      </div>
+      <div class="grv-links">
+        <a class="grv-pill g" href="https://www.google.com/search?q=Innov8+Workflows&amp;ludocid=8929470527789364715#lrd=0x487993ad6ad446f5:0x7bebda22793475eb,1" target="_blank" rel="noopener">
+          <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/><path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/><path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/><path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/></svg>
+          Read all 10 Google reviews →
+        </a>
+        <a class="grv-pill fb" href="https://www.facebook.com/profile.php?id=61589162941652&amp;sk=reviews" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#fff" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          100% recommend from 9 reviews →
+        </a>
+        <a class="grv-pill leave" href="https://g.page/r/Cet1NHki2ut7EAI/review" target="_blank" rel="noopener">Leave us a review →</a>
+      </div>
+      <div class="grv-note">Every review here is a real one, reproduced word for word. Counts correct as at 12 September 2026.</div>
     </div>
   </div>
 </section>
@@ -1192,7 +1331,50 @@ const obs = new IntersectionObserver(entries => {
 }, { threshold: 0.12 });
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-// ── REVIEWS — now rendered live by the Featurable widget (cdn.featurable.com/widget/v2/embed.js) ──
+// ── REVIEWS — custom Google review carousel (reviews reproduced word for word) ──
+(function() {
+  var track = document.getElementById('grvTrack');
+  if (!track) return;
+  var prev = document.getElementById('grvPrev');
+  var next = document.getElementById('grvNext');
+  var dotsWrap = document.getElementById('grvDots');
+  var cards = track.children.length;
+  var page = 0, timer = null;
+
+  function perView() {
+    var w = window.innerWidth;
+    return w <= 640 ? 1 : w <= 900 ? 2 : 3;
+  }
+  function pages() { return Math.ceil(cards / perView()); }
+  function render() {
+    var pv = perView(), pg = pages();
+    if (page > pg - 1) page = pg - 1;
+    var card = track.children[0];
+    var gap = 20;
+    var step = (card.getBoundingClientRect().width + gap) * pv * page;
+    var max = track.scrollWidth - track.parentElement.getBoundingClientRect().width;
+    track.style.transform = 'translateX(-' + Math.min(step, Math.max(0, max)) + 'px)';
+    var html = '';
+    for (var i = 0; i < pg; i++) html += '<button class="grv-dot' + (i === page ? ' active' : '') + '" data-p="' + i + '" aria-label="Reviews page ' + (i + 1) + '" type="button"></button>';
+    dotsWrap.innerHTML = html;
+  }
+  function go(d) { var pg = pages(); page = (page + d + pg) % pg; render(); }
+  prev.addEventListener('click', function() { go(-1); restart(); });
+  next.addEventListener('click', function() { go(1); restart(); });
+  dotsWrap.addEventListener('click', function(e) {
+    var b = e.target.closest('.grv-dot');
+    if (!b) return;
+    page = +b.getAttribute('data-p'); render(); restart();
+  });
+  // Gentle auto-advance. Deliberately NOT gated on prefers-reduced-motion — see the
+  // partners bar: the fallback froze it for users with reduce-motion set at OS level.
+  function restart() { clearInterval(timer); timer = setInterval(function() { go(1); }, 6500); }
+  var wrap = document.getElementById('grv');
+  wrap.addEventListener('mouseenter', function() { clearInterval(timer); });
+  wrap.addEventListener('mouseleave', restart);
+  window.addEventListener('resize', render, { passive: true });
+  render(); restart();
+})();
 
 // ── WHATSAPP-REDIRECT FORM ───────────────────────────────────
 (function() {
@@ -1242,8 +1424,6 @@ document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 <!-- Innov8 CRM analytics -->
 <script defer src="https://crm.innov8workflows.co.uk/track.js" data-id="proj_f5d3ac1edd12"></script>
 
-<!-- Featurable — live Google reviews widget (renders into #featurable-… in the Reviews section) -->
-<script src="https://cdn.featurable.com/widget/v2/embed.js" defer charset="UTF-8"></script>
 <!-- Floating WhatsApp widget -->
 <a href="https://wa.me/447718155997?text=Hi%20Jamie%20%E2%80%94%20I%27d%20like%20to%20chat%20about%20a%20website" target="_blank" rel="noopener" class="wa-widget" aria-label="Chat with us on WhatsApp">
   <span class="wa-widget-label">Chat with us on WhatsApp</span>

@@ -118,7 +118,8 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; a
 .hero-content a, .hero-content button { pointer-events: auto; }
 
 .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(234,88,12,0.1); border: 1px solid rgba(234,88,12,0.28); border-radius: 100px; padding: 6px 16px; font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent2); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 28px; animation: fadeUp 0.6s ease both; align-self: center; position: relative; z-index: 3; }
-.hero-badge-top { align-self: flex-start; }
+.hero-badge-top { align-self: center; }
+.hero-logo { width: 150px; height: 150px; border-radius: 32px; position: relative; z-index: 3; margin-bottom: 30px; box-shadow: 0 14px 44px rgba(0,0,0,0.55), 0 0 70px rgba(249,115,22,0.3); animation: fadeUp 0.6s 0.05s ease both; }
 .badge-dot { width: 6px; height: 6px; background: var(--accent2); border-radius: 50%; animation: pulse 2s infinite; }
 @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
 .hero h1 { font-size: clamp(3rem, 8vw, 6.5rem); font-weight: 800; line-height: 0.95; letter-spacing: -0.04em; margin-bottom: 24px; animation: fadeUp 0.6s 0.1s ease both; text-shadow: 0 2px 24px rgba(0,0,0,0.85), 0 1px 3px rgba(0,0,0,0.5); }
@@ -134,10 +135,7 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; a
 .workflow-preview { position: relative; z-index: 1; width: 100%; max-width: 900px; margin: 64px auto 0; animation: fadeUp 0.7s 0.4s ease both; }
 
 @media (min-width: 769px) {
-  .hero { align-items: flex-start; padding-left: clamp(48px, 8vw, 120px); padding-right: clamp(48px, 8vw, 120px); }
-  .hero-content-main { align-items: flex-start; text-align: left; max-width: 600px; margin-left: 0; margin-right: auto; }
-  .hero-content-main .hero-actions { justify-content: flex-start; }
-  .hero > .workflow-preview { align-self: center; }
+  .hero { padding-left: clamp(48px, 8vw, 120px); padding-right: clamp(48px, 8vw, 120px); }
 }
 .workflow-canvas { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 40px; position: relative; overflow: hidden; }
 .workflow-canvas::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle, #2a2a2a 1px, transparent 1px); background-size: 24px 24px; opacity: 0.5; }
@@ -341,6 +339,7 @@ footer { border-top: 1px solid var(--border); padding: 48px 48px 32px; position:
   .nav-cta svg { width: 15px; height: 15px; }
 
   .hero { padding: 86px 0 0; min-height: 78vh; align-items: stretch; justify-content: flex-end; text-align: center; }
+  .hero-logo { width: 92px; height: 92px; border-radius: 20px; margin-bottom: 18px; }
   .hero h1 { font-size: clamp(1.85rem, 8.5vw, 2.6rem); line-height: 1.05; margin-bottom: 14px; letter-spacing: -0.03em; }
   .hero-sub { font-size: 0.9rem; margin-bottom: 0; max-width: 100%; line-height: 1.5; }
   /* Hero is visual-only on mobile: hide CTAs and workflow nodes, keep the slider running */
@@ -542,6 +541,7 @@ footer { border-top: 1px solid var(--border); padding: 48px 48px 32px; position:
   </div>
 
   <div class="hero-content hero-content-main">
+    <img class="hero-logo" src="innov8-logo-v2.webp" alt="" width="150" height="150"/>
     <h1>
       Websites that turn<br/>
       visitors into <span>paying customers.</span>

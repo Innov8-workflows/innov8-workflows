@@ -1,3 +1,13 @@
 # Large local source assets (raw videos/images). Web-optimised copies that the
 # site actually uses are committed under services-media/ instead.
 Innov8 Business Files/
+
+# Credential and setup notes: plain-text logins, passwords and API tokens kept
+# beside a client build. This repo is PUBLIC - they must never be committed.
+**/email-setup*.txt
+**/meta-setup*.txt
+**/zoho*.txt
+**/resend-api*.txt
+**/*credentials*
+**/*password*
+**/RECOVERY-CODES*

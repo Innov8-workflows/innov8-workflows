@@ -220,6 +220,17 @@
     }
   }
 
+  // ── Remove GA cookies set before consent gating existed ──
+  function clearGaCookies() {
+    document.cookie.split(';').forEach(function (c) {
+      const name = c.split('=')[0].trim();
+      if (name.indexOf('_ga') === 0) {
+        document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; domain=.innov8workflows.co.uk';
+        document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+      }
+    });
+  }
+
   // ── Init ──
   function init() {
     const consent = getConsent();
@@ -228,9 +239,12 @@
       if (window.i8LoadAnalytics) window.i8LoadAnalytics();
       loadChatbot();
     } else if (consent === 'declined') {
+      clearGaCookies();
       removeChatbot();
     } else {
-      // No consent yet — show banner; analytics stays off until Accept
+      // No consent yet — show banner; analytics stays off until Accept.
+      // Also sweep any GA cookies left over from before the gate existed.
+      clearGaCookies();
       showBanner();
     }
   }

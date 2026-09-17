@@ -4,12 +4,22 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <!-- Google tag (gtag.js) — GA4 + conversion events -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-LFEDCY725K"></script>
 <script>
+  // GA4 is consent-gated (UK PECR): nothing loads and no cookies are set until
+  // analytics cookies are accepted in the banner (cookie-consent.js).
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-LFEDCY725K');
+  gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
+  window.i8LoadAnalytics = function () {
+    if (window.__i8ga) return; window.__i8ga = true;
+    gtag('consent', 'update', { analytics_storage: 'granted' });
+    gtag('js', new Date());
+    gtag('config', 'G-LFEDCY725K');
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=G-LFEDCY725K';
+    document.head.appendChild(s);
+  };
   // Conversion events — delegated so they cover every tel:/WhatsApp link on the page
   document.addEventListener('click', function(e){
     var t = e.target.closest && e.target.closest('a[href^="tel:"], a[href*="wa.me"]');

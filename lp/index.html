@@ -7,12 +7,22 @@
 <title>Free Demo Website for Your Business | Innov8 Workflows</title>
 <meta name="description" content="We build local UK businesses a free branded demo website before they pay a penny. See yours, then go live in 7-14 business days."/>
 <!-- Google tag (gtag.js) — GA4 + conversion events -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-LFEDCY725K"></script>
 <script>
+  // GA4 is consent-gated (UK PECR): nothing loads and no cookies are set until
+  // analytics cookies are accepted in the banner (cookie-consent.js).
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-LFEDCY725K');
+  gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
+  window.i8LoadAnalytics = function () {
+    if (window.__i8ga) return; window.__i8ga = true;
+    gtag('consent', 'update', { analytics_storage: 'granted' });
+    gtag('js', new Date());
+    gtag('config', 'G-LFEDCY725K');
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=G-LFEDCY725K';
+    document.head.appendChild(s);
+  };
   document.addEventListener('click', function(e){
     var t = e.target.closest && e.target.closest('a[href^="tel:"], a[href*="wa.me"]');
     if (!t) return;
@@ -553,5 +563,6 @@ footer.page-foot a { color: var(--muted); }
 })();
 </script>
 <script defer src="https://crm.innov8workflows.co.uk/track.js" data-id="proj_f5d3ac1edd12"></script>
+<script src="/cookie-consent.js"></script>
 </body>
 </html>

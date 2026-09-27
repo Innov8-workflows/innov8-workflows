@@ -61,6 +61,7 @@ body { background: var(--bg); color: var(--text); font-family: var(--font-displa
 nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 14px 48px; background: rgba(15,15,15,0.88); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); gap: 16px; }
 .nav-logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.2rem; letter-spacing: -0.02em; color: var(--text); text-decoration: none; flex-shrink: 0; }
 .logo-box { width: 32px; height: 32px; background: var(--accent); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 13px; color: #fff; font-weight: 500; }
+img.logo-box { background: none; border-radius: 0; object-fit: contain; }
 .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
 .nav-links a { color: var(--muted2); text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: color 0.2s; }
 .nav-links a:hover, .nav-links a.active { color: var(--text); }
@@ -129,7 +130,7 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; a
 
 .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(234,88,12,0.1); border: 1px solid rgba(234,88,12,0.28); border-radius: 100px; padding: 6px 16px; font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent2); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 28px; animation: fadeUp 0.6s ease both; align-self: center; position: relative; z-index: 3; }
 .hero-badge-top { align-self: center; }
-.hero-logo { width: 150px; height: 150px; border-radius: 32px; position: relative; z-index: 3; margin-bottom: 30px; box-shadow: 0 14px 44px rgba(0,0,0,0.55), 0 0 70px rgba(249,115,22,0.3); animation: fadeUp 0.6s 0.05s ease both; }
+.hero-logo { width: 190px; height: 190px; position: relative; z-index: 3; margin-bottom: 22px; filter: drop-shadow(0 10px 26px rgba(0,0,0,0.6)) drop-shadow(0 0 34px rgba(249,115,22,0.28)); animation: fadeUp 0.6s 0.05s ease both; }
 .badge-dot { width: 6px; height: 6px; background: var(--accent2); border-radius: 50%; animation: pulse 2s infinite; }
 @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
 .hero h1 { font-size: clamp(3rem, 8vw, 6.5rem); font-weight: 800; line-height: 0.95; letter-spacing: -0.04em; margin-bottom: 24px; animation: fadeUp 0.6s 0.1s ease both; text-shadow: 0 2px 24px rgba(0,0,0,0.85), 0 1px 3px rgba(0,0,0,0.5); }
@@ -378,7 +379,7 @@ footer { border-top: 1px solid var(--border); padding: 48px 48px 32px; position:
   .nav-cta svg { width: 15px; height: 15px; }
 
   .hero { padding: 86px 0 0; min-height: 78vh; align-items: stretch; justify-content: flex-end; text-align: center; }
-  .hero-logo { width: 92px; height: 92px; border-radius: 20px; margin-bottom: 18px; }
+  .hero-logo { width: 110px; height: 110px; margin-bottom: 14px; }
   .hero h1 { font-size: clamp(1.85rem, 8.5vw, 2.6rem); line-height: 1.05; margin-bottom: 14px; letter-spacing: -0.03em; }
   .hero-sub { font-size: 0.9rem; margin-bottom: 0; max-width: 100%; line-height: 1.5; }
   /* Hero is visual-only on mobile: hide CTAs and workflow nodes, keep the slider running */
@@ -535,7 +536,7 @@ footer { border-top: 1px solid var(--border); padding: 48px 48px 32px; position:
 <!-- ═══════════════ 1. NAVBAR ═══════════════ -->
 <nav>
   <a href="index.html" class="nav-logo">
-    <img class="logo-box" src="innov8-logo-v2.webp" alt="" width="32" height="32"/>
+    <img class="logo-box" src="innov8-logo-v2-clear-sm.webp" alt="" width="32" height="32"/>
     Innov8 Workflows
   </a>
   <ul class="nav-links">
@@ -580,7 +581,7 @@ footer { border-top: 1px solid var(--border); padding: 48px 48px 32px; position:
   </div>
 
   <div class="hero-content hero-content-main">
-    <img class="hero-logo" src="innov8-logo-v2.webp" alt="" width="150" height="150"/>
+    <img class="hero-logo" src="innov8-logo-v2-clear.webp" alt="" width="190" height="190"/>
     <h1>
       Websites that turn<br/>
       visitors into <span>paying customers.</span>
@@ -1239,7 +1240,7 @@ footer { border-top: 1px solid var(--border); padding: 48px 48px 32px; position:
   <div class="footer-grid">
     <div class="footer-brand">
       <a href="index.html" class="footer-logo">
-        <img class="logo-box" src="innov8-logo-v2.webp" alt="" width="26" height="26" style="width:26px;height:26px"/>
+        <img class="logo-box" src="innov8-logo-v2-clear-sm.webp" alt="" width="26" height="26" style="width:26px;height:26px"/>
         Innov8 Workflows
       </a>
       <p>Branded, conversion-focused websites for local UK businesses. Built to automate.</p>

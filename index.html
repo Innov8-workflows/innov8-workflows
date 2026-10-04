@@ -262,11 +262,14 @@ section { position: relative; z-index: 1; }
 .lv-link:hover { text-decoration: underline; }
 .lv-step { position: absolute; top: 14px; right: 14px; font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted2); background: rgba(15,15,15,0.8); border: 1px solid var(--border); border-radius: 100px; padding: 4px 9px; }
 /* level 1: website */
-.lv-site { position: absolute; left: 18px; right: 18px; bottom: -6px; top: 34px; background: #0c0c0c; border: 1px solid #2f2f2f; border-radius: 10px 10px 0 0; overflow: hidden; }
+.lv-site { position: absolute; left: 18px; right: 18px; bottom: -6px; top: 34px; background: #0c0c0c; border: 1px solid #2f2f2f; border-radius: 10px 10px 0 0; overflow: hidden; display: flex; flex-direction: column; }
 .lv-site-bar { display: flex; align-items: center; gap: 5px; padding: 7px 9px; background: #151515; border-bottom: 1px solid #262626; }
 .lv-site-bar i { width: 7px; height: 7px; border-radius: 50%; display: block; background: #3a3a3a; }
 .lv-site-bar span { margin-left: 6px; font-family: var(--font-mono); font-size: 0.52rem; color: var(--muted); }
-.lv-site-hero { padding: 14px 14px 0; background: linear-gradient(120deg, #1d1410, #0c0c0c); height: 100%; }
+.lv-site-hero { position: relative; flex: 1; padding: 14px 14px 0; background: linear-gradient(120deg, #1d1410, #0c0c0c); overflow: hidden; }
+.lv-site-vid { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.lv-site-hero::before { content: ''; position: absolute; inset: 0; z-index: 1; background: linear-gradient(90deg, rgba(8,8,8,0.85) 0%, rgba(8,8,8,0.55) 48%, rgba(8,8,8,0.08) 100%); }
+.lv-site-copy { position: relative; z-index: 2; max-width: 64%; }
 .lv-line { height: 8px; border-radius: 4px; background: #e8e8e8; margin-bottom: 6px; }
 .lv-line.o { background: var(--accent); width: 46%; }
 .lv-line.w70 { width: 70%; } .lv-line.thin { height: 5px; background: #3a3a3a; width: 82%; }
@@ -730,8 +733,11 @@ footer { border-top: 1px solid var(--border); padding: 48px 48px 32px; position:
           <div class="lv-site">
             <div class="lv-site-bar"><i></i><i></i><i></i><span>yourbusiness.co.uk</span></div>
             <div class="lv-site-hero">
-              <div class="lv-line w70"></div><div class="lv-line o"></div><div class="lv-line thin"></div>
-              <div class="lv-site-row"><span class="lv-pill o"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg> Call now</span><span class="lv-pill g">★★★★★ 5.0</span></div>
+              <video class="lv-site-vid" autoplay muted loop playsinline preload="auto" poster="why-premium-site-poster.webp" disablepictureinpicture><source src="why-premium-site.mp4" type="video/mp4"></video>
+              <div class="lv-site-copy">
+                <div class="lv-line w70"></div><div class="lv-line o"></div><div class="lv-line thin"></div>
+                <div class="lv-site-row"><span class="lv-pill o"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg> Call now</span><span class="lv-pill g">★★★★★ 5.0</span></div>
+              </div>
             </div>
           </div>
         </div>

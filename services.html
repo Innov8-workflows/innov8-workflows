@@ -351,6 +351,61 @@ section { position: relative; z-index: 1; }
 .air-book { display: flex; align-items: center; gap: 9px; margin-top: 10px; padding: 9px 12px; border-radius: 9px; background: #dcfce7; color: #15803d; font-size: 0.74rem; font-weight: 700; }
 .air-book svg { width: 15px; height: 15px; }
 
+/* ── Google Business Profile: local map pack mock ── */
+.gbp { background: #fff; border-radius: 14px; padding: 18px; color: #202124; font-family: 'Bricolage Grotesque', 'Segoe UI', Roboto, Arial, sans-serif; line-height: 1.4; box-shadow: 0 24px 60px rgba(0,0,0,0.45); max-width: 460px; width: 100%; margin: 0 auto; }
+.gbp-map { position: relative; height: 150px; border-radius: 10px; overflow: hidden; margin-bottom: 12px; background:
+  linear-gradient(90deg, transparent 31%, #fff 31%, #fff 33.5%, transparent 33.5%),
+  linear-gradient(0deg, transparent 44%, #fff 44%, #fff 47%, transparent 47%),
+  linear-gradient(90deg, transparent 72%, #fde68a 72%, #fde68a 74.5%, transparent 74.5%),
+  linear-gradient(0deg, transparent 80%, #fff 80%, #fff 82%, transparent 82%),
+  linear-gradient(135deg, #e8eef3 0%, #e3ece4 55%, #dfe9f1 100%); }
+.gbp-park { position: absolute; left: 6%; top: 10%; width: 22%; height: 30%; border-radius: 8px; background: #cfe8d1; }
+.gbp-water { position: absolute; right: 4%; bottom: 0; width: 20%; height: 38%; border-radius: 40% 40% 0 0; background: #b8d8f2; }
+.gbp-pin { position: absolute; width: 22px; height: 22px; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); background: #9aa0a6; border: 2px solid #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.25); }
+.gbp-pin span { display: block; transform: rotate(45deg); color: #fff; font-size: 0.6rem; font-weight: 800; text-align: center; line-height: 18px; }
+.gbp-pin.you { width: 30px; height: 30px; background: #ea4335; z-index: 2; }
+.gbp-pin.you span { line-height: 26px; font-size: 0.72rem; }
+.gbp-list { border-top: 1px solid #ececec; }
+.gbp-item { padding: 11px 2px; border-bottom: 1px solid #ececec; }
+.gbp-item.you { background: #fff7ed; margin: 0 -8px; padding: 11px 10px; border-radius: 8px; border-bottom-color: transparent; }
+.gbp-name { display: flex; justify-content: space-between; align-items: center; font-size: 0.92rem; font-weight: 600; color: #1a0dab; }
+.gbp-name .gads-you { font-family: 'Bricolage Grotesque', sans-serif; }
+.gbp-rate { font-size: 0.76rem; color: #4d5156; margin-top: 2px; }
+.gbp-rate b { color: #202124; font-weight: 600; }
+.gbp-rate i { font-style: normal; color: #FBBC04; letter-spacing: 1px; }
+.gbp-meta { font-size: 0.72rem; color: #4d5156; margin-top: 2px; }
+.gbp-meta em { font-style: normal; color: #188038; font-weight: 600; }
+.gbp-acts { display: flex; gap: 7px; margin-top: 9px; flex-wrap: wrap; }
+.gbp-act { display: inline-flex; align-items: center; gap: 5px; border: 1px solid #dadce0; border-radius: 100px; padding: 5px 11px; font-size: 0.7rem; color: #1a73e8; font-weight: 600; background: #fff; }
+.gbp-act svg { width: 12px; height: 12px; }
+.gbp-reply { margin-top: 12px; border: 1px solid #ececec; border-radius: 10px; padding: 10px 12px; font-size: 0.74rem; color: #3c4043; }
+.gbp-reply-h { display: flex; justify-content: space-between; font-size: 0.66rem; color: #5f6368; margin-bottom: 4px; }
+.gbp-reply-h b { color: #202124; }
+.gbp-owner { margin-top: 8px; padding: 8px 10px; background: #f1f3f4; border-radius: 8px; font-size: 0.72rem; }
+.gbp-owner b { display: block; font-size: 0.62rem; color: #5f6368; margin-bottom: 2px; }
+
+/* ── Quote funnel: 4-step quiz mock ── */
+.qf { max-width: 440px; width: 100%; margin: 0 auto; }
+.qf-card { background: #fff; color: #202124; border-radius: 14px; padding: 20px; box-shadow: 0 24px 60px rgba(0,0,0,0.45); font-family: 'Bricolage Grotesque', 'Segoe UI', Roboto, Arial, sans-serif; line-height: 1.4; }
+.qf-top { display: flex; justify-content: space-between; align-items: center; font-size: 0.7rem; color: #6b7280; font-weight: 600; }
+.qf-bar { height: 6px; border-radius: 6px; background: #eef0f2; margin: 8px 0 16px; overflow: hidden; }
+.qf-bar i { display: block; width: 75%; height: 100%; border-radius: 6px; background: linear-gradient(90deg, var(--accent), var(--accent2)); }
+.qf-q { font-size: 1.05rem; font-weight: 800; letter-spacing: -0.01em; margin-bottom: 12px; color: #111827; }
+.qf-opt { display: flex; align-items: center; gap: 10px; border: 1.5px solid #e5e7eb; border-radius: 10px; padding: 11px 12px; font-size: 0.82rem; font-weight: 600; color: #374151; margin-bottom: 8px; }
+.qf-opt i { width: 18px; height: 18px; border-radius: 50%; border: 2px solid #d1d5db; flex-shrink: 0; display: flex; align-items: center; justify-content: center; color: #fff; }
+.qf-opt i svg { width: 11px; height: 11px; }
+.qf-opt.on { border-color: var(--accent); background: #fff7ed; color: #111827; }
+.qf-opt.on i { border-color: var(--accent); background: var(--accent); }
+.qf-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 12px; }
+.qf-back { font-size: 0.76rem; color: #6b7280; font-weight: 600; }
+.qf-next { background: var(--accent); color: #fff; font-weight: 700; font-size: 0.8rem; border-radius: 8px; padding: 9px 18px; }
+.qf-lead { background: var(--surface); border: 1px solid rgba(34,197,94,0.35); border-radius: 14px; padding: 14px 16px; box-shadow: 0 18px 50px rgba(0,0,0,0.4); }
+.qf-lead-h { display: flex; justify-content: space-between; align-items: center; font-size: 0.84rem; font-weight: 700; margin-bottom: 10px; }
+.qf-lead-h span { font-family: var(--font-mono); font-size: 0.6rem; font-weight: 500; color: var(--node-green); letter-spacing: 0.08em; text-transform: uppercase; }
+.qf-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.qf-chip { font-size: 0.72rem; color: var(--muted2); background: var(--surface2); border: 1px solid var(--border); border-radius: 100px; padding: 4px 10px; }
+.qf-chip b { color: var(--text); font-weight: 600; }
+
 /* Included-features checklist (Essential website block) */
 .included-head { font-family: var(--font-mono); font-size: 0.66rem; color: var(--node-green); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 16px; }
 .included-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 11px 20px; margin-bottom: 24px; }
@@ -871,8 +926,59 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 
 <hr class="divider"/>
 
+<!-- SERVICE: Google Business Profile Management -->
+<div class="service-block reverse reveal" id="google-business-profile">
+  <div>
+    <div class="service-block-label">Add-on &middot; Local Search</div>
+    <h2>Google Business<br/><span>Profile Management</span></h2>
+    <p class="lead">Get found in the local map pack. We set up and fully optimise your Google Business Profile, then keep it active every month with fresh content, photo posts and a reply to every review, so Google keeps showing you to people searching in your area.</p>
+    <p class="works-with"><span>✓ Works with</span> either package</p>
+    <div class="feature-list">
+      <div class="feature-item">
+        <div class="feature-icon">✦</div>
+        <div><strong>Full Setup And Optimisation</strong><p>Categories, services, areas covered, opening hours, photos and links all completed properly, so your profile is ready to rank.</p></div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">✦</div>
+        <div><strong>Fresh Content Every Month</strong><p>Photo posts of your latest jobs keep the profile active, and an active profile is one Google is happy to keep showing.</p></div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">✦</div>
+        <div><strong>Every Review Answered</strong><p>Each review gets a proper reply, which builds trust with the next customer reading them and shows you are on the ball.</p></div>
+      </div>
+    </div>
+    <a href="consultancy.html#contact" class="service-link">Book a free consultation →</a>
+  </div>
+  <div class="gbp reveal" aria-hidden="true">
+    <div class="gads-bar"><svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/><path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/><path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/><path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/></svg><span class="gads-query">roofer near me</span></div>
+    <div class="gbp-map">
+      <div class="gbp-park"></div><div class="gbp-water"></div>
+      <div class="gbp-pin you" style="left:44%;top:22%"><span>1</span></div>
+      <div class="gbp-pin" style="left:18%;top:52%"><span>2</span></div>
+      <div class="gbp-pin" style="left:66%;top:56%"><span>3</span></div>
+    </div>
+    <div class="gbp-list">
+      <div class="gbp-item you">
+        <div class="gbp-name">Your Business Ltd <span class="gads-you">Your business</span></div>
+        <div class="gbp-rate"><b>5.0</b> <i>★★★★★</i> (48) &middot; Roofing contractor</div>
+        <div class="gbp-meta"><em>Open</em> &middot; Closes 17:00 &middot; Serves your area</div>
+        <div class="gbp-acts"><span class="gbp-act"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg> Call</span><span class="gbp-act"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Website</span><span class="gbp-act"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Directions</span></div>
+      </div>
+      <div class="gads-skel"><div class="gads-skel-bar w40"></div><div class="gads-skel-bar w85"></div><div class="gads-skel-bar w70"></div></div>
+      <div class="gads-skel"><div class="gads-skel-bar w40"></div><div class="gads-skel-bar w85"></div><div class="gads-skel-bar w70"></div></div>
+    </div>
+    <div class="gbp-reply">
+      <div class="gbp-reply-h"><b>Paul R. &middot; ★★★★★</b>2 days ago</div>
+      Great job on the roof, tidy and on time.
+      <div class="gbp-owner"><b>Response from the owner</b>Thanks Paul, really glad you're happy with it. Give us a shout if you ever need anything else.</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider"/>
+
 <!-- SERVICE 2: Visual Transformation Videos -->
-<div class="service-block reverse reveal" id="transformation-videos">
+<div class="service-block reveal" id="transformation-videos">
   <div>
     <div class="service-block-label">Add-on &middot; Visual Content</div>
     <h2>Visual Transformation<br/><span>Videos</span></h2>
@@ -904,7 +1010,7 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 <hr class="divider"/>
 
 <!-- SERVICE 3: Review Funnel + Transformation Video -->
-<div class="service-block reveal" id="review-funnel">
+<div class="service-block reverse reveal" id="review-funnel">
   <div>
     <div class="service-block-label">Add-on &middot; Reputation</div>
     <h2>Review Funnel<br/><span>+ Transformation Video</span></h2>
@@ -963,6 +1069,58 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
     <video autoplay loop muted playsinline preload="metadata" poster="services-media/before-after-01-poster.jpg" aria-label="Before-and-after visual transformation video">
       <source src="services-media/before-after-01.mp4" type="video/mp4"/>
     </video>
+  </div>
+</div>
+
+<hr class="divider"/>
+
+<!-- SERVICE: Quote Funnel -->
+<div class="service-block reveal" id="quote-funnel">
+  <div>
+    <div class="service-block-label">Add-on &middot; Lead Capture</div>
+    <h2>Quote<br/><span>Funnel</span></h2>
+    <p class="lead">A custom quote-request funnel that asks the right questions up front. A few quick taps tell you the job, the property and the timescale, so you know which enquiries are worth a visit before you pick up the phone.</p>
+    <p class="works-with"><span>✓ Works with</span> either package</p>
+    <div class="feature-list">
+      <div class="feature-item">
+        <div class="feature-icon">✦</div>
+        <div><strong>Quick Tap Questions</strong><p>Four simple steps instead of one long form, so far more people actually finish it.</p></div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">✦</div>
+        <div><strong>Qualified Before You Call</strong><p>The job type, property, timescale and postcode arrive together, so you can spot the serious enquiries straight away.</p></div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">✦</div>
+        <div><strong>Straight To You</strong><p>Every completed quote lands in your WhatsApp, or in your CRM on the Business Growth Package.</p></div>
+      </div>
+    </div>
+    <a href="consultancy.html#contact" class="service-link">Book a free consultation →</a>
+  </div>
+  <div class="qf reveal" aria-hidden="true">
+    <div class="qf-card">
+      <div class="qf-top"><span>Get your free quote</span><span>Step 3 of 4</span></div>
+      <div class="qf-bar"><i></i></div>
+      <div class="qf-q">When do you need the work done?</div>
+      <div class="qf-opt on"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></i>As soon as possible</div>
+      <div class="qf-opt"><i></i>Within the next month</div>
+      <div class="qf-opt"><i></i>In the next 3 months</div>
+      <div class="qf-opt"><i></i>Just getting prices</div>
+      <div class="qf-nav"><span class="qf-back">← Back</span><span class="qf-next">Next →</span></div>
+    </div>
+    <div class="pa-flow">
+      <div class="pa-flow-line"></div>
+      <div class="pa-flow-label">Qualified lead captured</div>
+    </div>
+    <div class="qf-lead">
+      <div class="qf-lead-h">New quote request <span>Ready to quote</span></div>
+      <div class="qf-chips">
+        <span class="qf-chip"><b>Job:</b> Full re-roof</span>
+        <span class="qf-chip"><b>Property:</b> Semi-detached</span>
+        <span class="qf-chip"><b>When:</b> ASAP</span>
+        <span class="qf-chip"><b>Postcode:</b> DE56</span>
+      </div>
+    </div>
   </div>
 </div>
 

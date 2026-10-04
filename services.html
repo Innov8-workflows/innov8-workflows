@@ -406,6 +406,84 @@ section { position: relative; z-index: 1; }
 .qf-chip { font-size: 0.72rem; color: var(--muted2); background: var(--surface2); border: 1px solid var(--border); border-radius: 100px; padding: 4px 10px; }
 .qf-chip b { color: var(--text); font-weight: 600; }
 
+/* ── Drone photography: aerial viewfinder ── */
+.drone { position: relative; max-width: 480px; width: 100%; margin: 0 auto; aspect-ratio: 4 / 3; border-radius: 16px; overflow: hidden; box-shadow: 0 24px 60px rgba(0,0,0,0.45); border: 1px solid var(--border);
+  background: repeating-linear-gradient(90deg, #4f7a3a 0 14px, #5a8743 14px 28px); }
+.drone-plot { position: absolute; inset: 0; }
+.drone-road { position: absolute; left: 0; right: 0; bottom: 0; height: 15%; background: #3d4045; }
+.drone-road::after { content: ''; position: absolute; left: 0; right: 0; top: 50%; height: 2px; background: repeating-linear-gradient(90deg, #e5e7eb 0 22px, transparent 22px 40px); }
+.drone-drive { position: absolute; left: 60%; width: 22%; top: 50%; bottom: 15%; background: repeating-linear-gradient(0deg, #8a8f96 0 7px, #7d828a 7px 8px), #8a8f96; background-blend-mode: multiply; }
+.drone-path { position: absolute; left: 26%; width: 6%; top: 60%; bottom: 15%; background: #b9a58a; }
+.drone-hedge { position: absolute; left: 0; right: 0; bottom: 15%; height: 3%; background: #2f5427; }
+.drone-roof { position: absolute; left: 16%; top: 14%; width: 56%; height: 44%; filter: drop-shadow(8px 10px 6px rgba(0,0,0,0.45)); }
+.drone-roof div { position: absolute; inset: 0; background: repeating-linear-gradient(0deg, rgba(0,0,0,0.16) 0 2px, transparent 2px 7px); }
+.drone-roof .t { clip-path: polygon(0 0, 100% 0, 78% 50%, 22% 50%); background-color: #7a3b2e; }
+.drone-roof .b { clip-path: polygon(22% 50%, 78% 50%, 100% 100%, 0 100%); background-color: #a24d3b; }
+.drone-roof .l { clip-path: polygon(0 0, 22% 50%, 0 100%); background-color: #8e4535; }
+.drone-roof .r { clip-path: polygon(100% 0, 100% 100%, 78% 50%); background-color: #6b3328; }
+.drone-roof .ridge { clip-path: none; left: 22%; right: 22%; top: calc(50% - 2px); bottom: auto; height: 4px; background: #c9c3bb; }
+.drone-roof .vel { clip-path: none; inset: auto; left: 30%; top: 64%; width: 14%; height: 18%; background: #1f2937; border: 2px solid #9ca3af; }
+.drone-van { position: absolute; left: 63%; top: 66%; width: 13%; height: 13%; border-radius: 4px; background: #f3f4f6; box-shadow: 3px 4px 4px rgba(0,0,0,0.35); }
+.drone-van::after { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 30%; background: var(--accent); border-radius: 4px 4px 0 0; }
+.drone-hud { position: absolute; inset: 0; pointer-events: none; font-family: var(--font-mono); color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,0.7); }
+.drone-hud .c { position: absolute; width: 26px; height: 26px; border-color: rgba(255,255,255,0.9); border-style: solid; }
+.drone-hud .c1 { left: 14px; top: 14px; border-width: 2px 0 0 2px; } .drone-hud .c2 { right: 14px; top: 14px; border-width: 2px 2px 0 0; }
+.drone-hud .c3 { left: 14px; bottom: 14px; border-width: 0 0 2px 2px; } .drone-hud .c4 { right: 14px; bottom: 14px; border-width: 0 2px 2px 0; }
+.drone-hud .x { position: absolute; left: 50%; top: 50%; width: 34px; height: 34px; transform: translate(-50%, -50%); border: 1.5px solid rgba(255,255,255,0.75); border-radius: 50%; }
+.drone-hud .x::before, .drone-hud .x::after { content: ''; position: absolute; background: rgba(255,255,255,0.75); }
+.drone-hud .x::before { left: 50%; top: -8px; bottom: -8px; width: 1.5px; transform: translateX(-50%); }
+.drone-hud .x::after { top: 50%; left: -8px; right: -8px; height: 1.5px; transform: translateY(-50%); }
+.drone-tl { position: absolute; left: 22px; top: 22px; font-size: 0.66rem; display: flex; align-items: center; gap: 6px; letter-spacing: 0.06em; }
+.drone-tl i { width: 8px; height: 8px; border-radius: 50%; background: #ef4444; animation: gr-pulse 1.4s infinite; }
+.drone-tr { position: absolute; right: 22px; top: 22px; font-size: 0.66rem; letter-spacing: 0.06em; }
+.drone-bl { position: absolute; left: 22px; bottom: 22px; font-size: 0.62rem; line-height: 1.6; letter-spacing: 0.05em; }
+.drone-br { position: absolute; right: 22px; bottom: 22px; font-size: 0.62rem; letter-spacing: 0.05em; }
+
+/* ── Facebook business page mock ── */
+.fbp { max-width: 460px; width: 100%; margin: 0 auto; background: #fff; color: #050505; border-radius: 14px; overflow: hidden; box-shadow: 0 24px 60px rgba(0,0,0,0.45); font-family: 'Bricolage Grotesque', 'Segoe UI', Roboto, Arial, sans-serif; line-height: 1.35; }
+.fbp-top { display: flex; align-items: center; gap: 8px; padding: 9px 12px; border-bottom: 1px solid #e4e6eb; font-size: 0.72rem; color: #65676b; font-weight: 600; }
+.fbp-top svg { width: 20px; height: 20px; }
+.fbp-cover { height: 120px; background: linear-gradient(120deg, rgba(15,15,15,0.15), rgba(15,15,15,0.55)), url('services-media/before-after-02-poster.jpg') center / cover; }
+.fbp-head { padding: 0 16px 12px; position: relative; }
+.fbp-av { width: 74px; height: 74px; border-radius: 50%; border: 4px solid #fff; margin-top: -37px; background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #fff; font-weight: 800; font-size: 1.3rem; display: flex; align-items: center; justify-content: center; }
+.fbp-name { font-size: 1.15rem; font-weight: 800; margin-top: 6px; display: flex; align-items: center; gap: 6px; }
+.fbp-sub { font-size: 0.76rem; color: #65676b; margin-top: 2px; }
+.fbp-btns { display: flex; gap: 8px; margin-top: 12px; }
+.fbp-btn { flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 6px; border-radius: 7px; padding: 8px 6px; font-size: 0.76rem; font-weight: 700; background: #e4e6eb; color: #050505; }
+.fbp-btn svg { width: 14px; height: 14px; }
+.fbp-btn.blue { background: #0866ff; color: #fff; }
+.fbp-tabs { display: flex; gap: 16px; padding: 0 16px; border-top: 1px solid #e4e6eb; font-size: 0.74rem; font-weight: 700; color: #65676b; }
+.fbp-tabs span { padding: 10px 0; }
+.fbp-tabs .on { color: #0866ff; border-bottom: 3px solid #0866ff; }
+.fbp-checks { padding: 12px 16px 16px; background: #f0f2f5; display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+.fbp-check { display: flex; align-items: center; gap: 7px; font-size: 0.72rem; font-weight: 600; color: #1c1e21; background: #fff; border-radius: 8px; padding: 7px 9px; }
+.fbp-check i { width: 16px; height: 16px; border-radius: 50%; background: #16a34a; color: #fff; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.fbp-check i svg { width: 10px; height: 10px; }
+
+/* ── Social management: scheduled branded statics ── */
+.soc { max-width: 480px; width: 100%; margin: 0 auto; }
+.soc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.soc-post { aspect-ratio: 4 / 5; border-radius: 12px; overflow: hidden; position: relative; box-shadow: 0 16px 40px rgba(0,0,0,0.45); border: 1px solid var(--border); display: flex; flex-direction: column; justify-content: flex-end; padding: 10px; }
+.soc-post b { font-size: 0.78rem; line-height: 1.15; font-weight: 800; color: #fff; position: relative; }
+.soc-post small { font-family: var(--font-mono); font-size: 0.52rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.8); margin-bottom: 4px; position: relative; }
+.soc-post.photo { background: url('services-media/before-after-01-poster.jpg') center / cover; }
+.soc-post.photo::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent 60%); }
+.soc-post.brand { background: linear-gradient(150deg, #ea580c, #9a3412); }
+.soc-post.brand b { font-size: 0.95rem; }
+.soc-post.review { background: #161616; }
+.soc-post.review .q { color: #FBBC04; font-size: 0.8rem; letter-spacing: 1px; margin-bottom: 6px; position: relative; }
+.soc-post.review b { font-weight: 600; font-size: 0.72rem; }
+.soc-badge { position: absolute; top: 9px; left: 9px; width: 22px; height: 22px; border-radius: 6px; background: rgba(0,0,0,0.35); display: flex; align-items: center; justify-content: center; }
+.soc-badge img { width: 16px; height: 16px; }
+.soc-plan { margin-top: 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 14px 16px; }
+.soc-plan-h { display: flex; align-items: center; gap: 8px; font-size: 0.82rem; font-weight: 700; margin-bottom: 8px; }
+.soc-plan-h svg { width: 15px; height: 15px; color: var(--accent2); }
+.soc-row { display: flex; align-items: center; gap: 10px; padding: 7px 0; border-top: 1px dashed var(--border); font-size: 0.76rem; color: var(--muted2); }
+.soc-row b { font-family: var(--font-mono); font-size: 0.62rem; font-weight: 500; color: var(--muted); width: 58px; flex-shrink: 0; letter-spacing: 0.04em; }
+.soc-row span { flex: 1; }
+.soc-row em { font-style: normal; font-family: var(--font-mono); font-size: 0.58rem; color: var(--node-green); letter-spacing: 0.06em; text-transform: uppercase; }
+@media (max-width: 520px) { .fbp-checks { grid-template-columns: 1fr; } .soc-post b { font-size: 0.66rem; } .soc-post.brand b { font-size: 0.78rem; } }
+
 /* Included-features checklist (Essential website block) */
 .included-head { font-family: var(--font-mono); font-size: 0.66rem; color: var(--node-green); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 16px; }
 .included-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 11px 20px; margin-bottom: 24px; }
@@ -1009,8 +1087,52 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 
 <hr class="divider"/>
 
+<!-- SERVICE: drone-photography -->
+<div class="service-block reverse reveal" id="drone-photography">
+  <div>
+    <div class="service-block-label">Add-on &middot; Drone Photography</div>
+    <h2>Drone<br/><span>Photography</span></h2>
+    <p class="lead">Aerial photography that shows your work from a new perspective. Whole roofs, driveways and extensions captured from above, ready to use on your website, your Google profile, your ads and your socials. Booked as a half day or full day shoot.</p>
+    <p class="works-with"><span>✓ Works with</span> either package</p>
+    <div class="feature-list">
+      <div class="feature-item">
+        <div class="feature-icon">✦</div>
+        <div><strong>Shows The Whole Job</strong><p>Some work only makes sense from above. A full roof or a finished driveway looks far more impressive in one aerial shot than in ten from the ground.</p></div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">✦</div>
+        <div><strong>Built For Your Marketing</strong><p>Every shot is delivered ready to use across your website, Google Business Profile, ads and social posts.</p></div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">✦</div>
+        <div><strong>Half Or Full Day</strong><p>Pick the shoot that suits the jobs you want captured, from one standout project to a run of recent work.</p></div>
+      </div>
+    </div>
+    <a href="consultancy.html#contact" class="service-link">Book a free consultation →</a>
+  </div>
+  <div class="drone reveal" aria-hidden="true">
+    <div class="drone-plot">
+      <div class="drone-hedge"></div>
+      <div class="drone-road"></div>
+      <div class="drone-path"></div>
+      <div class="drone-drive"></div>
+      <div class="drone-van"></div>
+      <div class="drone-roof"><div class="t"></div><div class="b"></div><div class="l"></div><div class="r"></div><div class="ridge"></div><div class="vel"></div></div>
+    </div>
+    <div class="drone-hud">
+      <div class="c c1"></div><div class="c c2"></div><div class="c c3"></div><div class="c c4"></div><div class="x"></div>
+      <div class="drone-tl"><i></i>REC 4K</div>
+      <div class="drone-tr">BAT 82%</div>
+      <div class="drone-bl">ALT 42m<br/>DIST 18m</div>
+      <div class="drone-br">1/1000 &middot; f/2.8</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider"/>
+
 <!-- SERVICE 3: Review Funnel + Transformation Video -->
-<div class="service-block reverse reveal" id="review-funnel">
+<div class="service-block reveal" id="review-funnel">
   <div>
     <div class="service-block-label">Add-on &middot; Reputation</div>
     <h2>Review Funnel<br/><span>+ Transformation Video</span></h2>
@@ -1075,7 +1197,7 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 <hr class="divider"/>
 
 <!-- SERVICE: Quote Funnel -->
-<div class="service-block reveal" id="quote-funnel">
+<div class="service-block reverse reveal" id="quote-funnel">
   <div>
     <div class="service-block-label">Add-on &middot; Lead Capture</div>
     <h2>Quote<br/><span>Funnel</span></h2>
@@ -1127,7 +1249,7 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 <hr class="divider"/>
 
 <!-- SERVICE 6: AI Chatbot -->
-<div class="service-block reverse reveal" id="ai-chatbot">
+<div class="service-block reveal" id="ai-chatbot">
   <div>
     <div class="service-block-label purple">Add-on &middot; AI Assistant</div>
     <h2>AI Chatbot<br/><span class="purple">for your business</span></h2>
@@ -1159,7 +1281,7 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 <hr class="divider"/>
 
 <!-- SERVICE 7: Magic Live Google Review Slider -->
-<div class="service-block reveal" id="review-slider">
+<div class="service-block reverse reveal" id="review-slider">
   <div>
     <div class="service-block-label">Add-on &middot; Live Reviews</div>
     <h2>Magic Live Google<br/><span>Review Slider</span></h2>
@@ -1324,7 +1446,7 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 </div>
 
 <!-- SERVICE 4b: Meta Ad Lead Generation System -->
-<div class="service-block reverse reveal" id="meta-ads">
+<div class="service-block reveal" id="meta-ads">
   <div>
     <div class="service-block-label">Paid Advertising &middot; Meta</div>
     <h2>Meta Ad Lead<br/><span>Generation System</span></h2>
@@ -1402,7 +1524,7 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 <hr class="divider"/>
 
 <!-- SERVICE 4c: Google PPC Lead Generation -->
-<div class="service-block reveal" id="google-ppc">
+<div class="service-block reverse reveal" id="google-ppc">
   <div>
     <div class="service-block-label">Paid Advertising &middot; Google</div>
     <h2>Google PPC<br/><span>Lead Generation</span></h2>
@@ -1477,7 +1599,7 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 <hr class="divider"/>
 
 <!-- SERVICE 4: Quote / Ad Landing Page -->
-<div class="service-block reverse reveal" id="ad-landing-page">
+<div class="service-block reveal" id="ad-landing-page">
   <div>
     <div class="service-block-label">Paid Advertising &middot; Supporting Service</div>
     <h2>Quote &amp; Ad Landing Page<br/><span>+ Transformation Video</span></h2>
@@ -1514,6 +1636,94 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
     <video autoplay loop muted playsinline preload="metadata" poster="services-media/before-after-03-poster.jpg" aria-label="Quote and ad landing page demo">
       <source src="services-media/before-after-03.mp4" type="video/mp4"/>
     </video>
+  </div>
+</div>
+
+<hr class="divider"/>
+
+<!-- SERVICE: facebook-page -->
+<div class="service-block reverse reveal" id="facebook-page">
+  <div>
+    <div class="service-block-label">Paid Advertising &middot; Supporting Service</div>
+    <h2>Facebook Business<br/><span>Page Setup</span></h2>
+    <p class="lead">Full setup and optimisation of your Facebook business page: branded, complete and ready to run ads from. It is one of the first places customers check you out, and it needs to be right before a single pound goes into Meta ads.</p>
+    <p class="works-with"><span>✓ Works with</span> either package, and essential before Meta ads</p>
+    <div class="feature-list">
+      <div class="feature-item">
+        <div class="feature-icon">✦</div>
+        <div><strong>Fully Branded</strong><p>Your logo, cover image and colours, so the page looks like the same business as your website and your vans.</p></div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">✦</div>
+        <div><strong>Complete And Accurate</strong><p>Services, areas covered, contact details, opening hours and call or message buttons all filled in properly.</p></div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">✦</div>
+        <div><strong>Ready To Run Ads</strong><p>Set up the way Meta campaigns need it, so your ads can go live without a scramble.</p></div>
+      </div>
+    </div>
+    <a href="consultancy.html#contact" class="service-link">Book a free consultation →</a>
+  </div>
+  <div class="fbp reveal" aria-hidden="true">
+    <div class="fbp-top"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#1877F2" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/><path fill="#fff" d="M16.671 15.543l.532-3.47h-3.328v-2.25c0-.949.465-1.874 1.956-1.874h1.513V4.996s-1.374-.235-2.686-.235c-2.741 0-4.533 1.662-4.533 4.669v2.643H7.078v3.47h3.047v8.385a12.137 12.137 0 003.75 0v-8.385h2.796z"/></svg> facebook.com/yourbusiness</div>
+    <div class="fbp-cover"></div>
+    <div class="fbp-head">
+      <div class="fbp-av">YB</div>
+      <div class="fbp-name">Your Business Ltd</div>
+      <div class="fbp-sub">Roofing service &middot; Your town &middot; Usually replies within an hour</div>
+      <div class="fbp-btns">
+        <span class="fbp-btn blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Message</span>
+        <span class="fbp-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg> Like</span>
+        <span class="fbp-btn">Get quote</span>
+      </div>
+    </div>
+    <div class="fbp-tabs"><span class="on">Posts</span><span>About</span><span>Reviews</span><span>Photos</span></div>
+    <div class="fbp-checks">
+      <span class="fbp-check"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></i>Branded cover and logo</span>
+      <span class="fbp-check"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></i>Services and areas</span>
+      <span class="fbp-check"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></i>Call and message buttons</span>
+      <span class="fbp-check"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></i>Ready for Meta ads</span>
+    </div>
+  </div>
+</div>
+
+<hr class="divider"/>
+
+<!-- SERVICE: social-management -->
+<div class="service-block reveal" id="social-management">
+  <div>
+    <div class="service-block-label">Social &middot; Facebook and Instagram</div>
+    <h2>Meta Social Media<br/><span>Management</span></h2>
+    <p class="lead">Branded graphic posts across Facebook and Instagram that keep your business visible between jobs, so you stay front of mind when a neighbour asks who to call.</p>
+    <p class="works-with"><span>✓ Runs on</span> Facebook and Instagram</p>
+    <div class="feature-list">
+      <div class="feature-item">
+        <div class="feature-icon">✦</div>
+        <div><strong>Branded Statics</strong><p>Clean graphic posts in your colours: finished jobs, reviews, seasonal reminders and the services you want more of.</p></div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">✦</div>
+        <div><strong>Visible Between Jobs</strong><p>A steady stream of posts shows your page is active and your business is busy, which is what people look for before they get in touch.</p></div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">✦</div>
+        <div><strong>Done For You</strong><p>Planned, designed and scheduled for you, so your socials never go quiet while you are out on the tools.</p></div>
+      </div>
+    </div>
+    <a href="consultancy.html#contact" class="service-link">Book a free consultation →</a>
+  </div>
+  <div class="soc reveal" aria-hidden="true">
+    <div class="soc-grid">
+      <div class="soc-post photo"><span class="soc-badge"><img src="innov8-logo-v2-clear-sm.webp" alt="" width="16" height="16"/></span><small>Job of the week</small><b>Another roof finished and looking sharp</b></div>
+      <div class="soc-post brand"><small>This month</small><b>Free roof health checks across your area</b></div>
+      <div class="soc-post review"><div class="q">★★★★★</div><b>"Tidy, on time and a cracking job. Would recommend."</b></div>
+    </div>
+    <div class="soc-plan">
+      <div class="soc-plan-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> This week's posts</div>
+      <div class="soc-row"><b>MON 18:00</b><span>Job of the week</span><em>Scheduled</em></div>
+      <div class="soc-row"><b>WED 12:30</b><span>Seasonal offer graphic</span><em>Scheduled</em></div>
+      <div class="soc-row"><b>FRI 17:00</b><span>Customer review</span><em>Scheduled</em></div>
+    </div>
   </div>
 </div>
 

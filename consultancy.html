@@ -393,6 +393,29 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
           <label>Company name <span class="cf-req">*</span></label>
           <input type="text" name="company" placeholder="Your company name" required/>
         </div>
+        <div class="cf-row">
+          <div class="cf-field">
+            <label>Business type <span class="cf-req">*</span></label>
+            <select name="businessType" required>
+              <option value="">Select your business type...</option>
+              <option value="Roofer">Roofing</option>
+              <option value="Driveway">Driveways &amp; paving</option>
+              <option value="Builder">Building &amp; construction</option>
+              <option value="Plumbing">Plumbing &amp; heating</option>
+              <option value="Electrician">Electrical</option>
+              <option value="Landscaping">Landscaping &amp; gardening</option>
+              <option value="Scaffolding">Scaffolding</option>
+              <option value="Windows">Windows &amp; doors</option>
+              <option value="Cleaning">Cleaning &amp; jet washing</option>
+              <option value="Other home service">Other home service</option>
+              <option value="Other">Other type of business</option>
+            </select>
+          </div>
+          <div class="cf-field">
+            <label>Current website</label>
+            <input type="text" name="website" inputmode="url" autocomplete="url" placeholder="Leave blank if none"/>
+          </div>
+        </div>
         <div class="cf-field">
           <label>Service interested in <span class="cf-req">*</span></label>
           <select name="service" required>
@@ -435,9 +458,11 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
             var company   = (data.get('company')   || '').toString().trim();
             var service   = (data.get('service')   || '').toString().trim();
             var message   = (data.get('message')   || '').toString().trim();
+            var businessType = (data.get('businessType') || '').toString().trim();
+            var website = (data.get('website') || '').toString().trim();
             // Required-field validation (phone is optional)
             var errorEl = document.getElementById('cf-error');
-            if (!firstName || !lastName || !email || !company || !service || !message) {
+            if (!firstName || !lastName || !email || !company || !businessType || !service || !message) {
               errorEl.style.display = 'block';
               errorEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
               return;
@@ -445,7 +470,7 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
             errorEl.style.display = 'none';
             if (window.innov8SaveEnquiry) innov8SaveEnquiry('Consultancy enquiry form', {
               firstName: firstName, lastName: lastName, email: email, phone: phone, company: company,
-              service: service, message: message, company_website: (data.get('company_website') || '').toString()
+              businessType: businessType, website: website, service: service, message: message, company_website: (data.get('company_website') || '').toString()
             });
             if (window.gtag) gtag('event', 'generate_lead', { method: 'whatsapp_form' });
             // Build the WhatsApp message body
@@ -456,6 +481,9 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
               'Company: ' + company,
               'Email: ' + email
             ];
+            var btSel = form.querySelector('select[name="businessType"]');
+            lines.push('Business type: ' + (btSel && btSel.selectedIndex > 0 ? btSel.options[btSel.selectedIndex].text : businessType));
+            if (website) lines.push('Website: ' + website);
             if (phone) lines.push('Phone: ' + phone);
             lines.push('');
             lines.push('Service: ' + service);

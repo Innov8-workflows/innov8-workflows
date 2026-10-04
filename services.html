@@ -238,6 +238,119 @@ section { position: relative; z-index: 1; }
 .gads-note { font-size: 0.72rem; color: #5f6368; font-style: italic; margin-top: 10px; }
 
 
+/* ── Service groups (mirror the 2026 pricing document) ── */
+.svc-group { max-width: 1100px; margin: 0 auto; padding: 96px 48px 0; position: relative; z-index: 1; }
+.svc-group-label { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+.svc-group-label::before { content: ''; width: 28px; height: 1.5px; background: var(--accent); }
+.svc-group h2 { font-size: clamp(2.2rem, 5vw, 3.6rem); font-weight: 800; letter-spacing: -0.04em; line-height: 1; }
+.svc-group h2 span { color: var(--accent); }
+.svc-group p { color: var(--muted2); font-size: 1.02rem; line-height: 1.65; max-width: 640px; margin-top: 16px; }
+@media (max-width: 900px) { .svc-group { padding: 64px 24px 0; } }
+
+/* ── Business Growth Package: CRM dashboard (web) + mobile app ── */
+.crm-stage { position: relative; max-width: 1060px; margin: 48px auto 0; padding-right: 150px; }
+.crm-browser { background: #fff; border-radius: 14px; overflow: hidden; box-shadow: 0 30px 70px rgba(0,0,0,0.5); color: #1f2937; font-family: 'Bricolage Grotesque', 'Segoe UI', Roboto, Arial, sans-serif; line-height: 1.35; }
+.crm-bar { display: flex; align-items: center; gap: 6px; background: #eef1f4; border-bottom: 1px solid #e2e6ea; padding: 9px 12px; }
+.crm-bar i { width: 9px; height: 9px; border-radius: 50%; display: block; }
+.crm-bar i:nth-child(1) { background: #ff5f57; } .crm-bar i:nth-child(2) { background: #febc2e; } .crm-bar i:nth-child(3) { background: #28c840; }
+.crm-url { flex: 1; margin-left: 10px; background: #fff; border: 1px solid #e2e6ea; border-radius: 6px; padding: 3px 10px; font-family: var(--font-mono); font-size: 0.62rem; color: #6b7280; }
+.crm-app { display: grid; grid-template-columns: 172px 1fr; }
+.crm-side { background: #1e293b; padding: 14px 10px; color: #cbd5e1; }
+.crm-logo { display: flex; justify-content: center; padding: 2px 0 12px; }
+.crm-logo img { width: 34px; height: 34px; }
+.crm-acct { background: #334155; border-radius: 8px; padding: 7px 9px; margin-bottom: 12px; }
+.crm-acct b { display: block; font-size: 0.66rem; color: #fff; }
+.crm-acct span { font-size: 0.58rem; color: #94a3b8; }
+.crm-nav { display: flex; align-items: center; gap: 9px; padding: 7px 8px; border-radius: 7px; font-size: 0.7rem; font-weight: 600; }
+.crm-nav svg { width: 14px; height: 14px; flex-shrink: 0; }
+.crm-nav.on { background: #0f172a; color: #fff; }
+.crm-main { background: #f6f8fa; padding: 16px; min-width: 0; }
+.crm-h { font-size: 0.78rem; font-weight: 700; color: #111827; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
+.crm-h span { font-size: 0.6rem; font-weight: 600; color: #6b7280; border: 1px solid #e2e6ea; background: #fff; border-radius: 6px; padding: 3px 8px; }
+.crm-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.crm-stat { background: #fff; border: 1px solid #e5e7eb; border-radius: 9px; padding: 10px 12px; }
+.crm-stat-l { font-size: 0.6rem; color: #6b7280; font-weight: 600; }
+.crm-stat-v { font-size: 1.25rem; font-weight: 800; color: #111827; margin-top: 3px; }
+.crm-stat-v small { font-size: 0.58rem; color: #16a34a; font-weight: 700; margin-left: 4px; }
+.crm-pipe { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 12px; }
+.crm-col { background: #eaeef3; border-radius: 9px; padding: 8px; }
+.crm-col-h { display: flex; justify-content: space-between; font-size: 0.58rem; font-weight: 700; color: #475569; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 7px; }
+.crm-card { background: #fff; border: 1px solid #e5e7eb; border-left: 3px solid var(--accent); border-radius: 7px; padding: 7px 8px; margin-bottom: 6px; font-size: 0.6rem; color: #6b7280; }
+.crm-card b { display: block; font-size: 0.66rem; color: #111827; }
+.crm-card em { font-style: normal; display: inline-block; margin-top: 4px; font-size: 0.55rem; font-weight: 700; padding: 1px 6px; border-radius: 100px; background: #ffedd5; color: #c2410c; }
+.crm-card.won { border-left-color: #16a34a; } .crm-card.won em { background: #dcfce7; color: #15803d; }
+.crm-card.blue { border-left-color: #2563eb; } .crm-card.blue em { background: #dbeafe; color: #1d4ed8; }
+.crm-phone { position: absolute; right: 0; bottom: -34px; width: 212px; background: #0b0b0b; border-radius: 32px; padding: 9px; border: 1px solid #2f2f2f; box-shadow: 0 30px 60px rgba(0,0,0,0.65); }
+.crm-phone-screen { background: #fff; border-radius: 24px; overflow: hidden; color: #111827; font-family: 'Bricolage Grotesque', 'Segoe UI', Roboto, Arial, sans-serif; line-height: 1.35; }
+.crm-phone-top { background: #1e293b; color: #fff; padding: 22px 14px 11px; font-size: 0.78rem; font-weight: 700; position: relative; }
+.crm-phone-top::before { content: ''; position: absolute; top: 7px; left: 50%; transform: translateX(-50%); width: 56px; height: 6px; border-radius: 6px; background: #0b0b0b; }
+.crm-phone-top span { display: block; font-size: 0.58rem; font-weight: 500; color: #94a3b8; margin-top: 1px; }
+.crm-msg { display: flex; gap: 9px; padding: 10px 12px; border-bottom: 1px solid #eef1f4; align-items: flex-start; }
+.crm-av { width: 28px; height: 28px; border-radius: 50%; color: #fff; font-size: 0.68rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.crm-msg-b { min-width: 0; flex: 1; }
+.crm-msg-n { font-size: 0.66rem; font-weight: 700; display: flex; justify-content: space-between; gap: 6px; }
+.crm-msg-n i { font-style: normal; font-weight: 500; font-size: 0.54rem; color: #9ca3af; }
+.crm-msg-t { font-size: 0.6rem; color: #6b7280; margin-top: 2px; }
+.crm-pill { display: inline-block; margin-top: 4px; font-size: 0.52rem; font-weight: 700; padding: 1px 6px; border-radius: 100px; background: #ffedd5; color: #c2410c; }
+.crm-pill.g { background: #dcfce7; color: #15803d; }
+.crm-pill.b { background: #dbeafe; color: #1d4ed8; }
+
+/* automation cards */
+.auto-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; max-width: 1060px; margin: 78px auto 0; }
+.auto-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 18px; }
+.auto-head { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.auto-icon { width: 34px; height: 34px; border-radius: 9px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.auto-icon svg { width: 17px; height: 17px; }
+.auto-icon.red { background: rgba(239,68,68,0.12); border: 1px solid rgba(239,68,68,0.3); color: #f87171; }
+.auto-icon.gold { background: rgba(251,188,4,0.12); border: 1px solid rgba(251,188,4,0.3); color: #FBBC04; }
+.auto-icon.blue { background: rgba(59,130,246,0.12); border: 1px solid rgba(59,130,246,0.3); color: var(--node-blue); }
+.auto-icon.green { background: rgba(34,197,94,0.12); border: 1px solid rgba(34,197,94,0.3); color: var(--node-green); }
+.auto-title { font-weight: 700; font-size: 0.9rem; line-height: 1.2; }
+.auto-step { display: flex; gap: 8px; align-items: baseline; font-size: 0.76rem; color: var(--muted2); padding: 8px 0 0; line-height: 1.45; }
+.auto-step b { font-family: var(--font-mono); font-size: 0.6rem; font-weight: 500; color: var(--muted); letter-spacing: 0.04em; flex-shrink: 0; min-width: 34px; }
+.auto-step.ok { color: var(--node-green); }
+.auto-sms { background: rgba(234,88,12,0.1); border: 1px solid rgba(234,88,12,0.28); border-radius: 12px 4px 12px 12px; padding: 9px 11px; font-size: 0.74rem; color: var(--text); line-height: 1.45; margin-top: 8px; }
+@media (max-width: 1000px) { .auto-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 900px) {
+  .crm-stage { padding-right: 0; }
+  .crm-phone { position: relative; right: auto; bottom: auto; margin: -40px auto 0; }
+}
+@media (max-width: 640px) {
+  .crm-app { grid-template-columns: 1fr; }
+  .crm-side { display: none; }
+  .crm-stats, .crm-pipe { grid-template-columns: repeat(2, 1fr); }
+  .auto-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Out-of-hours AI receptionist: call to CRM ── */
+.air { max-width: 460px; width: 100%; margin: 0 auto; }
+.air-call { display: flex; align-items: center; gap: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 14px 16px; box-shadow: 0 18px 50px rgba(0,0,0,0.4); }
+.air-call-icon { width: 38px; height: 38px; border-radius: 10px; background: rgba(168,85,247,0.12); border: 1px solid rgba(168,85,247,0.3); color: var(--node-purple); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.air-call-icon svg { width: 18px; height: 18px; }
+.air-call-t { flex: 1; min-width: 0; }
+.air-call-t b { display: block; font-size: 0.88rem; }
+.air-call-t span { font-family: var(--font-mono); font-size: 0.62rem; color: var(--muted); letter-spacing: 0.04em; }
+.air-live { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 0.6rem; color: var(--node-purple); text-transform: uppercase; letter-spacing: 0.06em; flex-shrink: 0; }
+.air-live i { width: 7px; height: 7px; border-radius: 50%; background: var(--node-purple); animation: gr-pulse 1.8s infinite; }
+.air-chat { margin-top: 12px; display: flex; flex-direction: column; gap: 8px; }
+.air-line { max-width: 88%; border-radius: 12px; padding: 9px 12px; font-size: 0.78rem; line-height: 1.5; }
+.air-line span { display: block; font-family: var(--font-mono); font-size: 0.56rem; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 2px; }
+.air-line.ai { align-self: flex-start; background: rgba(168,85,247,0.1); border: 1px solid rgba(168,85,247,0.28); border-radius: 4px 12px 12px 12px; color: var(--text); }
+.air-line.ai span { color: var(--node-purple); }
+.air-line.caller { align-self: flex-end; background: var(--surface2); border: 1px solid var(--border); border-radius: 12px 4px 12px 12px; color: var(--muted2); }
+.air-line.caller span { color: var(--muted); }
+.air-crm { background: #fff; color: #1f2937; border-radius: 14px; padding: 16px; box-shadow: 0 24px 60px rgba(0,0,0,0.45); font-family: 'Bricolage Grotesque', 'Segoe UI', Roboto, Arial, sans-serif; line-height: 1.4; }
+.air-crm-top { display: flex; align-items: center; gap: 10px; padding-bottom: 12px; border-bottom: 1px solid #eef1f4; }
+.air-crm-top img { width: 26px; height: 26px; }
+.air-crm-top b { flex: 1; font-size: 0.86rem; color: #111827; }
+.air-src { font-size: 0.58rem; font-weight: 700; padding: 3px 9px; border-radius: 100px; background: #ede9fe; color: #6d28d9; }
+.air-row { display: flex; align-items: center; gap: 9px; padding: 7px 0; font-size: 0.76rem; color: #374151; }
+.air-row svg { width: 14px; height: 14px; color: #9ca3af; flex-shrink: 0; }
+.air-sum { background: #f6f8fa; border: 1px solid #eef1f4; border-radius: 9px; padding: 10px 12px; font-size: 0.72rem; color: #4b5563; line-height: 1.5; margin-top: 6px; }
+.air-sum b { display: block; font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.08em; color: #9ca3af; margin-bottom: 3px; }
+.air-book { display: flex; align-items: center; gap: 9px; margin-top: 10px; padding: 9px 12px; border-radius: 9px; background: #dcfce7; color: #15803d; font-size: 0.74rem; font-weight: 700; }
+.air-book svg { width: 15px; height: 15px; }
+
 /* Included-features checklist (Essential website block) */
 .included-head { font-family: var(--font-mono); font-size: 0.66rem; color: var(--node-green); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 16px; }
 .included-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 11px 20px; margin-bottom: 24px; }
@@ -549,11 +662,18 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 
 <hr class="divider"/>
 
-<!-- SERVICE 1: Branded Website Design — media LEFT -->
+<!-- GROUP: Packages -->
+<div class="svc-group reveal">
+  <div class="svc-group-label">Packages</div>
+  <h2>Two packages.<br/><span>Pick where you start.</span></h2>
+  <p>A premium website to get you found, or the Business Growth Package to turn every enquiry into booked work. No large lump sum to find, and no long-term contract.</p>
+</div>
+
+<!-- SERVICE 1: Branded Website Design -->
 <div class="service-block reverse reveal" id="websites">
   <div>
-    <div class="service-block-label">Essential</div>
-    <h2>Branded<br/><span>Website Design</span></h2>
+    <div class="service-block-label">Package 1 &middot; Get Found</div>
+    <h2>Professional<br/><span>Website</span></h2>
     <p class="lead">Your website is the foundation of everything we build together. We design and develop custom, fully responsive sites that capture your brand and turn visitors into enquiries — built to plug into automation, video, and reviews whenever you're ready.</p>
     <div class="included-head">✓ Included with every website</div>
     <div class="included-grid">
@@ -581,10 +701,180 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 
 <hr class="divider"/>
 
-<!-- SERVICE 2: Visual Transformation Videos — media RIGHT -->
-<div class="service-block reveal" id="transformation-videos">
+<!-- SERVICE: Business Growth Package (website + CRM + automation) -->
+<div class="service-block service-stacked reveal" id="business-growth">
   <div>
-    <div class="service-block-label">Visual Content</div>
+    <div class="service-block-label">Package 2 &middot; Win More Work</div>
+    <h2>Business Growth<br/><span>Package</span></h2>
+    <p class="lead">Your website gets the phone ringing. This package makes sure every enquiry is answered, every quote is chased and every finished job turns into a review, without you doing it from the van at 9pm.</p>
+    <p class="works-with"><span>✓ Includes</span> everything in the Professional Website plan, plus the systems that capture, chase and convert your leads</p>
+    <div class="included-head">✓ What's included</div>
+    <div class="included-grid">
+      <div class="included-item"><span class="included-check">✓</span>Everything in the Professional Website plan</div>
+      <div class="included-item"><span class="included-check">✓</span>CRM dashboard for every enquiry, quote and won job</div>
+      <div class="included-item"><span class="included-check">✓</span>Website forms connected straight to the CRM</div>
+      <div class="included-item"><span class="included-check">✓</span>Instant acknowledgements and notifications</div>
+      <div class="included-item"><span class="included-check">✓</span>Missed-call text-back</div>
+      <div class="included-item"><span class="included-check">✓</span>Automated enquiry and quote follow-ups</div>
+      <div class="included-item"><span class="included-check">✓</span>Booking calendar with reminders</div>
+      <div class="included-item"><span class="included-check">✓</span>Review page, QR code and review requests</div>
+      <div class="included-item"><span class="included-check">✓</span>Branded login and mobile app</div>
+      <div class="included-item"><span class="included-check">✓</span>Onboarding, training and monthly checks</div>
+    </div>
+    <a href="consultancy.html#contact" class="service-link">Book a free consultation →</a>
+  </div>
+
+  <div class="crm-stage reveal" aria-hidden="true">
+    <div class="crm-browser">
+      <div class="crm-bar"><i></i><i></i><i></i><div class="crm-url">app.innov8workflows.co.uk/dashboard</div></div>
+      <div class="crm-app">
+        <div class="crm-side">
+          <div class="crm-logo"><img src="innov8-logo-v2-clear-sm.webp" alt="" width="34" height="34"/></div>
+          <div class="crm-acct"><b>Your Business Ltd</b><span>Your town, England</span></div>
+          <div class="crm-nav on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg> Dashboard</div>
+          <div class="crm-nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Conversations</div>
+          <div class="crm-nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Calendars</div>
+          <div class="crm-nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> Contacts</div>
+          <div class="crm-nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><rect x="7" y="7" width="3" height="9"/><rect x="14" y="7" width="3" height="5"/></svg> Opportunities</div>
+          <div class="crm-nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> Reputation</div>
+          <div class="crm-nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Reporting</div>
+        </div>
+        <div class="crm-main">
+          <div class="crm-h">Your Business at a Glance <span>Last 30 days</span></div>
+          <div class="crm-stats">
+            <div class="crm-stat"><div class="crm-stat-l">New enquiries</div><div class="crm-stat-v">24<small>+8</small></div></div>
+            <div class="crm-stat"><div class="crm-stat-l">Quotes sent</div><div class="crm-stat-v">15</div></div>
+            <div class="crm-stat"><div class="crm-stat-l">Jobs booked</div><div class="crm-stat-v">9</div></div>
+            <div class="crm-stat"><div class="crm-stat-l">New 5★ reviews</div><div class="crm-stat-v">7<small>+3</small></div></div>
+          </div>
+          <div class="crm-pipe">
+            <div class="crm-col">
+              <div class="crm-col-h">New lead <span>6</span></div>
+              <div class="crm-card"><b>Roof leak, Belper</b>Website form<br/><em>Replied instantly</em></div>
+              <div class="crm-card"><b>New driveway</b>Missed call<br/><em>Text-back sent</em></div>
+            </div>
+            <div class="crm-col">
+              <div class="crm-col-h">Quoted <span>4</span></div>
+              <div class="crm-card blue"><b>Full re-roof</b>£6,800<br/><em>Follow-up day 2</em></div>
+              <div class="crm-card blue"><b>Fascias and gutters</b>£1,450<br/><em>Follow-up day 5</em></div>
+            </div>
+            <div class="crm-col">
+              <div class="crm-col-h">Booked <span>3</span></div>
+              <div class="crm-card blue"><b>Chimney repair</b>Thu 09:00<br/><em>Reminder sent</em></div>
+            </div>
+            <div class="crm-col">
+              <div class="crm-col-h">Won <span>5</span></div>
+              <div class="crm-card won"><b>Flat roof</b>£3,200<br/><em>Review requested</em></div>
+              <div class="crm-card won"><b>Patio clean</b>£480<br/><em>5★ received</em></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="crm-phone">
+      <div class="crm-phone-screen">
+        <div class="crm-phone-top">Conversations<span>Your Business Ltd</span></div>
+        <div class="crm-msg"><div class="crm-av" style="background:#ef4444">D</div><div class="crm-msg-b"><div class="crm-msg-n">07700 900481 <i>2m</i></div><div class="crm-msg-t">Missed call. Auto text sent.</div><span class="crm-pill">Text-back</span></div></div>
+        <div class="crm-msg"><div class="crm-av" style="background:#2563eb">S</div><div class="crm-msg-b"><div class="crm-msg-n">Sarah M. <i>14m</i></div><div class="crm-msg-t">Thursday at 9 works great, thanks!</div><span class="crm-pill b">Booked</span></div></div>
+        <div class="crm-msg"><div class="crm-av" style="background:#16a34a">P</div><div class="crm-msg-b"><div class="crm-msg-n">Paul R. <i>1h</i></div><div class="crm-msg-t">Left you a review, great job lads.</div><span class="crm-pill g">5★ review</span></div></div>
+        <div class="crm-msg"><div class="crm-av" style="background:#ea580c">J</div><div class="crm-msg-b"><div class="crm-msg-n">James T. <i>3h</i></div><div class="crm-msg-t">Can you send the quote over?</div><span class="crm-pill">Website form</span></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="auto-grid reveal" aria-hidden="true">
+    <div class="auto-card">
+      <div class="auto-head"><div class="auto-icon red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/><line x1="23" y1="1" x2="17" y2="7"/><line x1="17" y1="1" x2="23" y2="7"/></svg></div><div class="auto-title">Missed-call text-back</div></div>
+      <div class="auto-step"><b>14:02</b>Missed call while you're up a ladder</div>
+      <div class="auto-sms">Sorry we missed you, we're on a job. What can we help with? Reply here and we'll get straight back to you.</div>
+      <div class="auto-step ok"><b>14:05</b>Reply logged in your CRM</div>
+    </div>
+    <div class="auto-card">
+      <div class="auto-head"><div class="auto-icon gold"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div class="auto-title">Review page and requests</div></div>
+      <div class="auto-step"><b>JOB</b>Marked as complete</div>
+      <div class="auto-sms">Thanks for choosing us! Could you spare 30 seconds for a quick Google review?</div>
+      <div class="auto-step ok"><b>+1H</b>New 5★ Google review</div>
+    </div>
+    <div class="auto-card">
+      <div class="auto-head"><div class="auto-icon blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div><div class="auto-title">Booking calendar and reminders</div></div>
+      <div class="auto-step"><b>ONLINE</b>Survey booked for Thu 09:00</div>
+      <div class="auto-sms">Reminder: we're with you tomorrow at 9:00. Reply C to confirm.</div>
+      <div class="auto-step ok"><b>WED</b>Confirmed by the customer</div>
+    </div>
+    <div class="auto-card">
+      <div class="auto-head"><div class="auto-icon green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></div><div class="auto-title">Quote follow-ups</div></div>
+      <div class="auto-step"><b>DAY 0</b>Quote sent, £3,450</div>
+      <div class="auto-step"><b>DAY 2</b>Friendly follow-up sent for you</div>
+      <div class="auto-step"><b>DAY 5</b>Second follow-up sent</div>
+      <div class="auto-step ok"><b>DAY 6</b>Quote accepted</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider"/>
+
+<!-- GROUP: Add-ons and extras -->
+<div class="svc-group reveal">
+  <div class="svc-group-label">Add-ons and extras</div>
+  <h2>Enhance your<br/><span>results.</span></h2>
+  <p>Optional extras you can add to either package whenever you want to grow faster. No long-term contracts, cancel any time.</p>
+</div>
+
+<!-- SERVICE: Out-of-Hours AI Receptionist -->
+<div class="service-block reveal" id="ai-receptionist">
+  <div>
+    <div class="service-block-label purple">Optional Extra &middot; Either Package</div>
+    <h2>Out-of-Hours<br/><span class="purple">AI Receptionist</span></h2>
+    <p class="lead">Keep capturing enquiries after you've clocked off. An AI phone receptionist answers outside your working hours, captures the customer's details and passes the enquiry straight into your business, so the evening caller doesn't ring the next trade instead.</p>
+    <p class="works-with"><span>✓ Available with</span> either package</p>
+    <div class="feature-list">
+      <div class="feature-item">
+        <div class="feature-icon purple">✦</div>
+        <div><strong>Answers When You Can't</strong><p>Picks up during your agreed out-of-hours periods and answers common questions from information you've approved.</p></div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon purple">✦</div>
+        <div><strong>Captures The Whole Enquiry</strong><p>Takes the caller's name, contact details, location and the job they need, and can book a survey via your connected calendar.</p></div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon purple">✦</div>
+        <div><strong>Straight Into Your CRM</strong><p>Every call is logged as a new contact with a call summary, ready for you to pick up first thing. Setup, testing and monitoring included.</p></div>
+      </div>
+    </div>
+    <a href="consultancy.html#contact" class="service-link" style="color:var(--node-purple)">Book a free consultation →</a>
+  </div>
+  <div class="air reveal" aria-hidden="true">
+    <div class="air-call">
+      <div class="air-call-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></div>
+      <div class="air-call-t"><b>Incoming call</b><span>Out of hours &middot; 21:47</span></div>
+      <span class="air-live"><i></i> AI answering</span>
+    </div>
+    <div class="air-chat">
+      <div class="air-line ai"><span>AI receptionist</span>Hi, you're through to Your Business. We're closed right now, but I can take your details and get the team to call you first thing.</div>
+      <div class="air-line caller"><span>Caller</span>Hi, there's water coming through my bathroom ceiling. I'm in Belper.</div>
+      <div class="air-line ai"><span>AI receptionist</span>Sorry to hear that. Can I take your name and the best number to reach you on?</div>
+    </div>
+    <div class="pa-flow">
+      <div class="pa-flow-line"></div>
+      <div class="pa-flow-label">Logged straight into your CRM</div>
+    </div>
+    <div class="air-crm">
+      <div class="air-crm-top"><img src="innov8-logo-v2-clear-sm.webp" alt="" width="26" height="26"/><b>New contact</b><span class="air-src">Voice AI</span></div>
+      <div class="air-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Sarah M.</div>
+      <div class="air-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg> 07700 900213</div>
+      <div class="air-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Belper, Derbyshire</div>
+      <div class="air-sum"><b>Call summary</b>Water coming through the bathroom ceiling after heavy rain. Wants someone to take a look this week. Happy with a morning visit.</div>
+      <div class="air-book"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Survey booked: Thu 09:00</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider"/>
+
+<!-- SERVICE 2: Visual Transformation Videos -->
+<div class="service-block reverse reveal" id="transformation-videos">
+  <div>
+    <div class="service-block-label">Add-on &middot; Visual Content</div>
     <h2>Visual Transformation<br/><span>Videos</span></h2>
     <p class="lead">Turn your best work into scroll-stopping proof. We produce short before-and-after transformation videos and embed them directly into your website — where they do the selling for you, silently and automatically.</p>
     <p class="works-with"><span>✓ Works with</span> — any website, new or existing</p>
@@ -613,10 +903,10 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 
 <hr class="divider"/>
 
-<!-- SERVICE 3: Review Funnel + Transformation Video — media LEFT -->
-<div class="service-block reverse reveal" id="review-funnel">
+<!-- SERVICE 3: Review Funnel + Transformation Video -->
+<div class="service-block reveal" id="review-funnel">
   <div>
-    <div class="service-block-label">Reputation</div>
+    <div class="service-block-label">Add-on &middot; Reputation</div>
     <h2>Review Funnel<br/><span>+ Transformation Video</span></h2>
     <p class="lead">Capture more 5-star reviews and showcase your work in one place. We build a branded review funnel that guides happy customers straight to Google or Facebook, paired with an embedded transformation video that proves your quality before they read a word.</p>
     <p class="works-with"><span>✓ Includes</span> — hosted review funnel + embedded video</p>
@@ -678,236 +968,10 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 
 <hr class="divider"/>
 
-<!-- SERVICE 4: Quote / Ad Landing Page — media RIGHT -->
-<div class="service-block reveal" id="ad-landing-page">
-  <div>
-    <div class="service-block-label">Lead Capture</div>
-    <h2>Quote &amp; Ad Landing Page<br/><span>+ Transformation Video</span></h2>
-    <p class="lead">A high-converting landing page built around your work — led by an eye-catching before-and-after transformation video. When you run ads on Meta, that scroll-stopping clip is what makes people pause, watch, and trust you — lifting your conversion rate before they read a single word. The page then captures the enquiry and books the call automatically.</p>
-    <p class="works-with"><span>✓ Built for</span> — Meta &amp; Google ad campaigns</p>
-    <div class="review-platforms">
-      <span class="review-platforms-label">Integrations built in</span>
-      <span class="platform-badge">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#006BFF" d="M19.655 14.262c.281 0 .557.023.828.064 0 .005-.005.01-.005.014-.105.267-.234.534-.381.786l-1.219 2.106c-1.112 1.936-3.177 3.127-5.411 3.127h-2.432c-2.23 0-4.294-1.191-5.412-3.127l-1.218-2.106a6.251 6.251 0 0 1 0-6.252l1.218-2.106C6.736 4.832 8.8 3.641 11.035 3.641h2.432c2.23 0 4.294 1.191 5.411 3.127l1.219 2.106c.147.252.271.519.381.786 0 .004.005.009.005.014-.267.041-.543.064-.828.064-1.816 0-2.501-.607-3.291-1.306-.764-.676-1.711-1.517-3.44-1.517h-1.029c-1.251 0-2.387.455-3.2 1.278-.796.805-1.233 1.904-1.233 3.099v1.411c0 1.196.437 2.295 1.233 3.099.813.823 1.949 1.278 3.2 1.278h1.034c1.729 0 2.676-.841 3.439-1.517.791-.703 1.471-1.306 3.287-1.301Zm.005-3.237c.399 0 .794-.036 1.179-.11-.002-.004-.002-.01-.002-.014-.073-.414-.193-.823-.349-1.218.731-.12 1.407-.396 1.986-.819 0-.004-.005-.013-.005-.018-.331-1.085-.832-2.101-1.489-3.03-.649-.915-1.435-1.719-2.331-2.395-1.867-1.398-4.088-2.138-6.428-2.138-1.448 0-2.855.28-4.175.841-1.273.543-2.423 1.315-3.407 2.299S2.878 6.552 2.341 7.83c-.557 1.324-.842 2.726-.842 4.175 0 1.448.281 2.855.842 4.174.542 1.274 1.314 2.423 2.298 3.407s2.129 1.761 3.407 2.299c1.324.556 2.727.841 4.175.841 2.34 0 4.561-.74 6.428-2.137a10.815 10.815 0 0 0 2.331-2.396c.652-.929 1.158-1.949 1.489-3.03 0-.004.005-.014.005-.018-.579-.423-1.255-.699-1.986-.819.161-.395.276-.804.349-1.218.005-.009.005-.014.005-.023.869.166 1.692.506 2.404 1.035.685.505.552 1.075.446 1.416C22.184 20.437 17.619 24 12.221 24c-6.625 0-12-5.375-12-12s5.37-12 12-12c5.398 0 9.963 3.563 11.471 8.464.106.341.239.915-.446 1.421-.717.529-1.535.873-2.404 1.034.128.716.128 1.45 0 2.166-.387-.074-.782-.11-1.182-.11-4.184 0-3.968 2.823-6.736 2.823h-1.029c-1.899 0-3.15-1.357-3.15-3.095v-1.411c0-1.738 1.251-3.094 3.15-3.094h1.034c2.768 0 2.552 2.823 6.731 2.827Z"/></svg>
-        Calendly
-      </span>
-      <span class="platform-badge">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#0467DF" d="M6.915 4.03c-1.968 0-3.683 1.28-4.871 3.113C.704 9.208 0 11.883 0 14.449c0 .706.07 1.369.21 1.973a6.624 6.624 0 0 0 .265.86 5.297 5.297 0 0 0 .371.761c.696 1.159 1.818 1.927 3.593 1.927 1.497 0 2.633-.671 3.965-2.444.76-1.012 1.144-1.626 2.663-4.32l.756-1.339.186-.325c.061.1.121.196.183.3l2.152 3.595c.724 1.21 1.665 2.556 2.47 3.314 1.046.987 1.992 1.22 3.06 1.22 1.075 0 1.876-.355 2.455-.843a3.743 3.743 0 0 0 .81-.973c.542-.939.861-2.127.861-3.745 0-2.72-.681-5.357-2.084-7.45-1.282-1.912-2.957-2.93-4.716-2.93-1.047 0-2.088.467-3.053 1.308-.652.57-1.257 1.29-1.82 2.05-.69-.875-1.335-1.547-1.958-2.056-1.182-.966-2.315-1.303-3.454-1.303zm10.16 2.053c1.147 0 2.188.758 2.992 1.999 1.132 1.748 1.647 4.195 1.647 6.4 0 1.548-.368 2.9-1.839 2.9-.58 0-1.027-.23-1.664-1.004-.496-.601-1.343-1.878-2.832-4.358l-.617-1.028a44.908 44.908 0 0 0-1.255-1.98c.07-.109.141-.224.211-.327 1.12-1.667 2.118-2.602 3.358-2.602zm-10.201.553c1.265 0 2.058.791 2.675 1.446.307.327.737.871 1.234 1.579l-1.02 1.566c-.757 1.163-1.882 3.017-2.837 4.338-1.191 1.649-1.81 1.817-2.486 1.817-.524 0-1.038-.237-1.383-.794-.263-.426-.464-1.13-.464-2.046 0-2.221.63-4.535 1.66-6.088.454-.687.964-1.226 1.533-1.533a2.264 2.264 0 0 1 1.088-.285z"/></svg>
-        Meta
-      </span>
-    </div>
-    <div class="feature-list">
-      <div class="feature-item">
-        <div class="feature-icon">✦</div>
-        <div><strong>Calendly Booking Built In</strong><p>Visitors pick a slot and book straight into your calendar — no back-and-forth, no lost leads.</p></div>
-      </div>
-      <div class="feature-item">
-        <div class="feature-icon">✦</div>
-        <div><strong>Meta Pixel &amp; Conversion Tracking</strong><p>The Meta Pixel and event tags are wired in, so every lead is tracked and your ad spend is optimised automatically.</p></div>
-      </div>
-      <div class="feature-item">
-        <div class="feature-icon">✦</div>
-        <div><strong>Scroll-Stopping Video</strong><p>Your before-and-after transformation video leads the page — the eye-catching hook that stops the scroll and lifts your Meta ad conversion rate.</p></div>
-      </div>
-    </div>
-    <a href="consultancy.html#contact" class="service-link">Book a free consultation →</a>
-  </div>
-  <div class="service-media">
-    <video autoplay loop muted playsinline preload="metadata" poster="services-media/before-after-03-poster.jpg" aria-label="Quote and ad landing page demo">
-      <source src="services-media/before-after-03.mp4" type="video/mp4"/>
-    </video>
-  </div>
-</div>
-
-<hr class="divider"/>
-
-<!-- SERVICE 4b: Meta Ad Lead Generation System — media LEFT -->
-<div class="service-block reverse reveal" id="meta-ads">
-  <div>
-    <div class="service-block-label">Paid Advertising &middot; Meta</div>
-    <h2>Meta Ad Lead<br/><span>Generation System</span></h2>
-    <p class="lead">A done for you advertising system on Facebook and Instagram. We build scroll-stopping ads around your real jobs, run them to homeowners in the exact areas you cover, and send every enquiry straight into your WhatsApp as a pre-filled message, ready for you to quote.</p>
-    <p class="works-with"><span>✓ Runs on</span> — Facebook, Instagram &amp; WhatsApp</p>
-    <div class="review-platforms">
-      <span class="review-platforms-label">Platforms we manage for you</span>
-      <span class="platform-badge">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#0467DF" d="M6.915 4.03c-1.968 0-3.683 1.28-4.871 3.113C.704 9.208 0 11.883 0 14.449c0 .706.07 1.369.21 1.973a6.624 6.624 0 0 0 .265.86 5.297 5.297 0 0 0 .371.761c.696 1.159 1.818 1.927 3.593 1.927 1.497 0 2.633-.671 3.965-2.444.76-1.012 1.144-1.626 2.663-4.32l.756-1.339.186-.325c.061.1.121.196.183.3l2.152 3.595c.724 1.21 1.665 2.556 2.47 3.314 1.046.987 1.992 1.22 3.06 1.22 1.075 0 1.876-.355 2.455-.843a3.743 3.743 0 0 0 .81-.973c.542-.939.861-2.127.861-3.745 0-2.72-.681-5.357-2.084-7.45-1.282-1.912-2.957-2.93-4.716-2.93-1.047 0-2.088.467-3.053 1.308-.652.57-1.257 1.29-1.82 2.05-.69-.875-1.335-1.547-1.958-2.056-1.182-.966-2.315-1.303-3.454-1.303zm10.16 2.053c1.147 0 2.188.758 2.992 1.999 1.132 1.748 1.647 4.195 1.647 6.4 0 1.548-.368 2.9-1.839 2.9-.58 0-1.027-.23-1.664-1.004-.496-.601-1.343-1.878-2.832-4.358l-.617-1.028a44.908 44.908 0 0 0-1.255-1.98c.07-.109.141-.224.211-.327 1.12-1.667 2.118-2.602 3.358-2.602zm-10.201.553c1.265 0 2.058.791 2.675 1.446.307.327.737.871 1.234 1.579l-1.02 1.566c-.757 1.163-1.882 3.017-2.837 4.338-1.191 1.649-1.81 1.817-2.486 1.817-.524 0-1.038-.237-1.383-.794-.263-.426-.464-1.13-.464-2.046 0-2.221.63-4.535 1.66-6.088.454-.687.964-1.226 1.533-1.533a2.264 2.264 0 0 1 1.088-.285z"/></svg>
-        Meta Ads
-      </span>
-      <span class="platform-badge">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#25D366" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.464 3.488"/></svg>
-        WhatsApp
-      </span>
-    </div>
-    <div class="feature-list">
-      <div class="feature-item">
-        <div class="feature-icon">✦</div>
-        <div><strong>Ads Built From Your Real Jobs</strong><p>Your before and after shots and transformation videos become the ad creative. Real work stops the scroll far better than stock photos ever will.</p></div>
-      </div>
-      <div class="feature-item">
-        <div class="feature-icon">✦</div>
-        <div><strong>Targeted To Your Exact Patch</strong><p>Your ads are shown only to homeowners in the towns and postcodes you cover, so your budget only reaches people you can actually serve.</p></div>
-      </div>
-      <div class="feature-item">
-        <div class="feature-icon">✦</div>
-        <div><strong>Leads Land In Your WhatsApp</strong><p>Every click opens a pre-filled WhatsApp message tagged with the ad it came from, so you always know which campaign is paying for itself.</p></div>
-      </div>
-    </div>
-    <a href="consultancy.html#contact" class="service-link">Book a free consultation →</a>
-  </div>
-  <div class="pa-widget reveal" aria-hidden="true">
-    <div class="fbad">
-      <div class="fbad-top">
-        <div class="fbad-avatar">YB</div>
-        <div class="fbad-meta">
-          <div class="fbad-page">Your Business Ltd</div>
-          <div class="fbad-sub">Sponsored</div>
-        </div>
-        <div class="fbad-dots">···</div>
-      </div>
-      <div class="fbad-text">Is your driveway letting the house down? Watch a one day transformation, then get your free quote.</div>
-      <div class="fbad-creative">
-        <div class="fbad-before">Before</div>
-        <div class="fbad-after">After</div>
-        <div class="fbad-play"></div>
-      </div>
-      <div class="fbad-cta">
-        <div class="fbad-cta-meta">
-          <div class="fbad-cta-domain">yourbusiness.co.uk</div>
-          <div class="fbad-cta-title">Free Quotes This Week</div>
-        </div>
-        <span class="fbad-btn">Get quote</span>
-      </div>
-    </div>
-    <div class="pa-flow">
-      <div class="pa-flow-line"></div>
-      <div class="pa-flow-label">Every click becomes a lead</div>
-    </div>
-    <div class="walead">
-      <div class="walead-top">
-        <div class="walead-icon">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.464 3.488"/></svg>
-        </div>
-        <div class="walead-title">New WhatsApp lead</div>
-        <span class="walead-time"><span class="walead-dot"></span> Just now</span>
-      </div>
-      <div class="walead-bubble">Hi, I have just seen your ad on Facebook. Please can I get a quote for my front driveway?</div>
-      <div class="walead-ref">Ref: fb-spring-offer &middot; Derby</div>
-    </div>
-  </div>
-</div>
-
-<hr class="divider"/>
-
-<!-- SERVICE 4c: Google PPC Lead Generation — media RIGHT -->
-<div class="service-block reveal" id="google-ppc">
-  <div>
-    <div class="service-block-label">Paid Advertising &middot; Google</div>
-    <h2>Google PPC<br/><span>Lead Generation</span></h2>
-    <p class="lead">Google Ads puts your business at the very top of the results page the moment someone searches for your trade in your area. These are the highest intent leads there are, people actively looking to hire right now, and we build, manage and refine the whole campaign for you.</p>
-    <p class="works-with"><span>✓ Runs on</span> — Google Search &amp; Google Maps</p>
-    <div class="review-platforms">
-      <span class="review-platforms-label">Platforms we manage for you</span>
-      <span class="platform-badge">
-        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/><path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/><path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/><path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/></svg>
-        Google Ads
-      </span>
-    </div>
-    <div class="feature-list">
-      <div class="feature-item">
-        <div class="feature-icon">✦</div>
-        <div><strong>Straight To The Top</strong><p>Sponsored placement puts you above the map pack and the organic results from day one, while your SEO builds in the background.</p></div>
-      </div>
-      <div class="feature-item">
-        <div class="feature-icon">✦</div>
-        <div><strong>Only Pay For Real Interest</strong><p>You only pay when someone actually clicks, and negative keywords filter out the searches that were never going to become jobs.</p></div>
-      </div>
-      <div class="feature-item">
-        <div class="feature-icon">✦</div>
-        <div><strong>Tracked To The Penny</strong><p>Every call and quote request is tracked back to the exact search that triggered it, so you can see what each job cost to win.</p></div>
-      </div>
-    </div>
-    <a href="consultancy.html#contact" class="service-link">Book a free consultation →</a>
-  </div>
-  <div class="pa-widget reveal" aria-hidden="true">
-    <div class="gads">
-      <div class="gads-bar">
-        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/><path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/><path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/><path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/></svg>
-        <span class="gads-query">roofer near me</span>
-      </div>
-      <div class="gads-tag-row">
-        <span class="gads-tag">Sponsored</span>
-        <span class="gads-you">Your business</span>
-      </div>
-      <div class="gads-site">
-        <div class="gads-favicon">YB</div>
-        <div>
-          <div class="gads-domain">Your Business Ltd</div>
-          <div class="gads-url">yourbusiness.co.uk</div>
-        </div>
-      </div>
-      <div class="gads-headline">Local Roofing Specialists | Free No Obligation Quotes</div>
-      <div class="gads-desc">Repairs, full replacements and flat roofs across your area. Speak to a local expert today and get your free quote.</div>
-      <div class="gads-actions">
-        <span class="gads-chip">
-          <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.35-.11-.74-.03-1.02.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.21c.28-.27.36-.66.25-1.01-.37-1.12-.57-2.32-.57-3.57 0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.49c0-.55-.45-1-1-1z"/></svg>
-          Call now
-        </span>
-        <span class="gads-chip">Get a free quote</span>
-      </div>
-      <div class="gads-others">
-        <div class="gads-skel">
-          <div class="gads-skel-bar w40"></div>
-          <div class="gads-skel-bar w85"></div>
-          <div class="gads-skel-bar w70"></div>
-        </div>
-        <div class="gads-skel">
-          <div class="gads-skel-bar w40"></div>
-          <div class="gads-skel-bar w85"></div>
-          <div class="gads-skel-bar w70"></div>
-        </div>
-        <div class="gads-note">Everyone else, further down the page.</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<hr class="divider"/>
-
-<!-- SERVICE 5: Email Hosting & Setup — media LEFT -->
-<div class="service-block service-stacked reveal" id="email-hosting">
-  <div>
-    <div class="service-block-label">Professional Email</div>
-    <h2>Email Hosting<br/><span>&amp; Setup</span></h2>
-    <p class="lead">Look the part with email that matches your domain. We set up and host branded email addresses like you@yourbusiness.co.uk, so every message you send builds trust instead of bouncing through a generic Gmail or Hotmail account.</p>
-    <p class="works-with"><span>✓ Includes</span> setup, hosting and migration</p>
-    <div class="feature-list">
-      <div class="feature-item">
-        <div class="feature-icon">✦</div>
-        <div><strong>Branded Email Addresses</strong><p>Professional addresses on your own domain that make your business look established and trustworthy.</p></div>
-      </div>
-      <div class="feature-item">
-        <div class="feature-icon">✦</div>
-        <div><strong>Reliable, Secure Hosting</strong><p>Your email runs on a dependable platform with spam filtering and strong deliverability, so important messages actually land.</p></div>
-      </div>
-      <div class="feature-item">
-        <div class="feature-icon">✦</div>
-        <div><strong>Fully Set Up For You</strong><p>We handle the domain records, mailboxes and migration from your old inbox, then get it working on your phone and computer.</p></div>
-      </div>
-    </div>
-    <a href="consultancy.html#contact" class="service-link">Book a free consultation →</a>
-  </div>
-  <div class="service-media">
-    <img src="services-media/email-hosting-laptop.webp" width="1536" height="1024" loading="lazy" alt="Professional branded email hosting set up by Innov8 Workflows"/>
-  </div>
-</div>
-
-<hr class="divider"/>
-
-<!-- SERVICE 6: AI Chatbot — media LEFT, featured (purple) -->
+<!-- SERVICE 6: AI Chatbot -->
 <div class="service-block reverse reveal" id="ai-chatbot">
   <div>
-    <div class="service-block-label purple">AI Assistant</div>
+    <div class="service-block-label purple">Add-on &middot; AI Assistant</div>
     <h2>AI Chatbot<br/><span class="purple">for your business</span></h2>
     <p class="lead">Add a custom AI chatbot trained on your services, prices and FAQs. It works around the clock to answer questions, qualify leads and book calls, and it drops onto any website, new or existing, in minutes.</p>
     <p class="works-with"><span>✓ Works with</span> any website, no rebuild needed</p>
@@ -936,10 +1000,10 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 
 <hr class="divider"/>
 
-<!-- SERVICE 7: Magic Live Google Review Slider — media RIGHT -->
+<!-- SERVICE 7: Magic Live Google Review Slider -->
 <div class="service-block reveal" id="review-slider">
   <div>
-    <div class="service-block-label">Live Reviews</div>
+    <div class="service-block-label">Add-on &middot; Live Reviews</div>
     <h2>Magic Live Google<br/><span>Review Slider</span></h2>
     <p class="lead">A live, self-updating slider that pulls your real Google reviews straight onto your website and shows them off automatically. The magic? It spotlights your best five-star reviews and quietly filters out the occasional negative one, so visitors only ever see you at your best.</p>
     <p class="works-with"><span>✓ Works with</span> any website, live from your Google Business Profile</p>
@@ -1061,6 +1125,239 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
     start();
   })();
 </script>
+
+<hr class="divider"/>
+
+<!-- SERVICE 5: Email Hosting & Setup -->
+<div class="service-block service-stacked reveal" id="email-hosting">
+  <div>
+    <div class="service-block-label">Add-on &middot; Professional Email</div>
+    <h2>Email Hosting<br/><span>&amp; Setup</span></h2>
+    <p class="lead">Look the part with email that matches your domain. We set up and host branded email addresses like you@yourbusiness.co.uk, so every message you send builds trust instead of bouncing through a generic Gmail or Hotmail account.</p>
+    <p class="works-with"><span>✓ Includes</span> setup, hosting and migration</p>
+    <div class="feature-list">
+      <div class="feature-item">
+        <div class="feature-icon">✦</div>
+        <div><strong>Branded Email Addresses</strong><p>Professional addresses on your own domain that make your business look established and trustworthy.</p></div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">✦</div>
+        <div><strong>Reliable, Secure Hosting</strong><p>Your email runs on a dependable platform with spam filtering and strong deliverability, so important messages actually land.</p></div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">✦</div>
+        <div><strong>Fully Set Up For You</strong><p>We handle the domain records, mailboxes and migration from your old inbox, then get it working on your phone and computer.</p></div>
+      </div>
+    </div>
+    <a href="consultancy.html#contact" class="service-link">Book a free consultation →</a>
+  </div>
+  <div class="service-media">
+    <img src="services-media/email-hosting-laptop.webp" width="1536" height="1024" loading="lazy" alt="Professional branded email hosting set up by Innov8 Workflows"/>
+  </div>
+</div>
+
+<hr class="divider"/>
+
+<!-- GROUP: Paid ads and social -->
+<div class="svc-group reveal">
+  <div class="svc-group-label">Paid ads and social</div>
+  <h2>Turn on<br/><span>the tap.</span></h2>
+  <p>Paid advertising for when you want leads coming in faster than organic search alone can deliver. One business per trade, per area: once you run ads with us, we will not take on a competitor in your patch.</p>
+</div>
+
+<!-- SERVICE 4b: Meta Ad Lead Generation System -->
+<div class="service-block reverse reveal" id="meta-ads">
+  <div>
+    <div class="service-block-label">Paid Advertising &middot; Meta</div>
+    <h2>Meta Ad Lead<br/><span>Generation System</span></h2>
+    <p class="lead">A done for you advertising system on Facebook and Instagram. We build scroll-stopping ads around your real jobs, run them to homeowners in the exact areas you cover, and send every enquiry straight into your WhatsApp as a pre-filled message, ready for you to quote.</p>
+    <p class="works-with"><span>✓ Runs on</span> — Facebook, Instagram &amp; WhatsApp</p>
+    <div class="review-platforms">
+      <span class="review-platforms-label">Platforms we manage for you</span>
+      <span class="platform-badge">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#0467DF" d="M6.915 4.03c-1.968 0-3.683 1.28-4.871 3.113C.704 9.208 0 11.883 0 14.449c0 .706.07 1.369.21 1.973a6.624 6.624 0 0 0 .265.86 5.297 5.297 0 0 0 .371.761c.696 1.159 1.818 1.927 3.593 1.927 1.497 0 2.633-.671 3.965-2.444.76-1.012 1.144-1.626 2.663-4.32l.756-1.339.186-.325c.061.1.121.196.183.3l2.152 3.595c.724 1.21 1.665 2.556 2.47 3.314 1.046.987 1.992 1.22 3.06 1.22 1.075 0 1.876-.355 2.455-.843a3.743 3.743 0 0 0 .81-.973c.542-.939.861-2.127.861-3.745 0-2.72-.681-5.357-2.084-7.45-1.282-1.912-2.957-2.93-4.716-2.93-1.047 0-2.088.467-3.053 1.308-.652.57-1.257 1.29-1.82 2.05-.69-.875-1.335-1.547-1.958-2.056-1.182-.966-2.315-1.303-3.454-1.303zm10.16 2.053c1.147 0 2.188.758 2.992 1.999 1.132 1.748 1.647 4.195 1.647 6.4 0 1.548-.368 2.9-1.839 2.9-.58 0-1.027-.23-1.664-1.004-.496-.601-1.343-1.878-2.832-4.358l-.617-1.028a44.908 44.908 0 0 0-1.255-1.98c.07-.109.141-.224.211-.327 1.12-1.667 2.118-2.602 3.358-2.602zm-10.201.553c1.265 0 2.058.791 2.675 1.446.307.327.737.871 1.234 1.579l-1.02 1.566c-.757 1.163-1.882 3.017-2.837 4.338-1.191 1.649-1.81 1.817-2.486 1.817-.524 0-1.038-.237-1.383-.794-.263-.426-.464-1.13-.464-2.046 0-2.221.63-4.535 1.66-6.088.454-.687.964-1.226 1.533-1.533a2.264 2.264 0 0 1 1.088-.285z"/></svg>
+        Meta Ads
+      </span>
+      <span class="platform-badge">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#25D366" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.464 3.488"/></svg>
+        WhatsApp
+      </span>
+    </div>
+    <div class="feature-list">
+      <div class="feature-item">
+        <div class="feature-icon">✦</div>
+        <div><strong>Ads Built From Your Real Jobs</strong><p>Your before and after shots and transformation videos become the ad creative. Real work stops the scroll far better than stock photos ever will.</p></div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">✦</div>
+        <div><strong>Targeted To Your Exact Patch</strong><p>Your ads are shown only to homeowners in the towns and postcodes you cover, so your budget only reaches people you can actually serve.</p></div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">✦</div>
+        <div><strong>Leads Land In Your WhatsApp</strong><p>Every click opens a pre-filled WhatsApp message tagged with the ad it came from, so you always know which campaign is paying for itself.</p></div>
+      </div>
+    </div>
+    <a href="consultancy.html#contact" class="service-link">Book a free consultation →</a>
+  </div>
+  <div class="pa-widget reveal" aria-hidden="true">
+    <div class="fbad">
+      <div class="fbad-top">
+        <div class="fbad-avatar">YB</div>
+        <div class="fbad-meta">
+          <div class="fbad-page">Your Business Ltd</div>
+          <div class="fbad-sub">Sponsored</div>
+        </div>
+        <div class="fbad-dots">···</div>
+      </div>
+      <div class="fbad-text">Is your driveway letting the house down? Watch a one day transformation, then get your free quote.</div>
+      <div class="fbad-creative">
+        <div class="fbad-before">Before</div>
+        <div class="fbad-after">After</div>
+        <div class="fbad-play"></div>
+      </div>
+      <div class="fbad-cta">
+        <div class="fbad-cta-meta">
+          <div class="fbad-cta-domain">yourbusiness.co.uk</div>
+          <div class="fbad-cta-title">Free Quotes This Week</div>
+        </div>
+        <span class="fbad-btn">Get quote</span>
+      </div>
+    </div>
+    <div class="pa-flow">
+      <div class="pa-flow-line"></div>
+      <div class="pa-flow-label">Every click becomes a lead</div>
+    </div>
+    <div class="walead">
+      <div class="walead-top">
+        <div class="walead-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.464 3.488"/></svg>
+        </div>
+        <div class="walead-title">New WhatsApp lead</div>
+        <span class="walead-time"><span class="walead-dot"></span> Just now</span>
+      </div>
+      <div class="walead-bubble">Hi, I have just seen your ad on Facebook. Please can I get a quote for my front driveway?</div>
+      <div class="walead-ref">Ref: fb-spring-offer &middot; Derby</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider"/>
+
+<!-- SERVICE 4c: Google PPC Lead Generation -->
+<div class="service-block reveal" id="google-ppc">
+  <div>
+    <div class="service-block-label">Paid Advertising &middot; Google</div>
+    <h2>Google PPC<br/><span>Lead Generation</span></h2>
+    <p class="lead">Google Ads puts your business at the very top of the results page the moment someone searches for your trade in your area. These are the highest intent leads there are, people actively looking to hire right now, and we build, manage and refine the whole campaign for you.</p>
+    <p class="works-with"><span>✓ Runs on</span> — Google Search &amp; Google Maps</p>
+    <div class="review-platforms">
+      <span class="review-platforms-label">Platforms we manage for you</span>
+      <span class="platform-badge">
+        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/><path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/><path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/><path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/></svg>
+        Google Ads
+      </span>
+    </div>
+    <div class="feature-list">
+      <div class="feature-item">
+        <div class="feature-icon">✦</div>
+        <div><strong>Straight To The Top</strong><p>Sponsored placement puts you above the map pack and the organic results from day one, while your SEO builds in the background.</p></div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">✦</div>
+        <div><strong>Only Pay For Real Interest</strong><p>You only pay when someone actually clicks, and negative keywords filter out the searches that were never going to become jobs.</p></div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">✦</div>
+        <div><strong>Tracked To The Penny</strong><p>Every call and quote request is tracked back to the exact search that triggered it, so you can see what each job cost to win.</p></div>
+      </div>
+    </div>
+    <a href="consultancy.html#contact" class="service-link">Book a free consultation →</a>
+  </div>
+  <div class="pa-widget reveal" aria-hidden="true">
+    <div class="gads">
+      <div class="gads-bar">
+        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/><path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/><path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/><path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/></svg>
+        <span class="gads-query">roofer near me</span>
+      </div>
+      <div class="gads-tag-row">
+        <span class="gads-tag">Sponsored</span>
+        <span class="gads-you">Your business</span>
+      </div>
+      <div class="gads-site">
+        <div class="gads-favicon">YB</div>
+        <div>
+          <div class="gads-domain">Your Business Ltd</div>
+          <div class="gads-url">yourbusiness.co.uk</div>
+        </div>
+      </div>
+      <div class="gads-headline">Local Roofing Specialists | Free No Obligation Quotes</div>
+      <div class="gads-desc">Repairs, full replacements and flat roofs across your area. Speak to a local expert today and get your free quote.</div>
+      <div class="gads-actions">
+        <span class="gads-chip">
+          <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.35-.11-.74-.03-1.02.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.21c.28-.27.36-.66.25-1.01-.37-1.12-.57-2.32-.57-3.57 0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.49c0-.55-.45-1-1-1z"/></svg>
+          Call now
+        </span>
+        <span class="gads-chip">Get a free quote</span>
+      </div>
+      <div class="gads-others">
+        <div class="gads-skel">
+          <div class="gads-skel-bar w40"></div>
+          <div class="gads-skel-bar w85"></div>
+          <div class="gads-skel-bar w70"></div>
+        </div>
+        <div class="gads-skel">
+          <div class="gads-skel-bar w40"></div>
+          <div class="gads-skel-bar w85"></div>
+          <div class="gads-skel-bar w70"></div>
+        </div>
+        <div class="gads-note">Everyone else, further down the page.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider"/>
+
+<!-- SERVICE 4: Quote / Ad Landing Page -->
+<div class="service-block reverse reveal" id="ad-landing-page">
+  <div>
+    <div class="service-block-label">Paid Advertising &middot; Supporting Service</div>
+    <h2>Quote &amp; Ad Landing Page<br/><span>+ Transformation Video</span></h2>
+    <p class="lead">A high-converting landing page built around your work — led by an eye-catching before-and-after transformation video. When you run ads on Meta, that scroll-stopping clip is what makes people pause, watch, and trust you — lifting your conversion rate before they read a single word. The page then captures the enquiry and books the call automatically.</p>
+    <p class="works-with"><span>✓ Built for</span> — Meta &amp; Google ad campaigns</p>
+    <div class="review-platforms">
+      <span class="review-platforms-label">Integrations built in</span>
+      <span class="platform-badge">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#006BFF" d="M19.655 14.262c.281 0 .557.023.828.064 0 .005-.005.01-.005.014-.105.267-.234.534-.381.786l-1.219 2.106c-1.112 1.936-3.177 3.127-5.411 3.127h-2.432c-2.23 0-4.294-1.191-5.412-3.127l-1.218-2.106a6.251 6.251 0 0 1 0-6.252l1.218-2.106C6.736 4.832 8.8 3.641 11.035 3.641h2.432c2.23 0 4.294 1.191 5.411 3.127l1.219 2.106c.147.252.271.519.381.786 0 .004.005.009.005.014-.267.041-.543.064-.828.064-1.816 0-2.501-.607-3.291-1.306-.764-.676-1.711-1.517-3.44-1.517h-1.029c-1.251 0-2.387.455-3.2 1.278-.796.805-1.233 1.904-1.233 3.099v1.411c0 1.196.437 2.295 1.233 3.099.813.823 1.949 1.278 3.2 1.278h1.034c1.729 0 2.676-.841 3.439-1.517.791-.703 1.471-1.306 3.287-1.301Zm.005-3.237c.399 0 .794-.036 1.179-.11-.002-.004-.002-.01-.002-.014-.073-.414-.193-.823-.349-1.218.731-.12 1.407-.396 1.986-.819 0-.004-.005-.013-.005-.018-.331-1.085-.832-2.101-1.489-3.03-.649-.915-1.435-1.719-2.331-2.395-1.867-1.398-4.088-2.138-6.428-2.138-1.448 0-2.855.28-4.175.841-1.273.543-2.423 1.315-3.407 2.299S2.878 6.552 2.341 7.83c-.557 1.324-.842 2.726-.842 4.175 0 1.448.281 2.855.842 4.174.542 1.274 1.314 2.423 2.298 3.407s2.129 1.761 3.407 2.299c1.324.556 2.727.841 4.175.841 2.34 0 4.561-.74 6.428-2.137a10.815 10.815 0 0 0 2.331-2.396c.652-.929 1.158-1.949 1.489-3.03 0-.004.005-.014.005-.018-.579-.423-1.255-.699-1.986-.819.161-.395.276-.804.349-1.218.005-.009.005-.014.005-.023.869.166 1.692.506 2.404 1.035.685.505.552 1.075.446 1.416C22.184 20.437 17.619 24 12.221 24c-6.625 0-12-5.375-12-12s5.37-12 12-12c5.398 0 9.963 3.563 11.471 8.464.106.341.239.915-.446 1.421-.717.529-1.535.873-2.404 1.034.128.716.128 1.45 0 2.166-.387-.074-.782-.11-1.182-.11-4.184 0-3.968 2.823-6.736 2.823h-1.029c-1.899 0-3.15-1.357-3.15-3.095v-1.411c0-1.738 1.251-3.094 3.15-3.094h1.034c2.768 0 2.552 2.823 6.731 2.827Z"/></svg>
+        Calendly
+      </span>
+      <span class="platform-badge">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#0467DF" d="M6.915 4.03c-1.968 0-3.683 1.28-4.871 3.113C.704 9.208 0 11.883 0 14.449c0 .706.07 1.369.21 1.973a6.624 6.624 0 0 0 .265.86 5.297 5.297 0 0 0 .371.761c.696 1.159 1.818 1.927 3.593 1.927 1.497 0 2.633-.671 3.965-2.444.76-1.012 1.144-1.626 2.663-4.32l.756-1.339.186-.325c.061.1.121.196.183.3l2.152 3.595c.724 1.21 1.665 2.556 2.47 3.314 1.046.987 1.992 1.22 3.06 1.22 1.075 0 1.876-.355 2.455-.843a3.743 3.743 0 0 0 .81-.973c.542-.939.861-2.127.861-3.745 0-2.72-.681-5.357-2.084-7.45-1.282-1.912-2.957-2.93-4.716-2.93-1.047 0-2.088.467-3.053 1.308-.652.57-1.257 1.29-1.82 2.05-.69-.875-1.335-1.547-1.958-2.056-1.182-.966-2.315-1.303-3.454-1.303zm10.16 2.053c1.147 0 2.188.758 2.992 1.999 1.132 1.748 1.647 4.195 1.647 6.4 0 1.548-.368 2.9-1.839 2.9-.58 0-1.027-.23-1.664-1.004-.496-.601-1.343-1.878-2.832-4.358l-.617-1.028a44.908 44.908 0 0 0-1.255-1.98c.07-.109.141-.224.211-.327 1.12-1.667 2.118-2.602 3.358-2.602zm-10.201.553c1.265 0 2.058.791 2.675 1.446.307.327.737.871 1.234 1.579l-1.02 1.566c-.757 1.163-1.882 3.017-2.837 4.338-1.191 1.649-1.81 1.817-2.486 1.817-.524 0-1.038-.237-1.383-.794-.263-.426-.464-1.13-.464-2.046 0-2.221.63-4.535 1.66-6.088.454-.687.964-1.226 1.533-1.533a2.264 2.264 0 0 1 1.088-.285z"/></svg>
+        Meta
+      </span>
+    </div>
+    <div class="feature-list">
+      <div class="feature-item">
+        <div class="feature-icon">✦</div>
+        <div><strong>Calendly Booking Built In</strong><p>Visitors pick a slot and book straight into your calendar — no back-and-forth, no lost leads.</p></div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">✦</div>
+        <div><strong>Meta Pixel &amp; Conversion Tracking</strong><p>The Meta Pixel and event tags are wired in, so every lead is tracked and your ad spend is optimised automatically.</p></div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">✦</div>
+        <div><strong>Scroll-Stopping Video</strong><p>Your before-and-after transformation video leads the page — the eye-catching hook that stops the scroll and lifts your Meta ad conversion rate.</p></div>
+      </div>
+    </div>
+    <a href="consultancy.html#contact" class="service-link">Book a free consultation →</a>
+  </div>
+  <div class="service-media">
+    <video autoplay loop muted playsinline preload="metadata" poster="services-media/before-after-03-poster.jpg" aria-label="Quote and ad landing page demo">
+      <source src="services-media/before-after-03.mp4" type="video/mp4"/>
+    </video>
+  </div>
+</div>
 
 <hr class="divider"/>
 

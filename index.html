@@ -242,18 +242,85 @@ section { position: relative; z-index: 1; }
 .rp-platform-logo img, .rp-platform-logo svg { max-width: 100%; max-height: 100%; object-fit: contain; display: block; }
 .rp-platform-name { font-size: 0.78rem; font-weight: 600; color: var(--muted2); letter-spacing: 0.01em; white-space: nowrap; }
 
-/* ── WHY CHOOSE US ── */
-.why-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 56px; }
-.why-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 28px 30px; transition: border-color 0.2s, transform 0.2s; }
-.why-card:hover { border-color: rgba(234,88,12,0.35); transform: translateY(-3px); }
-.why-icon { width: 40px; height: 40px; border-radius: 10px; background: rgba(234,88,12,0.12); border: 1px solid rgba(234,88,12,0.25); display: flex; align-items: center; justify-content: center; font-size: 18px; margin-bottom: 18px; }
+/* ── WHY INNOV8: three levels ── */
+.lv-trades { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+.lv-trades span { font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted2); border: 1px solid var(--border); background: var(--surface); border-radius: 100px; padding: 6px 12px; }
+.lv-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 56px; align-items: start; position: relative; }
+.lv { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; transition: border-color 0.25s, transform 0.25s; }
+.lv:hover { border-color: rgba(234,88,12,0.4); transform: translateY(-4px); }
+.lv:nth-child(1) { margin-top: 96px; } .lv:nth-child(2) { margin-top: 48px; }
+.lv.top { border-color: rgba(234,88,12,0.45); box-shadow: 0 24px 60px rgba(234,88,12,0.12); }
+.lv-vis { position: relative; height: 196px; padding: 18px; border-bottom: 1px solid var(--border); background: radial-gradient(circle, #252525 1px, transparent 1px) 0 0 / 18px 18px, var(--surface2); overflow: hidden; }
+.lv-body { padding: 22px 22px 24px; display: flex; flex-direction: column; flex: 1; }
+.lv-num { font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+.lv-body h3 { font-size: 1.28rem; font-weight: 800; letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 8px; }
+.lv-body p { font-size: 0.88rem; color: var(--muted2); line-height: 1.6; margin-bottom: 14px; }
+.lv-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 7px; margin-bottom: 18px; }
+.lv-list li { display: flex; gap: 9px; font-size: 0.84rem; color: var(--text); line-height: 1.4; }
+.lv-tick { color: var(--accent2); font-weight: 700; flex-shrink: 0; }
+.lv-link { margin-top: auto; color: var(--accent2); font-weight: 700; font-size: 0.86rem; text-decoration: none; }
+.lv-link:hover { text-decoration: underline; }
+.lv-step { position: absolute; top: 14px; right: 14px; font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted2); background: rgba(15,15,15,0.8); border: 1px solid var(--border); border-radius: 100px; padding: 4px 9px; }
+/* level 1: website */
+.lv-site { position: absolute; left: 18px; right: 18px; bottom: -6px; top: 34px; background: #0c0c0c; border: 1px solid #2f2f2f; border-radius: 10px 10px 0 0; overflow: hidden; }
+.lv-site-bar { display: flex; align-items: center; gap: 5px; padding: 7px 9px; background: #151515; border-bottom: 1px solid #262626; }
+.lv-site-bar i { width: 7px; height: 7px; border-radius: 50%; display: block; background: #3a3a3a; }
+.lv-site-bar span { margin-left: 6px; font-family: var(--font-mono); font-size: 0.52rem; color: var(--muted); }
+.lv-site-hero { padding: 14px 14px 0; background: linear-gradient(120deg, #1d1410, #0c0c0c); height: 100%; }
+.lv-line { height: 8px; border-radius: 4px; background: #e8e8e8; margin-bottom: 6px; }
+.lv-line.o { background: var(--accent); width: 46%; }
+.lv-line.w70 { width: 70%; } .lv-line.thin { height: 5px; background: #3a3a3a; width: 82%; }
+.lv-site-row { display: flex; gap: 6px; margin-top: 10px; align-items: center; }
+.lv-pill { display: inline-flex; align-items: center; gap: 4px; font-size: 0.56rem; font-weight: 700; border-radius: 100px; padding: 4px 8px; }
+.lv-pill svg { width: 9px; height: 9px; }
+.lv-pill.o { background: var(--accent); color: #fff; }
+.lv-pill.g { background: #1f1f1f; color: #FBBC04; border: 1px solid #333; }
+/* level 2: stack */
+.lv-dash { position: absolute; left: 18px; top: 34px; right: 64px; bottom: -6px; background: #f6f8fa; border-radius: 10px 10px 0 0; overflow: hidden; display: grid; grid-template-columns: 34px 1fr; }
+.lv-dash-side { background: #1e293b; display: flex; flex-direction: column; align-items: center; gap: 7px; padding-top: 9px; }
+.lv-dash-side i { width: 14px; height: 4px; border-radius: 2px; background: #475569; display: block; }
+.lv-dash-side i:first-child { background: var(--accent); }
+.lv-dash-main { padding: 9px; }
+.lv-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; }
+.lv-stat { background: #fff; border: 1px solid #e5e7eb; border-radius: 6px; padding: 5px 6px; }
+.lv-stat b { display: block; font-size: 0.86rem; color: #111827; line-height: 1.1; }
+.lv-stat span { font-size: 0.46rem; color: #6b7280; font-weight: 600; }
+.lv-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; margin-top: 6px; }
+.lv-cols div { background: #eaeef3; border-radius: 5px; padding: 4px; }
+.lv-cols div i { display: block; height: 11px; border-radius: 3px; background: #fff; border-left: 2px solid var(--accent); margin-bottom: 3px; }
+.lv-cols div:nth-child(2) i { border-left-color: #2563eb; } .lv-cols div:nth-child(3) i { border-left-color: #16a34a; }
+.lv-phone { position: absolute; right: 16px; bottom: -10px; width: 74px; height: 138px; background: #0b0b0b; border: 1px solid #333; border-radius: 14px; padding: 4px; box-shadow: 0 10px 24px rgba(0,0,0,0.5); }
+.lv-phone div { background: #fff; border-radius: 10px; height: 100%; padding: 14px 5px 5px; }
+.lv-phone i { display: block; height: 15px; border-radius: 4px; background: #f1f5f9; margin-bottom: 4px; position: relative; }
+.lv-phone i::before { content: ''; position: absolute; left: 3px; top: 3px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+.lv-phone i:nth-child(2)::before { background: #2563eb; } .lv-phone i:nth-child(3)::before { background: #16a34a; }
+.lv-chip { position: absolute; left: 30px; top: 44%; font-size: 0.58rem; font-weight: 700; color: #fff; background: rgba(15,15,15,0.92); border: 1px solid rgba(34,197,94,0.45); border-radius: 100px; padding: 5px 10px; box-shadow: 0 8px 20px rgba(0,0,0,0.4); }
+.lv-chip i { color: var(--node-green); font-style: normal; margin-right: 4px; }
+/* level 3: ads */
+.lv-ad-g { position: absolute; left: 18px; right: 40px; top: 34px; background: #fff; border-radius: 10px; padding: 9px 10px; box-shadow: 0 10px 24px rgba(0,0,0,0.45); }
+.lv-ad-g small { display: flex; align-items: center; gap: 5px; font-size: 0.54rem; font-weight: 700; color: #202124; margin-bottom: 4px; }
+.lv-ad-g small svg { width: 11px; height: 10px; }
+.lv-ad-g b { display: block; font-size: 0.7rem; font-weight: 600; color: #1a0dab; line-height: 1.25; }
+.lv-ad-g span { display: block; height: 4px; border-radius: 2px; background: #dadce0; margin-top: 5px; width: 86%; }
+.lv-ad-m { position: absolute; right: 16px; bottom: -8px; width: 52%; background: #fff; border-radius: 10px 10px 0 0; overflow: hidden; box-shadow: 0 12px 28px rgba(0,0,0,0.5); }
+.lv-ad-m small { display: flex; align-items: center; gap: 5px; font-size: 0.52rem; font-weight: 700; color: #050505; padding: 6px 8px; }
+.lv-ad-m small svg { width: 12px; height: 12px; }
+.lv-ad-m div { height: 44px; background: linear-gradient(90deg, #3d4148 50%, #c2570a 50%); }
+.lv-ad-m em { display: block; font-style: normal; margin: 6px 8px 8px; text-align: center; font-size: 0.55rem; font-weight: 700; color: #fff; background: #0866ff; border-radius: 5px; padding: 4px; }
+.lv-lead { position: absolute; left: 18px; bottom: 16px; font-size: 0.58rem; font-weight: 700; color: #fff; background: rgba(15,15,15,0.92); border: 1px solid rgba(34,197,94,0.45); border-radius: 100px; padding: 5px 10px; }
+.lv-lead i { color: var(--node-green); font-style: normal; margin-right: 4px; }
+.lv-proof { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 28px; margin-top: 44px; padding-top: 28px; border-top: 1px solid var(--border); }
+.lv-proof span { font-size: 0.86rem; color: var(--muted2); }
+.lv-proof b { color: var(--text); font-weight: 700; }
+@media (max-width: 900px) {
+  .lv-grid { grid-template-columns: 1fr; gap: 16px; margin-top: 36px; }
+  .lv:nth-child(1), .lv:nth-child(2) { margin-top: 0; }
+}
 /* Professional line-icon SVGs inside the chips (replace emoji) */
 .trust-icon, .wi-icon, .why-icon { color: var(--accent2); }
 .trust-icon svg { width: 18px; height: 18px; }
 .wi-icon svg, .why-icon svg { width: 20px; height: 20px; }
 .node-icon svg { width: 16px; height: 16px; }
-.why-card h4 { font-size: 1.02rem; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 8px; }
-.why-card p { font-size: 0.88rem; color: var(--muted2); line-height: 1.65; }
 
 /* ── REVIEWS ── */
 .reviews-section { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
@@ -424,8 +491,6 @@ footer { border-top: 1px solid var(--border); padding: 48px 48px 32px; position:
   .rp-platform-logo { width: 36px; height: 36px; }
   .rp-platform-name { font-size: 0.68rem; }
 
-  .why-grid { grid-template-columns: 1fr; gap: 12px; margin-top: 36px; }
-  .why-card { padding: 22px 22px; }
 
   .contact-inner { padding: 60px 18px; }
   .wa-form-card { margin-top: 24px; }
@@ -862,44 +927,91 @@ footer { border-top: 1px solid var(--border); padding: 48px 48px 32px; position:
   </div>
 </section>
 
-<!-- ═══════════════ 6. WHY CHOOSE US ═══════════════ -->
+<!-- ═══════════════ 6. WHY INNOV8: three levels ═══════════════ -->
 <section id="why">
   <div class="section-inner">
     <div class="section-label reveal">Why Innov8</div>
-    <h2 class="section-title reveal">Why local businesses<br/>choose us.</h2>
-    <p class="section-desc reveal">We're not a generic web agency. Every site we ship is custom-coded for speed, SEO, and conversion — and built by the same person who picks up the phone.</p>
+    <h2 class="section-title reveal">The digital agency built<br/>for home service businesses.</h2>
+    <p class="section-desc reveal">We specialise in home service and trade businesses, so everything we build is shaped around how customers find, choose and book a trade. Growth comes in three levels: start with the one that fits today and add the next when you are ready.</p>
+    <div class="lv-trades reveal"><span>Roofers</span><span>Plumbers</span><span>Electricians</span><span>Builders</span><span>Driveways</span><span>Joiners</span><span>Glazing</span></div>
 
-    <div class="why-grid reveal">
-      <div class="why-card">
-        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
-        <h4>Built for local trades</h4>
-        <p>Plumbers, electricians, roofers, builders, joiners, driveway contractors. We know what wins in local search and what converts a phone-toting customer into a booking.</p>
+    <div class="lv-grid reveal">
+      <div class="lv">
+        <div class="lv-vis" aria-hidden="true">
+          <span class="lv-step">Level 01</span>
+          <div class="lv-site">
+            <div class="lv-site-bar"><i></i><i></i><i></i><span>yourbusiness.co.uk</span></div>
+            <div class="lv-site-hero">
+              <div class="lv-line w70"></div><div class="lv-line o"></div><div class="lv-line thin"></div>
+              <div class="lv-site-row"><span class="lv-pill o"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg> Call now</span><span class="lv-pill g">★★★★★ 5.0</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="lv-body">
+          <div class="lv-num">Level 01 &middot; Get found</div>
+          <h3>A premium website</h3>
+          <p>A branded, custom-coded site built from your real jobs, designed to rank locally and turn visitors into calls.</p>
+          <ul class="lv-list">
+            <li><span class="lv-tick">✓</span>Local SEO and AI search ready</li>
+            <li><span class="lv-tick">✓</span>Click-to-call, WhatsApp and quote forms</li>
+            <li><span class="lv-tick">✓</span>Reviews, before and afters, hero video</li>
+          </ul>
+          <a class="lv-link" href="services.html#websites">See the website package →</a>
+        </div>
       </div>
-      <div class="why-card">
-        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8l-4 4 4 4"/><path d="M16 8l4 4-4 4"/><path d="M13 5l-2 14"/></svg></div>
-        <h4>No template builders</h4>
-        <p>Every site is custom-coded for speed, SEO, and conversion. No Wix bloat, no Squarespace lock-in, no third-party watermarks.</p>
+
+      <div class="lv">
+        <div class="lv-vis" aria-hidden="true">
+          <span class="lv-step">Level 02</span>
+          <div class="lv-dash">
+            <div class="lv-dash-side"><i></i><i></i><i></i><i></i></div>
+            <div class="lv-dash-main">
+              <div class="lv-stats"><div class="lv-stat"><b>24</b><span>Enquiries</span></div><div class="lv-stat"><b>15</b><span>Quotes</span></div><div class="lv-stat"><b>9</b><span>Booked</span></div></div>
+              <div class="lv-cols"><div><i></i><i></i></div><div><i></i></div><div><i></i><i></i></div></div>
+            </div>
+          </div>
+          <div class="lv-phone"><div><i></i><i></i><i></i></div></div>
+          <div class="lv-chip"><i>✓</i>Missed call, text sent</div>
+        </div>
+        <div class="lv-body">
+          <div class="lv-num">Level 02 &middot; Win more work</div>
+          <h3>A digital stack</h3>
+          <p>Your own CRM, mobile app and dashboard, with automations that answer, chase and convert every lead for you.</p>
+          <ul class="lv-list">
+            <li><span class="lv-tick">✓</span>CRM dashboard and branded mobile app</li>
+            <li><span class="lv-tick">✓</span>Missed-call text-back and quote follow-ups</li>
+            <li><span class="lv-tick">✓</span>Booking reminders and review requests</li>
+          </ul>
+          <a class="lv-link" href="services.html#business-growth">See the Business Growth Package →</a>
+        </div>
       </div>
-      <div class="why-card">
-        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 18h2"/></svg></div>
-        <h4>One-tap contact baked in</h4>
-        <p>WhatsApp and click-to-call widgets on every site we ship. We use the same widgets on our own — because that's how customers actually want to get in touch.</p>
+
+      <div class="lv top">
+        <div class="lv-vis" aria-hidden="true">
+          <span class="lv-step">Level 03</span>
+          <div class="lv-ad-g"><small><svg viewBox="0 0 250.8 228" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#3C8BD9" d="M85.9,28.6c2.4-6.3,5.7-12.1,10.6-16.8c19.6-19.1,52-14.3,65.3,9.7c10,18.2,20.6,36,30.9,54 c17.2,29.9,34.6,59.8,51.6,89.8c14.3,25.1-1.2,56.8-29.6,61.1c-17.4,2.6-33.7-5.4-42.7-21c-15.1-26.3-30.3-52.6-45.4-78.8 c-0.3-0.6-0.7-1.1-1.1-1.6c-1.6-1.3-2.3-3.2-3.3-4.9c-6.7-11.8-13.6-23.5-20.3-35.2c-4.3-7.6-8.8-15.1-13.1-22.7 c-3.9-6.8-5.7-14.2-5.5-22C83.6,36.2,84.1,32.2,85.9,28.6"/><path fill="#FABC04" d="M85.9,28.6c-0.9,3.6-1.7,7.2-1.9,11c-0.3,8.4,1.8,16.2,6,23.5C101,82,112,101,122.9,120c1,1.7,1.8,3.4,2.8,5 c-6,10.4-12,20.7-18.1,31.1c-8.4,14.5-16.8,29.1-25.3,43.6c-0.4,0-0.5-0.2-0.6-0.5c-0.1-0.8,0.2-1.5,0.4-2.3 c4.1-15,0.7-28.3-9.6-39.7c-6.3-6.9-14.3-10.8-23.5-12.1c-12-1.7-22.6,1.4-32.1,8.9c-1.7,1.3-2.8,3.2-4.8,4.2 c-0.4,0-0.6-0.2-0.7-0.5c4.8-8.3,9.5-16.6,14.3-24.9C45.5,98.4,65.3,64,85.2,29.7C85.4,29.3,85.7,29,85.9,28.6"/><path fill="#34A852" d="M11.8,158c1.9-1.7,3.7-3.5,5.7-5.1c24.3-19.2,60.8-5.3,66.1,25.1c1.3,7.3,0.6,14.3-1.6,21.3 c-0.1,0.6-0.2,1.1-0.4,1.7c-0.9,1.6-1.7,3.3-2.7,4.9c-8.9,14.7-22,22-39.2,20.9C20,225.4,4.5,210.6,1.8,191 c-1.3-9.5,0.6-18.4,5.5-26.6c1-1.8,2.2-3.4,3.3-5.2C11.1,158.8,10.9,158,11.8,158"/><path fill="#FABC04" d="M11.8,158c-0.4,0.4-0.4,1.1-1.1,1.2c-0.1-0.7,0.3-1.1,0.7-1.6L11.8,158"/><path fill="#E1C025" d="M81.6,201c-0.4-0.7,0-1.2,0.4-1.7c0.1,0.1,0.3,0.3,0.4,0.4L81.6,201"/></svg> Sponsored</small><b>Local Roofers | Free No Obligation Quotes</b><span></span></div>
+          <div class="lv-ad-m"><small><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#0467DF" d="M6.915 4.03c-1.968 0-3.683 1.28-4.871 3.113C.704 9.208 0 11.883 0 14.449c0 .706.07 1.369.21 1.973a6.624 6.624 0 0 0 .265.86 5.297 5.297 0 0 0 .371.761c.696 1.159 1.818 1.927 3.593 1.927 1.497 0 2.633-.671 3.965-2.444.76-1.012 1.144-1.626 2.663-4.32l.756-1.339.186-.325c.061.1.121.196.183.3l2.152 3.595c.724 1.21 1.665 2.556 2.47 3.314 1.046.987 1.992 1.22 3.06 1.22 1.075 0 1.876-.355 2.455-.843a3.743 3.743 0 0 0 .81-.973c.542-.939.861-2.127.861-3.745 0-2.72-.681-5.357-2.084-7.45-1.282-1.912-2.957-2.93-4.716-2.93-1.047 0-2.088.467-3.053 1.308-.652.57-1.257 1.29-1.82 2.05-.69-.875-1.335-1.547-1.958-2.056-1.182-.966-2.315-1.303-3.454-1.303zm10.16 2.053c1.147 0 2.188.758 2.992 1.999 1.132 1.748 1.647 4.195 1.647 6.4 0 1.548-.368 2.9-1.839 2.9-.58 0-1.027-.23-1.664-1.004-.496-.601-1.343-1.878-2.832-4.358l-.617-1.028a44.908 44.908 0 0 0-1.255-1.98c.07-.109.141-.224.211-.327 1.12-1.667 2.118-2.602 3.358-2.602zm-10.201.553c1.265 0 2.058.791 2.675 1.446.307.327.737.871 1.234 1.579l-1.02 1.566c-.757 1.163-1.882 3.017-2.837 4.338-1.191 1.649-1.81 1.817-2.486 1.817-.524 0-1.038-.237-1.383-.794-.263-.426-.464-1.13-.464-2.046 0-2.221.63-4.535 1.66-6.088.454-.687.964-1.226 1.533-1.533a2.264 2.264 0 0 1 1.088-.285z"/></svg> Sponsored</small><div></div><em>Get quote</em></div>
+          <div class="lv-lead"><i>●</i>New lead</div>
+        </div>
+        <div class="lv-body">
+          <div class="lv-num">Level 03 &middot; Turn on the tap</div>
+          <h3>Paid ads</h3>
+          <p>Google PPC and Meta ads that put you in front of homeowners the moment they are looking, sending leads straight into your system.</p>
+          <ul class="lv-list">
+            <li><span class="lv-tick">✓</span>Google Sponsored search ads</li>
+            <li><span class="lv-tick">✓</span>Facebook and Instagram campaigns</li>
+            <li><span class="lv-tick">✓</span>One business per trade, per area</li>
+          </ul>
+          <a class="lv-link" href="services.html#meta-ads">See paid advertising →</a>
+        </div>
       </div>
-      <div class="why-card">
-        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c0-3.5 3-6 7-6s7 2.5 7 6"/></svg></div>
-        <h4>Founder-led, no middlemen</h4>
-        <p>You work with Jamie directly from first call to launch and beyond. No account managers, no offshored support tickets, no hand-offs.</p>
-      </div>
-      <div class="why-card">
-        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 4H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3v4l5-4h8a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1z"/></svg></div>
-        <h4>Same-day reply on WhatsApp</h4>
-        <p>Send us a message during the working day, get an answer the same day. Most enquiries are answered in under an hour.</p>
-      </div>
-      <div class="why-card">
-        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M17 7h4v4"/></svg></div>
-        <h4>Built to grow with you</h4>
-        <p>Start with the website. Add automation, AI chat, missed-call text-back, or a custom CRM whenever you're ready. The foundation is set up for it from day one.</p>
-      </div>
+    </div>
+
+    <div class="lv-proof reveal">
+      <span><b>Founder-led</b>, no account managers</span>
+      <span><b>Custom-coded</b>, no templates</span>
+      <span><b>No long-term contracts</b></span>
+      <span><b>UK based</b> support</span>
     </div>
   </div>
 </section>

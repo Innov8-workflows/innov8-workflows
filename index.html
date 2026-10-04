@@ -1168,6 +1168,7 @@ footer { border-top: 1px solid var(--border); padding: 48px 48px 32px; position:
         <p class="wa-form-sub">One tap to send. Goes straight to <span style="color:#25D366;font-weight:700">+44 7718 155997</span>.</p>
       </div>
       <form id="innov8-enquiry-form" novalidate>
+        <input type="text" name="company_website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0"/>
         <div class="cf-row">
           <div class="cf-field">
             <label>First name <span class="cf-req">*</span></label>
@@ -1409,6 +1410,10 @@ document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
       return;
     }
     errorEl.style.display = 'none';
+    if (window.innov8SaveEnquiry) innov8SaveEnquiry('Homepage enquiry form', {
+      firstName: firstName, lastName: lastName, email: email, phone: phone, company: company,
+      service: service, message: message, company_website: (data.get('company_website') || '').toString()
+    });
     if (window.gtag) gtag('event', 'generate_lead', { method: 'whatsapp_form' });
     var lines = [
       'Hi Jamie — new enquiry via innov8workflows.co.uk',
@@ -1431,6 +1436,7 @@ document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
 <!-- Cookie consent -->
 <script src="cookie-consent.js"></script>
+<script src="enquiry.js"></script>
 
 <!-- Innov8 CRM analytics -->
 <script defer src="https://crm.innov8workflows.co.uk/track.js" data-id="proj_f5d3ac1edd12"></script>

@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<!-- Ad landing page — keep OUT of organic search index -->
+<meta name="robots" content="noindex,nofollow"/>
+
+<!-- ════════ Google tag (GA4) — same property as the main site ════════ -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LFEDCY725K"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-LFEDCY725K');
+</script>
+
+<!-- ════════ Meta Pixel ════════
+     TODO: replace YOUR_PIXEL_ID below with your real Pixel ID
+     (Events Manager → Data sources → your pixel → the 15–16 digit ID). -->
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', 'YOUR_PIXEL_ID');
+  fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"/></noscript>
+<!-- ════════ End Meta Pixel ════════ -->
+
+<title>Get Your Free Website Demo — Innov8 Workflows</title>
+<meta name="description" content="See a fully-built demo of your new website — designed for your business, before you pay a penny. Live in 7 days. No contracts."/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Bricolage+Grotesque:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg: #0f0f0f; --surface: #161616; --surface2: #1e1e1e; --border: #2a2a2a;
+  --accent: #ea580c; --accent2: #f97316;
+  --text: #f0f0f0; --muted: #666; --muted2: #888;
+  --wa: #25D366;
+  --font-display: 'Bricolage Grotesque', sans-serif; --font-mono: 'DM Mono', monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-display); overflow-x: hidden; }
+#canvas-bg { position: fixed; inset: 0; z-index: 0; opacity: 0.25; pointer-events: none; }
+a { text-decoration: none; }
+
+/* ── SLIM TOP BAR (logo only — no nav, no escape routes) ── */
+.lp-bar { position: relative; z-index: 10; display: flex; align-items: center; justify-content: space-between; padding: 16px 32px; border-bottom: 1px solid var(--border); background: rgba(15,15,15,0.7); backdrop-filter: blur(10px); }
+.lp-logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.1rem; letter-spacing: -0.02em; color: var(--text); }
+.logo-box { width: 30px; height: 30px; background: var(--accent); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 12px; color: #fff; font-weight: 500; }
+.lp-bar-call { display: inline-flex; align-items: center; gap: 7px; color: var(--text); font-weight: 600; font-size: 0.9rem; }
+.lp-bar-call svg { width: 15px; height: 15px; color: var(--accent2); }
+.lp-bar-call span { letter-spacing: -0.01em; }
+
+/* ── HERO ── */
+.hero { position: relative; z-index: 1; max-width: 1180px; margin: 0 auto; padding: 56px 32px 40px; display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 56px; align-items: center; }
+.hero-copy { display: flex; flex-direction: column; }
+.hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(234,88,12,0.1); border: 1px solid rgba(234,88,12,0.28); border-radius: 100px; padding: 6px 15px; font-family: var(--font-mono); font-size: 0.66rem; color: var(--accent2); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 22px; align-self: flex-start; }
+.badge-dot { width: 6px; height: 6px; background: var(--accent2); border-radius: 50%; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+.hero h1 { font-size: clamp(2.2rem, 4.4vw, 3.6rem); font-weight: 800; line-height: 1.02; letter-spacing: -0.035em; margin-bottom: 20px; }
+.hero h1 span { color: var(--accent); }
+.hero-sub { font-size: 1.05rem; color: var(--muted2); line-height: 1.6; max-width: 480px; margin-bottom: 26px; }
+.hero-points { list-style: none; display: flex; flex-direction: column; gap: 11px; margin-bottom: 32px; }
+.hero-points li { display: flex; align-items: flex-start; gap: 11px; font-size: 0.95rem; color: var(--text); line-height: 1.45; }
+.hero-points svg { width: 19px; height: 19px; color: var(--accent2); flex-shrink: 0; margin-top: 1px; }
+.hero-points strong { font-weight: 700; }
+
+/* ── VIDEO (vertical 9:16 ad creative) ── */
+.hero-video-wrap { position: relative; justify-self: center; width: 100%; max-width: 340px; }
+.video-frame { position: relative; aspect-ratio: 9 / 16; border-radius: 26px; overflow: hidden; border: 1px solid var(--border); background:
+  linear-gradient(150deg, #1c1c1c 0%, #121212 100%);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.55), 0 0 0 6px rgba(255,255,255,0.02); }
+.video-frame video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+/* Placeholder shown until ad-video.mp4 is added */
+.video-placeholder { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; text-align: center; padding: 24px; color: var(--muted2); }
+.video-placeholder .vp-play { width: 60px; height: 60px; border-radius: 50%; background: rgba(234,88,12,0.15); border: 1px solid rgba(234,88,12,0.4); display: flex; align-items: center; justify-content: center; }
+.video-placeholder .vp-play svg { width: 24px; height: 24px; color: var(--accent2); margin-left: 3px; }
+.video-placeholder p { font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.05em; line-height: 1.5; }
+.video-unmute { position: absolute; bottom: 14px; right: 14px; z-index: 3; display: none; align-items: center; gap: 6px; background: rgba(0,0,0,0.6); backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,0.25); color: #fff; border-radius: 100px; padding: 7px 13px; font-size: 0.72rem; font-weight: 600; cursor: pointer; }
+.video-unmute svg { width: 14px; height: 14px; }
+.video-frame.has-video .video-placeholder { display: none; }
+.video-frame.has-video .video-unmute { display: inline-flex; }
+
+/* ── FORM ── */
+.form-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 26px 26px 24px; margin-top: 4px; box-shadow: 0 16px 48px rgba(0,0,0,0.35); }
+.form-card h3 { font-size: 1.15rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 4px; }
+.form-card .fc-sub { font-size: 0.85rem; color: var(--muted2); margin-bottom: 18px; line-height: 1.5; }
+#lp-form { display: flex; flex-direction: column; gap: 13px; }
+.fc-field { display: flex; flex-direction: column; gap: 5px; }
+.fc-field label { font-size: 0.76rem; font-weight: 600; color: var(--muted2); }
+.fc-req { color: var(--accent); }
+.fc-field input, .fc-field textarea { background: var(--bg); border: 1px solid var(--border); border-radius: 9px; padding: 12px 14px; color: var(--text); font-family: var(--font-display); font-size: 0.9rem; transition: border-color 0.2s; outline: none; width: 100%; }
+.fc-field input:focus, .fc-field textarea:focus { border-color: var(--accent); }
+.fc-field textarea { resize: vertical; min-height: 70px; }
+.fc-row { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; }
+.fc-error { display: none; background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); border-radius: 8px; padding: 10px 14px; font-size: 0.82rem; color: #ef4444; }
+.fc-submit { display: inline-flex; align-items: center; justify-content: center; gap: 10px; background: var(--accent); color: #fff; border: none; border-radius: 100px; padding: 15px 28px; font-size: 1rem; font-weight: 800; font-family: var(--font-display); cursor: pointer; transition: background 0.2s, transform 0.15s, box-shadow 0.2s; width: 100%; margin-top: 4px; box-shadow: 0 6px 20px rgba(234,88,12,0.3); }
+.fc-submit:hover { background: var(--accent2); transform: translateY(-2px); box-shadow: 0 10px 28px rgba(234,88,12,0.45); }
+.fc-submit svg { width: 18px; height: 18px; }
+.fc-note { font-family: var(--font-mono); font-size: 0.6rem; color: var(--muted); text-align: center; margin-top: 8px; letter-spacing: 0.03em; }
+.fc-alt { text-align: center; margin-top: 14px; font-size: 0.82rem; color: var(--muted2); }
+.fc-alt a { color: var(--wa); font-weight: 600; }
+
+/* ── TRUST STRIP ── */
+.trust { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--surface); position: relative; z-index: 1; }
+.trust-inner { max-width: 1100px; margin: 0 auto; padding: 22px 32px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.trust-item { display: flex; align-items: center; gap: 12px; }
+.trust-icon { width: 34px; height: 34px; border-radius: 8px; background: rgba(234,88,12,0.12); border: 1px solid rgba(234,88,12,0.25); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--accent2); }
+.trust-icon svg { width: 17px; height: 17px; }
+.trust-item h5 { font-size: 0.82rem; font-weight: 700; }
+.trust-item p { font-size: 0.68rem; color: var(--muted2); }
+
+/* ── PROOF ── */
+.proof { max-width: 1100px; margin: 0 auto; padding: 72px 32px 40px; position: relative; z-index: 1; }
+.section-label { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; justify-content: center; }
+.section-label::before, .section-label::after { content: ''; width: 18px; height: 1.5px; background: var(--accent); }
+.proof h2 { text-align: center; font-size: clamp(1.7rem, 3.4vw, 2.5rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 12px; }
+.proof-sub { text-align: center; color: var(--muted2); font-size: 1rem; max-width: 520px; margin: 0 auto 44px; line-height: 1.6; }
+.proof-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.proof-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; }
+.proof-img { aspect-ratio: 16/10; overflow: hidden; background: var(--surface2); }
+.proof-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.proof-body { padding: 16px 18px 18px; }
+.proof-trade { font-family: var(--font-mono); font-size: 0.6rem; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 5px; }
+.proof-name { font-size: 0.98rem; font-weight: 700; margin-bottom: 5px; }
+.proof-result { font-size: 0.8rem; color: var(--muted2); line-height: 1.5; }
+
+/* ── FAQ (objection handling) ── */
+.faq { max-width: 760px; margin: 0 auto; padding: 36px 32px 72px; position: relative; z-index: 1; }
+.faq-item { border: 1px solid var(--border); border-radius: 12px; background: var(--surface); margin-bottom: 12px; overflow: hidden; }
+.faq-q { width: 100%; text-align: left; background: none; border: none; color: var(--text); font-family: var(--font-display); font-size: 0.98rem; font-weight: 700; padding: 18px 20px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+.faq-q svg { width: 18px; height: 18px; color: var(--accent2); flex-shrink: 0; transition: transform 0.25s; }
+.faq-item.open .faq-q svg { transform: rotate(45deg); }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+.faq-a p { padding: 0 20px 18px; font-size: 0.9rem; color: var(--muted2); line-height: 1.6; }
+
+/* ── FINAL CTA ── */
+.final { border-top: 1px solid var(--border); background: linear-gradient(160deg, rgba(234,88,12,0.06) 0%, var(--surface) 60%); position: relative; z-index: 1; }
+.final-inner { max-width: 700px; margin: 0 auto; padding: 72px 32px; text-align: center; }
+.final h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.05; margin-bottom: 14px; }
+.final p { color: var(--muted2); font-size: 1.02rem; line-height: 1.6; margin-bottom: 30px; }
+.final .btn-primary { display: inline-block; background: var(--accent); color: #fff; padding: 15px 36px; border-radius: 100px; font-weight: 800; font-size: 1rem; transition: background 0.2s, transform 0.15s, box-shadow 0.2s; box-shadow: 0 6px 20px rgba(234,88,12,0.3); }
+.final .btn-primary:hover { background: var(--accent2); transform: translateY(-2px); box-shadow: 0 10px 28px rgba(234,88,12,0.45); }
+
+/* ── FOOTER ── */
+footer { border-top: 1px solid var(--border); padding: 28px 32px; text-align: center; position: relative; z-index: 1; background: var(--bg); }
+footer .f-logo { display: inline-flex; align-items: center; gap: 9px; font-weight: 800; font-size: 0.95rem; color: var(--text); margin-bottom: 10px; }
+footer p { font-family: var(--font-mono); font-size: 0.66rem; color: var(--muted); letter-spacing: 0.03em; line-height: 1.7; }
+footer a { color: var(--muted2); }
+
+/* ── MOBILE ── */
+@media (max-width: 880px) {
+  .lp-bar { padding: 13px 18px; }
+  .lp-logo { font-size: 1rem; }
+  .lp-bar-call span { display: none; }
+  .hero { grid-template-columns: 1fr; gap: 30px; padding: 30px 18px 28px; }
+  /* Video first on mobile (visual-first) */
+  .hero-video-wrap { order: -1; max-width: 280px; }
+  .hero h1 { font-size: clamp(1.9rem, 8vw, 2.5rem); }
+  .hero-sub { font-size: 0.98rem; }
+  .trust-inner { grid-template-columns: repeat(2, 1fr); gap: 16px 14px; padding: 20px 18px; }
+  .proof { padding: 52px 18px 32px; }
+  .proof-grid { grid-template-columns: 1fr; gap: 14px; }
+  .faq { padding: 28px 18px 52px; }
+  .final-inner { padding: 56px 18px; }
+  .fc-row { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<canvas id="canvas-bg"></canvas>
+
+<!-- ════════ SLIM BAR ════════ -->
+<header class="lp-bar">
+  <div class="lp-logo"><div class="logo-box">i8</div> Innov8 Workflows</div>
+  <a href="tel:+447718155997" class="lp-bar-call" id="bar-call">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.35-.11-.74-.03-1.02.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.21c.28-.27.36-.66.25-1.01-.37-1.12-.57-2.32-.57-3.57 0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.49c0-.55-.45-1-1-1z"/></svg>
+    <span>07718 155997</span>
+  </a>
+</header>
+
+<!-- ════════ HERO ════════ -->
+<section class="hero">
+  <div class="hero-copy">
+    <div class="hero-badge"><div class="badge-dot"></div>Free demo · Live in 7 days · No contracts</div>
+    <!-- TODO: tune this headline to match your video's hook for "message match" -->
+    <h1>See your new website — <span>built free,</span> before you pay a penny.</h1>
+    <p class="hero-sub">We design a fully-branded demo site for your business and send it over for you to see. Love it? You're live within 7 days. There's no cost and no commitment to look.</p>
+    <ul class="hero-points">
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span><strong>A real demo, not a mockup</strong> — your branding, your services, your photos.</span></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span><strong>Built to win you customers</strong> — mobile-first, ranks on Google, captures leads 24/7.</span></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span><strong>UK-based, no lock-in</strong> — cancel anytime, real people on the end of the phone.</span></li>
+    </ul>
+  </div>
+
+  <div class="hero-video-wrap">
+    <div class="video-frame" id="videoFrame">
+      <!-- TODO: drop a watermark-free 9:16 export named ad-video.mp4 (+ ad-video-poster.jpg) into the site root -->
+      <video id="adVideo" muted loop playsinline preload="metadata" poster="ad-video-poster.jpg">
+        <source src="ad-video.mp4" type="video/mp4"/>
+      </video>
+      <div class="video-placeholder">
+        <div class="vp-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+        <p>YOUR VIDEO GOES HERE<br/>add ad-video.mp4 (9:16)</p>
+      </div>
+      <button class="video-unmute" id="unmuteBtn" type="button" aria-label="Unmute video">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+        <span>Tap for sound</span>
+      </button>
+    </div>
+
+    <!-- ════════ LEAD FORM ════════ -->
+    <div class="form-card" id="form">
+      <h3>Claim your free demo</h3>
+      <p class="fc-sub">Tell us about your business and we'll build your demo. No cost, no obligation.</p>
+      <form id="lp-form" novalidate>
+        <input type="text" name="company_website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0"/>
+        <div class="fc-row">
+          <div class="fc-field">
+            <label>First name <span class="fc-req">*</span></label>
+            <input type="text" name="firstName" placeholder="Your name" required/>
+          </div>
+          <div class="fc-field">
+            <label>Phone <span class="fc-req">*</span></label>
+            <input type="tel" name="phone" placeholder="07700 000000" required/>
+          </div>
+        </div>
+        <div class="fc-field">
+          <label>Business name <span class="fc-req">*</span></label>
+          <input type="text" name="company" placeholder="Your business" required/>
+        </div>
+        <div class="fc-field">
+          <label>What does your business do? <span class="fc-req">*</span></label>
+          <input type="text" name="trade" placeholder="e.g. roofing, electrician, salon, café…" required/>
+        </div>
+        <div class="fc-error" id="fc-error">Please fill in all the fields so we can build your demo.</div>
+        <button type="submit" class="fc-submit">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.464 3.488"/></svg>
+          Get My Free Demo
+        </button>
+        <p class="fc-note">Opens WhatsApp with your details ready to send · Same-day reply</p>
+      </form>
+      <p class="fc-alt">Prefer to talk? <a href="https://wa.me/447718155997?text=Hi%20Jamie%20%E2%80%94%20I%20saw%20your%20ad%20and%20I%27d%20like%20a%20free%20website%20demo" target="_blank" rel="noopener">Message us on WhatsApp →</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ TRUST STRIP ════════ -->
+<section class="trust">
+  <div class="trust-inner">
+    <div class="trust-item">
+      <div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
+      <div><h5>No contracts</h5><p>Cancel anytime</p></div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M17 7h4v4"/></svg></div>
+      <div><h5>Built to convert</h5><p>Designed to win leads</p></div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13a8 8 0 0 1 16 0"/><rect x="3" y="13" width="4" height="6" rx="1.5"/><rect x="17" y="13" width="4" height="6" rx="1.5"/><path d="M20 19a3 3 0 0 1-3 3h-2"/></svg></div>
+      <div><h5>UK-based support</h5><p>Real people, real help</p></div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h7l-1 8 10-12h-7z"/></svg></div>
+      <div><h5>Live in 7 days</h5><p>From demo to launch</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ PROOF ════════ -->
+<section class="proof">
+  <div class="section-label">Recent work</div>
+  <h2>Real sites. Real results.</h2>
+  <p class="proof-sub">A few of the local UK businesses we've recently built for — every one started with a free demo, exactly like yours will.</p>
+  <div class="proof-grid">
+    <div class="proof-card">
+      <div class="proof-img"><img src="case-jgs.png" alt="JGS Construction website" loading="lazy"/></div>
+      <div class="proof-body">
+        <div class="proof-trade">Driveways · Construction</div>
+        <div class="proof-name">JGS Construction Services</div>
+        <div class="proof-result">Local Google ranking jumped from 6th to 2nd.</div>
+      </div>
+    </div>
+    <div class="proof-card">
+      <div class="proof-img"><img src="a2b_innov8.png" alt="A2B Roofing &amp; Scaffolding website" loading="lazy"/></div>
+      <div class="proof-body">
+        <div class="proof-trade">Roofing · Scaffolding</div>
+        <div class="proof-name">A2B Roofing &amp; Scaffolding</div>
+        <div class="proof-result">A full 19-page SEO site, live on their own domain.</div>
+      </div>
+    </div>
+    <div class="proof-card">
+      <div class="proof-img"><img src="ksmithurst_innov8.png" alt="K Smithurst Building website" loading="lazy"/></div>
+      <div class="proof-body">
+        <div class="proof-trade">Building · Construction</div>
+        <div class="proof-name">K Smithurst Building</div>
+        <div class="proof-result">A modern, mobile-first site that turns visitors into enquiries.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ FAQ ════════ -->
+<section class="faq">
+  <div class="section-label">Common questions</div>
+  <h2 style="text-align:center;font-size:clamp(1.6rem,3.2vw,2.3rem);font-weight:800;letter-spacing:-0.03em;margin-bottom:32px;">Good to know</h2>
+  <div class="faq-item">
+    <button class="faq-q">Is the demo really free? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+    <div class="faq-a"><p>Yes — completely. We build a real, branded demo of your new site and send it over for you to look at. There's no charge and no obligation. You only pay if you decide to go live with it.</p></div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-q">How long until my site is live? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+    <div class="faq-a"><p>Once you're happy with the demo and we've onboarded your details, your site is typically live within 7 days — often sooner.</p></div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-q">Am I tied into a long contract? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+    <div class="faq-a"><p>No. There are no long-term contracts — you can cancel any time. We'd rather keep you because the website's working for you, not because you're locked in.</p></div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-q">What do you need from me? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+    <div class="faq-a"><p>Just the basics to start — your business name and what you do. Fill in the form and we'll take it from there, asking for anything else (logo, photos, services) when we build the demo.</p></div>
+  </div>
+</section>
+
+<!-- ════════ FINAL CTA ════════ -->
+<section class="final">
+  <div class="final-inner">
+    <h2>Ready to see your new website?</h2>
+    <p>It's free to look, and there's no obligation. Tell us about your business and we'll get your demo built.</p>
+    <a href="#form" class="btn-primary">Get My Free Demo</a>
+  </div>
+</section>
+
+<!-- ════════ FOOTER ════════ -->
+<footer>
+  <div class="f-logo"><div class="logo-box" style="width:24px;height:24px;font-size:10px">i8</div> Innov8 Workflows</div>
+  <p>© 2026 Innov8 Workflows · Built to automate · <a href="privacy-policy.html">Privacy Policy</a><br/>Branded, conversion-focused websites for local UK businesses.</p>
+</footer>
+
+<script>
+// ── BACKGROUND (lightweight dotted grid + drifting lines) ──
+(function(){
+  const canvas = document.getElementById('canvas-bg');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let W, H, lines = []; const SP = 38;
+  function newLine(){ return { col: Math.floor(Math.random()*Math.ceil(W/SP)), row: Math.floor(Math.random()*Math.ceil(H/SP)), len: Math.floor(Math.random()*6)+3, dir: Math.random()>0.5?'h':'v', progress: Math.random(), speed: 0.003+Math.random()*0.004, color: Math.random()>0.5?'#ea580c':'#3b82f6' }; }
+  function resize(){ W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; lines = []; for (let i=0;i<8;i++) lines.push(newLine()); }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    const cols = Math.ceil(W/SP)+1, rows = Math.ceil(H/SP)+1;
+    ctx.fillStyle = '#2a2a2a';
+    for (let r=0;r<rows;r++) for (let c=0;c<cols;c++){ ctx.beginPath(); ctx.arc(c*SP,r*SP,1,0,Math.PI*2); ctx.fill(); }
+    for (let l of lines){
+      l.progress += l.speed;
+      if (l.progress > 1){ Object.assign(l, newLine()); l.progress = 0; }
+      const sx=l.col*SP, sy=l.row*SP, ex=l.dir==='h'?sx+l.len*SP:sx, ey=l.dir==='v'?sy+l.len*SP:sy;
+      const gx=sx+(ex-sx)*l.progress, gy=sy+(ey-sy)*l.progress;
+      ctx.beginPath(); ctx.moveTo(sx,sy); ctx.lineTo(gx,gy); ctx.strokeStyle=l.color; ctx.lineWidth=1.5; ctx.globalAlpha=0.5; ctx.stroke();
+      ctx.beginPath(); ctx.arc(gx,gy,3,0,Math.PI*2); ctx.fillStyle=l.color; ctx.globalAlpha=0.9; ctx.fill(); ctx.globalAlpha=1;
+    }
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize', resize);
+  resize(); draw();
+})();
+
+// ── AD VIDEO: show only if the file actually loads; autoplay muted; tap to unmute ──
+(function(){
+  const v = document.getElementById('adVideo');
+  const frame = document.getElementById('videoFrame');
+  const unmute = document.getElementById('unmuteBtn');
+  if (!v || !frame) return;
+  v.addEventListener('loadeddata', function(){
+    frame.classList.add('has-video');
+    const p = v.play(); if (p && p.catch) p.catch(()=>{});
+  });
+  // If the source 404s, leave the placeholder visible
+  v.addEventListener('error', function(){ frame.classList.remove('has-video'); });
+  if (unmute) unmute.addEventListener('click', function(){
+    v.muted = !v.muted;
+    unmute.querySelector('span').textContent = v.muted ? 'Tap for sound' : 'Sound on';
+    if (!v.muted){ const p = v.play(); if (p && p.catch) p.catch(()=>{}); }
+  });
+})();
+
+// ── FAQ accordion ──
+document.querySelectorAll('.faq-q').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    const item = btn.parentElement;
+    const ans = item.querySelector('.faq-a');
+    const open = item.classList.toggle('open');
+    ans.style.maxHeight = open ? ans.scrollHeight + 'px' : 0;
+  });
+});
+
+// ── GA4 click-to-call event ──
+document.getElementById('bar-call').addEventListener('click', function(){
+  if (window.gtag) gtag('event', 'click_to_call', { link_url: 'tel:+447718155997' });
+});
+
+// ── LEAD FORM → WhatsApp redirect + fire Meta Pixel Lead + GA4 generate_lead ──
+(function(){
+  const form = document.getElementById('lp-form');
+  if (!form) return;
+  const WA = '447718155997';
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    const data = new FormData(form);
+    const first = (data.get('firstName')||'').toString().trim();
+    const phone = (data.get('phone')||'').toString().trim();
+    const company = (data.get('company')||'').toString().trim();
+    const trade = (data.get('trade')||'').toString().trim();
+    const err = document.getElementById('fc-error');
+    if (!first || !phone || !company || !trade){
+      err.style.display = 'block';
+      err.scrollIntoView({ behavior:'smooth', block:'center' });
+      return;
+    }
+    err.style.display = 'none';
+    if (window.innov8SaveEnquiry) innov8SaveEnquiry('Free demo ad page', {
+      firstName: first, phone: phone, company: company, trade: trade, service: 'Free website demo',
+      company_website: (data.get('company_website') || '').toString()
+    });
+    // Conversion tracking
+    if (window.fbq) fbq('track', 'Lead');
+    if (window.gtag) gtag('event', 'generate_lead', { method: 'ad_landing_whatsapp' });
+    const lines = [
+      'Hi Jamie — I saw your ad and I\'d like a free website demo.',
+      '',
+      'Name: ' + first,
+      'Business: ' + company,
+      'What we do: ' + trade,
+      'Phone: ' + phone
+    ];
+    const text = encodeURIComponent(lines.join('\n'));
+    window.open('https://wa.me/' + WA + '?text=' + text, '_blank', 'noopener');
+  });
+})();
+</script>
+
+<!-- Cookie consent (same as main site) -->
+<script src="cookie-consent.js"></script>
+<script src="enquiry.js"></script>
+<!-- Innov8 CRM analytics — captures the visit + lead -->
+<script defer src="https://crm.innov8workflows.co.uk/track.js" data-id="proj_f5d3ac1edd12"></script>
+</body>
+</html>

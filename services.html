@@ -406,39 +406,6 @@ section { position: relative; z-index: 1; }
 .qf-chip { font-size: 0.72rem; color: var(--muted2); background: var(--surface2); border: 1px solid var(--border); border-radius: 100px; padding: 4px 10px; }
 .qf-chip b { color: var(--text); font-weight: 600; }
 
-/* ── Drone photography: aerial viewfinder ── */
-.drone { position: relative; max-width: 480px; width: 100%; margin: 0 auto; aspect-ratio: 4 / 3; border-radius: 16px; overflow: hidden; box-shadow: 0 24px 60px rgba(0,0,0,0.45); border: 1px solid var(--border);
-  background: repeating-linear-gradient(90deg, #4f7a3a 0 14px, #5a8743 14px 28px); }
-.drone-plot { position: absolute; inset: 0; }
-.drone-road { position: absolute; left: 0; right: 0; bottom: 0; height: 15%; background: #3d4045; }
-.drone-road::after { content: ''; position: absolute; left: 0; right: 0; top: 50%; height: 2px; background: repeating-linear-gradient(90deg, #e5e7eb 0 22px, transparent 22px 40px); }
-.drone-drive { position: absolute; left: 60%; width: 22%; top: 50%; bottom: 15%; background: repeating-linear-gradient(0deg, #8a8f96 0 7px, #7d828a 7px 8px), #8a8f96; background-blend-mode: multiply; }
-.drone-path { position: absolute; left: 26%; width: 6%; top: 60%; bottom: 15%; background: #b9a58a; }
-.drone-hedge { position: absolute; left: 0; right: 0; bottom: 15%; height: 3%; background: #2f5427; }
-.drone-roof { position: absolute; left: 16%; top: 14%; width: 56%; height: 44%; filter: drop-shadow(8px 10px 6px rgba(0,0,0,0.45)); }
-.drone-roof div { position: absolute; inset: 0; background: repeating-linear-gradient(0deg, rgba(0,0,0,0.16) 0 2px, transparent 2px 7px); }
-.drone-roof .t { clip-path: polygon(0 0, 100% 0, 78% 50%, 22% 50%); background-color: #7a3b2e; }
-.drone-roof .b { clip-path: polygon(22% 50%, 78% 50%, 100% 100%, 0 100%); background-color: #a24d3b; }
-.drone-roof .l { clip-path: polygon(0 0, 22% 50%, 0 100%); background-color: #8e4535; }
-.drone-roof .r { clip-path: polygon(100% 0, 100% 100%, 78% 50%); background-color: #6b3328; }
-.drone-roof .ridge { clip-path: none; left: 22%; right: 22%; top: calc(50% - 2px); bottom: auto; height: 4px; background: #c9c3bb; }
-.drone-roof .vel { clip-path: none; inset: auto; left: 30%; top: 64%; width: 14%; height: 18%; background: #1f2937; border: 2px solid #9ca3af; }
-.drone-van { position: absolute; left: 63%; top: 66%; width: 13%; height: 13%; border-radius: 4px; background: #f3f4f6; box-shadow: 3px 4px 4px rgba(0,0,0,0.35); }
-.drone-van::after { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 30%; background: var(--accent); border-radius: 4px 4px 0 0; }
-.drone-hud { position: absolute; inset: 0; pointer-events: none; font-family: var(--font-mono); color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,0.7); }
-.drone-hud .c { position: absolute; width: 26px; height: 26px; border-color: rgba(255,255,255,0.9); border-style: solid; }
-.drone-hud .c1 { left: 14px; top: 14px; border-width: 2px 0 0 2px; } .drone-hud .c2 { right: 14px; top: 14px; border-width: 2px 2px 0 0; }
-.drone-hud .c3 { left: 14px; bottom: 14px; border-width: 0 0 2px 2px; } .drone-hud .c4 { right: 14px; bottom: 14px; border-width: 0 2px 2px 0; }
-.drone-hud .x { position: absolute; left: 50%; top: 50%; width: 34px; height: 34px; transform: translate(-50%, -50%); border: 1.5px solid rgba(255,255,255,0.75); border-radius: 50%; }
-.drone-hud .x::before, .drone-hud .x::after { content: ''; position: absolute; background: rgba(255,255,255,0.75); }
-.drone-hud .x::before { left: 50%; top: -8px; bottom: -8px; width: 1.5px; transform: translateX(-50%); }
-.drone-hud .x::after { top: 50%; left: -8px; right: -8px; height: 1.5px; transform: translateY(-50%); }
-.drone-tl { position: absolute; left: 22px; top: 22px; font-size: 0.66rem; display: flex; align-items: center; gap: 6px; letter-spacing: 0.06em; }
-.drone-tl i { width: 8px; height: 8px; border-radius: 50%; background: #ef4444; animation: gr-pulse 1.4s infinite; }
-.drone-tr { position: absolute; right: 22px; top: 22px; font-size: 0.66rem; letter-spacing: 0.06em; }
-.drone-bl { position: absolute; left: 22px; bottom: 22px; font-size: 0.62rem; line-height: 1.6; letter-spacing: 0.05em; }
-.drone-br { position: absolute; right: 22px; bottom: 22px; font-size: 0.62rem; letter-spacing: 0.05em; }
-
 /* ── Facebook business page mock ── */
 .fbp { max-width: 460px; width: 100%; margin: 0 auto; background: #fff; color: #050505; border-radius: 14px; overflow: hidden; box-shadow: 0 24px 60px rgba(0,0,0,0.45); font-family: 'Bricolage Grotesque', 'Segoe UI', Roboto, Arial, sans-serif; line-height: 1.35; }
 .fbp-top { display: flex; align-items: center; gap: 8px; padding: 9px 12px; border-bottom: 1px solid #e4e6eb; font-size: 0.72rem; color: #65676b; font-weight: 600; }
@@ -1087,52 +1054,8 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 
 <hr class="divider"/>
 
-<!-- SERVICE: drone-photography -->
-<div class="service-block reverse reveal" id="drone-photography">
-  <div>
-    <div class="service-block-label">Add-on &middot; Drone Photography</div>
-    <h2>Drone<br/><span>Photography</span></h2>
-    <p class="lead">Aerial photography that shows your work from a new perspective. Whole roofs, driveways and extensions captured from above, ready to use on your website, your Google profile, your ads and your socials. Booked as a half day or full day shoot.</p>
-    <p class="works-with"><span>✓ Works with</span> either package</p>
-    <div class="feature-list">
-      <div class="feature-item">
-        <div class="feature-icon">✦</div>
-        <div><strong>Shows The Whole Job</strong><p>Some work only makes sense from above. A full roof or a finished driveway looks far more impressive in one aerial shot than in ten from the ground.</p></div>
-      </div>
-      <div class="feature-item">
-        <div class="feature-icon">✦</div>
-        <div><strong>Built For Your Marketing</strong><p>Every shot is delivered ready to use across your website, Google Business Profile, ads and social posts.</p></div>
-      </div>
-      <div class="feature-item">
-        <div class="feature-icon">✦</div>
-        <div><strong>Half Or Full Day</strong><p>Pick the shoot that suits the jobs you want captured, from one standout project to a run of recent work.</p></div>
-      </div>
-    </div>
-    <a href="consultancy.html#contact" class="service-link">Book a free consultation →</a>
-  </div>
-  <div class="drone reveal" aria-hidden="true">
-    <div class="drone-plot">
-      <div class="drone-hedge"></div>
-      <div class="drone-road"></div>
-      <div class="drone-path"></div>
-      <div class="drone-drive"></div>
-      <div class="drone-van"></div>
-      <div class="drone-roof"><div class="t"></div><div class="b"></div><div class="l"></div><div class="r"></div><div class="ridge"></div><div class="vel"></div></div>
-    </div>
-    <div class="drone-hud">
-      <div class="c c1"></div><div class="c c2"></div><div class="c c3"></div><div class="c c4"></div><div class="x"></div>
-      <div class="drone-tl"><i></i>REC 4K</div>
-      <div class="drone-tr">BAT 82%</div>
-      <div class="drone-bl">ALT 42m<br/>DIST 18m</div>
-      <div class="drone-br">1/1000 &middot; f/2.8</div>
-    </div>
-  </div>
-</div>
-
-<hr class="divider"/>
-
 <!-- SERVICE 3: Review Funnel + Transformation Video -->
-<div class="service-block reveal" id="review-funnel">
+<div class="service-block reverse reveal" id="review-funnel">
   <div>
     <div class="service-block-label">Add-on &middot; Reputation</div>
     <h2>Review Funnel<br/><span>+ Transformation Video</span></h2>
@@ -1197,7 +1120,7 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 <hr class="divider"/>
 
 <!-- SERVICE: Quote Funnel -->
-<div class="service-block reverse reveal" id="quote-funnel">
+<div class="service-block reveal" id="quote-funnel">
   <div>
     <div class="service-block-label">Add-on &middot; Lead Capture</div>
     <h2>Quote<br/><span>Funnel</span></h2>
@@ -1249,7 +1172,7 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 <hr class="divider"/>
 
 <!-- SERVICE 6: AI Chatbot -->
-<div class="service-block reveal" id="ai-chatbot">
+<div class="service-block reverse reveal" id="ai-chatbot">
   <div>
     <div class="service-block-label purple">Add-on &middot; AI Assistant</div>
     <h2>AI Chatbot<br/><span class="purple">for your business</span></h2>
@@ -1281,7 +1204,7 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 <hr class="divider"/>
 
 <!-- SERVICE 7: Magic Live Google Review Slider -->
-<div class="service-block reverse reveal" id="review-slider">
+<div class="service-block reveal" id="review-slider">
   <div>
     <div class="service-block-label">Add-on &middot; Live Reviews</div>
     <h2>Magic Live Google<br/><span>Review Slider</span></h2>
@@ -1446,7 +1369,7 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 </div>
 
 <!-- SERVICE 4b: Meta Ad Lead Generation System -->
-<div class="service-block reveal" id="meta-ads">
+<div class="service-block reverse reveal" id="meta-ads">
   <div>
     <div class="service-block-label">Paid Advertising &middot; Meta</div>
     <h2>Meta Ad Lead<br/><span>Generation System</span></h2>
@@ -1524,7 +1447,7 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 <hr class="divider"/>
 
 <!-- SERVICE 4c: Google PPC Lead Generation -->
-<div class="service-block reverse reveal" id="google-ppc">
+<div class="service-block reveal" id="google-ppc">
   <div>
     <div class="service-block-label">Paid Advertising &middot; Google</div>
     <h2>Google PPC<br/><span>Lead Generation</span></h2>
@@ -1599,7 +1522,7 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 <hr class="divider"/>
 
 <!-- SERVICE 4: Quote / Ad Landing Page -->
-<div class="service-block reveal" id="ad-landing-page">
+<div class="service-block reverse reveal" id="ad-landing-page">
   <div>
     <div class="service-block-label">Paid Advertising &middot; Supporting Service</div>
     <h2>Quote &amp; Ad Landing Page<br/><span>+ Transformation Video</span></h2>
@@ -1642,7 +1565,7 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 <hr class="divider"/>
 
 <!-- SERVICE: facebook-page -->
-<div class="service-block reverse reveal" id="facebook-page">
+<div class="service-block reveal" id="facebook-page">
   <div>
     <div class="service-block-label">Paid Advertising &middot; Supporting Service</div>
     <h2>Facebook Business<br/><span>Page Setup</span></h2>
@@ -1690,7 +1613,7 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 <hr class="divider"/>
 
 <!-- SERVICE: social-management -->
-<div class="service-block reveal" id="social-management">
+<div class="service-block reverse reveal" id="social-management">
   <div>
     <div class="service-block-label">Social &middot; Facebook and Instagram</div>
     <h2>Meta Social Media<br/><span>Management</span></h2>

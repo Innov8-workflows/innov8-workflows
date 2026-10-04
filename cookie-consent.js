@@ -69,7 +69,7 @@
         left: 24px;
         right: 24px;
         max-width: 540px;
-        z-index: 99999;
+        z-index: 2147483647; /* above the GHL chat widget (99999999), which otherwise blocks Accept */
         background: #161616;
         border: 1px solid #2a2a2a;
         border-top: 3px solid #ea580c;

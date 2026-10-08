@@ -174,7 +174,7 @@ section { position: relative; z-index: 1; }
 .gr-hidden .gr-review { position:relative; opacity:0.5; filter:grayscale(1); }
 .gr-hidden-note { font-size:0.74rem; color:#5f6368; line-height:1.5; margin-top:10px; font-style:italic; }
 
-/* ── Paid advertising mockups (Meta ad system + Google PPC) ── */
+/* ── Paid advertising mockups (Meta ad system) ── */
 .pa-widget { max-width: 440px; width: 100%; margin: 0 auto; }
 .pa-flow { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 14px 0; }
 .pa-flow-line { width: 2px; height: 20px; background: linear-gradient(to bottom, var(--border), var(--accent)); border-radius: 2px; }
@@ -213,29 +213,15 @@ section { position: relative; z-index: 1; }
 .walead-ref { margin-top: 10px; font-family: var(--font-mono); font-size: 0.62rem; color: var(--muted); letter-spacing: 0.04em; }
 
 /* Google search results mockup */
-.gads { background: #fff; border-radius: 14px; padding: 18px; color: #202124; font-family: 'Bricolage Grotesque','Segoe UI',Roboto,Arial,sans-serif; line-height: 1.4; box-shadow: 0 24px 60px rgba(0,0,0,0.45); border: 1px solid rgba(0,0,0,0.08); }
 .gads-bar { display: flex; align-items: center; gap: 10px; border: 1px solid #dfe1e5; border-radius: 100px; padding: 9px 16px; margin-bottom: 16px; box-shadow: 0 1px 6px rgba(32,33,36,0.12); }
 .gads-bar svg { width: 20px; height: 20px; flex-shrink: 0; }
 .gads-query { font-size: 0.84rem; color: #202124; }
-.gads-tag-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
-.gads-tag { font-size: 0.7rem; font-weight: 700; color: #202124; }
 .gads-you { font-size: 0.62rem; font-weight: 700; color: var(--accent); background: rgba(234,88,12,0.08); border: 1px solid rgba(234,88,12,0.35); border-radius: 100px; padding: 3px 10px; }
-.gads-site { display: flex; align-items: center; gap: 8px; margin-bottom: 3px; }
-.gads-favicon { width: 22px; height: 22px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent2)); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 0.55rem; font-weight: 800; flex-shrink: 0; }
-.gads-domain { font-size: 0.76rem; color: #202124; }
-.gads-url { font-size: 0.68rem; color: #5f6368; }
-.gads-headline { font-size: 1rem; color: #1a0dab; font-weight: 500; margin: 3px 0 4px; line-height: 1.35; }
-.gads-desc { font-size: 0.79rem; color: #4d5156; line-height: 1.5; }
-.gads-actions { display: flex; gap: 8px; margin-top: 11px; flex-wrap: wrap; }
-.gads-chip { display: inline-flex; align-items: center; gap: 6px; border: 1px solid #dadce0; border-radius: 100px; padding: 6px 13px; font-size: 0.74rem; color: #1a73e8; font-weight: 600; }
-.gads-chip svg { width: 13px; height: 13px; flex-shrink: 0; }
-.gads-others { margin-top: 16px; padding-top: 12px; border-top: 1px solid #ececec; }
 .gads-skel { opacity: 0.45; padding: 8px 0; }
 .gads-skel-bar { height: 9px; border-radius: 4px; background: #dadce0; margin-bottom: 7px; }
 .gads-skel-bar.w40 { width: 40%; }
 .gads-skel-bar.w85 { width: 85%; }
 .gads-skel-bar.w70 { width: 70%; margin-bottom: 0; }
-.gads-note { font-size: 0.72rem; color: #5f6368; font-style: italic; margin-top: 10px; }
 
 
 /* ── Service groups (mirror the 2026 pricing document) ── */
@@ -1445,88 +1431,13 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 
 <hr class="divider"/>
 
-<!-- SERVICE 4c: Google PPC Lead Generation -->
-<div class="service-block reveal" id="google-ppc">
-  <div>
-    <div class="service-block-label">Paid Advertising &middot; Google</div>
-    <h2>Google PPC<br/><span>Lead Generation</span></h2>
-    <p class="lead">Google Ads puts your business at the very top of the results page the moment someone searches for your trade in your area. These are the highest intent leads there are, people actively looking to hire right now, and we build, manage and refine the whole campaign for you.</p>
-    <p class="works-with"><span>✓ Runs on</span> — Google Search &amp; Google Maps</p>
-    <div class="review-platforms">
-      <span class="review-platforms-label">Platforms we manage for you</span>
-      <span class="platform-badge">
-        <svg viewBox="0 0 250.8 228" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#3C8BD9" d="M85.9,28.6c2.4-6.3,5.7-12.1,10.6-16.8c19.6-19.1,52-14.3,65.3,9.7c10,18.2,20.6,36,30.9,54 c17.2,29.9,34.6,59.8,51.6,89.8c14.3,25.1-1.2,56.8-29.6,61.1c-17.4,2.6-33.7-5.4-42.7-21c-15.1-26.3-30.3-52.6-45.4-78.8 c-0.3-0.6-0.7-1.1-1.1-1.6c-1.6-1.3-2.3-3.2-3.3-4.9c-6.7-11.8-13.6-23.5-20.3-35.2c-4.3-7.6-8.8-15.1-13.1-22.7 c-3.9-6.8-5.7-14.2-5.5-22C83.6,36.2,84.1,32.2,85.9,28.6"/><path fill="#FABC04" d="M85.9,28.6c-0.9,3.6-1.7,7.2-1.9,11c-0.3,8.4,1.8,16.2,6,23.5C101,82,112,101,122.9,120c1,1.7,1.8,3.4,2.8,5 c-6,10.4-12,20.7-18.1,31.1c-8.4,14.5-16.8,29.1-25.3,43.6c-0.4,0-0.5-0.2-0.6-0.5c-0.1-0.8,0.2-1.5,0.4-2.3 c4.1-15,0.7-28.3-9.6-39.7c-6.3-6.9-14.3-10.8-23.5-12.1c-12-1.7-22.6,1.4-32.1,8.9c-1.7,1.3-2.8,3.2-4.8,4.2 c-0.4,0-0.6-0.2-0.7-0.5c4.8-8.3,9.5-16.6,14.3-24.9C45.5,98.4,65.3,64,85.2,29.7C85.4,29.3,85.7,29,85.9,28.6"/><path fill="#34A852" d="M11.8,158c1.9-1.7,3.7-3.5,5.7-5.1c24.3-19.2,60.8-5.3,66.1,25.1c1.3,7.3,0.6,14.3-1.6,21.3 c-0.1,0.6-0.2,1.1-0.4,1.7c-0.9,1.6-1.7,3.3-2.7,4.9c-8.9,14.7-22,22-39.2,20.9C20,225.4,4.5,210.6,1.8,191 c-1.3-9.5,0.6-18.4,5.5-26.6c1-1.8,2.2-3.4,3.3-5.2C11.1,158.8,10.9,158,11.8,158"/><path fill="#FABC04" d="M11.8,158c-0.4,0.4-0.4,1.1-1.1,1.2c-0.1-0.7,0.3-1.1,0.7-1.6L11.8,158"/><path fill="#E1C025" d="M81.6,201c-0.4-0.7,0-1.2,0.4-1.7c0.1,0.1,0.3,0.3,0.4,0.4L81.6,201"/></svg>
-        Google Ads
-      </span>
-    </div>
-    <div class="feature-list">
-      <div class="feature-item">
-        <div class="feature-icon">✦</div>
-        <div><strong>Straight To The Top</strong><p>Sponsored placement puts you above the map pack and the organic results from day one, while your SEO builds in the background.</p></div>
-      </div>
-      <div class="feature-item">
-        <div class="feature-icon">✦</div>
-        <div><strong>Only Pay For Real Interest</strong><p>You only pay when someone actually clicks, and negative keywords filter out the searches that were never going to become jobs.</p></div>
-      </div>
-      <div class="feature-item">
-        <div class="feature-icon">✦</div>
-        <div><strong>Tracked To The Penny</strong><p>Every call and quote request is tracked back to the exact search that triggered it, so you can see what each job cost to win.</p></div>
-      </div>
-    </div>
-    <a href="consultancy.html#contact" class="service-link">Book a free consultation →</a>
-  </div>
-  <div class="pa-widget reveal" aria-hidden="true">
-    <div class="gads">
-      <div class="gads-bar">
-        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/><path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/><path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/><path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/></svg>
-        <span class="gads-query">roofer near me</span>
-      </div>
-      <div class="gads-tag-row">
-        <span class="gads-tag">Sponsored</span>
-        <span class="gads-you">Your business</span>
-      </div>
-      <div class="gads-site">
-        <div class="gads-favicon">YB</div>
-        <div>
-          <div class="gads-domain">Your Business Ltd</div>
-          <div class="gads-url">yourbusiness.co.uk</div>
-        </div>
-      </div>
-      <div class="gads-headline">Local Roofing Specialists | Free No Obligation Quotes</div>
-      <div class="gads-desc">Repairs, full replacements and flat roofs across your area. Speak to a local expert today and get your free quote.</div>
-      <div class="gads-actions">
-        <span class="gads-chip">
-          <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.35-.11-.74-.03-1.02.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.21c.28-.27.36-.66.25-1.01-.37-1.12-.57-2.32-.57-3.57 0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.49c0-.55-.45-1-1-1z"/></svg>
-          Call now
-        </span>
-        <span class="gads-chip">Get a free quote</span>
-      </div>
-      <div class="gads-others">
-        <div class="gads-skel">
-          <div class="gads-skel-bar w40"></div>
-          <div class="gads-skel-bar w85"></div>
-          <div class="gads-skel-bar w70"></div>
-        </div>
-        <div class="gads-skel">
-          <div class="gads-skel-bar w40"></div>
-          <div class="gads-skel-bar w85"></div>
-          <div class="gads-skel-bar w70"></div>
-        </div>
-        <div class="gads-note">Everyone else, further down the page.</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<hr class="divider"/>
-
 <!-- SERVICE 4: Quote / Ad Landing Page -->
-<div class="service-block reverse reveal" id="ad-landing-page">
+<div class="service-block reveal" id="ad-landing-page">
   <div>
     <div class="service-block-label">Paid Advertising &middot; Supporting Service</div>
     <h2>Quote &amp; Ad Landing Page<br/><span>+ Transformation Video</span></h2>
     <p class="lead">A high-converting landing page built around your work — led by an eye-catching before-and-after transformation video. When you run ads on Meta, that scroll-stopping clip is what makes people pause, watch, and trust you — lifting your conversion rate before they read a single word. The page then captures the enquiry and books the call automatically.</p>
-    <p class="works-with"><span>✓ Built for</span> — Meta &amp; Google ad campaigns</p>
+    <p class="works-with"><span>✓ Built for</span> — Facebook and Instagram ad campaigns</p>
     <div class="review-platforms">
       <span class="review-platforms-label">Integrations built in</span>
       <span class="platform-badge">
@@ -1564,7 +1475,7 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 <hr class="divider"/>
 
 <!-- SERVICE: facebook-page -->
-<div class="service-block reveal" id="facebook-page">
+<div class="service-block reverse reveal" id="facebook-page">
   <div>
     <div class="service-block-label">Paid Advertising &middot; Supporting Service</div>
     <h2>Facebook Business<br/><span>Page Setup</span></h2>
@@ -1612,7 +1523,7 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 <hr class="divider"/>
 
 <!-- SERVICE: social-management -->
-<div class="service-block reverse reveal" id="social-management">
+<div class="service-block reveal" id="social-management">
   <div>
     <div class="service-block-label">Social &middot; Facebook and Instagram</div>
     <h2>Meta Social Media<br/><span>Management</span></h2>

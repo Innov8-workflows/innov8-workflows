@@ -261,6 +261,17 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 .onsite-wide { margin: 0; }
 .onsite-wide figcaption { margin-top: 14px; font-family: var(--font-mono); font-size: 0.68rem; color: var(--muted); letter-spacing: 0.05em; line-height: 1.6; }
 @media (max-width: 900px) { .onsite-strip { padding-left: 24px; padding-right: 24px; } }
+
+/* CTA: copy and buttons stacked on the left over a dark fade, clear of the
+   laptop in the photo; on phones the photo becomes a banner above the copy */
+.cta-band-inner { flex-direction: column; align-items: flex-start; justify-content: center; gap: 28px; }
+.cta-band::after { background: linear-gradient(90deg, rgba(12,12,12,0.92) 0%, rgba(12,12,12,0.78) 34%, rgba(12,12,12,0.25) 60%, rgba(12,12,12,0) 100%), linear-gradient(to bottom, rgba(15,15,15,0.55) 0%, transparent 18%, transparent 78%, rgba(15,15,15,0.92) 100%); }
+@media (max-width: 900px) {
+  .cta-band { min-height: 0; background: var(--bg); }
+  .cta-band::before { inset: 0 0 auto 0; height: 250px; background-position: 68% center; }
+  .cta-band::after { inset: 0 0 auto 0; height: 250px; background: linear-gradient(to bottom, rgba(15,15,15,0.4) 0%, rgba(15,15,15,0) 30%, rgba(15,15,15,0.6) 72%, var(--bg) 100%); }
+  .cta-band-inner { padding: 214px 24px 64px; gap: 24px; }
+}
 </style>
 <style>
 </style>

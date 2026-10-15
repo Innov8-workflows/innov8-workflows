@@ -184,12 +184,12 @@
         <div class="i8-cb-title">We use cookies</div>
       </div>
       <p class="i8-cb-body">
-        We use essential cookies to keep the site working and analytics cookies to understand how it's used. Read our <a href="/privacy-policy.html">Privacy Policy</a> for full details.
+        We use essential cookies to keep the site working and analytics cookies to understand how it's used. Read our <a href="/privacy">Privacy Policy</a> for full details.
       </p>
       <div class="i8-cb-actions">
         <button class="i8-cb-accept" id="i8-accept-btn">Accept cookies</button>
         <button class="i8-cb-decline" id="i8-decline-btn">Decline</button>
-        <a href="/privacy-policy.html" class="i8-cb-manage">Learn more</a>
+        <a href="/privacy" class="i8-cb-manage">Learn more</a>
       </div>
     `;
 

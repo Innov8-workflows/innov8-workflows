@@ -1,572 +1,391 @@
 <!DOCTYPE html>
-<html lang="en-GB">
+<html lang="en-GB" data-ga="G-LFEDCY725K" data-pixel="" data-wa="447718155997" data-lead="">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://connect.facebook.net https://crm.innov8workflows.co.uk; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com https://www.facebook.com https://connect.facebook.net https://crm.innov8workflows.co.uk https://script.google.com https://script.googleusercontent.com; img-src 'self' data: https://www.googletagmanager.com https://*.google-analytics.com https://www.facebook.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; frame-src https://www.facebook.com; base-uri 'self'; form-action 'self'; object-src 'none'"/>
+<meta name="referrer" content="strict-origin-when-cross-origin"/>
 <link rel="icon" href="/favicon.ico" sizes="48x48"/>
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png"/>
 <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png"/>
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
-<meta name="robots" content="noindex"/>
-<title>Free Demo Website for Your Business | Innov8 Workflows</title>
-<meta name="description" content="We build local UK businesses a free branded demo website before they pay a penny. See yours, then go live in 7-14 business days."/>
-<!-- Google tag (gtag.js) — GA4 + conversion events -->
-<script>
-  // GA4 is consent-gated (UK PECR): nothing loads and no cookies are set until
-  // analytics cookies are accepted in the banner (cookie-consent.js).
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
-  window.i8LoadAnalytics = function () {
-    if (window.__i8ga) return; window.__i8ga = true;
-    gtag('consent', 'update', { analytics_storage: 'granted' });
-    gtag('js', new Date());
-    gtag('config', 'G-LFEDCY725K');
-    var s = document.createElement('script');
-    s.async = true;
-    s.src = 'https://www.googletagmanager.com/gtag/js?id=G-LFEDCY725K';
-    document.head.appendChild(s);
-  };
-  document.addEventListener('click', function(e){
-    var t = e.target.closest && e.target.closest('a[href^="tel:"], a[href*="wa.me"]');
-    if (!t) return;
-    var href = t.getAttribute('href') || '';
-    gtag('event', href.indexOf('tel:') === 0 ? 'click_to_call' : 'click_whatsapp', { link_url: href });
-  }, true);
-</script>
-<!-- TODO: Meta Pixel — paste the pixel base code here (needs the Pixel ID from Events Manager) before running ads, then fire fbq('track','Lead') where marked in submitLead() below. -->
-<style>
-:root {
-  --bg: #0f0f0f; --surface: #161616; --surface2: #1e1e1e; --border: #2a2a2a;
-  --accent: #ea580c; --accent2: #f97316; --green: #22c55e;
-  --text: #f0f0f0; --muted: #9a9a9a; --muted2: #c7c7c7;
-  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  --mono: ui-monospace, "Cascadia Mono", "Segoe UI Mono", Menlo, Consolas, monospace;
-}
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body { background: var(--bg); color: var(--text); font-family: var(--font); line-height: 1.5; -webkit-font-smoothing: antialiased; }
-img, video { max-width: 100%; display: block; }
-a { color: inherit; }
-
-.wrap { max-width: 640px; margin: 0 auto; padding: 0 20px; }
-@media (min-width: 900px) { .wrap { max-width: 1060px; } }
-
-.btn {
-  display: flex; align-items: center; justify-content: center; gap: 10px;
-  width: 100%; min-height: 56px; padding: 16px 24px;
-  background: var(--accent); color: #fff; border: none; border-radius: 12px;
-  font-family: var(--font); font-size: 1.05rem; font-weight: 800; letter-spacing: 0.01em;
-  text-decoration: none; cursor: pointer; transition: background 0.15s, transform 0.12s;
-  box-shadow: 0 10px 30px rgba(234,88,12,0.35);
-}
-.btn:hover { background: var(--accent2); transform: translateY(-1px); }
-.btn svg { width: 20px; height: 20px; flex-shrink: 0; }
-@media (min-width: 900px) { .btn { width: auto; padding: 16px 38px; } }
-
-.eyebrow { display: inline-flex; align-items: center; gap: 8px; background: rgba(234,88,12,0.12); border: 1px solid rgba(234,88,12,0.3); border-radius: 100px; padding: 7px 16px; font-family: var(--mono); font-size: 0.72rem; font-weight: 600; color: var(--accent2); letter-spacing: 0.08em; text-transform: uppercase; }
-h1 { font-size: clamp(1.9rem, 7.4vw, 3.4rem); font-weight: 900; line-height: 1.06; letter-spacing: -0.03em; }
-h1 span { color: var(--accent2); }
-h2 { font-size: clamp(1.5rem, 5.6vw, 2.3rem); font-weight: 900; line-height: 1.12; letter-spacing: -0.02em; }
-h2 span { color: var(--accent2); }
-.sub { color: var(--muted2); font-size: 1.02rem; line-height: 1.6; }
-
-section { padding: 52px 0; }
-@media (min-width: 900px) { section { padding: 76px 0; } }
-
-/* ── 1. HERO ── */
-.hero { padding: 34px 0 44px; }
-.hero .eyebrow { margin-bottom: 16px; }
-.hero h1 { margin-bottom: 14px; }
-.hero .sub { margin-bottom: 22px; max-width: 560px; }
-.hero-video-frame { position: relative; border-radius: 16px; overflow: hidden; border: 1px solid var(--border); background: #000; aspect-ratio: 1920 / 1082; margin-bottom: 20px; box-shadow: 0 24px 60px rgba(0,0,0,0.5); }
-.hero-video-frame video { width: 100%; height: 100%; object-fit: cover; }
-.unmute-btn {
-  position: absolute; bottom: 12px; right: 12px; z-index: 2;
-  display: flex; align-items: center; gap: 7px; min-height: 44px; padding: 10px 16px;
-  background: rgba(15,15,15,0.78); color: #fff; border: 1px solid rgba(255,255,255,0.25);
-  border-radius: 100px; font-family: var(--font); font-size: 0.82rem; font-weight: 700; cursor: pointer;
-  backdrop-filter: blur(6px);
-}
-.unmute-btn svg { width: 16px; height: 16px; }
-.hero-proof { margin-top: 16px; font-size: 0.9rem; color: var(--muted2); text-align: center; }
-.hero-proof strong { color: #FBBC04; }
-.hero-logos { display: flex; justify-content: center; gap: 10px; margin-top: 18px; flex-wrap: wrap; }
-.hero-logos img { width: 86px; height: 52px; object-fit: cover; border-radius: 9px; border: 1px solid var(--border); opacity: 0.9; }
-@media (min-width: 900px) {
-  .hero-grid { display: grid; grid-template-columns: 1fr 1.05fr; gap: 56px; align-items: center; }
-  .hero-proof, .hero-logos { text-align: left; justify-content: flex-start; }
-}
-
-/* ── 2. TRUST BAR ── */
-.trustbar { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--surface); padding: 18px 0; }
-.trustbar .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 10px; }
-.trust-item { display: flex; align-items: center; gap: 10px; font-size: 0.85rem; font-weight: 700; }
-.trust-item svg { width: 20px; height: 20px; color: var(--accent2); flex-shrink: 0; }
-.trust-item small { display: block; font-weight: 500; color: var(--muted); font-size: 0.74rem; }
-@media (min-width: 900px) { .trustbar .wrap { grid-template-columns: repeat(4, auto); justify-content: space-between; } }
-
-/* ── 3. OFFER + FORM ── */
-.offer h2 { margin-bottom: 10px; }
-.offer .sub { margin-bottom: 26px; }
-.lead-form { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 22px 18px 24px; }
-.lead-form .field { margin-bottom: 14px; }
-.lead-form label { display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 6px; }
-.lead-form label em { color: var(--accent2); font-style: normal; }
-.lead-form input, .lead-form select, .lead-form textarea {
-  width: 100%; min-height: 50px; padding: 13px 14px;
-  background: var(--bg); color: var(--text); border: 1px solid var(--border); border-radius: 10px;
-  font-family: var(--font); font-size: 1rem;
-}
-.lead-form textarea { min-height: 88px; resize: vertical; }
-.lead-form input:focus, .lead-form select:focus, .lead-form textarea:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
-.lead-form .err { display: none; color: #ff8b66; font-size: 0.78rem; margin-top: 5px; font-weight: 600; }
-.lead-form .field.bad input, .lead-form .field.bad select { border-color: #ff8b66; }
-.lead-form .field.bad .err { display: block; }
-.form-note { margin-top: 12px; font-size: 0.78rem; color: var(--muted); text-align: center; }
-.form-success { display: none; background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.35); border-radius: 12px; padding: 18px; margin-top: 14px; font-size: 0.92rem; line-height: 1.55; }
-.form-success strong { color: var(--green); }
-.form-success a { color: var(--accent2); font-weight: 700; }
-@media (min-width: 900px) {
-  .offer-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 56px; align-items: start; }
-  .lead-form { padding: 30px 30px 32px; }
-}
-
-/* ── 4. STEPS ── */
-.steps { border-top: 1px solid var(--border); background: var(--surface); }
-.steps h2 { margin-bottom: 26px; }
-.step-list { display: grid; gap: 12px; }
-.step { display: flex; gap: 14px; align-items: flex-start; background: var(--bg); border: 1px solid var(--border); border-radius: 14px; padding: 16px; }
-.step-num { width: 34px; height: 34px; border-radius: 10px; background: rgba(234,88,12,0.14); border: 1px solid rgba(234,88,12,0.3); color: var(--accent2); font-weight: 900; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 0.95rem; }
-.step strong { display: block; font-size: 0.98rem; margin-bottom: 2px; }
-.step p { font-size: 0.86rem; color: var(--muted); }
-@media (min-width: 900px) { .step-list { grid-template-columns: repeat(4, 1fr); } .step { flex-direction: column; } }
-
-/* ── 5. WORK ── */
-.work h2 { margin-bottom: 10px; }
-.work .sub { margin-bottom: 24px; }
-.work-grid { display: grid; gap: 14px; }
-.work-card { border-radius: 14px; overflow: hidden; border: 1px solid var(--border); background: var(--surface); }
-.work-card img { width: 100%; aspect-ratio: 1300 / 732; object-fit: cover; }
-.work-card figcaption { padding: 10px 14px; font-size: 0.8rem; color: var(--muted2); font-weight: 600; }
-.tv-row { margin-top: 22px; display: grid; gap: 16px; }
-.tv-frame { position: relative; border-radius: 14px; overflow: hidden; border: 1px solid var(--border); background: #000; aspect-ratio: 750 / 1000; max-width: 340px; margin: 0 auto; }
-.tv-frame video { width: 100%; height: 100%; object-fit: cover; }
-.tv-copy { align-self: center; }
-.tv-copy h3 { font-size: 1.2rem; font-weight: 800; margin-bottom: 8px; }
-.tv-copy p { font-size: 0.92rem; color: var(--muted2); }
-@media (min-width: 900px) {
-  .work-grid { grid-template-columns: 1fr 1fr; }
-  .tv-row { grid-template-columns: 340px 1fr; gap: 44px; margin-top: 34px; }
-}
-
-/* ── 6. OWNER ── */
-.owner { border-top: 1px solid var(--border); background: var(--surface); }
-.owner-grid { display: grid; gap: 22px; }
-.owner-photo { border-radius: 16px; overflow: hidden; border: 1px solid var(--border); max-width: 340px; }
-.owner-photo img { width: 100%; aspect-ratio: 680 / 907; object-fit: cover; }
-.owner h2 { margin-bottom: 12px; }
-.owner blockquote { font-size: 0.98rem; color: var(--muted2); line-height: 1.7; }
-.owner .sig { margin-top: 14px; font-weight: 800; }
-.owner .sig small { display: block; font-weight: 600; color: var(--accent2); font-size: 0.78rem; }
-@media (min-width: 900px) { .owner-grid { grid-template-columns: 340px 1fr; gap: 48px; align-items: center; } }
-
-/* ── 7. REVIEWS ── */
-.reviews h2 { margin-bottom: 22px; }
-.review-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 20px; margin-bottom: 14px; }
-.review-card .stars { color: #FBBC04; letter-spacing: 2px; font-size: 0.95rem; margin-bottom: 10px; }
-.review-card p { font-size: 0.94rem; color: var(--muted2); line-height: 1.6; margin-bottom: 12px; }
-.review-card footer { font-size: 0.82rem; font-weight: 700; }
-.review-card footer small { color: var(--muted); font-weight: 500; display: block; }
-@media (min-width: 900px) { .reviews-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; } .review-card { margin-bottom: 0; } }
-
-/* ── 8. FAQ ── */
-.faq { border-top: 1px solid var(--border); background: var(--surface); }
-.faq h2 { margin-bottom: 22px; }
-.faq details { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 10px; }
-.faq summary { list-style: none; cursor: pointer; padding: 16px 18px; min-height: 52px; display: flex; align-items: center; justify-content: space-between; gap: 12px; font-weight: 700; font-size: 0.95rem; }
-.faq summary::-webkit-details-marker { display: none; }
-.faq summary::after { content: '+'; color: var(--accent2); font-size: 1.3rem; font-weight: 800; flex-shrink: 0; }
-.faq details[open] summary::after { content: '\2212'; }
-.faq .faq-a { padding: 0 18px 16px; font-size: 0.9rem; color: var(--muted2); line-height: 1.6; }
-
-/* ── 9. AREAS ── */
-.areas h2 { margin-bottom: 14px; }
-.areas p { font-size: 0.95rem; color: var(--muted2); line-height: 1.9; }
-
-/* ── 10. FINAL CTA ── */
-.final { border-top: 1px solid var(--border); padding-bottom: 120px; padding-top: 52px; }
-.final-hero { position: relative; border-radius: 18px; overflow: hidden; border: 1px solid var(--border); min-height: 430px; display: flex; align-items: center; justify-content: center; text-align: center; box-shadow: 0 30px 70px rgba(0,0,0,0.5); }
-.final-hero > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.final-hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(15,15,15,0.9), rgba(15,15,15,0.42)); }
-.final-hero-inner { position: relative; z-index: 1; padding: 46px 22px; max-width: 600px; }
-.final-hero-inner h2 { margin-bottom: 10px; }
-.final-hero-inner p { color: var(--muted2); font-size: 0.98rem; margin-bottom: 26px; }
-.final-hero-inner .btn { width: 100%; }
-@media (min-width: 900px) { .final-hero { min-height: 500px; } .final-hero-inner { padding: 60px 40px; } .final-hero-inner .btn { width: auto; display: inline-flex; } }
-
-footer.page-foot { padding: 26px 0 110px; text-align: center; font-size: 0.75rem; color: var(--muted); }
-footer.page-foot a { color: var(--muted); }
-@media (min-width: 900px) { .final { padding-bottom: 76px; } footer.page-foot { padding-bottom: 30px; } }
-
-/* ── STICKY CALL BAR (mobile) ── */
-.callbar {
-  position: fixed; left: 0; right: 0; bottom: 0; z-index: 999;
-  display: none; grid-template-columns: 1fr 62px; gap: 10px;
-  padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
-  background: rgba(15,15,15,0.94); border-top: 1px solid var(--border); backdrop-filter: blur(10px);
-}
-.callbar.show { display: grid; }
-.callbar .call {
-  display: flex; align-items: center; justify-content: center; gap: 9px; min-height: 50px;
-  background: var(--accent); color: #fff; border-radius: 11px; font-weight: 800; font-size: 1rem; text-decoration: none;
-}
-.callbar .wa {
-  display: flex; align-items: center; justify-content: center; min-height: 50px;
-  background: #25D366; border-radius: 11px; text-decoration: none;
-}
-.callbar svg { width: 21px; height: 21px; fill: #fff; }
-@media (min-width: 900px) { .callbar { display: none !important; } }
-</style>
+<title>Free Demo Website for Your Trade Business | Innov8 Workflows</title>
+<meta name="description" content="See your new website before you pay a penny. Four quick questions and Jamie builds you a free branded demo from your real jobs. Live in 7 to 14 business days, from £85 a month."/>
+<meta name="robots" content="noindex, nofollow"/>
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="Innov8 Workflows"/>
+<meta property="og:title" content="See your new website before you pay a penny"/>
+<meta property="og:description" content="Four quick questions and Jamie builds you a free branded demo from your real jobs. No cost, no obligation."/>
+<meta property="og:url" content="https://innov8workflows.co.uk/lp/"/>
+<meta property="og:image" content="https://innov8workflows.co.uk/og-home-2.jpg"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://innov8workflows.co.uk/og-home-2.jpg"/>
+<meta name="theme-color" content="#0f0f0f"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Bricolage+Grotesque:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="lp.css?v=9af108b4"/>
+<link rel="preload" as="image" href="/innov8-logo-v2-clear-sm.webp"/>
 </head>
 <body>
 
-<!-- 1. HERO -->
-<header class="hero" id="hero">
-  <div class="wrap hero-grid">
-    <div>
-      <span class="eyebrow">Free demo first &middot; UK wide</span>
-      <h1>We build your business a new website <span>free</span>, before you pay a penny.</h1>
-      <p class="sub">Branded to your business, built from your real jobs, and designed to turn visitors into phone calls. See your free demo first, then go live in 7-14 business days.</p>
-      <a class="btn" href="#get-started">
-        Get My Free Demo Website
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-      </a>
-      <p class="hero-proof"><strong>★ 5.0</strong> rated on Google &middot; No long term contracts &middot; Cancel anytime</p>
-      <div class="hero-logos" aria-label="Some of the businesses we have built for">
-        <img src="logo-1.webp" alt="Derby and Nottingham Roofing logo" width="86" height="52" loading="lazy"/>
-        <img src="logo-2.webp" alt="JGS Construction logo" width="86" height="52" loading="lazy"/>
-        <img src="logo-3.webp" alt="Yorkshire Resin Driveways logo" width="86" height="52" loading="lazy"/>
-        <img src="logo-4.webp" alt="A2B Roofing and Scaffolding logo" width="86" height="52" loading="lazy"/>
-        <img src="logo-5.webp" alt="Roof Care of London logo" width="86" height="52" loading="lazy"/>
-      </div>
-    </div>
-    <div class="hero-video-frame">
-      <video id="heroVid" autoplay muted loop playsinline preload="auto" poster="hero-poster.jpg" aria-label="Showcase of branded local business websites built by Innov8 Workflows">
-        <source src="hero.mp4" type="video/mp4"/>
-      </video>
-      <button class="unmute-btn" id="unmuteBtn" type="button" aria-pressed="false" aria-label="Unmute video">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
-        <span id="unmuteLabel">Unmute</span>
-      </button>
-    </div>
+<header class="hdr">
+  <div class="wrap">
+    <span class="brand"><img src="/innov8-logo-v2-clear-sm.webp" alt="" width="34" height="34"/>Innov8 Workflows</span>
+    <span class="hdr-rate"><svg class="gm" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/><path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/><path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/><path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/></svg><span class="stars" aria-hidden="true">★★★★★</span>12 Google reviews</span>
+    <a class="hdr-call" href="tel:+447718155997" aria-label="Call Jamie on 07718 155997"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>Call</span><span class="num">07718 155997</span></a>
   </div>
 </header>
 
-<!-- 2. TRUST BAR -->
-<div class="trustbar" role="list" aria-label="Why businesses trust us">
-  <div class="wrap">
-    <div class="trust-item" role="listitem">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-      <div>5.0 on Google<small>Real client reviews</small></div>
-    </div>
-    <div class="trust-item" role="listitem">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
-      <div>Free demo first<small>Before any payment</small></div>
-    </div>
-    <div class="trust-item" role="listitem">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-      <div>Live in 7-14 days<small>Business days, from go ahead</small></div>
-    </div>
-    <div class="trust-item" role="listitem">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-      <div>No contracts<small>Cancel anytime</small></div>
-    </div>
-  </div>
+<div class="badges">
+  <ul class="wrap">
+    <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/></svg>Free demo before you pay</li>
+    <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Live in 7 to 14 business days</li>
+    <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>No long-term contract</li>
+    <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Founder-led, UK based</li>
+  </ul>
 </div>
 
-<!-- 3. OFFER + FORM -->
-<section class="offer" id="get-started">
-  <div class="wrap offer-grid">
-    <div>
-      <h2>Get a free branded demo website, <span>built from your real jobs.</span></h2>
-      <p class="sub">Tell us about your business and we will build you a free demo using your logo, your colours and photos of your actual work. You see exactly what you are getting before you spend anything.</p>
+<section class="hero">
+  <div class="wrap hero-in">
+    <div class="hero-copy">
+      <span class="eyebrow">Websites for local trades</span>
+      <h1>See your new website <em>before you pay a penny.</em></h1>
+      <p class="lead">Answer four quick questions and we will build you a free branded demo using your logo, your colours and photos of your real jobs. Love it, and it goes live in 7 to 14 business days. If not, you walk away owing nothing.</p>
     </div>
-    <form class="lead-form" id="leadForm" novalidate>
-      <div class="field">
-        <label for="f1-name">Your name <em>*</em></label>
-        <input id="f1-name" name="name" type="text" autocomplete="name" required/>
-        <span class="err">Please add your name.</span>
+
+    <div class="chips hero-proof">
+        <span class="chip"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>25+ trade websites launched</span>
+        <span class="chip"><svg class="gm" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/><path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/><path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/><path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/></svg>12 Google reviews</span>
+        <span class="chip"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"/><circle cx="12" cy="8" r="6"/></svg>From £85 a month</span>
       </div>
-      <div class="field">
-        <label for="f1-phone">Phone number <em>*</em></label>
-        <input id="f1-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required/>
-        <span class="err">Please add a phone number we can reach you on.</span>
+
+    <div class="qcard" id="quiz" data-quiz>
+      <div class="qhead"><b>Your free demo website</b><span class="qfree">No cost</span></div>
+      <div class="qtop">
+        <button class="qback" type="button" data-quiz-back hidden>&larr; Back</button>
+        <span class="qbar"><span data-quiz-fill></span></span>
+        <span class="qcount" data-quiz-count>Step 1 of 5</span>
       </div>
-      <div class="field">
-        <label for="f1-business">Business name <em>*</em></label>
-        <input id="f1-business" name="business" type="text" autocomplete="organization" required/>
-        <span class="err">Please add your business name.</span>
+
+      <div class="qstep on" data-step="1" data-key="trade" data-label="Trade">
+        <h2>What does your business do?</h2>
+        <p>Pick the closest match.</p>
+        <div class="qopts two">
+          <button class="opt" type="button" data-val="Roofing"><span class="em" aria-hidden="true">🏠</span>Roofing</button>
+          <button class="opt" type="button" data-val="Driveways and paving"><span class="em" aria-hidden="true">🧱</span>Driveways and paving</button>
+          <button class="opt" type="button" data-val="Building"><span class="em" aria-hidden="true">🏗️</span>Building</button>
+          <button class="opt" type="button" data-val="Plumbing and heating"><span class="em" aria-hidden="true">🔧</span>Plumbing and heating</button>
+          <button class="opt" type="button" data-val="Electrical"><span class="em" aria-hidden="true">⚡</span>Electrical</button>
+          <button class="opt" type="button" data-val="Another trade"><span class="em" aria-hidden="true">🛠️</span>Another trade</button>
+        </div>
       </div>
-      <div class="field">
-        <label for="f1-trade">What do you do? <em>*</em></label>
-        <select id="f1-trade" name="trade" required>
-          <option value="">Choose your trade...</option>
-          <option>Roofing</option>
-          <option>Driveways and Paving</option>
-          <option>Building and Construction</option>
-          <option>Joinery and Carpentry</option>
-          <option>Electrical</option>
-          <option>Plumbing and Heating</option>
-          <option>Landscaping</option>
-          <option>Other local business</option>
-        </select>
-        <span class="err">Please choose the closest match.</span>
+
+      <div class="qstep" data-step="2" data-key="website" data-label="Website now">
+        <h2>Do you have a website right now?</h2>
+        <p>No wrong answers. Most of our clients started with nothing.</p>
+        <div class="qopts">
+          <button class="opt" type="button" data-val="No website yet"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/></svg>No website yet</button>
+          <button class="opt" type="button" data-val="Only a Facebook page"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Only a Facebook page</button>
+          <button class="opt" type="button" data-val="Yes, but it looks dated"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>Yes, but it looks dated</button>
+          <button class="opt" type="button" data-val="Yes, but it brings in no work"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>Yes, but it brings in no work</button>
+        </div>
       </div>
-      <div class="field">
-        <label for="f1-msg">Anything else? (optional)</label>
-        <textarea id="f1-msg" name="message" rows="3"></textarea>
+
+      <div class="qstep" data-step="3" data-key="goal" data-label="Main goal">
+        <h2>What matters most to you?</h2>
+        <p>We shape the demo around it.</p>
+        <div class="qopts">
+          <button class="opt" type="button" data-val="More enquiries from my area"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>More enquiries from my area</button>
+          <button class="opt" type="button" data-val="Looking more professional than competitors"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"/><circle cx="12" cy="8" r="6"/></svg>Looking more professional than competitors</button>
+          <button class="opt" type="button" data-val="Less admin, every lead in one place"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>Less admin, every lead in one place</button>
+          <button class="opt" type="button" data-val="All of the above"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/></svg>All of the above</button>
+        </div>
       </div>
-      <input type="hidden" name="fbclid" class="fbclid-field" value=""/>
-      <button class="btn" type="submit">Get My Free Demo Website</button>
-      <p class="form-note">Sends to Jamie on WhatsApp. Same day reply during working hours. Prefer to talk? <a href="tel:+447718155997" style="color:var(--accent2);font-weight:700">Call 07718 155997</a></p>
-      <div class="form-success" role="status">
-        <strong>Thanks, opening WhatsApp now.</strong> Your details are pre-filled, just press send. If WhatsApp did not open, <a href="https://wa.me/447718155997" target="_blank" rel="noopener">tap here</a> or call <a href="tel:+447718155997">07718 155997</a>.
+
+      <div class="qstep" data-step="4" data-key="timing" data-label="Timing">
+        <h2>When would you like it live?</h2>
+        <p>Websites go live in 7 to 14 business days.</p>
+        <div class="qopts">
+          <button class="opt" type="button" data-val="As soon as possible"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>As soon as possible</button>
+          <button class="opt" type="button" data-val="In the next month or two"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>In the next month or two</button>
+          <button class="opt" type="button" data-val="Just seeing what is possible"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>Just seeing what is possible</button>
+        </div>
       </div>
-    </form>
+
+      <div class="qstep" data-step="5">
+        <h2>Where shall Jamie send your demo?</h2>
+        <p>He will reply on WhatsApp, usually the same day.</p>
+        <div class="fields">
+          <div class="pair">
+            <div class="field"><label for="q-name">First name <em>*</em></label><input id="q-name" data-f="name" type="text" autocomplete="given-name" enterkeyhint="next"/><span class="err">Please add your first name.</span></div>
+            <div class="field"><label for="q-phone">Mobile number <em>*</em></label><input id="q-phone" data-f="phone" type="tel" inputmode="tel" autocomplete="tel" enterkeyhint="next"/><span class="err">Please add a number we can reach you on.</span></div>
+          </div>
+          <div class="pair">
+            <div class="field"><label for="q-biz">Business name <em>*</em></label><input id="q-biz" data-f="business" type="text" autocomplete="organization" enterkeyhint="next"/><span class="err">Please add your business name.</span></div>
+            <div class="field"><label for="q-town">Town or area</label><input id="q-town" data-f="town" type="text" autocomplete="address-level2" enterkeyhint="done"/></div>
+          </div>
+          <input class="hp" data-hp type="text" name="company_website" tabindex="-1" autocomplete="off" aria-hidden="true"/>
+        </div>
+        <div class="qsend">
+          <a class="btn btn-wa" data-quiz-send="whatsapp" href="https://wa.me/447718155997" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>Send to Jamie on WhatsApp</a>
+          <a class="btn btn-text" href="tel:+447718155997">Prefer to talk? Call 07718 155997</a>
+        </div>
+        <p class="qsummary" data-quiz-summary></p>
+      </div>
+
+      <p class="qnote"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>Your details only go to Jamie. No spam, no obligation.</p>
+      <div class="qtrust">
+        <img src="img/jamie-onsite.webp" alt="" width="40" height="40" loading="lazy"/>
+        <p><b>Jamie Barlow, founder.</b> You deal with Jamie from the first message to launch day.</p>
+      </div>
+    </div>
+
+    <figure class="hero-vis">
+      <img src="img/hero-site.webp" alt="The Expert Roofing Services website on a laptop and a phone" width="960" height="539" fetchpriority="high"/>
+      <figcaption><span class="live-dot" aria-hidden="true"></span><span>Live now: <b>Expert Roofing Services</b>, Iver</span></figcaption>
+    </figure>
   </div>
 </section>
 
-<!-- 4. PROCESS -->
-<section class="steps">
+<section class="logos" aria-label="Trade businesses we have built websites for">
+  <p>Trusted by trade businesses across the UK</p>
+  <div class="marquee">
+    <img src="/partners/estewart.webp" alt="E Stewart Roofing" width="150" height="92" loading="lazy"/>
+    <img src="/partners/yorkshire.webp" alt="Yorkshire Resin Driveways" width="150" height="92" loading="lazy"/>
+    <img src="/partners/sparham.webp" alt="S. Sparham Electrical" width="150" height="92" loading="lazy"/>
+    <img src="/partners/redhart.webp" alt="Redhart Roofing" width="150" height="92" loading="lazy"/>
+    <img src="/partners/ksmithurst.webp" alt="K. Smithurst Building Contractors" width="150" height="92" loading="lazy"/>
+    <img src="/partners/jgs.webp" alt="JGS Construction" width="150" height="92" loading="lazy"/>
+    <img src="/partners/coburn.webp" alt="Coburn Roofing" width="150" height="92" loading="lazy"/>
+    <img src="/partners/midland.webp" alt="Midland Roof Shield" width="150" height="92" loading="lazy"/>
+    <img src="/partners/expert.webp" alt="Expert Roofing Services" width="150" height="92" loading="lazy"/>
+    <img src="/partners/roofersrus.webp" alt="Roofers R Us" width="150" height="92" loading="lazy"/>
+    <img src="/partners/jlambley.webp" alt="J. Lambley Plumbing and Heating" width="150" height="92" loading="lazy"/>
+    <img src="/partners/fairmont.webp" alt="Fairmont Roofing and Stonework" width="150" height="92" loading="lazy"/>
+    <img src="/partners/roofatech.webp" alt="Roof-A-Tech UK" width="150" height="92" loading="lazy"/>
+    <img src="/partners/a2b.webp" alt="A2B Roofing and Scaffolding" width="150" height="92" loading="lazy"/>
+    <img src="/partners/roofcare.webp" alt="Roof Care of London" width="150" height="92" loading="lazy"/>
+    <img src="/partners/aaa.webp" alt="Advanced Automated Access" width="150" height="92" loading="lazy"/>
+    <img src="/partners/stormguard.webp" alt="Storm Guard Roofing" width="150" height="92" loading="lazy"/>
+    <img src="/partners/williams.webp" alt="Williams Electrical" width="150" height="92" loading="lazy"/>
+    <img src="/partners/asap.webp" alt="ASAP Roofing" width="150" height="92" loading="lazy"/>
+    <img src="/partners/roofingdr.webp" alt="The Roofing Dr" width="150" height="92" loading="lazy"/>
+    <img src="/partners/derby.webp" alt="Derby and Nottingham Roofing" width="150" height="92" loading="lazy"/>
+    <img src="/partners/estewart.webp" alt="" width="150" height="92" loading="lazy" aria-hidden="true"/>
+    <img src="/partners/yorkshire.webp" alt="" width="150" height="92" loading="lazy" aria-hidden="true"/>
+    <img src="/partners/sparham.webp" alt="" width="150" height="92" loading="lazy" aria-hidden="true"/>
+    <img src="/partners/redhart.webp" alt="" width="150" height="92" loading="lazy" aria-hidden="true"/>
+    <img src="/partners/ksmithurst.webp" alt="" width="150" height="92" loading="lazy" aria-hidden="true"/>
+    <img src="/partners/jgs.webp" alt="" width="150" height="92" loading="lazy" aria-hidden="true"/>
+    <img src="/partners/coburn.webp" alt="" width="150" height="92" loading="lazy" aria-hidden="true"/>
+    <img src="/partners/midland.webp" alt="" width="150" height="92" loading="lazy" aria-hidden="true"/>
+    <img src="/partners/expert.webp" alt="" width="150" height="92" loading="lazy" aria-hidden="true"/>
+    <img src="/partners/roofersrus.webp" alt="" width="150" height="92" loading="lazy" aria-hidden="true"/>
+    <img src="/partners/jlambley.webp" alt="" width="150" height="92" loading="lazy" aria-hidden="true"/>
+    <img src="/partners/fairmont.webp" alt="" width="150" height="92" loading="lazy" aria-hidden="true"/>
+    <img src="/partners/roofatech.webp" alt="" width="150" height="92" loading="lazy" aria-hidden="true"/>
+    <img src="/partners/a2b.webp" alt="" width="150" height="92" loading="lazy" aria-hidden="true"/>
+    <img src="/partners/roofcare.webp" alt="" width="150" height="92" loading="lazy" aria-hidden="true"/>
+    <img src="/partners/aaa.webp" alt="" width="150" height="92" loading="lazy" aria-hidden="true"/>
+    <img src="/partners/stormguard.webp" alt="" width="150" height="92" loading="lazy" aria-hidden="true"/>
+    <img src="/partners/williams.webp" alt="" width="150" height="92" loading="lazy" aria-hidden="true"/>
+    <img src="/partners/asap.webp" alt="" width="150" height="92" loading="lazy" aria-hidden="true"/>
+    <img src="/partners/roofingdr.webp" alt="" width="150" height="92" loading="lazy" aria-hidden="true"/>
+    <img src="/partners/derby.webp" alt="" width="150" height="92" loading="lazy" aria-hidden="true"/>
+  </div>
+</section>
+
+<section class="band">
   <div class="wrap">
-    <h2>How it <span>works.</span></h2>
-    <div class="step-list">
-      <div class="step"><div class="step-num">1</div><div><strong>Tell us about your business</strong><p>30 seconds on the form above. That is all we need to get going.</p></div></div>
-      <div class="step"><div class="step-num">2</div><div><strong>We build your free demo</strong><p>Your logo, your colours, your real jobs. Built before you pay anything.</p></div></div>
-      <div class="step"><div class="step-num">3</div><div><strong>See it on a quick call</strong><p>We walk you through it and share clear pricing. No pressure either way.</p></div></div>
-      <div class="step"><div class="step-num">4</div><div><strong>Live in 7-14 business days</strong><p>Happy? We build the full site and take it live within 7-14 business days.</p></div></div>
+    <div class="center up">
+      <span class="eyebrow">How it works</span>
+      <h2>From a 30 second quiz to a website <em>that wins you work.</em></h2>
+    </div>
+    <div class="steps">
+      <div class="step up"><span class="n">01</span><b>Answer four quick questions</b><p>Takes about 30 seconds. Your answers go straight to Jamie on WhatsApp.</p></div>
+      <div class="step up"><span class="n">02</span><b>Get your free branded demo</b><p>Built with your logo, colours and photos of your real jobs. No cost and no commitment.</p></div>
+      <div class="step up"><span class="n">03</span><b>Live in 7 to 14 business days</b><p>We walk you through it, make your changes and launch it on your own domain.</p></div>
+      <div class="step up"><span class="n">04</span><b>Grow from there</b><p>Local SEO, Google and Facebook reviews, and when you are ready, a CRM and Meta ads.</p></div>
     </div>
   </div>
 </section>
 
-<!-- 5. RECENT WORK -->
-<section class="work">
+<section class="band alt">
   <div class="wrap">
-    <h2>Built for businesses <span>like yours.</span></h2>
-    <p class="sub">Real websites we have designed, built and launched for UK trade and local businesses.</p>
-    <div class="work-grid">
-      <figure class="work-card"><img src="work-1.webp" alt="Storm Guard Roofing and Building website on a laptop" width="700" height="394" loading="lazy"/><figcaption>Storm Guard Roofing and Building &middot; Dundee</figcaption></figure>
-      <figure class="work-card"><img src="work-2.webp" alt="Yorkshire Resin Driveways website on a laptop" width="700" height="394" loading="lazy"/><figcaption>Yorkshire Resin Driveways &middot; Yorkshire</figcaption></figure>
-      <figure class="work-card"><img src="work-5.webp" alt="E Stewart Roofing Ltd website on a laptop" width="700" height="394" loading="lazy"/><figcaption>E Stewart Roofing Ltd &middot; Glasgow and Ayrshire</figcaption></figure>
-      <figure class="work-card"><img src="work-4.webp" alt="JGS Construction website on a laptop" width="700" height="394" loading="lazy"/><figcaption>JGS Construction &middot; Derbyshire</figcaption></figure>
+    <div class="center up">
+      <span class="eyebrow">Recent builds</span>
+      <h2>Real websites for <em>real trade businesses.</em></h2>
+      <p class="sub">Every client sees a fully branded demo of their new site before they spend a penny.</p>
     </div>
-    <div class="tv-row">
-      <div class="tv-frame">
-        <video id="tvVid" muted loop playsinline preload="none" poster="transformation-poster.jpg" aria-label="Before and after transformation video of a real job">
-          <source src="transformation.mp4" type="video/mp4"/>
-        </video>
-      </div>
-      <div class="tv-copy">
-        <h3>Your work, turned into scroll-stopping video.</h3>
-        <p>Every website we build can include before and after transformation videos of your real jobs, like this one. They are the single most persuasive thing a potential customer can see, and they are what make your ads stop the scroll.</p>
-      </div>
+    <div class="work">
+      <figure class="up"><img src="img/work-estewart.webp" alt="E Stewart Roofing website" width="720" height="404" loading="lazy"/><figcaption><b>E Stewart Roofing Ltd</b><span>Roofing, Glasgow and Ayrshire</span></figcaption></figure>
+      <figure class="up"><img src="img/work-yorkshire.webp" alt="Yorkshire Resin Driveways website" width="720" height="404" loading="lazy"/><figcaption><b>Yorkshire Resin Driveways</b><span>Resin driveways, Yorkshire</span></figcaption></figure>
+      <figure class="up"><img src="img/work-sparham.webp" alt="S. Sparham Electrical website" width="720" height="404" loading="lazy"/><figcaption><b>S. Sparham Electrical</b><span>Electrical, Ripley and Derby</span></figcaption></figure>
+      <figure class="up"><img src="img/work-jlambley.webp" alt="J. Lambley Plumbing and Heating website" width="720" height="404" loading="lazy"/><figcaption><b>J. Lambley Plumbing and Heating</b><span>Plumbing and heating, Derbyshire</span></figcaption></figure>
+      <figure class="up"><img src="img/work-redhart.webp" alt="Redhart Roofing website" width="720" height="404" loading="lazy"/><figcaption><b>Redhart Roofing</b><span>Roofing, West London</span></figcaption></figure>
+      <figure class="up"><img src="img/work-roofersrus.webp" alt="Roofers R Us website" width="720" height="404" loading="lazy"/><figcaption><b>Roofers R Us Ltd</b><span>Roofing, Bromsgrove</span></figcaption></figure>
     </div>
   </div>
 </section>
 
-<!-- 6. MEET THE OWNER -->
-<section class="owner">
-  <div class="wrap owner-grid">
-    <div class="owner-photo">
-      <img src="owner.webp" alt="Jamie Barlow of Innov8 Workflows on a site visit with a client" width="480" height="640" loading="lazy"/>
+<section class="band">
+  <div class="wrap">
+    <div class="center up">
+      <span class="eyebrow">Simple pricing</span>
+      <h2>No big upfront bill. <em>One small monthly fee.</em></h2>
+      <p class="sub">Most businesses pay £2,000+ upfront for a website alone. You get the same result for a small monthly fee, and the demo is free.</p>
     </div>
-    <div>
-      <h2>Built by someone who <span>turns up.</span></h2>
-      <blockquote>I started Innov8 Workflows to help local businesses grow their online presence and look as professional online as they are on the job. Too many brilliant trades and local businesses get held back by outdated websites that fail to build trust or bring in enquiries. I design modern, conversion focused websites paired with eye catching before and after transformation videos that show off real work and turn visitors into booked jobs. Everything I build is centred on what actually grows a local business: more visibility, more trust, and more leads.</blockquote>
+    <div class="plans">
+      <div class="plan up">
+        <h3>Essentials</h3>
+        <div class="price"><b>£85</b><span>/month</span></div>
+        <div class="setup"><strong>£295</strong> one-time setup, domain included</div>
+        <p class="for">A premium website that gets you found.</p>
+        <ul>
+          <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Professional branded website</li>
+          <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Domain, hosting and support</li>
+          <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Organic SEO and GEO with regular enhancements</li>
+          <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Google and Facebook reviews on your site</li>
+          <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Before and after slider and hero video</li>
+          <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Click-to-call, WhatsApp and contact forms</li>
+        </ul>
+      </div>
+      <div class="plan best up">
+        <span class="flag">Best value</span>
+        <h3>Growth</h3>
+        <div class="price"><b>£295</b><span>/month</span></div>
+        <div class="setup"><strong>£495</strong> one-time setup</div>
+        <p class="for">Website, CRM and automation to win more work.</p>
+        <ul>
+          <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Everything in Essentials</li>
+          <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>CRM for every enquiry, quote and job</li>
+          <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Missed-call text-back</li>
+          <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Automated enquiry and quote follow-ups</li>
+          <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Review page, QR code and review requests</li>
+          <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Branded login and mobile app</li>
+        </ul>
+      </div>
+    </div>
+    <p class="plans-note">Both packages: no long-term contract, cancel any time. On Growth, phone numbers, calls, SMS and email usage are charged at cost.</p>
+  </div>
+</section>
+
+<section class="band alt">
+  <div class="wrap about">
+    <figure class="up">
+      <img src="img/jamie-onsite.webp" alt="Jamie Barlow on site with a client" width="560" height="560" loading="lazy"/>
+      <figcaption>On site with a client. Every build starts face to face.</figcaption>
+    </figure>
+    <div class="up">
+      <span class="eyebrow">Who you will deal with</span>
+      <h2>Hi, I'm Jamie. <em>You deal with me,</em> start to finish.</h2>
+      <p>Innov8 Workflows is founder-led. There are no account managers and no call centre: the person who answers your WhatsApp is the person who builds your website.</p>
+      <p>I build for roofers, builders, driveway firms, electricians and plumbers across the UK, and wherever I can, I turn up in person. Getting to know the business face to face is how every build starts.</p>
+      <ul class="ticks">
+        <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Custom-coded, no templates</li>
+        <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>No long-term contracts</li>
+        <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>UK based support</li>
+        <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Built from your real jobs</li>
+      </ul>
       <p class="sig">Jamie Barlow<small>Founder, Innov8 Workflows</small></p>
     </div>
   </div>
 </section>
 
-<!-- 7. REVIEWS -->
-<section class="reviews">
+<section class="band">
   <div class="wrap">
-    <h2>What clients <span>say.</span></h2>
-    <div class="reviews-grid">
-      <article class="review-card">
-        <div class="stars" aria-hidden="true">★★★★★</div>
-        <p>Since upgrading my website with Innov8 Workflows, I have had a crazy amount of phone calls and pre-filled WhatsApp forms come through the website, and finally coming through for other areas we cover but not had any exposure to with the last provider.</p>
-        <footer>Joe<small>JGS Construction &middot; Derbyshire &middot; Driveways</small></footer>
+    <div class="center up">
+      <span class="eyebrow">Reviews</span>
+      <h2>What business owners say about <em>working with Jamie.</em></h2>
+      <div class="rvsum"><span><svg class="gm" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/><path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/><path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/><path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/></svg>12 Google reviews</span><span><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#1877F2" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/><path fill="#fff" d="M16.671 15.543l.532-3.47h-3.328v-2.25c0-.949.465-1.874 1.956-1.874h1.513V4.996s-1.374-.235-2.686-.235c-2.741 0-4.533 1.662-4.533 4.669v2.643H7.078v3.47h3.047v8.385a12.137 12.137 0 003.75 0v-8.385h2.796z"/></svg>100% recommend on Facebook (12 reviews)</span></div>
+    </div>
+    <div class="rvrail">
+      <article class="rv up">
+        <div class="rv-top"><span class="stars" aria-label="5 out of 5 stars">★★★★★</span><svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/><path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/><path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/><path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/></svg></div>
+        <p>Jamie designed my website and he did an amazing job from start to finish. Gathering as much information he could and his key to detail was amazing. I felt like Jamie had a genuine interest in trying to benefit my business and he was always quick to respond whenever I had any questions. I'd definitely recommend him !</p>
+        <div><b>Stephen Sparham</b><small>Google review, August 2026</small></div>
       </article>
-      <!-- TODO: add 2 to 4 more real named reviews here (same card markup). Pull verbatim quotes
-           from the Google Business Profile once collected — do not paraphrase or invent. -->
+      <article class="rv up">
+        <div class="rv-top"><span class="stars" aria-label="5 out of 5 stars">★★★★★</span><svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/><path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/><path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/><path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/></svg></div>
+        <p>Jamie did an excellent job creating our website. He was professional, easy to work with, and always quick to respond. The website looks fantastic, works perfectly, and was delivered on time. I'd highly recommend Jamie to anyone looking for a high-quality website.</p>
+        <div><b>Kevin Smithurst</b><small>Google review, August 2026</small></div>
+      </article>
+      <article class="rv up">
+        <div class="rv-top"><span class="stars" aria-label="5 out of 5 stars">★★★★★</span><svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/><path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/><path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/><path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/></svg></div>
+        <p>Couldn't recommend enough. If you're wanting to grow your business in a hassle free but professional manner. Get in touch with jamie! Fantastic service</p>
+        <div><b>Jack Lambley</b><small>Google review, September 2026</small></div>
+      </article>
+      <article class="rv up">
+        <div class="rv-top"><span class="stars" aria-label="5 out of 5 stars">★★★★★</span><svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/><path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/><path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/><path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/></svg></div>
+        <p>Jamie is professional, and excellent at what he does, the website he has made for me is absolutely amazing and I can't wait to continue working with him.</p>
+        <div><b>Roof A Tech UK Limited</b><small>Google review, September 2026</small></div>
+      </article>
+      <article class="rv up">
+        <div class="rv-top"><span class="stars" aria-label="5 out of 5 stars">★★★★★</span><svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/><path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/><path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/><path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/></svg></div>
+        <p>Absolutely outstanding service from start to finish. Jamie is professional, friendly, and always willing to help. I previously had my website hosted with another provider, and Jamie handled the domain transfer seamlessly, liaising directly with the previous provider to ensure a smooth handover with no issues throughout the process. I wouldn't hesitate to recommend Jamie and his services to anyone considering them. A great experience all round.</p>
+        <div><b>Alfie Williams - Fairley</b><small>Google review, June 2026</small></div>
+      </article>
+      <article class="rv up">
+        <div class="rv-top"><span class="stars" aria-label="5 out of 5 stars">★★★★★</span><svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/><path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/><path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/><path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/></svg></div>
+        <p>Jamie is a very easy man to work with always keeps you in the loop replies straight away you won't find a better website man</p>
+        <div><b>Byron Doran</b><small>Google review, September 2026</small></div>
+      </article>
+    </div>
+    <p class="rvhint">Swipe for more reviews. Every one is real and reproduced word for word.</p>
+  </div>
+</section>
+
+<section class="band alt">
+  <div class="wrap">
+    <div class="center up">
+      <span class="eyebrow">Questions</span>
+      <h2>Good to know</h2>
+    </div>
+    <div class="faq">
+      <details><summary>Is the demo really free?</summary><p>Yes. We build your branded demo before you spend a penny. If it is not right for you, you walk away and owe nothing.</p></details>
+      <details><summary>How long until my website is live?</summary><p>7 to 14 business days from the go-ahead, including your changes.</p></details>
+      <details><summary>Am I tied into a contract?</summary><p>No. There is no long-term contract and you can cancel any time.</p></details>
+      <details><summary>What do I need to send you?</summary><p>Your logo if you have one, photos of your jobs and the areas you cover. We handle the rest, including your domain and hosting.</p></details>
+      <details><summary>Can you run Facebook and Instagram ads for me too?</summary><p>Yes. Once your website is live we can run Meta ad campaigns that send enquiries straight to you, and we only take on one business per trade, per area.</p></details>
     </div>
   </div>
 </section>
 
-<!-- 8. FAQ -->
-<section class="faq">
+<section class="final">
+  <img class="bg" src="img/final.webp" alt="" width="1280" height="720" loading="lazy"/>
   <div class="wrap">
-    <h2>Questions, <span>answered.</span></h2>
-    <details>
-      <summary>How much does a website cost?</summary>
-      <div class="faq-a">The demo is free, and we share clear pricing before you commit to anything. There are no hidden costs and nothing to pay until you have seen your demo and decided to go ahead.</div>
-    </details>
-    <details>
-      <summary>Is the free demo genuinely free?</summary>
-      <div class="faq-a">Yes. We build your branded demo before any payment and there is no obligation to go ahead. If it is not for you, no hard feelings.</div>
-    </details>
-    <details>
-      <summary>How long does it take?</summary>
-      <div class="faq-a">Your demo lands within days. Once you give the go ahead, your full website is built and live within 7-14 business days.</div>
-    </details>
-    <details>
-      <summary>My business is small. Is this still worth it?</summary>
-      <div class="faq-a">That is exactly who we build for. Sole traders and small local firms are most of our client base, and the whole point is winning you work you would otherwise miss.</div>
-    </details>
-    <details>
-      <summary>What if I already have a website?</summary>
-      <div class="faq-a">No problem. We rebuild and replace outdated sites all the time, including moving your domain over so your web address stays the same.</div>
-    </details>
-    <details>
-      <summary>Am I tied into a contract?</summary>
-      <div class="faq-a">No long term contracts. You can cancel anytime, and your site stays yours to keep working with whoever you choose.</div>
-    </details>
-  </div>
-</section>
-
-<!-- 9. AREAS -->
-<section class="areas">
-  <div class="wrap">
-    <h2>Areas we <span>cover.</span></h2>
-    <p>Derby &middot; Nottingham &middot; Leicester &middot; Mansfield &middot; Leeds &middot; Manchester &middot; Stockport &middot; Liverpool &middot; Morecambe &middot; Lancaster &middot; Evesham &middot; Worcester &middot; London &middot; Dundee &middot; and everywhere in between. We build for local businesses right across the UK.</p>
-  </div>
-</section>
-
-<!-- 10. FINAL CTA -->
-<section class="final" aria-label="Get started">
-  <div class="wrap">
-    <div class="final-hero">
-      <img src="final-cta.webp" alt="" width="1100" height="620" loading="lazy"/>
-      <div class="final-hero-inner">
-        <h2>Ready to see yours? <span>It costs nothing to look.</span></h2>
-        <p>A free branded demo website, built from your real jobs, before you pay a penny. Fill in the quick form and Jamie will get started.</p>
-        <a class="btn" href="#get-started">
-          Get My Free Demo Website
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>
-        </a>
-      </div>
+    <h2>Ready to see your <em>new website?</em></h2>
+    <p>Four quick questions, then Jamie builds your free demo. No cost and no obligation.</p>
+    <div class="btns">
+      <a class="btn btn-or" href="#quiz">Start my free demo</a>
+      <a class="btn btn-wa" href="https://wa.me/447718155997" target="_blank" rel="noopener" data-quiz-wa><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>WhatsApp Jamie</a>
+      <a class="btn btn-ghost" href="tel:+447718155997"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>07718 155997</a>
     </div>
   </div>
 </section>
 
-<footer class="page-foot">
-  <div class="wrap">
-    <p>&copy; 2026 Innov8 Workflows &middot; <a href="/privacy">Privacy Policy</a> &middot; <a href="/terms">Terms of Service</a> &middot; <a href="tel:+447718155997">07718 155997</a></p>
-  </div>
+<footer>
+  <img src="/innov8-logo-v2-clear-sm.webp" alt="Innov8 Workflows" width="30" height="30" loading="lazy"/>
+  <p>&copy; <span data-year>2026</span> Innov8 Workflows. Websites for local UK businesses.</p>
+  <p><a href="/privacy-policy.html">Privacy policy</a></p>
 </footer>
 
-<!-- STICKY CALL BAR (mobile, appears after the hero) -->
-<div class="callbar" id="callbar" aria-hidden="true">
-  <a class="call" href="tel:+447718155997">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.35-.11-.74-.03-1.02.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.21c.28-.27.36-.66.25-1.01-.37-1.12-.57-2.32-.57-3.57 0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.49c0-.55-.45-1-1-1z"/></svg>
-    Call 07718 155997
-  </a>
-  <a class="wa" href="https://wa.me/447718155997?text=Hi%20Jamie%2C%20I%27d%20like%20a%20free%20demo%20website" aria-label="Message us on WhatsApp">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.464 3.488"/></svg>
-  </a>
+<a class="wa-float" href="https://wa.me/447718155997" target="_blank" rel="noopener" aria-label="Message Jamie on WhatsApp" data-quiz-wa><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg></a>
+
+<div class="cc" id="cc" hidden>
+  <div class="wrap cc-in">
+    <p>We use optional cookies to measure which adverts work. Nothing is set unless you accept. <a href="/privacy-policy.html">Privacy policy</a></p>
+    <div class="cc-btns">
+      <button class="no" type="button" data-cc="no">Decline</button>
+      <button class="yes" type="button" data-cc="yes">Accept</button>
+    </div>
+  </div>
 </div>
 
-<script>
-(function () {
-  'use strict';
-
-  // ── fbclid capture: URL -> sessionStorage -> hidden fields ──
-  try {
-    var params = new URLSearchParams(window.location.search);
-    var fb = params.get('fbclid');
-    if (fb) sessionStorage.setItem('i8_fbclid', fb);
-    var stored = sessionStorage.getItem('i8_fbclid') || '';
-    document.querySelectorAll('.fbclid-field').forEach(function (f) { f.value = stored; });
-  } catch (e) { /* storage blocked: continue without it */ }
-
-  // ── Hero video unmute control ──
-  var vid = document.getElementById('heroVid');
-  var btn = document.getElementById('unmuteBtn');
-  var lbl = document.getElementById('unmuteLabel');
-  btn.addEventListener('click', function () {
-    vid.muted = !vid.muted;
-    var unmuted = !vid.muted;
-    lbl.textContent = unmuted ? 'Mute' : 'Unmute';
-    btn.setAttribute('aria-pressed', String(unmuted));
-    btn.setAttribute('aria-label', unmuted ? 'Mute video' : 'Unmute video');
-    if (unmuted) vid.play();
-  });
-
-  // ── Transformation video: play only while on screen ──
-  var tv = document.getElementById('tvVid');
-  if ('IntersectionObserver' in window && tv) {
-    new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (en.isIntersecting) { tv.play().catch(function(){}); } else { tv.pause(); }
-      });
-    }, { threshold: 0.35 }).observe(tv);
-  }
-
-  // ── Sticky call bar after the hero (mobile only via CSS) ──
-  var bar = document.getElementById('callbar');
-  var hero = document.getElementById('hero');
-  function updateBar() {
-    var past = hero.getBoundingClientRect().bottom < 0;
-    bar.classList.toggle('show', past);
-    bar.setAttribute('aria-hidden', String(!past));
-  }
-  window.addEventListener('scroll', updateBar, { passive: true });
-  window.addEventListener('resize', updateBar, { passive: true });
-  updateBar();
-
-  // ── Lead forms: validate, build WhatsApp message, success state ──
-  var WA = '447718155997';
-  function wireForm(form) {
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var ok = true;
-      ['name', 'phone', 'business', 'trade'].forEach(function (n) {
-        var input = form.querySelector('[name="' + n + '"]');
-        var field = input.closest('.field');
-        var bad = !input.value.trim();
-        if (n === 'phone' && !bad) bad = !/^[0-9+()\s-]{7,}$/.test(input.value.trim());
-        field.classList.toggle('bad', bad);
-        if (bad) ok = false;
-      });
-      if (!ok) {
-        var firstBad = form.querySelector('.field.bad input, .field.bad select');
-        if (firstBad) firstBad.focus();
-        return; // typed values are untouched
-      }
-      var v = function (n) { return form.querySelector('[name="' + n + '"]').value.trim(); };
-      var lines = [
-        'Hi Jamie, I would like a free demo website.',
-        '',
-        'Name: ' + v('name'),
-        'Phone: ' + v('phone'),
-        'Business: ' + v('business'),
-        'Trade: ' + v('trade')
-      ];
-      if (v('message')) { lines.push('', 'Notes: ' + v('message')); }
-      var fb = form.querySelector('.fbclid-field').value;
-      if (fb) lines.push('', 'Ref: fb-' + fb.slice(0, 18));
-      if (window.gtag) gtag('event', 'generate_lead', { method: 'lp_whatsapp_form' });
-      // TODO: when the Meta Pixel is installed, fire fbq('track', 'Lead') here too.
-      form.querySelector('.form-success').style.display = 'block';
-      window.open('https://wa.me/' + WA + '?text=' + encodeURIComponent(lines.join('\n')), '_blank', 'noopener');
-    });
-  }
-  wireForm(document.getElementById('leadForm'));
-})();
-</script>
+<script src="lp.js?v=28690149" defer></script>
 <script defer src="https://crm.innov8workflows.co.uk/track.js" data-id="proj_f5d3ac1edd12"></script>
-<script src="/cookie-consent.js"></script>
 </body>
 </html>

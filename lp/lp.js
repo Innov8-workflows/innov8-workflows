@@ -1,14 +1,10 @@
-/* Innov8 Workflows - Meta ad landing page behaviour. External on purpose:
-   no inline script on this page. */
+
+
 (function () {
   'use strict';
   var root = document.documentElement;
   root.classList.add('js');
 
-  /* ============ consent, trackers, event queue ============
-     Shares the main site's consent record, so a visitor who already chose on
-     innov8workflows.co.uk is not asked twice. Nothing measuring loads until
-     Accept. An empty data-pixel skips the Meta pixel entirely. */
   var gaId = root.getAttribute('data-ga') || '';
   var pxId = root.getAttribute('data-pixel') || '';
   var KEY = 'innov8_cookie_consent';
@@ -44,14 +40,14 @@
       }
     }
     if (pxId) {
-      /* eslint-disable */
+
       !function (f, b, e, v, n, t, s2) {
         if (f.fbq) return; n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
         if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = [];
         t = b.createElement(e); t.async = !0; t.src = v;
         s2 = b.getElementsByTagName(e)[0]; s2.parentNode.insertBefore(t, s2);
       }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
-      /* eslint-enable */
+
       window.fbq('init', pxId);
       window.fbq('track', 'PageView');
     }
@@ -89,9 +85,6 @@
     });
   }
 
-  /* ============ lead beacon ============
-     Inert until data-lead holds an Apps Script /exec URL. fetch + keepalive,
-     never sendBeacon. Not consent-gated: it stores nothing on the device. */
   var LEAD = root.getAttribute('data-lead') || '';
   window.sendLead = function (d) {
     if (!LEAD) return;
@@ -105,7 +98,6 @@
     } catch (e) {}
   };
 
-  /* ============ page bits ============ */
   var y = document.querySelector('[data-year]');
   if (y) y.textContent = new Date().getFullYear();
 
@@ -119,8 +111,6 @@
     Array.prototype.forEach.call(ups, function (el) { el.classList.add('in'); });
   }
 
-  /* Plain call / WhatsApp taps (not the quiz send buttons, which log their
-     own Lead - counting them here too would double one conversion). */
   document.addEventListener('click', function (e) {
     var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
     if (!a || a.hasAttribute('data-quiz-send')) return;
@@ -129,7 +119,6 @@
     else if (/^https:\/\/wa\.me\//.test(h) || a.hasAttribute('data-quiz-wa')) window.track('click_whatsapp', { link_url: 'wa.me' });
   }, true);
 
-  /* ============ the quiz ============ */
   var quiz = document.querySelector('[data-quiz]');
   if (!quiz) return;
   var WA = root.getAttribute('data-wa') || '';
@@ -242,7 +231,6 @@
     }, false);
   });
 
-  /* The floating WhatsApp button carries whatever has been answered so far. */
   var float = document.querySelector('[data-quiz-wa]');
   if (float) {
     float.addEventListener('click', function () {

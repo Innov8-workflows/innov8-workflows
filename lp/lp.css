@@ -83,12 +83,11 @@ h1,h2,h3{font-weight:800;letter-spacing:-.03em;line-height:1.05}
 .qstep>p{color:var(--muted);font-size:.86rem;margin-top:4px}
 .qopts{display:grid;gap:8px;margin-top:14px}
 .qopts.two{grid-template-columns:1fr 1fr}
-@media(max-width:419px){.qopts.two .opt{flex-direction:column;align-items:flex-start;gap:4px;min-height:64px;font-size:.88rem}}
+@media(max-width:419px){.qopts.two .opt{gap:9px;padding:10px;font-size:.86rem}}
 .opt{display:flex;align-items:center;gap:11px;width:100%;min-height:52px;padding:11px 14px;background:rgba(255,255,255,.04);border:1.5px solid rgba(255,255,255,.12);border-radius:12px;color:var(--text);font-size:.92rem;font-weight:600;text-align:left;cursor:pointer;transition:border-color .16s,background .16s,transform .12s;line-height:1.3}
 .opt:hover,.opt:focus-visible{border-color:var(--accent2);background:rgba(234,88,12,.12);outline:none}
 .opt:active{transform:translateY(1px)}
-.opt .em{font-size:1.15rem;width:24px;text-align:center;flex:none}
-.opt .ic{color:var(--accent2)}
+.opt .ic{width:34px;height:34px;padding:8px;border-radius:9px;color:var(--accent2);background:rgba(234,88,12,.12);border:1px solid rgba(249,115,22,.28);stroke-width:1.9}
 .fields{display:grid;gap:9px;margin-top:14px}
 .field label{display:block;font-size:.8rem;font-weight:600;color:var(--text2);margin-bottom:5px}
 .field label em{color:var(--accent2);font-style:normal}
@@ -102,8 +101,8 @@ h1,h2,h3{font-weight:800;letter-spacing:-.03em;line-height:1.05}
 .fields .pair{display:grid;gap:9px}
 .qsend{display:grid;gap:9px;margin-top:14px}
 .qsummary{margin-top:12px;font-size:.8rem;color:var(--muted);line-height:1.5}
-.qnote{display:flex;align-items:center;justify-content:center;gap:7px;margin-top:11px;font-size:.8rem;color:var(--muted);text-align:center}
-.qnote .ic{width:14px;height:14px}
+.qnote{display:block;margin-top:11px;font-size:.8rem;color:var(--muted);text-align:center;line-height:1.5}
+.qnote .ic{display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:6px}
 .qtrust{display:flex;align-items:center;gap:10px;margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
 .qtrust img{width:40px;height:40px;border-radius:50%;object-fit:cover;flex:none;border:2px solid rgba(249,115,22,.5)}
 .qtrust p{font-size:.82rem;color:var(--text2);line-height:1.4}

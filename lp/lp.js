@@ -85,6 +85,29 @@
     });
   }
 
+  var CRM = root.getAttribute('data-crm') || '';
+  var TYPES = { 'Roofing': 'Roofer', 'Driveways': 'Driveway', 'Electrical': 'Electrician', 'Construction': 'Builder', 'Landscaping': 'Landscaper', 'Joinery': 'Joiner', 'Plumbing and heating': 'Plumbing', 'Another trade': 'Other' };
+  window.sendCrm = function (d) {
+    if (!CRM) return;
+    try {
+      var body = {
+        form: 'free demo quiz, innov8workflows.co.uk/lp',
+        page: location.href,
+        referrer: document.referrer || '',
+        firstName: d.name,
+        phone: d.phone,
+        company: d.business,
+        town: d.town,
+        trade: d.trade,
+        businessType: TYPES[d.trade] || d.trade,
+        message: d.lines.join('\n'),
+        company_website: d.hp || ''
+      };
+      if (d.noWebsite) body.website = '';
+      fetch(CRM, { method: 'POST', mode: 'cors', keepalive: true, headers: { 'Content-Type': 'text/plain;charset=UTF-8' }, body: JSON.stringify(body) }).catch(function () {});
+    } catch (e) {}
+  };
+
   var LEAD = root.getAttribute('data-lead') || '';
   window.sendLead = function (d) {
     if (!LEAD) return;
@@ -144,6 +167,7 @@
   function val(k) { return F[k] ? F[k].value.trim() : ''; }
   var REQUIRED = ['name', 'phone', 'business'];
   var tried = false;
+  var logged = false;
 
   function show(n) {
     current = Math.min(Math.max(n, 1), TOTAL);
@@ -219,7 +243,19 @@
       }
       if (hp && hp.value) { e.preventDefault(); return; }
       render();
+      if (logged) return;
+      logged = true;
       var parts = KEYS.map(function (k2) { return answers[k2] ? LABELS[k2] + ': ' + answers[k2] : ''; }).filter(Boolean);
+      var how = btn.getAttribute('data-quiz-send') === 'sms' ? 'text message' : 'WhatsApp';
+      window.sendCrm({
+        name: val('name'),
+        phone: val('phone'),
+        business: val('business'),
+        town: val('town'),
+        trade: answers.trade || '',
+        noWebsite: /^(No website yet|Only a Facebook page)$/.test(answers.website || ''),
+        lines: parts.concat(['Chose to send by: ' + how])
+      });
       window.sendLead({
         type: 'Quote funnel',
         name: val('name'),

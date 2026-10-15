@@ -122,6 +122,7 @@
   var quiz = document.querySelector('[data-quiz]');
   if (!quiz) return;
   var WA = root.getAttribute('data-wa') || '';
+  var SMS = root.getAttribute('data-sms') || '';
   var steps = quiz.querySelectorAll('.qstep');
   var fill = quiz.querySelector('[data-quiz-fill]');
   var count = quiz.querySelector('[data-quiz-count]');
@@ -173,6 +174,8 @@
     }
     var wa = quiz.querySelector('[data-quiz-send="whatsapp"]');
     if (wa) wa.href = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(message());
+    var sms = quiz.querySelector('[data-quiz-send="sms"]');
+    if (sms) sms.href = 'sms:' + SMS + '?&body=' + encodeURIComponent(message());
   }
 
   function phoneOk(p) { return p.replace(/[^\d]/g, '').length >= 10; }
@@ -231,12 +234,6 @@
     }, false);
   });
 
-  var float = document.querySelector('[data-quiz-wa]');
-  if (float) {
-    float.addEventListener('click', function () {
-      float.href = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(message());
-    });
-  }
 
   show(1);
 })();

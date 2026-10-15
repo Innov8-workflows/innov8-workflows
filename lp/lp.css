@@ -252,3 +252,5 @@ body.cc-open .wa-float{bottom:calc(16px + var(--cc-h,120px))}
 .eyebrow,.qcount,.logos p{font-size:.8rem}
 .qfree,.plan .flag{font-size:.8rem}
 @media(max-width:879px){.work figure:nth-child(n+5){display:none}}
+.hdr-short{display:none}
+@media(max-width:400px){.hdr-long{display:none}.hdr-short{display:inline}.brand{font-size:.98rem}.hdr-call{padding:0 14px}}

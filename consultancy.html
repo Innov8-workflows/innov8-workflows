@@ -3,14 +3,15 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://www.googletagmanager.com https://crm.innov8workflows.co.uk https://cdn.jsdelivr.net https://*.leadconnectorhq.com https://*.msgsndr.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://fonts.bunny.net https://*.leadconnectorhq.com https://*.msgsndr.com; font-src 'self' data: https://fonts.gstatic.com https://fonts.bunny.net https://*.leadconnectorhq.com https://*.msgsndr.com; img-src 'self' data: blob: https://www.googletagmanager.com https://*.google-analytics.com https://*.filesafe.space https://storage.googleapis.com https://*.leadconnectorhq.com https://*.msgsndr.com; media-src 'self' blob: https://*.filesafe.space https://*.leadconnectorhq.com https://*.msgsndr.com; connect-src 'self' https://challenges.cloudflare.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com https://crm.innov8workflows.co.uk https://*.filesafe.space https://*.firebaseio.com wss://*.firebaseio.com https://firestore.googleapis.com wss://*.leadconnectorhq.com wss://*.msgsndr.com https://*.leadconnectorhq.com https://*.msgsndr.com; frame-src https://challenges.cloudflare.com https://*.leadconnectorhq.com https://*.msgsndr.com; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self' https://wa.me"/>
+<meta name="referrer" content="strict-origin-when-cross-origin"/>
 <link rel="icon" href="/favicon.ico" sizes="48x48"/>
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png"/>
 <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png"/>
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
-<!-- Google tag (gtag.js) — GA4 + conversion events -->
+
 <script>
-  // GA4 is consent-gated (UK PECR): nothing loads and no cookies are set until
-  // analytics cookies are accepted in the banner (cookie-consent.js).
+
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
@@ -24,7 +25,7 @@
     s.src = 'https://www.googletagmanager.com/gtag/js?id=G-LFEDCY725K';
     document.head.appendChild(s);
   };
-  // Conversion events — delegated so they cover every tel:/WhatsApp link on the page
+
   document.addEventListener('click', function(e){
     var t = e.target.closest && e.target.closest('a[href^="tel:"], a[href*="wa.me"]');
     if (!t) return;
@@ -98,7 +99,6 @@ section { position: relative; z-index: 1; }
 .section-title { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 16px; }
 .section-desc { color: var(--muted2); font-size: 1rem; max-width: 520px; line-height: 1.7; }
 
-/* FREE CONSULT HERO BAND */
 .consult-hero { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 0 48px 80px; }
 .consult-hero-card { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 56px 64px; display: grid; grid-template-columns: auto 1fr auto; gap: 48px; align-items: center; position: relative; overflow: hidden; }
 .consult-hero-card::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle, #2a2a2a 1px, transparent 1px); background-size: 24px 24px; opacity: 0.4; }
@@ -114,7 +114,6 @@ section { position: relative; z-index: 1; }
 .consult-hero-cta .btn-primary { white-space: nowrap; }
 .consult-hero-cta small { font-family: var(--font-mono); font-size: 0.65rem; color: var(--muted); letter-spacing: 0.05em; text-align: center; }
 
-/* WHAT TO EXPECT */
 .expect-section { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 0 48px 100px; }
 .expect-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 48px; }
 .expect-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 32px; transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s; }
@@ -124,7 +123,6 @@ section { position: relative; z-index: 1; }
 .expect-card p { font-size: 0.875rem; color: var(--muted2); line-height: 1.65; }
 .expect-duration { display: inline-flex; align-items: center; gap: 6px; margin-top: 16px; font-family: var(--font-mono); font-size: 0.62rem; color: var(--muted); padding: 3px 10px; background: var(--surface2); border: 1px solid var(--border); border-radius: 100px; }
 
-/* WHAT WE COVER */
 .cover-section { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); position: relative; z-index: 1; }
 .cover-inner { max-width: 1100px; margin: 0 auto; padding: 100px 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
 .cover-list { display: flex; flex-direction: column; gap: 0; margin-top: 32px; }
@@ -134,7 +132,6 @@ section { position: relative; z-index: 1; }
 .cover-item h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; letter-spacing: -0.01em; }
 .cover-item p { font-size: 0.85rem; color: var(--muted2); line-height: 1.6; }
 
-/* CALL VISUAL */
 .call-visual { background: var(--bg); border: 1px solid var(--border); border-radius: 16px; padding: 28px; position: relative; overflow: hidden; }
 .call-visual::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle, #2a2a2a 1px, transparent 1px); background-size: 20px 20px; opacity: 0.4; }
 .call-visual-inner { position: relative; z-index: 1; }
@@ -151,7 +148,6 @@ section { position: relative; z-index: 1; }
 .call-footer-tag { font-family: var(--font-mono); font-size: 0.62rem; color: var(--node-green); }
 .call-footer-time { font-family: var(--font-mono); font-size: 0.62rem; color: var(--muted); }
 
-/* PRICING PHILOSOPHY */
 .pricing-section { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 100px 48px; }
 .pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 48px; }
 .pricing-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 36px; }
@@ -163,7 +159,6 @@ section { position: relative; z-index: 1; }
 .pricing-line { display: flex; align-items: center; gap: 8px; font-size: 0.82rem; color: var(--muted2); }
 .pricing-line::before { content: '✓'; color: var(--node-green); font-weight: 700; flex-shrink: 0; }
 
-/* TESTIMONIAL / TRUST */
 .trust-section { background: var(--surface); border-top: 1px solid var(--border); position: relative; z-index: 1; }
 .trust-inner { max-width: 1100px; margin: 0 auto; padding: 80px 48px; }
 .trust-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 48px; }
@@ -172,7 +167,6 @@ section { position: relative; z-index: 1; }
 .trust-label { font-size: 0.85rem; font-weight: 600; margin-bottom: 6px; }
 .trust-desc { font-size: 0.8rem; color: var(--muted2); line-height: 1.5; }
 
-/* CONTACT FORM AREA */
 .contact-section { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 100px 48px; }
 .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; margin-top: 48px; }
 .contact-info { display: flex; flex-direction: column; gap: 32px; }
@@ -201,7 +195,6 @@ section { position: relative; z-index: 1; }
 .jotform-wrap iframe { display: block; border-radius: 12px; }
 .form-note { font-family: var(--font-mono); font-size: 0.62rem; color: var(--muted); text-align: center; margin-top: 12px; letter-spacing: 0.04em; }
 
-
   .footer-links { display: flex; gap: 24px; }
   .footer-links a { font-family: var(--font-mono); font-size: 0.68rem; color: var(--muted); text-decoration: none; transition: color 0.2s; letter-spacing: 0.04em; }
   .footer-links a:hover { color: var(--accent); }
@@ -209,7 +202,6 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 .footer-logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 0.95rem; color: var(--muted2); text-decoration: none; }
 .footer-right { font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted); letter-spacing: 0.05em; }
 
-/* ── MOBILE NAV ── */
 .nav-hamburger { display: none; background: none; border: none; color: var(--text); cursor: pointer; padding: 8px; z-index: 101; }
 .nav-hamburger svg { width: 24px; height: 24px; }
 .mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 99; background: rgba(15,15,15,0.97); backdrop-filter: blur(16px); flex-direction: column; align-items: center; justify-content: center; gap: 0; }
@@ -237,8 +229,6 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
   footer { flex-direction: column; gap: 16px; text-align: center; padding: 32px 24px; }
 }
 
-/* WHATSAPP-REDIRECT ENQUIRY FORM (form submits by opening WhatsApp with the
-   answers pre-filled into the message body, instead of POSTing to a server) */
 .wa-form-card { background: linear-gradient(160deg, rgba(37,211,102,0.06) 0%, var(--surface) 60%); border: 1px solid rgba(37,211,102,0.25); border-radius: 16px; overflow: hidden; }
 .wa-form-head { padding: 28px 36px 16px; border-bottom: 1px solid var(--border); }
 .wa-form-tag { font-family: var(--font-mono); font-size: 0.68rem; color: #25D366; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px; display: inline-flex; align-items: center; gap: 8px; }
@@ -247,7 +237,7 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 .wa-form-card h3 { font-size: 1.3rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 6px; }
 .wa-form-card h3 span { color: #25D366; }
 .wa-form-card .wa-form-sub { font-size: 0.875rem; color: var(--muted2); line-height: 1.55; }
-/* Form fields */
+
 #innov8-enquiry-form { display: flex; flex-direction: column; gap: 16px; padding: 28px 36px 32px; }
 .cf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .cf-field { display: flex; flex-direction: column; gap: 6px; }
@@ -270,7 +260,6 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 .cf-error-msg { background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); border-radius: 8px; padding: 12px 16px; font-size: 0.85rem; color: #ef4444; }
 @media (max-width: 600px) { .cf-row { grid-template-columns: 1fr; } #innov8-enquiry-form { padding: 24px 22px 28px; } .wa-form-head { padding: 24px 22px 14px; } }
 
-/* ── ANOMALOUS MATTER HERO ── */
 .matter-hero { position: relative; z-index: 1; width: 100%; height: 100vh; min-height: 600px; overflow: hidden; background: #000; }
 #matterMount { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; }
 .matter-hero-grad { position: absolute; inset: 0; z-index: 1; pointer-events: none;
@@ -281,7 +270,6 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 .matter-hero-content p { font-size: 1rem; color: var(--muted2); max-width: 520px; margin: 0 auto; line-height: 1.7; }
 .matter-hero .hero-word { display: inline-block; opacity: 0; animation: fadeUp 0.6s ease forwards; }
 
-/* 6-link nav: collapse to hamburger a little earlier so links never crowd */
 @media (max-width: 1150px) { .nav-links { gap: 20px; } }
 @media (max-width: 1045px) { .nav-links { display: none; } .nav-hamburger { display: block; } }
 </style>
@@ -323,7 +311,6 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
   <a href="tel:+447718155997" class="mobile-cta" style="display:inline-flex;align-items:center;gap:10px"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.35-.11-.74-.03-1.02.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.21c.28-.27.36-.66.25-1.01-.37-1.12-.57-2.32-.57-3.57 0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.49c0-.55-.45-1-1-1z"/></svg>07718 155997</a>
 </div>
 
-<!-- Anomalous Matter Hero -->
 <div class="matter-hero">
   <div id="matterMount"></div>
   <div class="matter-hero-grad"></div>
@@ -343,7 +330,6 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
   <span style="color:var(--text)">Consultancy</span>
 </div>
 
-<!-- FREE CONSULT HERO -->
 <div class="consult-hero reveal" id="contact">
   <div class="consult-hero-card">
     <div class="consult-hero-photo">
@@ -361,7 +347,6 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
   </div>
 </div>
 
-<!-- JOTFORM ENQUIRY -->
 <div class="consult-hero reveal" style="margin-top:0;padding-top:0;">
   <div style="max-width:1100px;margin:0 auto;padding:0 48px 48px;">
     <div class="wa-form-card">
@@ -464,7 +449,7 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
             var message   = (data.get('message')   || '').toString().trim();
             var businessType = (data.get('businessType') || '').toString().trim();
             var website = (data.get('website') || '').toString().trim();
-            // Required-field validation (phone is optional)
+
             var errorEl = document.getElementById('cf-error');
             if (!firstName || !lastName || !email || !company || !businessType || !service || !message) {
               errorEl.style.display = 'block';
@@ -477,7 +462,7 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
               businessType: businessType, website: website, service: service, message: message, company_website: (data.get('company_website') || '').toString()
             });
             if (window.gtag) gtag('event', 'generate_lead', { method: 'whatsapp_form' });
-            // Build the WhatsApp message body
+
             var lines = [
               'Hi Jamie — new enquiry via innov8workflows.co.uk',
               '',
@@ -495,11 +480,11 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
             lines.push('Project details:');
             lines.push(message);
             var text = encodeURIComponent(lines.join('\n'));
-            // Open WhatsApp — wa.me works on both desktop (web) and mobile (app)
+
             window.open('https://wa.me/' + WA_NUMBER + '?text=' + text, '_blank', 'noopener');
           });
         })();
-      </script>
+</script>
     </div>
   </div>
 </div>
@@ -553,7 +538,6 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-// ── ANOMALOUS MATTER HERO (Three.js Wireframe Icosahedron) ───
 (function() {
   var mount = document.getElementById('matterMount');
   if (!mount) return;
@@ -582,7 +566,6 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
     renderer.setPixelRatio(isMobile ? 1 : Math.min(window.devicePixelRatio, 2));
     mount.appendChild(renderer.domElement);
 
-    // Brand orange wireframe with arcane pink fresnel glow
     var geo = new THREE.IcosahedronGeometry(1.2, isMobile ? 16 : 64);
     var mat = new THREE.ShaderMaterial({
       uniforms: {
@@ -688,7 +671,6 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 <script src="cookie-consent.js"></script>
 <script src="enquiry.js"></script>
 
-<!-- Innov8 CRM analytics -->
 <script defer src="https://crm.innov8workflows.co.uk/track.js" data-id="proj_f5d3ac1edd12"></script>
 <script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6ac2862dd8dc776960edd22d"></script>
 </body>

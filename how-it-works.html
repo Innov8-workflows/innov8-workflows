@@ -3,14 +3,15 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://www.googletagmanager.com https://crm.innov8workflows.co.uk https://cdn.jsdelivr.net https://*.leadconnectorhq.com https://*.msgsndr.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://fonts.bunny.net https://*.leadconnectorhq.com https://*.msgsndr.com; font-src 'self' data: https://fonts.gstatic.com https://fonts.bunny.net https://*.leadconnectorhq.com https://*.msgsndr.com; img-src 'self' data: blob: https://www.googletagmanager.com https://*.google-analytics.com https://*.filesafe.space https://storage.googleapis.com https://*.leadconnectorhq.com https://*.msgsndr.com; media-src 'self' blob: https://*.filesafe.space https://*.leadconnectorhq.com https://*.msgsndr.com; connect-src 'self' https://challenges.cloudflare.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com https://crm.innov8workflows.co.uk https://*.filesafe.space https://*.firebaseio.com wss://*.firebaseio.com https://firestore.googleapis.com wss://*.leadconnectorhq.com wss://*.msgsndr.com https://*.leadconnectorhq.com https://*.msgsndr.com; frame-src https://challenges.cloudflare.com https://*.leadconnectorhq.com https://*.msgsndr.com; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self' https://wa.me"/>
+<meta name="referrer" content="strict-origin-when-cross-origin"/>
 <link rel="icon" href="/favicon.ico" sizes="48x48"/>
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png"/>
 <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png"/>
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
-<!-- Google tag (gtag.js) — GA4 + conversion events -->
+
 <script>
-  // GA4 is consent-gated (UK PECR): nothing loads and no cookies are set until
-  // analytics cookies are accepted in the banner (cookie-consent.js).
+
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
@@ -24,7 +25,7 @@
     s.src = 'https://www.googletagmanager.com/gtag/js?id=G-LFEDCY725K';
     document.head.appendChild(s);
   };
-  // Conversion events — delegated so they cover every tel:/WhatsApp link on the page
+
   document.addEventListener('click', function(e){
     var t = e.target.closest && e.target.closest('a[href^="tel:"], a[href*="wa.me"]');
     if (!t) return;
@@ -92,7 +93,6 @@ section { position: relative; z-index: 1; }
 .btn-ghost { color: var(--muted2); padding: 14px 24px; border-radius: 8px; font-weight: 500; font-size: 0.95rem; text-decoration: none; border: 1px solid var(--border); transition: color 0.2s, border-color 0.2s, transform 0.15s; display: inline-block; }
 .btn-ghost:hover { color: var(--text); border-color: var(--muted); transform: translateY(-2px); }
 
-/* PHASE STEPS */
 .phases { max-width: 1100px; margin: 0 auto; padding: 0 48px 100px; position: relative; z-index: 1; }
 
 .phase { display: grid; grid-template-columns: 280px 1fr; gap: 64px; padding: 64px 0; border-bottom: 1px solid var(--border); align-items: start; }
@@ -108,11 +108,9 @@ section { position: relative; z-index: 1; }
 
 .phase-right { display: flex; flex-direction: column; gap: 16px; }
 
-/* Phase media shot (onboarding form screenshot) */
 .phase-shot { max-width: 360px; margin: 0 auto; border-radius: 14px; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 18px 50px rgba(0,0,0,0.45); line-height: 0; background: #f7f5f1; }
 .phase-shot img { width: 100%; height: auto; display: block; }
 
-/* Dark vs light theme comparison (review & go-live) */
 .theme-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 .tc-mock { border-radius: 12px; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 14px 40px rgba(0,0,0,0.35); }
 .tc-bar { display: flex; gap: 5px; padding: 8px 10px; border-bottom: 1px solid rgba(128,128,128,0.18); }
@@ -144,7 +142,6 @@ section { position: relative; z-index: 1; }
 .tc-light .tc-label { color: #8a857c; }
 @media (max-width: 520px) { .theme-compare { grid-template-columns: 1fr; } }
 
-/* Final hero CTA (final-CTA-hero-v2.webp) */
 .final-cta { position: relative; overflow: hidden; border-top: 1px solid var(--border); min-height: 640px; display: flex; align-items: flex-end; justify-content: center; text-align: center; padding: 380px 24px 100px; }
 .final-cta-bg { position: absolute; inset: 0; z-index: 0; background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('final-CTA-hero-v2.webp') center top/cover no-repeat; }
 .final-cta-edge { position: absolute; inset: 0; z-index: 1; pointer-events: none; background:
@@ -167,13 +164,11 @@ section { position: relative; z-index: 1; }
 .step-card-footer { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border); font-family: var(--font-mono); font-size: 0.65rem; color: var(--muted); letter-spacing: 0.05em; display: flex; align-items: center; gap: 6px; }
 .step-card-footer span { color: var(--node-green); }
 
-/* TIMELINE CONNECTOR */
 .connector { display: flex; align-items: center; gap: 12px; padding: 0 32px; }
 .connector-line { flex: 1; height: 1px; background: var(--border); }
 .connector-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); flex-shrink: 0; animation: pulse 2s infinite; }
 @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
 
-/* FLEXIBLE ROUTES */
 .routes { max-width: 1100px; margin: 0 auto; padding: 0 48px 100px; position: relative; z-index: 1; }
 .routes-header { margin-bottom: 48px; }
 .section-label { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
@@ -193,7 +188,6 @@ section { position: relative; z-index: 1; }
 .route-step { display: flex; align-items: center; gap: 10px; font-size: 0.82rem; color: var(--muted2); }
 .route-step::before { content: '→'; color: var(--accent); font-weight: 700; flex-shrink: 0; }
 
-/* FAQ */
 .faq-section { background: var(--surface); border-top: 1px solid var(--border); position: relative; z-index: 1; }
 .faq-inner { max-width: 1100px; margin: 0 auto; padding: 100px 48px; }
 .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 48px; }
@@ -202,14 +196,12 @@ section { position: relative; z-index: 1; }
 .faq-q { font-size: 0.92rem; font-weight: 700; color: var(--text); margin-bottom: 10px; line-height: 1.4; }
 .faq-a { font-size: 0.85rem; color: var(--muted2); line-height: 1.65; }
 
-/* CTA */
 .cta-band { border-top: 1px solid var(--border); position: relative; z-index: 1; }
 .cta-band-inner { max-width: 1100px; margin: 0 auto; padding: 80px 48px; display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
 .cta-band h2 { font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; }
 .cta-band h2 span { color: var(--accent); }
 .cta-band p { color: var(--muted2); font-size: 0.95rem; line-height: 1.6; margin-top: 10px; max-width: 420px; }
 .cta-band-actions { display: flex; gap: 14px; align-items: center; flex-shrink: 0; }
-
 
   .footer-links { display: flex; gap: 24px; }
   .footer-links a { font-family: var(--font-mono); font-size: 0.68rem; color: var(--muted); text-decoration: none; transition: color 0.2s; letter-spacing: 0.04em; }
@@ -218,7 +210,6 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 .footer-logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 0.95rem; color: var(--muted2); text-decoration: none; }
 .footer-right { font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted); letter-spacing: 0.05em; }
 
-/* ── MOBILE NAV ── */
 .nav-hamburger { display: none; background: none; border: none; color: var(--text); cursor: pointer; padding: 8px; z-index: 101; }
 .nav-hamburger svg { width: 24px; height: 24px; }
 .mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 99; background: rgba(15,15,15,0.97); backdrop-filter: blur(16px); flex-direction: column; align-items: center; justify-content: center; gap: 0; }
@@ -246,7 +237,6 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
   footer { flex-direction: column; gap: 16px; text-align: center; padding: 32px 24px; }
 }
 
-/* ── PROGRESSIVE VIDEO HERO ── */
 .prog-hero { position: relative; z-index: 1; width: 100%; min-height: 100vh; overflow: hidden; display: flex; align-items: center; justify-content: flex-start; }
 .prog-hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
 .prog-hero-dim { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.72)); z-index: 1; }
@@ -264,12 +254,9 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 .prog-hero .hero-word { display: inline-block; opacity: 0; animation: fadeUp 0.6s ease forwards; }
 .prog-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(234,88,12,0.1); border: 1px solid rgba(234,88,12,0.3); border-radius: 100px; padding: 8px 18px; font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent2); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 28px; backdrop-filter: blur(8px); }
 
-/* 6-link nav: collapse to hamburger a little earlier so links never crowd */
 @media (max-width: 1150px) { .nav-links { gap: 20px; } }
 @media (max-width: 1045px) { .nav-links { display: none; } .nav-hamburger { display: block; } }
 
-/* Keep the hero copy off the laptop screen in the photo: dark on the left
-   where the text sits, and on phones the photo becomes a banner above the copy */
 .prog-hero-dim { background: linear-gradient(90deg, rgba(12,12,12,0.94) 0%, rgba(12,12,12,0.84) 36%, rgba(12,12,12,0.4) 60%, rgba(12,12,12,0.18) 100%), linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.5)); }
 .prog-hero-content p { max-width: 520px; }
 @media (max-width: 900px) {
@@ -317,7 +304,6 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
   <a href="tel:+447718155997" class="mobile-cta" style="display:inline-flex;align-items:center;gap:10px"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.35-.11-.74-.03-1.02.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.21c.28-.27.36-.66.25-1.01-.37-1.12-.57-2.32-.57-3.57 0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.49c0-.55-.45-1-1-1z"/></svg>07718 155997</a>
 </div>
 
-<!-- Driveway image hero -->
 <div class="prog-hero">
   <img class="prog-hero-video" src="driveway-hero.webp" alt="A branded local business website built by Innov8 Workflows"/>
   <div class="prog-hero-dim"></div>
@@ -339,7 +325,6 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
   <span style="color:var(--text)">How It Works</span>
 </div>
 
-<!-- THE 7 PHASES -->
 <div class="phases">
 
   <div class="phase reveal">
@@ -490,7 +475,6 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 
 </div>
 
-<!-- FINAL HERO CTA -->
 <section class="final-cta" id="ready">
   <div class="final-cta-bg"></div>
   <div class="final-cta-edge"></div>
@@ -553,7 +537,6 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-// ── CYCLING HEADLINE WORDS ───────────────────────────────────
 (function() {
   var words = document.querySelectorAll('#cycleWrap .cycle-word');
   if (!words.length) return;
@@ -561,7 +544,7 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
   setInterval(function() {
     words[current].className = 'cycle-word above';
     current = (current + 1) % words.length;
-    // Reset the next word to below before activating
+
     var next = (current + 1) % words.length;
     setTimeout(function() {
       words[next].className = 'cycle-word below';
@@ -571,10 +554,8 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 })();
 </script>
 
-
 <script src="cookie-consent.js"></script>
 
-<!-- Innov8 CRM analytics -->
 <script defer src="https://crm.innov8workflows.co.uk/track.js" data-id="proj_f5d3ac1edd12"></script>
 <script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6ac2862dd8dc776960edd22d"></script>
 </body>

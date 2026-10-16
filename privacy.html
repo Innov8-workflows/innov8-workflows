@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://www.googletagmanager.com https://crm.innov8workflows.co.uk https://cdn.jsdelivr.net https://*.leadconnectorhq.com https://*.msgsndr.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://fonts.bunny.net https://*.leadconnectorhq.com https://*.msgsndr.com; font-src 'self' data: https://fonts.gstatic.com https://fonts.bunny.net https://*.leadconnectorhq.com https://*.msgsndr.com; img-src 'self' data: blob: https://www.googletagmanager.com https://*.google-analytics.com https://*.filesafe.space https://storage.googleapis.com https://*.leadconnectorhq.com https://*.msgsndr.com; media-src 'self' blob: https://*.filesafe.space https://*.leadconnectorhq.com https://*.msgsndr.com; connect-src 'self' https://challenges.cloudflare.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com https://crm.innov8workflows.co.uk https://*.filesafe.space https://*.firebaseio.com wss://*.firebaseio.com https://firestore.googleapis.com wss://*.leadconnectorhq.com wss://*.msgsndr.com https://*.leadconnectorhq.com https://*.msgsndr.com; frame-src https://challenges.cloudflare.com https://*.leadconnectorhq.com https://*.msgsndr.com; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self' https://wa.me"/>
+<meta name="referrer" content="strict-origin-when-cross-origin"/>
 <link rel="icon" href="/favicon.ico" sizes="48x48"/>
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png"/>
 <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png"/>
@@ -32,14 +34,12 @@ body{
 }
 .wrap{max-width:var(--wrap); margin:0 auto; padding:0 24px}
 
-/* ---------- draft banner ---------- */
 .draft{
   background:var(--amber); border-bottom:2px solid var(--amber-line);
   color:#4A3B00; font-size:14px; padding:12px 0; line-height:1.5;
 }
 .draft strong{font-family:'Barlow',sans-serif; font-weight:700; letter-spacing:.02em}
 
-/* ---------- masthead ---------- */
 .masthead{background:var(--ink); color:#fff; padding:26px 0 54px; position:relative; overflow:hidden}
 .masthead::after{
   content:""; position:absolute; left:0; right:0; bottom:0; height:3px;
@@ -69,11 +69,9 @@ h1{
 }
 .meta b{color:#E6E7EA; font-weight:500}
 
-/* ---------- layout ---------- */
 .doc{display:grid; grid-template-columns:236px 1fr; gap:62px; padding:56px 0 20px; align-items:start}
 @media(max-width:900px){.doc{grid-template-columns:1fr; gap:0; padding-top:34px}}
 
-/* ---------- contents ---------- */
 .toc{position:sticky; top:26px}
 @media(max-width:900px){
   .toc{position:static; background:var(--paper-alt); border:1px solid var(--rule); border-radius:10px; padding:6px 18px 18px; margin-bottom:34px}
@@ -96,7 +94,6 @@ h1{
 .toc a:hover{color:var(--ink); background:var(--paper-alt)}
 .toc a:focus-visible{outline:2px solid var(--orange); outline-offset:2px}
 
-/* ---------- document body ---------- */
 .body{max-width:74ch; padding-bottom:20px}
 .body > p:first-of-type{font-size:17.5px}
 section{scroll-margin-top:24px; padding:0 0 8px}
@@ -132,7 +129,6 @@ strong{font-weight:600; color:var(--ink)}
 a{color:#C24404; text-decoration-thickness:1px; text-underline-offset:2px}
 a:hover{color:var(--orange)}
 
-/* ---------- signature element: plain-English gloss ---------- */
 .plain{
   background:var(--orange-wash); border-left:3px solid var(--orange);
   border-radius:0 8px 8px 0; padding:15px 20px 16px; margin:22px 0 26px;
@@ -144,7 +140,6 @@ a:hover{color:var(--orange)}
 .plain p{margin:0; font-size:15.3px; color:#4A3320; line-height:1.6}
 .plain p + p{margin-top:9px}
 
-/* ---------- misc blocks ---------- */
 .callout{
   background:var(--paper-alt); border:1px solid var(--rule); border-radius:10px;
   padding:18px 22px; margin:22px 0;
@@ -162,7 +157,6 @@ th{
 }
 td:first-child{font-weight:500; color:var(--ink); width:33%}
 
-/* ---------- footer ---------- */
 footer{background:var(--ink); color:#8A8D96; margin-top:72px; padding:46px 0 40px; font-size:14px}
 .foot-grid{display:flex; flex-wrap:wrap; gap:30px 60px; justify-content:space-between; align-items:flex-start}
 footer .brandname{font-size:16px; color:#fff}
@@ -176,8 +170,6 @@ footer a:hover{text-decoration:underline}
 </style>
 </head>
 <body>
-
-
 
 <header class="masthead">
   <div class="wrap">

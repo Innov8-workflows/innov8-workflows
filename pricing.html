@@ -3,14 +3,15 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://www.googletagmanager.com https://crm.innov8workflows.co.uk https://cdn.jsdelivr.net https://*.leadconnectorhq.com https://*.msgsndr.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://fonts.bunny.net https://*.leadconnectorhq.com https://*.msgsndr.com; font-src 'self' data: https://fonts.gstatic.com https://fonts.bunny.net https://*.leadconnectorhq.com https://*.msgsndr.com; img-src 'self' data: blob: https://www.googletagmanager.com https://*.google-analytics.com https://*.filesafe.space https://storage.googleapis.com https://*.leadconnectorhq.com https://*.msgsndr.com; media-src 'self' blob: https://*.filesafe.space https://*.leadconnectorhq.com https://*.msgsndr.com; connect-src 'self' https://challenges.cloudflare.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com https://crm.innov8workflows.co.uk https://*.filesafe.space https://*.firebaseio.com wss://*.firebaseio.com https://firestore.googleapis.com wss://*.leadconnectorhq.com wss://*.msgsndr.com https://*.leadconnectorhq.com https://*.msgsndr.com; frame-src https://challenges.cloudflare.com https://*.leadconnectorhq.com https://*.msgsndr.com; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self' https://wa.me"/>
+<meta name="referrer" content="strict-origin-when-cross-origin"/>
 <link rel="icon" href="/favicon.ico" sizes="48x48"/>
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png"/>
 <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png"/>
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
-<!-- Google tag (gtag.js) — GA4 + conversion events -->
+
 <script>
-  // GA4 is consent-gated (UK PECR): nothing loads and no cookies are set until
-  // analytics cookies are accepted in the banner (cookie-consent.js).
+
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
@@ -24,7 +25,7 @@
     s.src = 'https://www.googletagmanager.com/gtag/js?id=G-LFEDCY725K';
     document.head.appendChild(s);
   };
-  // Conversion events — delegated so they cover every tel:/WhatsApp link on the page
+
   document.addEventListener('click', function(e){
     var t = e.target.closest && e.target.closest('a[href^="tel:"], a[href*="wa.me"]');
     if (!t) return;
@@ -95,7 +96,6 @@ section { position: relative; z-index: 1; }
 .btn-ghost { color: var(--muted2); padding: 14px 24px; border-radius: 8px; font-weight: 500; font-size: 0.95rem; text-decoration: none; border: 1px solid var(--border); transition: color 0.2s, border-color 0.2s, transform 0.15s; display: inline-block; text-align: center; }
 .btn-ghost:hover { color: var(--text); border-color: var(--muted); transform: translateY(-2px); }
 
-/* ── PRICING CARDS ── */
 .plans { max-width: 1100px; margin: 0 auto; padding: 24px 48px 40px; position: relative; z-index: 1; }
 .plan-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: stretch; }
 .plan { position: relative; background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 40px 36px 30px; display: flex; flex-direction: column; }
@@ -117,7 +117,6 @@ section { position: relative; z-index: 1; }
 .plan-actions { margin-top: auto; display: flex; flex-direction: column; gap: 10px; }
 .plan-foot { text-align: center; font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.04em; color: var(--muted); margin-top: 16px; }
 
-/* ── PERFECT FOR band ── */
 .fit { max-width: 1100px; margin: 0 auto; padding: 0 48px 110px; position: relative; z-index: 1; }
 .fit-inner { display: grid; grid-template-columns: 300px 1fr; gap: 36px; align-items: center; background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--accent); border-radius: 14px; padding: 26px 32px; }
 .fit-label { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted2); margin-bottom: 8px; }
@@ -125,7 +124,6 @@ section { position: relative; z-index: 1; }
 .fit-note { font-size: 0.9rem; color: var(--muted2); line-height: 1.65; }
 .fit-note strong { color: var(--text); }
 
-/* Final hero CTA (final-CTA-hero-v2.webp) */
 .final-cta { position: relative; overflow: hidden; border-top: 1px solid var(--border); min-height: 640px; display: flex; align-items: flex-end; justify-content: center; text-align: center; padding: 380px 24px 100px; }
 .final-cta-bg { position: absolute; inset: 0; z-index: 0; background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('final-CTA-hero-v2.webp') center top/cover no-repeat; }
 .final-cta-edge { position: absolute; inset: 0; z-index: 1; pointer-events: none; background:
@@ -145,7 +143,6 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 .footer-logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 0.95rem; color: var(--muted2); text-decoration: none; }
 .footer-right { font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted); letter-spacing: 0.05em; }
 
-/* ── MOBILE NAV ── */
 .nav-hamburger { display: none; background: none; border: none; color: var(--text); cursor: pointer; padding: 8px; z-index: 101; }
 .nav-hamburger svg { width: 24px; height: 24px; }
 .mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 99; background: rgba(15,15,15,0.97); backdrop-filter: blur(16px); flex-direction: column; align-items: center; justify-content: center; gap: 0; }
@@ -173,7 +170,6 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
   .final-cta { min-height: 560px; padding: 300px 20px 72px; }
 }
 
-/* 6-link nav: collapse to hamburger a little earlier so links never crowd */
 @media (max-width: 1150px) { .nav-links { gap: 20px; } }
 @media (max-width: 1045px) { .nav-links { display: none; } .nav-hamburger { display: block; } }
 </style>
@@ -225,7 +221,6 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
   <p>Two packages to choose from. Essentials gets you found with a premium website. Growth adds the systems that answer every enquiry, chase every quote and turn finished jobs into reviews. Most businesses pay <strong>£2,000+ upfront</strong> for a website alone. You get the same result for a small monthly fee.</p>
 </div>
 
-<!-- THE TWO PACKAGES -->
 <div class="plans">
   <div class="plan-grid">
 
@@ -292,7 +287,6 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
   </div>
 </div>
 
-<!-- FINAL HERO CTA -->
 <section class="final-cta" id="ready">
   <div class="final-cta-bg"></div>
   <div class="final-cta-edge"></div>
@@ -356,10 +350,8 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 </script>
 
-
 <script src="cookie-consent.js"></script>
 
-<!-- Innov8 CRM analytics -->
 <script defer src="https://crm.innov8workflows.co.uk/track.js" data-id="proj_f5d3ac1edd12"></script>
 <script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6ac2862dd8dc776960edd22d"></script>
 </body>

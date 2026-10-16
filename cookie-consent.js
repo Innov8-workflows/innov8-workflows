@@ -1,20 +1,4 @@
-/*
-  INNOV8 WORKFLOWS — COOKIE CONSENT BANNER
-  =========================================
-  Drop the <script> tag referencing this file just before </body>
-  on every HTML page, OR paste the contents of this file directly
-  into a <script> tag at the bottom of each page.
 
-  The banner:
-  - Appears on first visit
-  - Remembers the user's choice for 365 days
-  - GATES GOOGLE ANALYTICS (UK PECR): GA4 loads and sets cookies ONLY after
-    Accept, via window.i8LoadAnalytics() defined in each page's head snippet.
-    Decline (or no choice) = no gtag.js request, no _ga cookies, ever.
-  - Has Accept and Decline options
-  - Links to the Privacy Policy
-  - Matches the Innov8 brand exactly
-*/
 
 (function () {
   'use strict';
@@ -23,7 +7,6 @@
   const CONSENT_EXPIRY_DAYS = 365;
   const JOTFORM_AGENT_ID = '019d21ae740c7db289b331944a1348e32b39';
 
-  // ── Check existing consent ──
   function getConsent() {
     try {
       const stored = JSON.parse(localStorage.getItem(CONSENT_KEY));
@@ -32,7 +15,7 @@
         localStorage.removeItem(CONSENT_KEY);
         return null;
       }
-      return stored.value; // 'accepted' | 'declined'
+      return stored.value;
     } catch (e) {
       return null;
     }
@@ -43,24 +26,21 @@
     localStorage.setItem(CONSENT_KEY, JSON.stringify({ value, expires }));
   }
 
-  // ── AI chatbot removed site-wide ──
   function loadChatbot() {
-    // The Jotform AI chatbot has been removed. Do not load it; clean up any stray instance.
+
     removeChatbot();
   }
 
-  // ── Remove any chatbot already injected (on decline) ──
   function removeChatbot() {
     const existing = document.querySelector('script[src*="jotfor.ms/agent"]');
     if (existing) existing.remove();
-    // Remove Jotform widget iframe if already rendered
+
     const widgets = document.querySelectorAll('iframe[src*="jotform"], [id*="jotform"], [class*="jotform"]');
     widgets.forEach(w => w.remove());
   }
 
-  // ── Build and inject the banner ──
   function showBanner() {
-    // Inject styles
+
     const style = document.createElement('style');
     style.textContent = `
       #i8-cookie-banner {
@@ -173,7 +153,6 @@
     `;
     document.head.appendChild(style);
 
-    // Build banner HTML
     const banner = document.createElement('div');
     banner.id = 'i8-cookie-banner';
     banner.setAttribute('role', 'dialog');
@@ -195,7 +174,6 @@
 
     document.body.appendChild(banner);
 
-    // Event listeners
     document.getElementById('i8-accept-btn').addEventListener('click', function () {
       setConsent('accepted');
       if (window.i8LoadAnalytics) window.i8LoadAnalytics();
@@ -220,7 +198,6 @@
     }
   }
 
-  // ── Remove GA cookies set before consent gating existed ──
   function clearGaCookies() {
     document.cookie.split(';').forEach(function (c) {
       const name = c.split('=')[0].trim();
@@ -231,25 +208,22 @@
     });
   }
 
-  // ── Init ──
   function init() {
     const consent = getConsent();
     if (consent === 'accepted') {
-      // Returning visitor who accepted: analytics may load on every page view
+
       if (window.i8LoadAnalytics) window.i8LoadAnalytics();
       loadChatbot();
     } else if (consent === 'declined') {
       clearGaCookies();
       removeChatbot();
     } else {
-      // No consent yet — show banner; analytics stays off until Accept.
-      // Also sweep any GA cookies left over from before the gate existed.
+
       clearGaCookies();
       showBanner();
     }
   }
 
-  // Run after DOM is ready
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {

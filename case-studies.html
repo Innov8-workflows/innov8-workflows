@@ -3,14 +3,15 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://www.googletagmanager.com https://crm.innov8workflows.co.uk https://cdn.jsdelivr.net https://*.leadconnectorhq.com https://*.msgsndr.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://fonts.bunny.net https://*.leadconnectorhq.com https://*.msgsndr.com; font-src 'self' data: https://fonts.gstatic.com https://fonts.bunny.net https://*.leadconnectorhq.com https://*.msgsndr.com; img-src 'self' data: blob: https://www.googletagmanager.com https://*.google-analytics.com https://*.filesafe.space https://storage.googleapis.com https://*.leadconnectorhq.com https://*.msgsndr.com; media-src 'self' blob: https://*.filesafe.space https://*.leadconnectorhq.com https://*.msgsndr.com; connect-src 'self' https://challenges.cloudflare.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com https://crm.innov8workflows.co.uk https://*.filesafe.space https://*.firebaseio.com wss://*.firebaseio.com https://firestore.googleapis.com wss://*.leadconnectorhq.com wss://*.msgsndr.com https://*.leadconnectorhq.com https://*.msgsndr.com; frame-src https://challenges.cloudflare.com https://*.leadconnectorhq.com https://*.msgsndr.com; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self' https://wa.me"/>
+<meta name="referrer" content="strict-origin-when-cross-origin"/>
 <link rel="icon" href="/favicon.ico" sizes="48x48"/>
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png"/>
 <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png"/>
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
-<!-- Google tag (gtag.js) — GA4 + conversion events -->
+
 <script>
-  // GA4 is consent-gated (UK PECR): nothing loads and no cookies are set until
-  // analytics cookies are accepted in the banner (cookie-consent.js).
+
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
@@ -24,7 +25,7 @@
     s.src = 'https://www.googletagmanager.com/gtag/js?id=G-LFEDCY725K';
     document.head.appendChild(s);
   };
-  // Conversion events — delegated so they cover every tel:/WhatsApp link on the page
+
   document.addEventListener('click', function(e){
     var t = e.target.closest && e.target.closest('a[href^="tel:"], a[href*="wa.me"]');
     if (!t) return;
@@ -80,7 +81,6 @@ img.logo-box { background: none; border-radius: 0; object-fit: contain; }
 .breadcrumb a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
 .breadcrumb a:hover { color: var(--accent); }
 
-/* ── FUTURISTIC 3D HERO ── */
 .futuristic-hero { position: relative; z-index: 1; width: 100%; height: 100vh; min-height: 600px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
 #heroCanvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 .futuristic-hero-overlay { position: absolute; inset: 0; z-index: 1; pointer-events: none;
@@ -109,7 +109,6 @@ img.logo-box { background: none; border-radius: 0; object-fit: contain; }
 .section-title { font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.05; margin-bottom: 12px; }
 .section-desc { color: var(--muted2); font-size: 0.95rem; line-height: 1.7; max-width: 560px; }
 
-/* WORKFLOWS */
 .workflows-section { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 0 48px 100px; }
 .workflows-grid { display: flex; flex-direction: column; gap: 24px; margin-top: 48px; }
 .workflow-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; transition: border-color 0.25s; }
@@ -137,7 +136,6 @@ img.logo-box { background: none; border-radius: 0; object-fit: contain; }
 .workflow-result { font-family: var(--font-mono); font-size: 0.68rem; color: var(--node-green); display: flex; align-items: center; gap: 6px; }
 .workflow-result::before { content: '✓'; font-weight: 700; }
 
-/* WEBSITES */
 .websites-section { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); position: relative; z-index: 1; }
 .websites-inner { max-width: 1100px; margin: 0 auto; padding: 100px 48px; }
 .websites-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 48px; }
@@ -146,18 +144,18 @@ img.logo-box { background: none; border-radius: 0; object-fit: contain; }
 .site-preview { position: relative; min-height: 220px; overflow: hidden; background: var(--surface2); }
 .site-preview iframe { width: 160%; height: 160%; border: none; transform: scale(0.625); transform-origin: top left; pointer-events: none; }
 .site-preview img { width: 100%; height: 100%; object-fit: cover; display: block; }
-/* Floating result badge on the preview image */
+
 .site-result-badge { position: absolute; bottom: 16px; right: 16px; z-index: 2; display: flex; align-items: center; gap: 12px; padding: 12px 18px; background: rgba(15,15,15,0.92); backdrop-filter: blur(10px); border: 1px solid rgba(34,197,94,0.4); border-radius: 12px; box-shadow: 0 8px 28px rgba(0,0,0,0.5); }
 .site-result-arrow { font-size: 1.6rem; color: var(--node-green); font-weight: 700; line-height: 1; }
 .site-result-stat { font-size: 1rem; font-weight: 800; color: #fff; letter-spacing: -0.01em; line-height: 1.1; }
 .site-result-label { font-family: var(--font-mono); font-size: 0.62rem; color: var(--node-green); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 2px; }
-/* Visit Website button (replaces plain link on case study cards) */
+
 .site-visit-btn { display: inline-flex; align-items: center; align-self: flex-start; margin-top: 16px; padding: 12px 24px; background: var(--accent); color: #fff; border-radius: 100px; font-weight: 700; font-size: 0.9rem; text-decoration: none; transition: background 0.2s, transform 0.15s, box-shadow 0.2s; }
 .site-visit-btn:hover { background: var(--accent2); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(234,88,12,0.35); }
-/* "Launching Soon" pill (sites not yet live) */
+
 .site-coming-soon { display: inline-flex; align-items: center; gap: 8px; align-self: flex-start; margin-top: 16px; padding: 10px 20px; background: rgba(234,88,12,0.08); color: var(--accent2); border: 1px solid rgba(234,88,12,0.3); border-radius: 100px; font-family: var(--font-mono); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
 .site-coming-soon-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); animation: pulse 2s infinite; }
-/* Client testimonial / Facebook review block inside a case study card */
+
 .site-review { margin-top: 18px; padding: 18px 22px; background: rgba(66, 133, 244, 0.06); border: 1px solid rgba(66, 133, 244, 0.22); border-radius: 12px; position: relative; }
 .site-review-head { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; font-family: var(--font-mono); font-size: 0.65rem; color: #8ab4f8; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; }
 .site-review-head svg { width: 15px; height: 15px; flex-shrink: 0; }
@@ -167,7 +165,7 @@ img.logo-box { background: none; border-radius: 0; object-fit: contain; }
 .site-review blockquote::after { content: '"'; color: var(--accent); font-size: 1.4rem; font-weight: 700; font-style: normal; margin-left: 2px; }
 .site-review-attribution { margin-top: 10px; font-size: 0.78rem; color: var(--muted2); }
 .site-review-attribution strong { color: var(--text); }
-/* Case study filter pills (auto-populated from data-category) */
+
 .case-filters { display: flex; gap: 10px; flex-wrap: wrap; margin: 32px 0 40px; }
 .case-filter { background: var(--surface); border: 1px solid var(--border); color: var(--muted2); padding: 10px 20px; border-radius: 100px; font-family: var(--font-mono); font-size: 0.7rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px; }
 .case-filter:hover { border-color: rgba(234,88,12,0.45); color: var(--text); }
@@ -190,7 +188,6 @@ img.logo-box { background: none; border-radius: 0; object-fit: contain; }
 .site-link { display: inline-flex; align-items: center; gap: 6px; color: var(--accent); text-decoration: none; font-size: 0.8rem; font-weight: 600; margin-top: 8px; transition: gap 0.2s; }
 .site-link:hover { gap: 10px; }
 
-/* CTA */
 .cta-band { position: relative; z-index: 1; }
 .cta-band-inner { max-width: 1100px; margin: 0 auto; padding: 80px 48px; display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
 .cta-band h2 { font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; }
@@ -208,7 +205,6 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 .footer-logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 0.95rem; color: var(--muted2); text-decoration: none; }
 .footer-right { font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted); letter-spacing: 0.05em; }
 
-/* ── MOBILE NAV ── */
 .nav-hamburger { display: none; background: none; border: none; color: var(--text); cursor: pointer; padding: 8px; z-index: 101; }
 .nav-hamburger svg { width: 24px; height: 24px; }
 .mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 99; background: rgba(15,15,15,0.97); backdrop-filter: blur(16px); flex-direction: column; align-items: center; justify-content: center; gap: 0; }
@@ -234,7 +230,7 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
   .workflow-flow { padding: 16px 24px; }
   .workflow-footer { padding: 14px 24px; }
   .websites-grid { grid-template-columns: 1fr; }
-  /* Case study card overrides on mobile */
+
   .site-card[style*="grid-column"] { grid-column: 1 / -1 !important; }
   .site-info { padding: 18px 20px 22px; gap: 8px; }
   .site-name { font-size: 1.05rem; }
@@ -242,14 +238,14 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
   .site-industry { font-size: 0.58rem; line-height: 1.5; }
   .site-tags { gap: 6px; }
   .site-tag { font-size: 0.55rem; padding: 3px 8px; }
-  /* Floating result badge: smaller + repositioned on mobile */
+
   .site-result-badge { bottom: 12px; right: 12px; padding: 8px 12px; gap: 8px; border-radius: 10px; }
   .site-result-arrow { font-size: 1.2rem; }
   .site-result-stat { font-size: 0.85rem; }
   .site-result-label { font-size: 0.55rem; }
-  /* Visit Website button full-width on mobile */
+
   .site-visit-btn { align-self: stretch; justify-content: center; padding: 12px 20px; font-size: 0.88rem; }
-  /* Tighter futuristic hero copy on mobile */
+
   .futuristic-hero-content h1 { font-size: clamp(1.8rem, 9vw, 2.6rem); }
   .futuristic-hero-content p { font-size: clamp(0.85rem, 3vw, 1rem); padding: 0 24px; }
   .cta-band-inner { flex-direction: column; }
@@ -257,7 +253,6 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
   .footer-links { justify-content: center; }
 }
 
-/* 6-link nav: collapse to hamburger a little earlier so links never crowd */
 @media (max-width: 1150px) { .nav-links { gap: 20px; } }
 @media (max-width: 1045px) { .nav-links { display: none; } .nav-hamburger { display: block; } }
 </style>
@@ -299,7 +294,6 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
   <a href="tel:+447718155997" class="mobile-cta" style="display:inline-flex;align-items:center;gap:10px"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.35-.11-.74-.03-1.02.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.21c.28-.27.36-.66.25-1.01-.37-1.12-.57-2.32-.57-3.57 0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.49c0-.55-.45-1-1-1z"/></svg>07718 155997</a>
 </div>
 
-<!-- Futuristic 3D Hero -->
 <div class="futuristic-hero" id="heroTop">
   <canvas id="heroCanvas"></canvas>
   <div class="hero-scan-line"></div>
@@ -327,14 +321,12 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
   <span style="color:var(--text)">Case Studies</span>
 </div>
 
-<!-- WEBSITES -->
 <div class="websites-section">
   <div class="websites-inner">
     <div class="section-label reveal">Websites Deployed</div>
     <h2 class="section-title reveal">Sites we've built<br/>and launched.</h2>
     <p class="section-desc reveal">Branded, professional websites built with organic SEO HTML and functionality that enables local businesses to convert online traffic into business.</p>
 
-    <!-- Filter pills (auto-generated from data-category attributes on .site-card) -->
     <div class="case-filters reveal" id="caseFilters" role="group" aria-label="Filter case studies by industry"></div>
 
     <div class="websites-grid">
@@ -1018,7 +1010,6 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
   </div>
 </div>
 
-<!-- CTA -->
 <div class="cta-band">
   <div class="cta-band-inner reveal">
     <div>
@@ -1081,7 +1072,6 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-// ── CASE-STUDY VIDEOS (.ks-video — silent autoplay loop, plays only while on screen) ──
 (function() {
   const vids = document.querySelectorAll('.ks-video');
   if (!vids.length) return;
@@ -1092,10 +1082,8 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
   } else { vids.forEach(play); }
 })();
 
-// ── CASE STUDY FILTERS (auto-generated from data-category) ───
 (function() {
-  // Display labels for known categories — extend this map when adding new ones.
-  // Any data-category not in the map will render as Capitalized fallback.
+
   var labels = {
     'all':           'All',
     'construction':  'Construction',
@@ -1120,10 +1108,6 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
   var cards = Array.prototype.slice.call(document.querySelectorAll('.site-card[data-category]'));
   if (!cards.length) return;
 
-  // Count cards per category and preserve first-seen order.
-  // 'All' count excludes cards with data-show-in-all="false" (e.g. MarketBubbles
-  // — SaaS, not a local-business case study). Those cards still appear under
-  // their own category filter.
   var visibleInAll = cards.filter(function(c) { return c.dataset.showInAll !== 'false'; });
   var counts = { all: visibleInAll.length };
   var order = ['all'];
@@ -1142,7 +1126,7 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
     btn.setAttribute('aria-pressed', 'true');
     cards.forEach(function(c) {
       if (cat === 'all') {
-        // 'All' shows everything EXCEPT cards flagged data-show-in-all="false"
+
         if (c.dataset.showInAll === 'false') c.classList.add('is-hidden');
         else c.classList.remove('is-hidden');
       } else if (c.dataset.category === cat) {
@@ -1164,14 +1148,12 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
     btn.addEventListener('click', function() { setFilter(cat, btn); });
     container.appendChild(btn);
   });
-  // Apply the initial 'All' filter so any data-show-in-all="false" cards
-  // (e.g. MarketBubbles) are hidden by default on page load.
+
   cards.forEach(function(c) {
     if (c.dataset.showInAll === 'false') c.classList.add('is-hidden');
   });
 })();
 
-// ── FUTURISTIC 3D HERO (Three.js Depth Parallax + Scan) ──────
 (function() {
   var hCanvas = document.getElementById('heroCanvas');
   if (!hCanvas) return;
@@ -1179,7 +1161,6 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
   var TEXTURE_URL = 'hero-futuristic-texture.webp';
   var DEPTH_URL = 'hero-futuristic-depth.webp';
 
-  // Load Three.js from CDN (r170 global build)
   var script = document.createElement('script');
   script.src = 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js';
   script.onload = function() {
@@ -1187,7 +1168,7 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
       console.warn('THREE not available as global');
       return;
     }
-    // Defer until layout is ready
+
     function tryInit() {
       var hero = document.querySelector('.futuristic-hero');
       if (hero && hero.offsetHeight > 400) {
@@ -1229,7 +1210,7 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
     loader.load(DEPTH_URL, function(t) { depthTex = t; onTexLoaded(); });
 
     function createMesh() {
-      // Custom shader: depth parallax + orange scanning dot matrix
+
       meshMaterial = new THREE.ShaderMaterial({
         uniforms: {
           uTexture: { value: rawTex },
@@ -1322,7 +1303,6 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
       requestAnimationFrame(animate);
       var t = clock.getElapsedTime();
 
-      // Smooth mouse
       mouse.lerp(targetMouse, 0.05);
 
       if (meshMaterial) {
@@ -1333,7 +1313,6 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
       renderer.render(scene, camera);
     }
 
-    // Mouse tracking
     var hero = document.querySelector('.futuristic-hero');
     if (hero) {
       hero.addEventListener('mousemove', function(e) {
@@ -1349,7 +1328,6 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 </script>
 <script src="cookie-consent.js"></script>
 
-<!-- Innov8 CRM analytics -->
 <script defer src="https://crm.innov8workflows.co.uk/track.js" data-id="proj_f5d3ac1edd12"></script>
 <script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6ac2862dd8dc776960edd22d"></script>
 </body>

@@ -3,14 +3,15 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://www.googletagmanager.com https://crm.innov8workflows.co.uk https://cdn.jsdelivr.net https://*.leadconnectorhq.com https://*.msgsndr.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://fonts.bunny.net https://*.leadconnectorhq.com https://*.msgsndr.com; font-src 'self' data: https://fonts.gstatic.com https://fonts.bunny.net https://*.leadconnectorhq.com https://*.msgsndr.com; img-src 'self' data: blob: https://www.googletagmanager.com https://*.google-analytics.com https://*.filesafe.space https://storage.googleapis.com https://*.leadconnectorhq.com https://*.msgsndr.com; media-src 'self' blob: https://*.filesafe.space https://*.leadconnectorhq.com https://*.msgsndr.com; connect-src 'self' https://challenges.cloudflare.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com https://crm.innov8workflows.co.uk https://*.filesafe.space https://*.firebaseio.com wss://*.firebaseio.com https://firestore.googleapis.com wss://*.leadconnectorhq.com wss://*.msgsndr.com https://*.leadconnectorhq.com https://*.msgsndr.com; frame-src https://challenges.cloudflare.com https://*.leadconnectorhq.com https://*.msgsndr.com; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self' https://wa.me"/>
+<meta name="referrer" content="strict-origin-when-cross-origin"/>
 <link rel="icon" href="/favicon.ico" sizes="48x48"/>
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png"/>
 <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png"/>
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
-<!-- Google tag (gtag.js) — GA4 + conversion events -->
+
 <script>
-  // GA4 is consent-gated (UK PECR): nothing loads and no cookies are set until
-  // analytics cookies are accepted in the banner (cookie-consent.js).
+
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
@@ -24,7 +25,7 @@
     s.src = 'https://www.googletagmanager.com/gtag/js?id=G-LFEDCY725K';
     document.head.appendChild(s);
   };
-  // Conversion events — delegated so they cover every tel:/WhatsApp link on the page
+
   document.addEventListener('click', function(e){
     var t = e.target.closest && e.target.closest('a[href^="tel:"], a[href*="wa.me"]');
     if (!t) return;
@@ -81,7 +82,6 @@ img.logo-box { background: none; border-radius: 0; object-fit: contain; }
 .page-hero h1 span { color: var(--accent); }
 .page-hero p { font-size: 1.1rem; color: var(--muted2); max-width: 600px; line-height: 1.7; font-weight: 400; animation: fadeUp 0.5s 0.2s ease both; }
 
-/* FLEXIBLE MODEL NOTICE */
 .flex-notice { display: flex; gap: 14px; margin-top: 28px; flex-wrap: wrap; animation: fadeUp 0.5s 0.3s ease both; }
 .flex-pill { display: flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 8px; font-size: 0.82rem; font-weight: 500; border: 1px solid; }
 
@@ -97,7 +97,6 @@ section { position: relative; z-index: 1; }
 .btn-ghost { color: var(--muted2); padding: 14px 24px; border-radius: 8px; font-weight: 500; font-size: 0.95rem; text-decoration: none; border: 1px solid var(--border); transition: color 0.2s, border-color 0.2s, transform 0.15s; display: inline-block; }
 .btn-ghost:hover { color: var(--text); border-color: var(--muted); transform: translateY(-2px); }
 
-/* SERVICE BLOCKS */
 .service-block { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; padding: 80px 48px; max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
 .service-block.reverse { direction: rtl; }
 .service-block.reverse > * { direction: ltr; }
@@ -121,22 +120,19 @@ section { position: relative; z-index: 1; }
 .service-link { display: inline-flex; align-items: center; gap: 8px; color: var(--accent); font-size: 0.875rem; font-weight: 600; text-decoration: none; transition: gap 0.2s; }
 .service-link:hover { gap: 14px; }
 
-/* VISUAL CARDS */
 .visual-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 32px; position: relative; overflow: hidden; }
 .visual-card.purple-tint { border-color: rgba(168,85,247,0.25); background: linear-gradient(160deg, rgba(168,85,247,0.06) 0%, var(--surface) 60%); }
 .visual-card::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle, #2a2a2a 1px, transparent 1px); background-size: 20px 20px; opacity: 0.5; }
 .visual-card-inner { position: relative; z-index: 1; }
 
-/* REAL MEDIA (image / video) embedded in service blocks */
 .service-media { border-radius: 16px; overflow: hidden; border: 1px solid var(--border); background: var(--surface2); line-height: 0; box-shadow: 0 24px 60px rgba(0,0,0,0.4); }
 .service-media img, .service-media video { display: block; width: 100%; height: auto; }
 .service-media.portrait { max-width: 430px; margin: 0 auto; }
-/* Email Hosting block: stacked layout with a large (~3x) image so the inbox is readable */
+
 .service-block.service-stacked { display: block; }
 .service-block.service-stacked > div:first-child { max-width: 760px; margin: 0 auto; }
 .service-block.service-stacked .service-media { position: relative; left: 50%; transform: translateX(-50%); width: min(1380px, 94vw); margin-top: 44px; }
 
-/* Review-platform badges (Google / Facebook) */
 .review-platforms { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 28px; }
 .review-platforms-label { width: 100%; font-family: var(--font-mono); font-size: 0.65rem; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 4px; }
 .platform-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--surface2); border: 1px solid var(--border); border-radius: 100px; padding: 7px 15px 7px 12px; font-size: 0.84rem; font-weight: 600; color: var(--text); transition: border-color 0.2s, transform 0.2s; }
@@ -145,7 +141,6 @@ section { position: relative; z-index: 1; }
 .platform-badge img { width: 18px; height: 18px; object-fit: contain; flex-shrink: 0; }
 .platform-badge .stars { color: #FBBC04; font-size: 0.7rem; letter-spacing: 1.5px; }
 
-/* ── Magic Live Google Review Slider widget ── */
 .gr-widget { background:#fff; border-radius:16px; padding:22px 22px 20px; color:#202124; box-shadow:0 24px 60px rgba(0,0,0,0.45); border:1px solid rgba(0,0,0,0.08); font-family:'Bricolage Grotesque','Segoe UI',Roboto,Arial,sans-serif; line-height:1.4; }
 .gr-head { display:flex; align-items:center; gap:12px; padding-bottom:16px; border-bottom:1px solid #ececec; }
 .gr-glogo { width:30px; height:30px; flex-shrink:0; }
@@ -178,13 +173,11 @@ section { position: relative; z-index: 1; }
 .gr-hidden .gr-review { position:relative; opacity:0.5; filter:grayscale(1); }
 .gr-hidden-note { font-size:0.74rem; color:#5f6368; line-height:1.5; margin-top:10px; font-style:italic; }
 
-/* ── Paid advertising mockups (Meta ad system) ── */
 .pa-widget { max-width: 440px; width: 100%; margin: 0 auto; }
 .pa-flow { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 14px 0; }
 .pa-flow-line { width: 2px; height: 20px; background: linear-gradient(to bottom, var(--border), var(--accent)); border-radius: 2px; }
 .pa-flow-label { font-family: var(--font-mono); font-size: 0.62rem; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; }
 
-/* Meta feed ad card */
 .fbad { background: #fff; border-radius: 14px; padding: 14px 16px 16px; color: #050505; font-family: 'Bricolage Grotesque','Segoe UI',Roboto,Arial,sans-serif; line-height: 1.4; box-shadow: 0 24px 60px rgba(0,0,0,0.45); border: 1px solid rgba(0,0,0,0.08); }
 .fbad-top { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
 .fbad-avatar { width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.78rem; flex-shrink: 0; }
@@ -205,7 +198,6 @@ section { position: relative; z-index: 1; }
 .fbad-cta-title { font-size: 0.8rem; font-weight: 700; color: #050505; margin-top: 2px; }
 .fbad-btn { background: #0866ff; color: #fff; font-size: 0.76rem; font-weight: 700; padding: 8px 14px; border-radius: 6px; flex-shrink: 0; }
 
-/* WhatsApp lead notification card */
 .walead { background: var(--surface); border: 1px solid rgba(37,211,102,0.35); border-radius: 14px; padding: 16px; box-shadow: 0 18px 50px rgba(0,0,0,0.4); }
 .walead-top { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
 .walead-icon { width: 34px; height: 34px; border-radius: 50%; background: #25D366; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
@@ -216,7 +208,6 @@ section { position: relative; z-index: 1; }
 .walead-bubble { background: var(--surface2); border: 1px solid var(--border); border-radius: 4px 12px 12px 12px; padding: 12px 14px; font-size: 0.82rem; color: var(--muted2); line-height: 1.55; }
 .walead-ref { margin-top: 10px; font-family: var(--font-mono); font-size: 0.62rem; color: var(--muted); letter-spacing: 0.04em; }
 
-/* Google search results mockup */
 .gads-bar { display: flex; align-items: center; gap: 10px; border: 1px solid #dfe1e5; border-radius: 100px; padding: 9px 16px; margin-bottom: 16px; box-shadow: 0 1px 6px rgba(32,33,36,0.12); }
 .gads-bar svg { width: 20px; height: 20px; flex-shrink: 0; }
 .gads-query { font-size: 0.84rem; color: #202124; }
@@ -227,8 +218,6 @@ section { position: relative; z-index: 1; }
 .gads-skel-bar.w85 { width: 85%; }
 .gads-skel-bar.w70 { width: 70%; margin-bottom: 0; }
 
-
-/* ── Service groups (mirror the 2026 pricing document) ── */
 .svc-group { max-width: 1100px; margin: 0 auto; padding: 96px 48px 0; position: relative; z-index: 1; }
 .svc-group-label { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
 .svc-group-label::before { content: ''; width: 28px; height: 1.5px; background: var(--accent); }
@@ -237,7 +226,6 @@ section { position: relative; z-index: 1; }
 .svc-group p { color: var(--muted2); font-size: 1.02rem; line-height: 1.65; max-width: 640px; margin-top: 16px; }
 @media (max-width: 900px) { .svc-group { padding: 64px 24px 0; } }
 
-/* ── Business Growth Package: CRM dashboard (web) + mobile app ── */
 .crm-stage { position: relative; max-width: 1060px; margin: 48px auto 0; padding-right: 150px; }
 .crm-browser { background: #fff; border-radius: 14px; overflow: hidden; box-shadow: 0 30px 70px rgba(0,0,0,0.5); color: #1f2937; font-family: 'Bricolage Grotesque', 'Segoe UI', Roboto, Arial, sans-serif; line-height: 1.35; }
 .crm-bar { display: flex; align-items: center; gap: 6px; background: #eef1f4; border-bottom: 1px solid #e2e6ea; padding: 9px 12px; }
@@ -285,7 +273,6 @@ section { position: relative; z-index: 1; }
 .crm-pill.g { background: #dcfce7; color: #15803d; }
 .crm-pill.b { background: #dbeafe; color: #1d4ed8; }
 
-/* automation cards */
 .auto-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; max-width: 1060px; margin: 78px auto 0; }
 .auto-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 18px; }
 .auto-head { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
@@ -312,7 +299,6 @@ section { position: relative; z-index: 1; }
   .auto-grid { grid-template-columns: 1fr; }
 }
 
-/* ── Out-of-hours AI receptionist: call to CRM ── */
 .air { max-width: 460px; width: 100%; margin: 0 auto; }
 .air-call { display: flex; align-items: center; gap: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 14px 16px; box-shadow: 0 18px 50px rgba(0,0,0,0.4); }
 .air-call-icon { width: 38px; height: 38px; border-radius: 10px; background: rgba(168,85,247,0.12); border: 1px solid rgba(168,85,247,0.3); color: var(--node-purple); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
@@ -341,7 +327,6 @@ section { position: relative; z-index: 1; }
 .air-book { display: flex; align-items: center; gap: 9px; margin-top: 10px; padding: 9px 12px; border-radius: 9px; background: #dcfce7; color: #15803d; font-size: 0.74rem; font-weight: 700; }
 .air-book svg { width: 15px; height: 15px; }
 
-/* ── Google Business Profile: local map pack mock ── */
 .gbp { background: #fff; border-radius: 14px; padding: 18px; color: #202124; font-family: 'Bricolage Grotesque', 'Segoe UI', Roboto, Arial, sans-serif; line-height: 1.4; box-shadow: 0 24px 60px rgba(0,0,0,0.45); max-width: 460px; width: 100%; margin: 0 auto; }
 .gbp-map { position: relative; height: 150px; border-radius: 10px; overflow: hidden; margin-bottom: 12px; background:
   linear-gradient(90deg, transparent 31%, #fff 31%, #fff 33.5%, transparent 33.5%),
@@ -374,7 +359,6 @@ section { position: relative; z-index: 1; }
 .gbp-owner { margin-top: 8px; padding: 8px 10px; background: #f1f3f4; border-radius: 8px; font-size: 0.72rem; }
 .gbp-owner b { display: block; font-size: 0.62rem; color: #5f6368; margin-bottom: 2px; }
 
-/* ── Quote funnel: 4-step quiz mock ── */
 .qf { max-width: 440px; width: 100%; margin: 0 auto; }
 .qf-card { background: #fff; color: #202124; border-radius: 14px; padding: 20px; box-shadow: 0 24px 60px rgba(0,0,0,0.45); font-family: 'Bricolage Grotesque', 'Segoe UI', Roboto, Arial, sans-serif; line-height: 1.4; }
 .qf-top { display: flex; justify-content: space-between; align-items: center; font-size: 0.7rem; color: #6b7280; font-weight: 600; }
@@ -396,7 +380,6 @@ section { position: relative; z-index: 1; }
 .qf-chip { font-size: 0.72rem; color: var(--muted2); background: var(--surface2); border: 1px solid var(--border); border-radius: 100px; padding: 4px 10px; }
 .qf-chip b { color: var(--text); font-weight: 600; }
 
-/* ── Facebook business page mock ── */
 .fbp { max-width: 460px; width: 100%; margin: 0 auto; background: #fff; color: #050505; border-radius: 14px; overflow: hidden; box-shadow: 0 24px 60px rgba(0,0,0,0.45); font-family: 'Bricolage Grotesque', 'Segoe UI', Roboto, Arial, sans-serif; line-height: 1.35; }
 .fbp-top { display: flex; align-items: center; gap: 8px; padding: 9px 12px; border-bottom: 1px solid #e4e6eb; font-size: 0.72rem; color: #65676b; font-weight: 600; }
 .fbp-top svg { width: 20px; height: 20px; }
@@ -417,7 +400,6 @@ section { position: relative; z-index: 1; }
 .fbp-check i { width: 16px; height: 16px; border-radius: 50%; background: #16a34a; color: #fff; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 .fbp-check i svg { width: 10px; height: 10px; }
 
-/* ── Social management: scheduled branded statics ── */
 .soc { max-width: 480px; width: 100%; margin: 0 auto; }
 .soc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
 .soc-post { aspect-ratio: 4 / 5; border-radius: 12px; overflow: hidden; position: relative; box-shadow: 0 16px 40px rgba(0,0,0,0.45); border: 1px solid var(--border); display: flex; flex-direction: column; justify-content: flex-end; padding: 10px; }
@@ -441,7 +423,6 @@ section { position: relative; z-index: 1; }
 .soc-row em { font-style: normal; font-family: var(--font-mono); font-size: 0.58rem; color: var(--node-green); letter-spacing: 0.06em; text-transform: uppercase; }
 @media (max-width: 520px) { .fbp-checks { grid-template-columns: 1fr; } .soc-post b { font-size: 0.66rem; } .soc-post.brand b { font-size: 0.78rem; } }
 
-/* Included-features checklist (Essential website block) */
 .included-head { font-family: var(--font-mono); font-size: 0.66rem; color: var(--node-green); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 16px; }
 .included-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 11px 20px; margin-bottom: 24px; }
 .included-item { display: flex; align-items: flex-start; gap: 9px; font-size: 0.86rem; color: var(--muted2); line-height: 1.45; }
@@ -450,7 +431,6 @@ section { position: relative; z-index: 1; }
 .included-deliver strong { color: var(--node-green); font-weight: 700; }
 @media (max-width: 600px) { .included-grid { grid-template-columns: 1fr; } }
 
-/* browser mock */
 .browser-mock { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
 .browser-bar { background: var(--bg); padding: 10px 14px; display: flex; align-items: center; gap: 6px; border-bottom: 1px solid var(--border); }
 .browser-dot { width: 10px; height: 10px; border-radius: 50%; }
@@ -467,7 +447,6 @@ section { position: relative; z-index: 1; }
 .mock-card-line { height: 5px; background: var(--border); border-radius: 2px; margin-bottom: 4px; }
 .mock-card-line.short { width: 60%; }
 
-/* flow diagram */
 .flow-visual { display: flex; flex-direction: column; gap: 12px; }
 .flow-node { background: var(--surface2); border: 1.5px solid var(--border); border-radius: 10px; padding: 12px 16px; display: flex; align-items: center; gap: 12px; transition: border-color 0.3s; }
 .flow-node:hover { border-color: var(--accent); }
@@ -478,11 +457,9 @@ section { position: relative; z-index: 1; }
 .flow-line { width: 2px; height: 14px; background: var(--border); position: relative; }
 .flow-line::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); border-left: 4px solid transparent; border-right: 4px solid transparent; border-top: 5px solid var(--muted); }
 
-/* trigger chips */
 .trigger-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
 .trigger-chip { display: flex; align-items: center; gap: 6px; background: rgba(234,88,12,0.08); border: 1px solid rgba(234,88,12,0.2); border-radius: 6px; padding: 6px 12px; font-family: var(--font-mono); font-size: 0.65rem; color: var(--accent2); }
 
-/* chatbot demo */
 .chat-demo { background: var(--bg); border: 1px solid rgba(168,85,247,0.25); border-radius: 14px; padding: 20px; display: flex; flex-direction: column; gap: 10px; }
 .chat-demo-bar { display: flex; align-items: center; gap: 8px; padding-bottom: 14px; border-bottom: 1px solid var(--border); margin-bottom: 4px; }
 .chat-demo-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--node-purple); animation: pulse 2s infinite; }
@@ -498,7 +475,6 @@ section { position: relative; z-index: 1; }
 .chat-typing span:nth-child(3) { animation-delay: 0.4s; }
 @keyframes typing { 0%,60%,100%{transform:translateY(0);opacity:0.4} 30%{transform:translateY(-4px);opacity:1} }
 
-/* AI visual */
 .ai-visual { display: flex; flex-direction: column; gap: 14px; }
 .ai-input { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted2); line-height: 1.6; }
 .ai-input span { color: var(--accent2); }
@@ -509,14 +485,12 @@ section { position: relative; z-index: 1; }
 .ai-output-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 8px 12px; font-family: var(--font-mono); font-size: 0.65rem; color: var(--muted2); display: flex; align-items: center; gap: 6px; }
 .ai-output-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
 
-/* integration grid */
 .int-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
 .int-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 12px; display: flex; flex-direction: column; align-items: center; gap: 6px; transition: border-color 0.3s, transform 0.3s; }
 .int-chip:hover { border-color: var(--accent); transform: translateY(-2px); }
 .int-chip-icon { font-size: 18px; }
 .int-chip-name { font-family: var(--font-mono); font-size: 0.6rem; color: var(--muted2); text-align: center; }
 
-/* ops bars */
 .ops-bars { display: flex; flex-direction: column; gap: 14px; }
 .ops-bar-row { display: flex; flex-direction: column; gap: 6px; }
 .ops-bar-label { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.65rem; color: var(--muted); }
@@ -525,7 +499,6 @@ section { position: relative; z-index: 1; }
 @keyframes fillBar { from{width:0} }
 .ops-tag { display: inline-flex; align-items: center; gap: 6px; background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.2); border-radius: 4px; padding: 4px 10px; font-family: var(--font-mono); font-size: 0.65rem; color: var(--node-green); margin-top: 8px; }
 
-/* monitor */
 .monitor-visual { display: flex; flex-direction: column; gap: 10px; }
 .monitor-stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .monitor-stat { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 14px; }
@@ -535,14 +508,12 @@ section { position: relative; z-index: 1; }
 .log-line { font-family: var(--font-mono); font-size: 0.65rem; color: var(--muted2); line-height: 2; display: flex; align-items: center; gap: 8px; }
 .log-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
 
-/* CTA band */
 .cta-band { background: var(--surface); border-top: 1px solid var(--border); position: relative; z-index: 1; }
 .cta-band-inner { max-width: 1100px; margin: 0 auto; padding: 80px 48px; display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
 .cta-band h2 { font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; }
 .cta-band h2 span { color: var(--accent); }
 .cta-band p { color: var(--muted2); font-size: 0.95rem; line-height: 1.6; margin-top: 10px; max-width: 420px; }
 .cta-band-actions { display: flex; gap: 14px; align-items: center; flex-shrink: 0; }
-
 
   .footer-links { display: flex; gap: 24px; }
   .footer-links a { font-family: var(--font-mono); font-size: 0.68rem; color: var(--muted); text-decoration: none; transition: color 0.2s; letter-spacing: 0.04em; }
@@ -565,7 +536,6 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
   .monitor-stat-row { grid-template-columns: 1fr; }
 }
 
-/* ── GALAXY INTERACTIVE HERO ── */
 .galaxy-hero { position: relative; z-index: 1; width: 100%; min-height: 100vh; overflow: hidden; }
 .galaxy-hero .hero-bg-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; display: block; pointer-events: none; }
 .galaxy-hero-fade { position: absolute; inset: 0; z-index: 1; pointer-events: none;
@@ -583,7 +553,7 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 .galaxy-hero-actions .btn-sec:hover { border-color: rgba(255,255,255,0.4); color: #fff; }
 .galaxy-hero .hero-word { display: inline-block; opacity: 0; animation: fadeUp 0.6s ease forwards; }
 @media (max-width: 768px) {
-  /* video owns the top of the screen, copy sits on solid ground below it, so the two never overlap */
+
   .galaxy-hero { min-height: 100svh; background: var(--bg); }
   .galaxy-hero .hero-bg-video { height: 58%; object-position: 62% center; }
   .galaxy-hero-fade { background: linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, transparent 22%, rgba(15,15,15,0.6) 44%, var(--bg) 58%); }
@@ -608,7 +578,6 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 .dna-hero .flex-notice { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 28px; }
 .dna-hero .flex-pill { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 8px; font-size: 0.82rem; border: 1px solid; backdrop-filter: blur(8px); color: var(--muted2); }
 
-/* Logo slider */
 .logo-slider-section { position: relative; z-index: 1; background: var(--bg); border-top: 1px solid var(--border); padding: 0 24px; }
 .logo-slider-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; flex-direction: column; gap: 16px; padding: 24px 0; }
 .logo-slider-label { font-size: 0.78rem; color: var(--muted); white-space: nowrap; font-family: var(--font-mono); letter-spacing: 0.05em; }
@@ -627,11 +596,9 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
   .logo-slider-label { border-right: 1px solid var(--border); padding-right: 24px; }
 }
 
-/* 6-link nav: collapse to hamburger a little earlier so links never crowd */
 @media (max-width: 1150px) { .nav-links { gap: 20px; } }
 @media (max-width: 1045px) { .nav-links { display: none; } .nav-hamburger { display: block; } }
 
-/* ── MOBILE NAV ── */
 .nav-hamburger { display: none; background: none; border: none; color: var(--text); cursor: pointer; padding: 8px; z-index: 101; }
 .nav-hamburger svg { width: 24px; height: 24px; }
 .mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 99; background: rgba(15,15,15,0.97); backdrop-filter: blur(16px); flex-direction: column; align-items: center; justify-content: center; gap: 0; }
@@ -681,8 +648,6 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
   <a href="tel:+447718155997" class="mobile-cta" style="display:inline-flex;align-items:center;gap:10px"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.35-.11-.74-.03-1.02.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.21c.28-.27.36-.66.25-1.01-.37-1.12-.57-2.32-.57-3.57 0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.49c0-.55-.45-1-1-1z"/></svg>07718 155997</a>
 </div>
 
-
-<!-- Services hero — full-width background video -->
 <div class="galaxy-hero">
   <video class="hero-bg-video" autoplay loop muted playsinline preload="auto" poster="services-media/hero-services-01-poster.jpg" aria-hidden="true">
     <source src="services-media/hero-services-01.mp4" type="video/mp4"/>
@@ -709,7 +674,6 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
   </div>
 </div>
 
-<!-- Tool Logo Slider -->
 <div class="logo-slider-section">
   <div class="logo-slider-inner">
     <div class="logo-slider-label">Platforms we integrate:</div>
@@ -726,7 +690,7 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
         <div class="logo-item"><img src="checkatrade-logo.png" alt="Checkatrade logo" loading="lazy"/><span>Checkatrade</span></div>
         <div class="logo-item"><img src="scoot-logo.png" alt="Scoot logo" loading="lazy"/><span>Scoot</span></div>
         <div class="logo-item"><img src="192-logo.png" alt="192.com logo" loading="lazy"/><span>192.com</span></div>
-        <!-- duplicate for seamless loop -->
+
         <div class="logo-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#0467DF" d="M6.915 4.03c-1.968 0-3.683 1.28-4.871 3.113C.704 9.208 0 11.883 0 14.449c0 .706.07 1.369.21 1.973a6.624 6.624 0 0 0 .265.86 5.297 5.297 0 0 0 .371.761c.696 1.159 1.818 1.927 3.593 1.927 1.497 0 2.633-.671 3.965-2.444.76-1.012 1.144-1.626 2.663-4.32l.756-1.339.186-.325c.061.1.121.196.183.3l2.152 3.595c.724 1.21 1.665 2.556 2.47 3.314 1.046.987 1.992 1.22 3.06 1.22 1.075 0 1.876-.355 2.455-.843a3.743 3.743 0 0 0 .81-.973c.542-.939.861-2.127.861-3.745 0-2.72-.681-5.357-2.084-7.45-1.282-1.912-2.957-2.93-4.716-2.93-1.047 0-2.088.467-3.053 1.308-.652.57-1.257 1.29-1.82 2.05-.69-.875-1.335-1.547-1.958-2.056-1.182-.966-2.315-1.303-3.454-1.303zm10.16 2.053c1.147 0 2.188.758 2.992 1.999 1.132 1.748 1.647 4.195 1.647 6.4 0 1.548-.368 2.9-1.839 2.9-.58 0-1.027-.23-1.664-1.004-.496-.601-1.343-1.878-2.832-4.358l-.617-1.028a44.908 44.908 0 0 0-1.255-1.98c.07-.109.141-.224.211-.327 1.12-1.667 2.118-2.602 3.358-2.602zm-10.201.553c1.265 0 2.058.791 2.675 1.446.307.327.737.871 1.234 1.579l-1.02 1.566c-.757 1.163-1.882 3.017-2.837 4.338-1.191 1.649-1.81 1.817-2.486 1.817-.524 0-1.038-.237-1.383-.794-.263-.426-.464-1.13-.464-2.046 0-2.221.63-4.535 1.66-6.088.454-.687.964-1.226 1.533-1.533a2.264 2.264 0 0 1 1.088-.285z"/></svg><span>Meta</span></div>
         <div class="logo-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#006BFF" d="M19.655 14.262c.281 0 .557.023.828.064 0 .005-.005.01-.005.014-.105.267-.234.534-.381.786l-1.219 2.106c-1.112 1.936-3.177 3.127-5.411 3.127h-2.432c-2.23 0-4.294-1.191-5.412-3.127l-1.218-2.106a6.251 6.251 0 0 1 0-6.252l1.218-2.106C6.736 4.832 8.8 3.641 11.035 3.641h2.432c2.23 0 4.294 1.191 5.411 3.127l1.219 2.106c.147.252.271.519.381.786 0 .004.005.009.005.014-.267.041-.543.064-.828.064-1.816 0-2.501-.607-3.291-1.306-.764-.676-1.711-1.517-3.44-1.517h-1.029c-1.251 0-2.387.455-3.2 1.278-.796.805-1.233 1.904-1.233 3.099v1.411c0 1.196.437 2.295 1.233 3.099.813.823 1.949 1.278 3.2 1.278h1.034c1.729 0 2.676-.841 3.439-1.517.791-.703 1.471-1.306 3.287-1.301Zm.005-3.237c.399 0 .794-.036 1.179-.11-.002-.004-.002-.01-.002-.014-.073-.414-.193-.823-.349-1.218.731-.12 1.407-.396 1.986-.819 0-.004-.005-.013-.005-.018-.331-1.085-.832-2.101-1.489-3.03-.649-.915-1.435-1.719-2.331-2.395-1.867-1.398-4.088-2.138-6.428-2.138-1.448 0-2.855.28-4.175.841-1.273.543-2.423 1.315-3.407 2.299S2.878 6.552 2.341 7.83c-.557 1.324-.842 2.726-.842 4.175 0 1.448.281 2.855.842 4.174.542 1.274 1.314 2.423 2.298 3.407s2.129 1.761 3.407 2.299c1.324.556 2.727.841 4.175.841 2.34 0 4.561-.74 6.428-2.137a10.815 10.815 0 0 0 2.331-2.396c.652-.929 1.158-1.949 1.489-3.03 0-.004.005-.014.005-.018-.579-.423-1.255-.699-1.986-.819.161-.395.276-.804.349-1.218.005-.009.005-.014.005-.023.869.166 1.692.506 2.404 1.035.685.505.552 1.075.446 1.416C22.184 20.437 17.619 24 12.221 24c-6.625 0-12-5.375-12-12s5.37-12 12-12c5.398 0 9.963 3.563 11.471 8.464.106.341.239.915-.446 1.421-.717.529-1.535.873-2.404 1.034.128.716.128 1.45 0 2.166-.387-.074-.782-.11-1.182-.11-4.184 0-3.968 2.823-6.736 2.823h-1.029c-1.899 0-3.15-1.357-3.15-3.095v-1.411c0-1.738 1.251-3.094 3.15-3.094h1.034c2.768 0 2.552 2.823 6.731 2.827Z"/></svg><span>Calendly</span></div>
         <div class="logo-item"><svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/><path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/><path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/><path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/></svg><span>Google</span></div>
@@ -751,14 +715,12 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 
 <hr class="divider"/>
 
-<!-- GROUP: Packages -->
 <div class="svc-group reveal">
   <div class="svc-group-label">Packages</div>
   <h2>Two packages.<br/><span>Pick where you start.</span></h2>
   <p>A premium website to get you found, or the Business Growth Package to turn every enquiry into booked work. No large lump sum to find, and no long-term contract.</p>
 </div>
 
-<!-- SERVICE 1: Branded Website Design -->
 <div class="service-block reverse reveal" id="websites">
   <div>
     <div class="service-block-label">Package 1 &middot; Get Found</div>
@@ -790,7 +752,6 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 
 <hr class="divider"/>
 
-<!-- SERVICE: Business Growth Package (website + CRM + automation) -->
 <div class="service-block service-stacked reveal" id="business-growth">
   <div>
     <div class="service-block-label">Package 2 &middot; Win More Work</div>
@@ -902,14 +863,12 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 
 <hr class="divider"/>
 
-<!-- GROUP: Add-ons and extras -->
 <div class="svc-group reveal">
   <div class="svc-group-label">Add-ons and extras</div>
   <h2>Enhance your<br/><span>results.</span></h2>
   <p>Optional extras you can add whenever you want to grow faster. The AI Receptionist needs the Business Growth Package, because it logs every call into your CRM; everything else works with either package. No long-term contracts, cancel any time.</p>
 </div>
 
-<!-- SERVICE: Out-of-Hours AI Receptionist -->
 <div class="service-block reveal" id="ai-receptionist">
   <div>
     <div class="service-block-label purple">Add-on &middot; Business Growth Package</div>
@@ -960,7 +919,6 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 
 <hr class="divider"/>
 
-<!-- SERVICE: Google Business Profile Management -->
 <div class="service-block reverse reveal" id="google-business-profile">
   <div>
     <div class="service-block-label">Add-on &middot; Local Search</div>
@@ -1011,7 +969,6 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 
 <hr class="divider"/>
 
-<!-- SERVICE 2: Visual Transformation Videos -->
 <div class="service-block reveal" id="transformation-videos">
   <div>
     <div class="service-block-label">Add-on &middot; Visual Content</div>
@@ -1043,7 +1000,6 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 
 <hr class="divider"/>
 
-<!-- SERVICE 3: Review Funnel + Transformation Video -->
 <div class="service-block reverse reveal" id="review-funnel">
   <div>
     <div class="service-block-label">Add-on &middot; Reputation</div>
@@ -1108,7 +1064,6 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 
 <hr class="divider"/>
 
-<!-- SERVICE: Quote Funnel -->
 <div class="service-block reveal" id="quote-funnel">
   <div>
     <div class="service-block-label">Add-on &middot; Lead Capture</div>
@@ -1160,7 +1115,6 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 
 <hr class="divider"/>
 
-<!-- SERVICE 6: AI Chatbot -->
 <div class="service-block reverse reveal" id="ai-chatbot">
   <div>
     <div class="service-block-label purple">Add-on &middot; AI Assistant</div>
@@ -1192,7 +1146,6 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 
 <hr class="divider"/>
 
-<!-- SERVICE 7: Magic Live Google Review Slider -->
 <div class="service-block reveal" id="review-slider">
   <div>
     <div class="service-block-label">Add-on &middot; Live Reviews</div>
@@ -1320,7 +1273,6 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 
 <hr class="divider"/>
 
-<!-- SERVICE 5: Email Hosting & Setup -->
 <div class="service-block service-stacked reveal" id="email-hosting">
   <div>
     <div class="service-block-label">Add-on &middot; Professional Email</div>
@@ -1350,14 +1302,12 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 
 <hr class="divider"/>
 
-<!-- GROUP: Paid ads and social -->
 <div class="svc-group reveal">
   <div class="svc-group-label">Paid ads and social</div>
   <h2>Turn on<br/><span>the tap.</span></h2>
   <p>Paid advertising for when you want leads coming in faster than organic search alone can deliver. One business per trade, per area: once you run ads with us, we will not take on a competitor in your patch.</p>
 </div>
 
-<!-- SERVICE 4b: Meta Ad Lead Generation System -->
 <div class="service-block reverse reveal" id="meta-ads">
   <div>
     <div class="service-block-label">Paid Advertising &middot; Meta</div>
@@ -1435,7 +1385,6 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 
 <hr class="divider"/>
 
-<!-- SERVICE 4: Quote / Ad Landing Page -->
 <div class="service-block reveal" id="ad-landing-page">
   <div>
     <div class="service-block-label">Paid Advertising &middot; Supporting Service</div>
@@ -1478,7 +1427,6 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 
 <hr class="divider"/>
 
-<!-- SERVICE: facebook-page -->
 <div class="service-block reverse reveal" id="facebook-page">
   <div>
     <div class="service-block-label">Paid Advertising &middot; Supporting Service</div>
@@ -1526,7 +1474,6 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 
 <hr class="divider"/>
 
-<!-- SERVICE: social-management -->
 <div class="service-block reveal" id="social-management">
   <div>
     <div class="service-block-label">Social &middot; Facebook and Instagram</div>
@@ -1566,7 +1513,6 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
 
 <hr class="divider"/>
 
-<!-- CTA -->
 <div class="cta-band">
   <div class="cta-band-inner reveal">
     <div>
@@ -1630,10 +1576,8 @@ footer { border-top: 1px solid var(--border); padding: 48px; display: flex; alig
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 </script>
 
-
 <script src="cookie-consent.js"></script>
 
-<!-- Innov8 CRM analytics -->
 <script defer src="https://crm.innov8workflows.co.uk/track.js" data-id="proj_f5d3ac1edd12"></script>
 <script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6ac2862dd8dc776960edd22d"></script>
 </body>

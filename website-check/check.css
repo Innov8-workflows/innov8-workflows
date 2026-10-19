@@ -137,16 +137,33 @@ h1,h2,h3{font-weight:800;letter-spacing:-.03em;line-height:1.08}
 .again:hover{color:var(--text)}
 .again .ic{width:16px;height:16px}
 
-.what{padding:46px 0 60px;border-top:1px solid var(--line);background:var(--ink-1)}
-.what h2{font-size:clamp(1.6rem,4.6vw,2.3rem);margin-top:10px;max-width:22ch}
-.what-grid{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:22px}
-@media(min-width:760px){.what-grid{grid-template-columns:repeat(3,1fr);gap:14px}}
-@media(min-width:1000px){.what-grid{grid-template-columns:repeat(5,1fr)}}
-.what-grid li{padding:16px;border-radius:14px;background:var(--surface);border:1px solid var(--line)}
-.wi{display:grid;place-items:center;width:40px;height:40px;border-radius:11px;background:rgba(234,88,12,.12);color:var(--accent2)}
-.what-grid b{display:block;margin-top:10px;font-size:1rem}
-.what-grid p{color:var(--muted);font-size:.88rem;margin-top:2px;line-height:1.4}
-.what-note{margin-top:18px;color:var(--muted);font-size:.9rem}
+.what{padding:50px 0 64px;border-top:1px solid var(--line);background:var(--ink-1)}
+.what-in{display:grid;gap:34px}
+@media(min-width:960px){.what-in{grid-template-columns:.9fr 1.1fr;gap:64px;align-items:start}.what-intro{position:sticky;top:96px}}
+.what h2{font-size:clamp(1.7rem,4.8vw,2.5rem);margin-top:10px;max-width:16ch}
+.what-lead{margin-top:12px;color:var(--text2);max-width:40ch}
+.sample{margin-top:24px;background:linear-gradient(180deg,#1b1b1b,#151515);border:1px solid var(--line2);border-radius:var(--r);padding:16px;box-shadow:0 30px 70px -34px rgba(0,0,0,.95)}
+.sample figcaption{display:flex;justify-content:space-between;gap:10px;font-family:var(--mono);font-size:.8rem;color:var(--muted);padding-bottom:12px;border-bottom:1px dashed var(--line2)}
+.sample figcaption span:first-child{color:var(--accent2);letter-spacing:.1em;text-transform:uppercase}
+.sample-top{display:flex;align-items:center;gap:16px;margin-top:14px}
+.dial.sm{width:86px;height:86px}
+.dial.sm .dial-in{width:68px;height:68px}
+.dial.sm .dial-in b{font-size:1.6rem}
+.dial.sm .dial-in span{font-size:.8rem;margin-top:0}
+.sample-h{font-weight:800;font-size:1.08rem;line-height:1.25;margin-top:3px}
+.sample .checks{margin-top:14px;gap:8px}
+.sample .checks li{padding:11px 12px}
+.sample .checks .st{width:22px;height:22px}
+.sample .checks b{font-size:.95rem}
+.sample .checks p{font-size:.88rem}
+.wgroup+.wgroup{margin-top:30px}
+.wgroup h3{display:flex;align-items:baseline;justify-content:space-between;gap:12px;font-size:1.25rem;padding-bottom:12px;border-bottom:2px solid var(--accent)}
+.wgroup h3 small{font-family:var(--mono);font-weight:400;font-size:.8rem;letter-spacing:.06em;color:var(--muted);white-space:nowrap}
+.wgroup dl div{display:grid;gap:2px;padding:13px 0;border-bottom:1px solid var(--line)}
+@media(min-width:600px){.wgroup dl div{grid-template-columns:200px 1fr;gap:18px;align-items:baseline}}
+.wgroup dt{font-weight:700;font-size:1.02rem}
+.wgroup dd{color:var(--text2);font-size:.95rem}
+.what-note{margin-top:22px;color:var(--muted);font-size:.9rem}
 
 .ftr{border-top:1px solid var(--line);padding:22px 0 30px;color:var(--muted);font-size:.88rem}
 .ftr .wrap{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;justify-content:space-between}

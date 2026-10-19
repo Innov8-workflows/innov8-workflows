@@ -223,6 +223,8 @@ h1,h2,h3{font-weight:800;letter-spacing:-.03em;line-height:1.05}
 .final h2 em{font-style:normal;color:var(--accent2)}
 .final p{color:rgba(255,255,255,.92);max-width:52ch;margin:14px auto 0;text-shadow:0 2px 14px rgba(0,0,0,.9)}
 .final .btns{display:grid;gap:10px;margin:26px auto 0;max-width:420px}
+.final .check-link{display:inline-flex;align-items:center;min-height:44px;margin-top:14px;padding:0 6px;color:rgba(255,255,255,.88);font-weight:600;font-size:.95rem;text-decoration:underline;text-underline-offset:4px;text-decoration-color:rgba(249,115,22,.7);text-shadow:0 2px 14px rgba(0,0,0,.9)}
+.final .check-link:hover{color:#fff;text-decoration-color:var(--accent2)}
 @media(min-width:760px){.final .btns{display:flex;justify-content:center;max-width:none}}
 
 footer{background:#0a0a0a;border-top:1px solid var(--line);padding:26px 0 30px;text-align:center;font-size:.82rem;color:var(--muted)}

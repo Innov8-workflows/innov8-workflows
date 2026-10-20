@@ -107,7 +107,10 @@ h1,h2,h3{font-weight:800;letter-spacing:-.03em;line-height:1.08}
 .gate h3{margin-top:12px;font-size:1.45rem}
 .gate-sub{color:var(--text2);margin:6px auto 0;max-width:40ch}
 #unlockForm{margin-top:18px;text-align:left;display:grid;gap:12px}
-@media(min-width:600px){#unlockForm{grid-template-columns:1fr 1fr}#unlockForm .btn,#unlockForm .err,#unlockForm .fine{grid-column:1/-1}}
+@media(min-width:600px){#unlockForm{grid-template-columns:1fr 1fr}#unlockForm .btn,#unlockForm .err,#unlockForm .fine,#unlockForm .optin{grid-column:1/-1}}
+.optin{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:#0b0b0b;cursor:pointer;font-size:.95rem;color:var(--text2);line-height:1.45}
+.optin input{flex:none;width:22px;height:22px;margin-top:1px;accent-color:var(--accent);cursor:pointer}
+.optin:has(input:checked){border-color:rgba(249,115,22,.5);color:var(--text)}
 .field label{display:block;font-weight:700;font-size:.92rem;margin-bottom:6px}
 .field input{width:100%;min-height:52px;background:#0b0b0b;border:1px solid var(--line);border-radius:12px;padding:0 14px;font-size:1.04rem}
 .field input:focus{outline:2px solid var(--accent2);outline-offset:1px;border-color:transparent}

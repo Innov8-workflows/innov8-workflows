@@ -187,6 +187,7 @@
       business: F.business.value.trim(),
       jobValue: F.jobValue.value.replace(/[^\d]/g, ''),
       company_website: $('fWeb').value,
+      marketing: $('fMkt').checked,
       page: location.href.split('#')[0],
       referrer: document.referrer || ''
     }, 30000).then(function (j) {

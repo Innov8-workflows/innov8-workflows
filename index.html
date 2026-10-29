@@ -227,15 +227,31 @@ section { position: relative; z-index: 1; }
 .work-result { font-size: 0.825rem; color: var(--muted2); line-height: 1.55; }
 
 .reviewpages-section { background: var(--bg); border-bottom: 1px solid var(--border); }
-.rp-platforms { margin-top: 44px; }
 .rp-platforms-label { font-family: var(--font-mono); font-size: 0.68rem; color: var(--accent2); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 18px; display: flex; align-items: center; gap: 10px; }
 .rp-platforms-label::before { content: ''; display: inline-block; width: 16px; height: 1.5px; background: var(--accent); }
-.rp-platforms-row { background: var(--surface2); border: 1px solid var(--border); border-radius: 16px; padding: 26px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-around; gap: 24px 16px; }
-.rp-platform { display: flex; flex-direction: column; align-items: center; gap: 12px; flex: 1 1 auto; min-width: 90px; transition: transform 0.2s; }
-.rp-platform:hover { transform: translateY(-3px); }
-.rp-platform-logo { width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; }
-.rp-platform-logo img, .rp-platform-logo svg { max-width: 100%; max-height: 100%; object-fit: contain; display: block; }
-.rp-platform-name { font-size: 0.78rem; font-weight: 600; color: var(--muted2); letter-spacing: 0.01em; white-space: nowrap; }
+.rv-grid { display: grid; gap: 40px; align-items: center; }
+@media (min-width: 900px) { .rv-grid { grid-template-columns: 1.1fr 0.9fr; gap: 64px; } }
+.rv-steps { list-style: none; counter-reset: rv; margin-top: 30px; display: grid; gap: 4px; max-width: 520px; }
+.rv-steps li { counter-increment: rv; display: grid; grid-template-columns: 34px 1fr; column-gap: 14px; padding: 14px 0; border-top: 1px solid var(--border); }
+.rv-steps li::before { content: counter(rv); grid-row: span 2; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent2); border: 1px solid rgba(249,115,22,0.45); }
+.rv-steps b { font-size: 1.02rem; color: var(--text); }
+.rv-steps span { color: var(--muted2); font-size: 0.92rem; line-height: 1.5; margin-top: 2px; }
+.rv-phone { margin: 0 auto; width: min(300px, 78vw); text-align: center; }
+.rv-phone-frame { border-radius: 38px; padding: 10px; background: #0b0b0b; border: 1px solid rgba(255,255,255,0.14); box-shadow: 0 40px 80px -30px rgba(0,0,0,0.9), 0 0 0 6px rgba(234,88,12,0.06); position: relative; }
+.rv-phone-frame::before { content: ''; position: absolute; top: 16px; left: 50%; width: 76px; height: 20px; margin-left: -38px; border-radius: 12px; background: #0b0b0b; z-index: 1; }
+.rv-phone-frame img { display: block; width: 100%; height: auto; border-radius: 29px; }
+.rv-phone figcaption { margin-top: 14px; font-size: 0.8rem; color: var(--muted); }
+.rv-platforms { margin-top: 56px; }
+.rv-platforms-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 16px; margin-bottom: 16px; }
+.rv-platforms-head .rp-platforms-label { margin-bottom: 0; }
+.rv-platforms-note { font-size: 0.82rem; color: var(--muted); }
+.rv-logos { list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+@media (min-width: 900px) { .rv-logos { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.rv-logo { display: flex; align-items: center; gap: 11px; padding: 11px 13px; border-radius: 12px; background: var(--surface2); border: 1px solid var(--border); font-size: 0.86rem; font-weight: 600; color: var(--text); line-height: 1.25; }
+.rv-logo-img { width: 42px; height: 42px; flex: none; border-radius: 9px; background: #fff; display: grid; place-items: center; overflow: hidden; }
+.rv-logo-img img, .rv-logo-img svg { width: 34px; height: 34px; object-fit: contain; display: block; }
+@media (max-width: 600px) { .rv-logos { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; } .rv-logo { padding: 9px; font-size: 0.8rem; gap: 8px; min-width: 0; overflow-wrap: break-word; } .rv-logo-img { width: 34px; height: 34px; } .rv-logo-img img, .rv-logo-img svg { width: 28px; height: 28px; } }
+@media (max-width: 380px) { .rv-logo { padding: 8px 7px; gap: 7px; font-size: 0.78rem; } .rv-logo-img { width: 30px; height: 30px; border-radius: 8px; } .rv-logo-img img, .rv-logo-img svg { width: 24px; height: 24px; } }
 
 .lv-trades { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
 .lv-trades span { font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted2); border: 1px solid var(--border); background: var(--surface); border-radius: 100px; padding: 6px 12px; }
@@ -480,11 +496,6 @@ footer { border-top: 1px solid var(--border); padding: 48px 48px 32px; position:
   .work-grid { grid-template-columns: 1fr; gap: 16px; margin-top: 36px; }
   .work-body { padding: 16px 18px 18px; }
 
-  .rp-platforms { margin-top: 36px; }
-  .rp-platforms-row { padding: 22px 14px; gap: 22px 10px; }
-  .rp-platform { flex: 1 1 calc(33.333% - 8px); min-width: 0; gap: 10px; }
-  .rp-platform-logo { width: 36px; height: 36px; }
-  .rp-platform-name { font-size: 0.68rem; }
 
   .contact-inner { padding: 60px 18px; }
   .wa-form-card { margin-top: 24px; }
@@ -976,38 +987,39 @@ footer { border-top: 1px solid var(--border); padding: 48px 48px 32px; position:
 
 <section id="reviews-built" class="reviewpages-section">
   <div class="section-inner">
-    <div class="section-label reveal">Review Capture</div>
-    <h2 class="section-title reveal">Reviews that rank<br/>you higher.</h2>
-    <p class="section-desc reveal">Every site we build ships with a one-tap review-capture page. More genuine 5★ reviews push you up Google's local rankings and into AI search results, driving more traffic, more trust, and more booked jobs.</p>
-
-    <div class="rp-platforms reveal">
-      <div class="rp-platforms-label">Review integrations we set up for you</div>
-      <div class="rp-platforms-row">
-        <div class="rp-platform">
-          <div class="rp-platform-logo">
-            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/><path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/><path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/><path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/></svg>
-          </div>
-          <span class="rp-platform-name">Google</span>
-        </div>
-        <div class="rp-platform">
-          <div class="rp-platform-logo">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#1877F2" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/><path fill="#fff" d="M16.671 15.543l.532-3.47h-3.328v-2.25c0-.949.465-1.874 1.956-1.874h1.513V4.996s-1.374-.235-2.686-.235c-2.741 0-4.533 1.662-4.533 4.669v2.643H7.078v3.47h3.047v8.385a12.137 12.137 0 003.75 0v-8.385h2.796z"/></svg>
-          </div>
-          <span class="rp-platform-name">Facebook</span>
-        </div>
-        <div class="rp-platform">
-          <div class="rp-platform-logo"><img src="trustatrader-logo.png" alt="TrustATrader logo" width="40" height="40" loading="lazy"/></div>
-          <span class="rp-platform-name">TrustATrader</span>
-        </div>
-        <div class="rp-platform">
-          <div class="rp-platform-logo"><img src="yell-logo.png" alt="Yell logo" width="40" height="40" loading="lazy"/></div>
-          <span class="rp-platform-name">Yell</span>
-        </div>
-        <div class="rp-platform">
-          <div class="rp-platform-logo"><img src="myjobquote-logo.png" alt="MyJobQuote logo" width="40" height="40" loading="lazy"/></div>
-          <span class="rp-platform-name">MyJobQuote</span>
-        </div>
+    <div class="rv-grid">
+      <div class="rv-copy">
+        <div class="section-label reveal">Review Capture</div>
+        <h2 class="section-title reveal">Reviews that rank<br/>you higher.</h2>
+        <p class="section-desc reveal">Every site we build comes with its own review page. More genuine reviews push you up Google's local results and into AI search, so more people find you, trust you and book you.</p>
+        <ol class="rv-steps reveal">
+          <li><b>Finish the job, send one link</b><span>A text or WhatsApp with your review page, while the customer is still pleased.</span></li>
+          <li><b>One tap to Google</b><span>Your page sends them straight to your Google review box. No hunting for you on Maps.</span></li>
+          <li><b>Their choice of site</b><span>Rather use Checkatrade or Facebook? Every profile you have is one tap away.</span></li>
+        </ol>
       </div>
+      <figure class="rv-phone reveal" aria-label="A review page we built for Holt Roofing">
+        <div class="rv-phone-frame"><img src="review-page-phone.webp" alt="Holt Roofing's review page on a phone, with a Leave a Google review button" width="390" height="780" loading="lazy"/></div>
+        <figcaption>Holt Roofing's review page, as their customers see it</figcaption>
+      </figure>
+    </div>
+
+    <div class="rv-platforms reveal">
+      <div class="rv-platforms-head"><span class="rp-platforms-label">Review sites we link up for you</span><span class="rv-platforms-note">Whichever ones you're on</span></div>
+      <ul class="rv-logos">
+          <li class="rv-logo"><span class="rv-logo-img"><svg width="30" height="30" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/><path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/><path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/><path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/></svg></span><span>Google</span></li>
+          <li class="rv-logo"><span class="rv-logo-img"><svg width="30" height="30" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#1877F2" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/><path fill="#fff" d="M16.671 15.543l.532-3.47h-3.328v-2.25c0-.949.465-1.874 1.956-1.874h1.513V4.996s-1.374-.235-2.686-.235c-2.741 0-4.533 1.662-4.533 4.669v2.643H7.078v3.47h3.047v8.385a12.137 12.137 0 003.75 0v-8.385h2.796z"/></svg></span><span>Facebook</span></li>
+          <li class="rv-logo"><span class="rv-logo-img"><img src="review-logos/checkatrade.webp" alt="" width="30" height="30" loading="lazy"/></span><span>Checkatrade</span></li>
+          <li class="rv-logo"><span class="rv-logo-img"><img src="review-logos/trustatrader.webp" alt="" width="30" height="30" loading="lazy"/></span><span>TrustATrader</span></li>
+          <li class="rv-logo"><span class="rv-logo-img"><img src="review-logos/mybuilder.webp" alt="" width="30" height="30" loading="lazy"/></span><span>MyBuilder</span></li>
+          <li class="rv-logo"><span class="rv-logo-img"><img src="review-logos/ratedpeople.webp" alt="" width="30" height="30" loading="lazy"/></span><span>Rated People</span></li>
+          <li class="rv-logo"><span class="rv-logo-img"><img src="review-logos/bark.webp" alt="" width="30" height="30" loading="lazy"/></span><span>Bark</span></li>
+          <li class="rv-logo"><span class="rv-logo-img"><img src="review-logos/which.svg" alt="" width="30" height="30" loading="lazy"/></span><span>Which? Trusted Traders</span></li>
+          <li class="rv-logo"><span class="rv-logo-img"><img src="review-logos/trusted-trader.webp" alt="" width="30" height="30" loading="lazy"/></span><span>Council Trusted Trader</span></li>
+          <li class="rv-logo"><span class="rv-logo-img"><img src="review-logos/trustpilot.svg" alt="" width="30" height="30" loading="lazy"/></span><span>Trustpilot</span></li>
+          <li class="rv-logo"><span class="rv-logo-img"><img src="review-logos/yell.webp" alt="" width="30" height="30" loading="lazy"/></span><span>Yell</span></li>
+          <li class="rv-logo"><span class="rv-logo-img"><img src="review-logos/myjobquote.webp" alt="" width="30" height="30" loading="lazy"/></span><span>MyJobQuote</span></li>
+      </ul>
     </div>
   </div>
 </section>

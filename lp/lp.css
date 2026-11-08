@@ -68,7 +68,7 @@ h1,h2,h3{font-weight:800;letter-spacing:-.03em;line-height:1.05}
 @media(min-width:980px){.hero-proof{margin-top:-8px}}
 .chip{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.05);border:1px solid var(--line2);border-radius:100px;padding:7px 13px;font-size:.82rem;font-weight:600;color:var(--text)}
 .chip .ic{width:15px;height:15px;color:var(--accent2)}
-.chip svg.gm{width:15px;height:15px}
+.chip svg.gm,.chip svg.fb{width:15px;height:15px;flex:none}
 .hero-vis{margin:0;border-radius:var(--r);overflow:hidden;border:1px solid var(--line2);background:#000;box-shadow:0 30px 70px -30px rgba(0,0,0,.9)}
 .hero-vis img{width:100%;aspect-ratio:16/9;object-fit:cover}
 .hero-vis figcaption{display:flex;align-items:center;gap:8px;padding:11px 14px;font-size:.82rem;color:var(--text2);background:var(--surface);border-top:1px solid var(--line)}

@@ -53,15 +53,18 @@
     }
   }
 
-  window.track = function (name, params) {
-    if (!started) { q.push([name, params]); return; }
+  /* eventId: the same id the CRM sends to Meta's Conversions API for this lead,
+     so Meta counts a visitor who accepted cookies once, not twice. */
+  window.track = function (name, params, eventId) {
+    if (!started) { q.push([name, params, eventId]); return; }
     if (window.gtag) window.gtag('event', name === 'Lead' ? 'generate_lead' : name, params || {});
     if (window.fbq) {
       var STD = { Lead: 1, Contact: 1, PageView: 1 };
-      window.fbq(STD[name] ? 'track' : 'trackCustom', name, params || {});
+      if (eventId) window.fbq(STD[name] ? 'track' : 'trackCustom', name, params || {}, { eventID: eventId });
+      else window.fbq(STD[name] ? 'track' : 'trackCustom', name, params || {});
     }
   };
-  function flush() { var c = q.slice(); q.length = 0; c.forEach(function (e) { window.track(e[0], e[1]); }); }
+  function flush() { var c = q.slice(); q.length = 0; c.forEach(function (e) { window.track(e[0], e[1], e[2]); }); }
 
   var gate = document.getElementById('cc');
   function sizeGate() { if (gate) root.style.setProperty('--cc-h', gate.offsetHeight + 'px'); }
@@ -101,7 +104,11 @@
         trade: d.trade,
         businessType: TYPES[d.trade] || d.trade,
         message: d.lines.join('\n'),
-        company_website: d.hp || ''
+        company_website: d.hp || '',
+        meta_event_id: d.eventId || '',
+        fbc: d.fbc || '',
+        fbp: d.fbp || '',
+        meta_test: /(?:^|[?&])test=1(?:&|$)/.test(location.search)
       };
       if (d.noWebsite) body.website = '';
       fetch(CRM, { method: 'POST', mode: 'cors', keepalive: true, headers: { 'Content-Type': 'text/plain;charset=UTF-8' }, body: JSON.stringify(body) }).catch(function () {});
@@ -247,7 +254,18 @@
       logged = true;
       var parts = KEYS.map(function (k2) { return answers[k2] ? LABELS[k2] + ': ' + answers[k2] : ''; }).filter(Boolean);
       var how = btn.getAttribute('data-quiz-send') === 'sms' ? 'text message' : 'WhatsApp';
+      /* One id for the pixel Lead and the CRM's server Lead (Conversions API),
+         plus Meta's own cookies if Accept was pressed. The fbclid rides in on the
+         page address. */
+      var eventId = 'lead.' + Date.now() + '.' + Math.random().toString(36).slice(2, 10);
+      var ck = function (n) {
+        var m = document.cookie.match('(?:^|; )' + n + '=([^;]*)');
+        return m ? decodeURIComponent(m[1]) : '';
+      };
       window.sendCrm({
+        eventId: eventId,
+        fbc: ck('_fbc'),
+        fbp: ck('_fbp'),
         name: val('name'),
         phone: val('phone'),
         business: val('business'),
@@ -266,7 +284,7 @@
         details: parts.join(' | '),
         source: 'ad landing page'
       });
-      window.track('Lead', { content_name: 'Free demo funnel', method: btn.getAttribute('data-quiz-send'), trade: answers[KEYS[0]] || '', timing: answers[KEYS[KEYS.length - 1]] || '' });
+      window.track('Lead', { content_name: 'Free demo funnel', method: btn.getAttribute('data-quiz-send'), trade: answers[KEYS[0]] || '', timing: answers[KEYS[KEYS.length - 1]] || '' }, eventId);
     }, false);
   });
 

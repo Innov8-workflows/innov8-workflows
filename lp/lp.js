@@ -203,14 +203,17 @@
     return lines.join('\n');
   }
 
+  function waHref() { return 'https://wa.me/' + WA + '?text=' + encodeURIComponent(message()); }
+
   function render() {
     if (sumEl) {
       var a = KEYS.map(function (k) { return answers[k]; }).filter(Boolean);
       sumEl.textContent = a.length ? 'Your answers: ' + a.join('  |  ') : '';
     }
-    var wa = quiz.querySelector('[data-quiz-send="whatsapp"]');
-    if (wa) wa.href = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(message());
-    var sms = quiz.querySelector('[data-quiz-send="sms"]');
+    /* WhatsApp and text sit under the calendar now, filled in with the answers. */
+    var wa = quiz.querySelector('[data-after-wa]');
+    if (wa) wa.href = waHref();
+    var sms = quiz.querySelector('[data-after-sms]');
     if (sms) sms.href = 'sms:' + SMS + '?&body=' + encodeURIComponent(message());
   }
 
@@ -258,7 +261,7 @@
       if (logged) return;
       logged = true;
       var parts = KEYS.map(function (k2) { return answers[k2] ? LABELS[k2] + ': ' + answers[k2] : ''; }).filter(Boolean);
-      var how = btn.getAttribute('data-quiz-send') === 'sms' ? 'text message' : 'WhatsApp';
+      var how = 'the booking calendar (WhatsApp and text are under it)';
       /* One id for the pixel Lead and the CRM's server Lead (Conversions API),
          plus Meta's own cookies if Accept was pressed. The fbclid rides in on the
          page address. */
@@ -277,7 +280,7 @@
         town: val('town'),
         trade: answers.trade || '',
         noWebsite: /^(No website yet|Only a Facebook page)$/.test(answers.website || ''),
-        lines: parts.concat(['Chose to send by: ' + how])
+        lines: parts.concat(['Sent from the quiz to ' + how])
       });
       window.sendLead({
         type: 'Quote funnel',
@@ -290,9 +293,11 @@
         source: 'ad landing page'
       });
       window.track('Lead', { content_name: 'Free demo funnel', method: btn.getAttribute('data-quiz-send'), trade: answers[KEYS[0]] || '', timing: answers[KEYS[KEYS.length - 1]] || '' }, eventId);
-      /* WhatsApp opens in a new tab or the app, so the booking calendar is
-         waiting here when they come back. */
-      startBooking(refP, ck);
+      /* The calendar opens right here. Sending them to WhatsApp first lost most
+         of them: from Facebook's in-app browser few ever came back to book.
+         The lead is already in the CRM, so WhatsApp is now the second choice. */
+      if (CAL && bookEl) startBooking(refP, ck);
+      else window.open(waHref(), '_blank', 'noopener');
     }, false);
   });
 

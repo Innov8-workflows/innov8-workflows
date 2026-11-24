@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en-GB" data-ga="G-LFEDCY725K" data-pixel="2185904751963612" data-wa="447718155997" data-sms="+447718155997" data-lead="" data-crm="https://crm.innov8workflows.co.uk/api/webhook/site-enquiry">
+<html lang="en-GB" data-ga="G-LFEDCY725K" data-pixel="2185904751963612" data-wa="447718155997" data-sms="+447718155997" data-lead="" data-crm="https://crm.innov8workflows.co.uk/api/webhook/site-enquiry" data-cal="https://calendly.com/jamie-innov8workflows/innov8-workflows-marketing-agency-15-minute-call">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://connect.facebook.net https://crm.innov8workflows.co.uk; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com https://www.facebook.com https://connect.facebook.net https://crm.innov8workflows.co.uk https://script.google.com https://script.googleusercontent.com; img-src 'self' data: https://www.googletagmanager.com https://*.google-analytics.com https://www.facebook.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; frame-src https://www.facebook.com; base-uri 'self'; form-action 'self'; object-src 'none'"/>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://connect.facebook.net https://crm.innov8workflows.co.uk; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com https://www.facebook.com https://connect.facebook.net https://crm.innov8workflows.co.uk https://script.google.com https://script.googleusercontent.com; img-src 'self' data: blob: https://www.googletagmanager.com https://*.google-analytics.com https://www.facebook.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; frame-src https://www.facebook.com https://calendly.com; base-uri 'self'; form-action 'self'; object-src 'none'"/>
 <meta name="referrer" content="strict-origin-when-cross-origin"/>
 <link rel="icon" href="/favicon.ico" sizes="48x48"/>
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png"/>
@@ -26,7 +26,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Bricolage+Grotesque:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="lp.css?v=131a9776"/>
+<link rel="stylesheet" href="lp.css?v=3ddb50dc"/>
 <link rel="preload" as="image" href="/innov8-logo-v2-clear-sm.webp"/>
 </head>
 <body>
@@ -144,6 +144,25 @@
           <a class="btn btn-ghost" data-quiz-send="sms" href="sms:+447718155997"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z"/><path d="M7 11h10"/><path d="M7 15h6"/><path d="M7 7h8"/></svg>Send by text instead</a>
         </div>
         <p class="qsummary" data-quiz-summary></p>
+      </div>
+
+      <div class="qafter" data-book hidden>
+        <h2>Now pick a time for your demo call</h2>
+        <p>Jamie rings you at the time you choose and shows you your new website on screen. 15 minutes, no obligation.</p>
+        <div class="qcal" data-cal><p class="qcal-wait">Loading Jamie's calendar...</p></div>
+        <p class="qskip">Rather not book? That's fine, Jamie will message you today.</p>
+      </div>
+
+      <div class="qafter" data-files hidden>
+        <h2 data-booked>You're booked in</h2>
+        <p>Want your demo to show your own work? Send Jamie your logo and a few job photos. Every bit helps, and it's optional.</p>
+        <div class="fields" data-files-form>
+          <div class="field"><label for="f-site">Your website or Facebook page</label><input id="f-site" type="text" inputmode="url" autocomplete="url" placeholder="yourbusiness.co.uk"/></div>
+          <div class="field qfile"><label for="f-logo">Your logo</label><input id="f-logo" type="file" accept="image/*"/></div>
+          <div class="field qfile"><label for="f-photos">Job photos (up to 12)</label><input id="f-photos" type="file" accept="image/*" multiple/></div>
+          <button class="btn btn-or" type="button" data-files-send>Send to Jamie</button>
+        </div>
+        <p class="qstatus" data-files-status role="status" aria-live="polite"></p>
       </div>
 
       <p class="qnote"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>Your details go to Jamie, and we let Meta know you enquired so we can see which adverts work. No spam, no obligation.</p>
@@ -394,7 +413,7 @@
   </div>
 </div>
 
-<script src="lp.js?v=ef1b4119" defer></script>
+<script src="lp.js?v=0cd1e635" defer></script>
 <script defer src="https://crm.innov8workflows.co.uk/track.js" data-id="proj_f5d3ac1edd12"></script>
 </body>
 </html>

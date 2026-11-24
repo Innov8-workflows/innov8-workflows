@@ -57,9 +57,9 @@
      so Meta counts a visitor who accepted cookies once, not twice. */
   window.track = function (name, params, eventId) {
     if (!started) { q.push([name, params, eventId]); return; }
-    if (window.gtag) window.gtag('event', name === 'Lead' ? 'generate_lead' : name, params || {});
+    if (window.gtag) window.gtag('event', name === 'Lead' ? 'generate_lead' : name === 'Schedule' ? 'book_demo_call' : name, params || {});
     if (window.fbq) {
-      var STD = { Lead: 1, Contact: 1, PageView: 1 };
+      var STD = { Lead: 1, Contact: 1, PageView: 1, Schedule: 1 };
       if (eventId) window.fbq(STD[name] ? 'track' : 'trackCustom', name, params || {}, { eventID: eventId });
       else window.fbq(STD[name] ? 'track' : 'trackCustom', name, params || {});
     }
@@ -90,8 +90,10 @@
 
   var CRM = root.getAttribute('data-crm') || '';
   var TYPES = { 'Roofing': 'Roofer', 'Driveways': 'Driveway', 'Electrical': 'Electrician', 'Construction': 'Builder', 'Landscaping': 'Landscaper', 'Joinery': 'Joiner', 'Plumbing and heating': 'Plumbing', 'Another trade': 'Other' };
+  /* Resolves to the CRM's signed reference for this prospect ('' if it never
+     came back), which ties the booked call and the uploads to the same record. */
   window.sendCrm = function (d) {
-    if (!CRM) return;
+    if (!CRM || !window.fetch) return Promise.resolve('');
     try {
       var body = {
         form: 'free demo quiz, innov8workflows.co.uk/lp',
@@ -111,8 +113,11 @@
         meta_test: /(?:^|[?&])test=1(?:&|$)/.test(location.search)
       };
       if (d.noWebsite) body.website = '';
-      fetch(CRM, { method: 'POST', mode: 'cors', keepalive: true, headers: { 'Content-Type': 'text/plain;charset=UTF-8' }, body: JSON.stringify(body) }).catch(function () {});
-    } catch (e) {}
+      return fetch(CRM, { method: 'POST', mode: 'cors', keepalive: true, headers: { 'Content-Type': 'text/plain;charset=UTF-8' }, body: JSON.stringify(body) })
+        .then(function (r) { return r.json(); })
+        .then(function (j) { return (j && j.ref) || ''; })
+        .catch(function () { return ''; });
+    } catch (e) { return Promise.resolve(''); }
   };
 
   var LEAD = root.getAttribute('data-lead') || '';
@@ -262,7 +267,7 @@
         var m = document.cookie.match('(?:^|; )' + n + '=([^;]*)');
         return m ? decodeURIComponent(m[1]) : '';
       };
-      window.sendCrm({
+      var refP = window.sendCrm({
         eventId: eventId,
         fbc: ck('_fbc'),
         fbp: ck('_fbp'),
@@ -285,7 +290,191 @@
         source: 'ad landing page'
       });
       window.track('Lead', { content_name: 'Free demo funnel', method: btn.getAttribute('data-quiz-send'), trade: answers[KEYS[0]] || '', timing: answers[KEYS[KEYS.length - 1]] || '' }, eventId);
+      /* WhatsApp opens in a new tab or the app, so the booking calendar is
+         waiting here when they come back. */
+      startBooking(refP, ck);
     }, false);
+  });
+
+  /* ---- After the quiz: book the demo call, then send logo and photos ----
+     The call is booked on Jay's Calendly, embedded here. When Calendly says it
+     is booked, the CRM is told (it checks the booking with Calendly itself), and
+     Meta gets a Schedule with the same event id as the CRM's server copy. */
+  var CAL = root.getAttribute('data-cal') || '';
+  var BOOK_API = CRM.replace(/site-enquiry$/, 'lp-booking');
+  var FILES_API = CRM.replace(/site-enquiry$/, 'lp-files');
+  var bookEl = quiz.querySelector('[data-book]');
+  var filesEl = quiz.querySelector('[data-files]');
+  var lpRef = '';
+  var booked = false;
+
+  function ukPhone(p) {
+    var d = p.replace(/[^\d+]/g, '');
+    if (/^07\d{9}$/.test(d)) return '+44' + d.slice(1);
+    if (/^447\d{9}$/.test(d)) return '+' + d;
+    return /^\+\d{10,15}$/.test(d) ? d : '';
+  }
+
+  function startBooking(refP, ck) {
+    if (!CAL || !bookEl) return;
+    quiz.classList.add('booking');
+    Array.prototype.forEach.call(steps, function (s) { s.classList.remove('on'); });
+    bookEl.hidden = false;
+    var box = bookEl.querySelector('[data-cal]');
+    var made = false;
+    function embed(ref) {
+      if (made) return;
+      made = true;
+      lpRef = ref || '';
+      var page = new URLSearchParams(location.search);
+      var p = new URLSearchParams();
+      p.set('embed_domain', location.host);
+      p.set('embed_type', 'Inline');
+      p.set('hide_event_type_details', '1');
+      p.set('hide_landing_page_details', '1');
+      /* Calendly's own cookie banner sat over the calendar. The page's banner
+         and privacy policy (section 10) cover Calendly. */
+      p.set('hide_gdpr_banner', '1');
+      p.set('background_color', '1c1c1c');
+      p.set('text_color', 'f2f2f2');
+      p.set('primary_color', 'ea580c');
+      if (val('name')) p.set('name', val('name'));
+      var ph = ukPhone(val('phone'));
+      if (ph) p.set('location', ph);
+      ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'].forEach(function (k) { if (page.get(k)) p.set(k, page.get(k).slice(0, 120)); });
+      if (lpRef) p.set('utm_term', lpRef);
+      var f = document.createElement('iframe');
+      f.src = CAL + '?' + p.toString();
+      f.title = 'Book your demo call with Jamie';
+      f.setAttribute('loading', 'eager');
+      box.innerHTML = '';
+      box.appendChild(f);
+    }
+    /* Wait briefly for the CRM's reference so the booking is tied to this
+       lead; without it Calendly's webhook still matches by phone or email. */
+    var t = setTimeout(function () { embed(''); }, 4000);
+    refP.then(function (r) { clearTimeout(t); embed(r); });
+
+    window.addEventListener('message', function (e) {
+      if (e.origin !== 'https://calendly.com' || !e.data || typeof e.data.event !== 'string') return;
+      var frame = box.querySelector('iframe');
+      if (e.data.event === 'calendly.page_height' && frame && e.data.payload) {
+        var h = parseInt(e.data.payload.height, 10);
+        if (h > 300 && h < 2000) frame.style.height = h + 'px';
+      }
+      if (e.data.event === 'calendly.event_scheduled' && !booked) {
+        booked = true;
+        var inv = (e.data.payload && e.data.payload.invitee && e.data.payload.invitee.uri) || '';
+        var uuid = inv.split('/').pop();
+        if (uuid) window.track('Schedule', { content_name: 'Demo call booked' }, 'schedule.' + uuid);
+        showFiles();
+        if (!inv || !window.fetch) return;
+        fetch(BOOK_API, { method: 'POST', mode: 'cors', headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
+          body: JSON.stringify({ ref: lpRef, invitee_uri: inv, page: location.href, fbc: ck('_fbc'), fbp: ck('_fbp'),
+            meta_test: /(?:^|[?&])test=1(?:&|$)/.test(location.search) }) })
+          .then(function (r) { return r.json(); })
+          .then(function (j) {
+            var b = filesEl && filesEl.querySelector('[data-booked]');
+            if (b && j && j.when) b.textContent = 'You’re booked in for ' + j.when;
+          })
+          .catch(function () {});
+      }
+    });
+  }
+
+  function showFiles() {
+    if (!filesEl) return;
+    bookEl.hidden = true;
+    filesEl.hidden = false;
+    if (!lpRef) {
+      /* No reference means the CRM never saw the quiz, so uploads can't be
+         matched. WhatsApp still works for photos. */
+      var form = filesEl.querySelector('[data-files-form]');
+      if (form) form.hidden = true;
+      setStatus('Send your logo and photos to Jamie on WhatsApp and they will go straight into your demo.', '');
+    }
+    var top = quiz.getBoundingClientRect().top + window.pageYOffset - 90;
+    if (window.pageYOffset > top) window.scrollTo({ top: top, behavior: 'smooth' });
+  }
+
+  function setStatus(msg, cls) {
+    var s = filesEl.querySelector('[data-files-status]');
+    if (!s) return;
+    s.textContent = msg;
+    s.className = 'qstatus' + (cls ? ' ' + cls : '');
+  }
+
+  /* Phones take 5 to 12 MB photos; the CRM takes up to 4 MB. Shrink to 2000px
+     JPEG (logos stay PNG so a see-through background survives). A format the
+     browser can't draw (HEIC on Android) goes as it is if it is small enough. */
+  function shrink(file, isLogo) {
+    return new Promise(function (resolve) {
+      var keep = function () { resolve(file.size <= 4 * 1024 * 1024 ? file : null); };
+      if (!/^image\//.test(file.type) || /gif/.test(file.type)) return keep();
+      var url = URL.createObjectURL(file);
+      var img = new Image();
+      img.onload = function () {
+        var max = isLogo ? 1600 : 2000;
+        var k = Math.min(1, max / Math.max(img.naturalWidth, img.naturalHeight));
+        var c = document.createElement('canvas');
+        c.width = Math.round(img.naturalWidth * k);
+        c.height = Math.round(img.naturalHeight * k);
+        c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+        URL.revokeObjectURL(url);
+        var png = isLogo && /png|webp/.test(file.type);
+        c.toBlob(function (b) {
+          if (!b) return keep();
+          var base = (file.name || (isLogo ? 'logo' : 'photo')).replace(/\.[^.]+$/, '');
+          resolve(new File([b], base + (png ? '.png' : '.jpg'), { type: png ? 'image/png' : 'image/jpeg' }));
+        }, png ? 'image/png' : 'image/jpeg', 0.85);
+      };
+      img.onerror = function () { URL.revokeObjectURL(url); keep(); };
+      img.src = url;
+    });
+  }
+
+  function post(body) {
+    return fetch(FILES_API, { method: 'POST', mode: 'cors', body: body })
+      .then(function (r) { return r.json().catch(function () { return { ok: false }; }); })
+      .catch(function () { return { ok: false, error: 'connection dropped' }; });
+  }
+
+  var sendBtn = filesEl && filesEl.querySelector('[data-files-send]');
+  if (sendBtn) sendBtn.addEventListener('click', function () {
+    if (!lpRef || sendBtn.disabled) return;
+    var site = (document.getElementById('f-site') || {}).value || '';
+    var logo = (document.getElementById('f-logo') || {}).files || [];
+    var photos = Array.prototype.slice.call((document.getElementById('f-photos') || {}).files || [], 0, 12);
+    var jobs = [];
+    if (logo[0]) jobs.push({ file: logo[0], kind: 'logo' });
+    photos.forEach(function (f) { jobs.push({ file: f, kind: 'photo' }); });
+    if (!site.trim() && !jobs.length) { setStatus('Add a link, your logo or some photos first.', 'bad'); return; }
+    sendBtn.disabled = true;
+    var sent = 0, failed = 0;
+    var chain = site.trim()
+      ? post(JSON.stringify({ ref: lpRef, website: site.trim() }))
+      : Promise.resolve({ ok: true });
+    jobs.forEach(function (j, i) {
+      chain = chain.then(function () {
+        setStatus('Sending ' + (i + 1) + ' of ' + jobs.length + '...', '');
+        return shrink(j.file, j.kind === 'logo').then(function (f) {
+          if (!f) { failed++; return; }
+          var fd = new FormData();
+          fd.append('ref', lpRef);
+          fd.append('kind', j.kind);
+          fd.append('file', f, f.name);
+          return post(fd).then(function (r) { if (r && r.ok) sent++; else failed++; });
+        });
+      });
+    });
+    chain.then(function () {
+      sendBtn.disabled = false;
+      if (failed && !sent && jobs.length) { setStatus('Those didn’t send. Please send them to Jamie on WhatsApp instead.', 'bad'); return; }
+      var form = filesEl.querySelector('[data-files-form]');
+      if (form) form.hidden = true;
+      setStatus('Thanks, Jamie has them' + (failed ? ' (' + failed + ' didn’t send, WhatsApp them over if you like)' : '') + '. Speak soon.', 'ok');
+      window.track('demo_files_sent', { files: sent });
+    });
   });
 
 

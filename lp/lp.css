@@ -118,6 +118,22 @@ h1,h2,h3{font-weight:800;letter-spacing:-.03em;line-height:1.05}
 .qtrust img{width:40px;height:40px;border-radius:50%;object-fit:cover;flex:none;border:2px solid rgba(249,115,22,.5)}
 .qtrust p{font-size:.82rem;color:var(--text2);line-height:1.4}
 .qtrust b{color:var(--text)}
+/* After the quiz: book the demo call (Calendly), then send logo and photos */
+.qafter h2{font-size:clamp(1.2rem,2.6vw,1.45rem);letter-spacing:-.02em}
+.qafter>p{color:var(--muted);font-size:.86rem;margin-top:4px}
+.qafter:not([hidden]){display:block;animation:qin .28s ease}
+.qafter [hidden]{display:none!important}
+.qcard.booking .qtop,.qcard.booking .qnote{display:none}
+@media(min-width:1000px){.qcard.booking{position:static}}
+.qcal{margin-top:12px;border-radius:12px;overflow:hidden;background:#1c1c1c;min-height:200px}
+.qcal iframe{display:block;width:100%;height:720px;border:0}
+.qcal-wait{padding:24px 14px;color:var(--muted);font-size:.86rem;text-align:center}
+.qskip{margin-top:10px;font-size:.8rem;color:var(--muted);text-align:center}
+.qfile input{padding:11px 12px;min-height:auto;font-size:.88rem;color:var(--text2)}
+.qfile input::file-selector-button{margin-right:10px;padding:7px 12px;border-radius:8px;border:1px solid var(--line2);background:rgba(255,255,255,.08);color:#fff;font:inherit;font-weight:600;cursor:pointer}
+.qstatus{margin-top:10px;font-size:.86rem;color:var(--text2);line-height:1.5}
+.qstatus.ok{color:#86efac}
+.qstatus.bad{color:#fca5a5}
 .hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;opacity:0}
 
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:52px;padding:13px 24px;border-radius:12px;font-weight:800;font-size:1rem;text-decoration:none;border:2px solid transparent;cursor:pointer;transition:background .18s,transform .14s,border-color .18s,color .18s;text-align:center}

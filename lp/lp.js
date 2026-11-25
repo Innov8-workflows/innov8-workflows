@@ -11,6 +11,23 @@
   var started = false;
   var q = [];
 
+  var TEST_KEY = 'innov8_lp_test';
+  var TEST = (function () {
+    var m = location.search.match(/(?:^|[?&])test=([01])(?:&|$)/);
+    try {
+      if (m && m[1] === '1') localStorage.setItem(TEST_KEY, '1');
+      if (m && m[1] === '0') localStorage.removeItem(TEST_KEY);
+      return localStorage.getItem(TEST_KEY) === '1';
+    } catch (e) { return !!(m && m[1] === '1'); }
+  })();
+  if (TEST) {
+    var bar = document.createElement('div');
+    bar.className = 'testbar';
+    bar.innerHTML = 'TEST MODE: nothing goes to Meta or Google, and the CRM marks this lead TEST. <a href="?test=0">Turn off</a>';
+    document.addEventListener('DOMContentLoaded', function () { document.body.appendChild(bar); });
+    if (document.body) document.body.appendChild(bar);
+  }
+
   function readConsent() {
     try {
       var s = JSON.parse(localStorage.getItem(KEY));
@@ -24,7 +41,7 @@
   }
 
   function startTrackers() {
-    if (started) return;
+    if (started || TEST) return;
     started = true;
     if (gaId) {
       window.dataLayer = window.dataLayer || [];
@@ -53,9 +70,8 @@
     }
   }
 
-  /* eventId: the same id the CRM sends to Meta's Conversions API for this lead,
-     so Meta counts a visitor who accepted cookies once, not twice. */
   window.track = function (name, params, eventId) {
+    if (TEST) return;
     if (!started) { q.push([name, params, eventId]); return; }
     if (window.gtag) window.gtag('event', name === 'Lead' ? 'generate_lead' : name === 'Schedule' ? 'book_demo_call' : name, params || {});
     if (window.fbq) {
@@ -70,7 +86,7 @@
   function sizeGate() { if (gate) root.style.setProperty('--cc-h', gate.offsetHeight + 'px'); }
   var choice = readConsent();
   if (choice === 'accepted') { startTrackers(); flush(); }
-  else if (choice !== 'declined' && gate) {
+  else if (choice !== 'declined' && gate && !TEST) {
     gate.hidden = false;
     document.body.classList.add('cc-open');
     sizeGate();
@@ -90,8 +106,7 @@
 
   var CRM = root.getAttribute('data-crm') || '';
   var TYPES = { 'Roofing': 'Roofer', 'Driveways': 'Driveway', 'Electrical': 'Electrician', 'Construction': 'Builder', 'Landscaping': 'Landscaper', 'Joinery': 'Joiner', 'Plumbing and heating': 'Plumbing', 'Another trade': 'Other' };
-  /* Resolves to the CRM's signed reference for this prospect ('' if it never
-     came back), which ties the booked call and the uploads to the same record. */
+
   window.sendCrm = function (d) {
     if (!CRM || !window.fetch) return Promise.resolve('');
     try {
@@ -110,7 +125,7 @@
         meta_event_id: d.eventId || '',
         fbc: d.fbc || '',
         fbp: d.fbp || '',
-        meta_test: /(?:^|[?&])test=1(?:&|$)/.test(location.search)
+        meta_test: TEST
       };
       if (d.noWebsite) body.website = '';
       return fetch(CRM, { method: 'POST', mode: 'cors', keepalive: true, headers: { 'Content-Type': 'text/plain;charset=UTF-8' }, body: JSON.stringify(body) })
@@ -210,9 +225,8 @@
       var a = KEYS.map(function (k) { return answers[k]; }).filter(Boolean);
       sumEl.textContent = a.length ? 'Your answers: ' + a.join('  |  ') : '';
     }
-    /* WhatsApp and text sit under the calendar now, filled in with the answers. */
-    var wa = quiz.querySelector('[data-after-wa]');
-    if (wa) wa.href = waHref();
+
+    Array.prototype.forEach.call(quiz.querySelectorAll('[data-quiz-wa], [data-after-wa]'), function (a) { a.href = waHref(); });
     var sms = quiz.querySelector('[data-after-sms]');
     if (sms) sms.href = 'sms:' + SMS + '?&body=' + encodeURIComponent(message());
   }
@@ -261,10 +275,11 @@
       if (logged) return;
       logged = true;
       var parts = KEYS.map(function (k2) { return answers[k2] ? LABELS[k2] + ': ' + answers[k2] : ''; }).filter(Boolean);
-      var how = 'the booking calendar (WhatsApp and text are under it)';
-      /* One id for the pixel Lead and the CRM's server Lead (Conversions API),
-         plus Meta's own cookies if Accept was pressed. The fbclid rides in on the
-         page address. */
+      var viaWa = btn.getAttribute('data-quiz-send') === 'wa';
+      var how = viaWa
+        ? 'WhatsApp (chose it over the calendar, which opened behind it)'
+        : 'the booking calendar (WhatsApp and text are under it)';
+
       var eventId = 'lead.' + Date.now() + '.' + Math.random().toString(36).slice(2, 10);
       var ck = function (n) {
         var m = document.cookie.match('(?:^|; )' + n + '=([^;]*)');
@@ -293,18 +308,12 @@
         source: 'ad landing page'
       });
       window.track('Lead', { content_name: 'Free demo funnel', method: btn.getAttribute('data-quiz-send'), trade: answers[KEYS[0]] || '', timing: answers[KEYS[KEYS.length - 1]] || '' }, eventId);
-      /* The calendar opens right here. Sending them to WhatsApp first lost most
-         of them: from Facebook's in-app browser few ever came back to book.
-         The lead is already in the CRM, so WhatsApp is now the second choice. */
+
       if (CAL && bookEl) startBooking(refP, ck);
-      else window.open(waHref(), '_blank', 'noopener');
+      else if (!viaWa) window.open(waHref(), '_blank', 'noopener');
     }, false);
   });
 
-  /* ---- After the quiz: book the demo call, then send logo and photos ----
-     The call is booked on Jay's Calendly, embedded here. When Calendly says it
-     is booked, the CRM is told (it checks the booking with Calendly itself), and
-     Meta gets a Schedule with the same event id as the CRM's server copy. */
   var CAL = root.getAttribute('data-cal') || '';
   var BOOK_API = CRM.replace(/site-enquiry$/, 'lp-booking');
   var FILES_API = CRM.replace(/site-enquiry$/, 'lp-files');
@@ -337,8 +346,7 @@
       p.set('embed_type', 'Inline');
       p.set('hide_event_type_details', '1');
       p.set('hide_landing_page_details', '1');
-      /* Calendly's own cookie banner sat over the calendar. The page's banner
-         and privacy policy (section 10) cover Calendly. */
+
       p.set('hide_gdpr_banner', '1');
       p.set('background_color', '1c1c1c');
       p.set('text_color', 'f2f2f2');
@@ -355,8 +363,7 @@
       box.innerHTML = '';
       box.appendChild(f);
     }
-    /* Wait briefly for the CRM's reference so the booking is tied to this
-       lead; without it Calendly's webhook still matches by phone or email. */
+
     var t = setTimeout(function () { embed(''); }, 4000);
     refP.then(function (r) { clearTimeout(t); embed(r); });
 
@@ -376,7 +383,7 @@
         if (!inv || !window.fetch) return;
         fetch(BOOK_API, { method: 'POST', mode: 'cors', headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
           body: JSON.stringify({ ref: lpRef, invitee_uri: inv, page: location.href, fbc: ck('_fbc'), fbp: ck('_fbp'),
-            meta_test: /(?:^|[?&])test=1(?:&|$)/.test(location.search) }) })
+            meta_test: TEST }) })
           .then(function (r) { return r.json(); })
           .then(function (j) {
             var b = filesEl && filesEl.querySelector('[data-booked]');
@@ -392,8 +399,7 @@
     bookEl.hidden = true;
     filesEl.hidden = false;
     if (!lpRef) {
-      /* No reference means the CRM never saw the quiz, so uploads can't be
-         matched. WhatsApp still works for photos. */
+
       var form = filesEl.querySelector('[data-files-form]');
       if (form) form.hidden = true;
       setStatus('Send your logo and photos to Jamie on WhatsApp and they will go straight into your demo.', '');
@@ -409,9 +415,6 @@
     s.className = 'qstatus' + (cls ? ' ' + cls : '');
   }
 
-  /* Phones take 5 to 12 MB photos; the CRM takes up to 4 MB. Shrink to 2000px
-     JPEG (logos stay PNG so a see-through background survives). A format the
-     browser can't draw (HEIC on Android) goes as it is if it is small enough. */
   function shrink(file, isLogo) {
     return new Promise(function (resolve) {
       var keep = function () { resolve(file.size <= 4 * 1024 * 1024 ? file : null); };
@@ -481,7 +484,6 @@
       window.track('demo_files_sent', { files: sent });
     });
   });
-
 
   show(1);
 })();

@@ -118,7 +118,7 @@ h1,h2,h3{font-weight:800;letter-spacing:-.03em;line-height:1.05}
 .qtrust img{width:40px;height:40px;border-radius:50%;object-fit:cover;flex:none;border:2px solid rgba(249,115,22,.5)}
 .qtrust p{font-size:.82rem;color:var(--text2);line-height:1.4}
 .qtrust b{color:var(--text)}
-/* After the quiz: book the demo call (Calendly), then send logo and photos */
+
 .qafter h2{font-size:clamp(1.2rem,2.6vw,1.45rem);letter-spacing:-.02em}
 .qafter>p{color:var(--muted);font-size:.86rem;margin-top:4px}
 .qafter:not([hidden]){display:block;animation:qin .28s ease}
@@ -284,3 +284,6 @@ body.cc-open .wa-float{bottom:calc(16px + var(--cc-h,120px))}
 @media(max-width:879px){.work figure:nth-child(n+5){display:none}}
 .hdr-short{display:none}
 @media(max-width:400px){.hdr-long{display:none}.hdr-short{display:inline}.brand{font-size:.98rem}.hdr-call{padding:0 14px}}
+
+.testbar{position:fixed;left:0;right:0;bottom:0;z-index:9999;background:#facc15;color:#111;font-weight:700;font-size:.85rem;line-height:1.4;text-align:center;padding:9px 16px}
+.testbar a{color:#111;text-decoration:underline;margin-left:6px}

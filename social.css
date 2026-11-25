@@ -1,0 +1,7 @@
+.i8-social{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.i8-social a{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:10px;border:1px solid rgba(255,255,255,.12);color:#a1a1aa;background:rgba(255,255,255,.03);text-decoration:none;transition:color .2s,border-color .2s,background .2s}
+.i8-social a:hover,.i8-social a:focus-visible{color:#FE5A03;border-color:rgba(254,90,3,.5);background:rgba(254,90,3,.08)}
+.i8-social svg{width:18px;height:18px;flex:none;display:block}
+.ftr .i8-social{margin-top:0}
+.footer-right .i8-social{margin:0 0 12px;justify-content:flex-end}
+@media (max-width:640px){.ftr .i8-social,.footer-right .i8-social{justify-content:center}footer>.footer-links{flex-wrap:wrap;justify-content:center;gap:12px 20px}}
